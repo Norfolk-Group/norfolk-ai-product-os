@@ -129,6 +129,19 @@ These contracts keep product purpose, observed evidence, structure, and recommen
 
 - [Plan index and conventions](plans/README.md)
 
+## Release and adoption
+
+- [Adoption system](../adoption/README.md)
+- [Release policy](../adoption/release-policy.md)
+- [Compatibility](../adoption/compatibility.md)
+- [Private distribution](../adoption/distribution.md)
+- [Equip](../adoption/equip.md)
+- [Tidy](../adoption/tidy.md)
+- [Rollback](../adoption/rollback.md)
+- [Authority cutover](../adoption/cutover.md)
+- [Exception template](../templates/exception.md)
+- [Promotion proposal template](../templates/promotion-proposal.md)
+
 ## Reading by need
 
 - To determine which statement wins, start with [Fundamental governance](../governance/fundamental-governance.md#authority-and-precedence).

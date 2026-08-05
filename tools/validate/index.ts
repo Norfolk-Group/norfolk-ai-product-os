@@ -31,7 +31,7 @@ result.errors.push(...validateCapabilityMap(JSON.parse(await readFile(resolve(ro
 result.errors.push(...validateDataLifecycle(JSON.parse(await readFile(resolve(root, "standards/data-lifecycle.example.json"), "utf8"))).map((error) => `standards/data-lifecycle.example.json: ${error}`));
 result.errors.push(...validateAuthExperience(JSON.parse(await readFile(resolve(root, "tests/fixtures/auth/valid-experience.json"), "utf8"))).map((error) => `tests/fixtures/auth/valid-experience.json: ${error}`));
 result.errors.push(...validateAuthSecurity(JSON.parse(await readFile(resolve(root, "tests/fixtures/auth/valid-security.json"), "utf8"))).map((error) => `tests/fixtures/auth/valid-security.json: ${error}`));
-for (const path of await fg(["{governance,product,design,standards,templates,outputs,migration,catalog}/**/*", "handbook/**/*"], { cwd: root, onlyFiles: true })) {
+for (const path of await fg(["{governance,product,design,standards,templates,outputs,migration,catalog,adoption,compatibility,releases}/**/*", "handbook/**/*"], { cwd: root, onlyFiles: true })) {
   const body = await readFile(resolve(root, path), "utf8");
   result.errors.push(...scanSecrets(body, path.startsWith("handbook/") ? "handbook" : path.includes("fixture") ? "fixture" : path.includes("manifest") ? "manifest" : "source").map((error) => `${path}: ${error}`));
 }
@@ -41,6 +41,6 @@ if (result.errors.length > 0) {
   for (const error of result.errors) console.error(`error: ${error}`);
   process.exitCode = 1;
 } else {
-  const contractCount = (await fg(["governance/*.md", "decisions/*.md", "product/*.md", "design/*.md", "catalog/*.md", "migration/*.md", "outputs/{README,shared-principles,job-lifecycle,pdf,xlsx,pptx,docx,email,charts,print,investor-materials}.md", "playbooks/*.md", "standards/*.md", "templates/*.md"], { cwd: root })).length;
+  const contractCount = (await fg(["governance/*.md", "decisions/*.md", "product/*.md", "design/*.md", "catalog/*.md", "migration/*.md", "adoption/*.md", "outputs/{README,shared-principles,job-lifecycle,pdf,xlsx,pptx,docx,email,charts,print,investor-materials}.md", "playbooks/*.md", "standards/*.md", "templates/*.md"], { cwd: root })).length;
   console.log(`validated ${contractCount} contracts with no blocking errors`);
 }
