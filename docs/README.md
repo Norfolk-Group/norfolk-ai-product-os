@@ -110,6 +110,9 @@ These contracts keep product purpose, observed evidence, structure, and recommen
 | [Preferred stack](../standards/preferred-stack.md) | CONTRACT | Architecture Owner | Current defaults, evidence, alternatives, and reversal |
 | [Application architecture](../standards/architecture.md) | CONTRACT | Architecture Owner | Transport-neutral authorized procedures |
 | [Security and authorization](../standards/security.md) | CONTRACT | Security Owner | Identity, authorization, sessions, approvals, and audit |
+| [Authentication architecture](../standards/authentication.md) | CONTRACT | Security Owner | Backend-driven WorkOS session and journey boundary |
+| [Authentication security](../standards/auth-security.md) | CONTRACT | Security Owner | OAuth integrity, cookies, replay, rate limits, and redaction |
+| [WorkOS implementation evidence](../standards/workos-evidence.md) | REFERENCE | Security Owner | Dated official-provider and SDK verification |
 | [Secrets](../standards/secrets.md) | CONTRACT | Security Owner | Runtime injection, rotation, scanning, and revocation |
 | [Data architecture](../standards/data.md) | CONTRACT | Data Owner | Postgres safety, migrations, isolation, and recovery |
 | [Data lifecycle](../standards/data-lifecycle.md) | CONTRACT | Data Owner | Retention, holds, deletion, backups, and evidence |
@@ -120,6 +123,7 @@ These contracts keep product purpose, observed evidence, structure, and recommen
 | [Reusable modules](../standards/reusable-modules.md) | CONTRACT | Architecture Owner | Enable, govern, upgrade, disable, and remove capabilities |
 | [Decision record template](../templates/decision-record.md) | CONTRACT | Product OS Owner | Durable decision rationale and reversal |
 | [Module contract template](../templates/module-contract.md) | CONTRACT | Architecture Owner | Reusable capability contract |
+| [Authentication experience template](../templates/auth-experience-contract.md) | CONTRACT | Product OS Owner | Complete product-owned WorkOS journey |
 
 ## Work plans
 

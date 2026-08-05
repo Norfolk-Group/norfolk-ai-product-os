@@ -1,0 +1,23 @@
+{"entryMode":"invite-only","openSignupEnabled":false,"states":[
+{"id":"login","owner":"workos-hosted","copyOwner":"Product","recovery":"Retry","keyboard":"Complete","screenReader":"Labeled","slowNetwork":"Status","reducedMotion":"Static"},
+{"id":"logout","owner":"kit","copyOwner":"Product","recovery":"Sign in","keyboard":"Complete","screenReader":"Labeled","slowNetwork":"Status","reducedMotion":"Static"},
+{"id":"open-entry","owner":"kit","copyOwner":"Product","recovery":"Explain invite mode","keyboard":"Complete","screenReader":"Labeled","slowNetwork":"Status","reducedMotion":"Static"},
+{"id":"invite-valid","owner":"workos-hosted","copyOwner":"Product","recovery":"Continue","keyboard":"Complete","screenReader":"Labeled","slowNetwork":"Status","reducedMotion":"Static"},
+{"id":"invite-expired","owner":"kit","copyOwner":"Product","recovery":"Request new invitation","keyboard":"Complete","screenReader":"Labeled","slowNetwork":"Status","reducedMotion":"Static"},
+{"id":"invite-revoked","owner":"kit","copyOwner":"Product","recovery":"Contact administrator","keyboard":"Complete","screenReader":"Labeled","slowNetwork":"Status","reducedMotion":"Static"},
+{"id":"invite-used","owner":"kit","copyOwner":"Product","recovery":"Sign in","keyboard":"Complete","screenReader":"Labeled","slowNetwork":"Status","reducedMotion":"Static"},
+{"id":"email-verification","owner":"workos-hosted","copyOwner":"Product","recovery":"Resend safely","keyboard":"Complete","screenReader":"Labeled","slowNetwork":"Status","reducedMotion":"Static"},
+{"id":"mfa-enrollment","owner":"workos-hosted","copyOwner":"Product","recovery":"Restart enrollment","keyboard":"Complete","screenReader":"Labeled","slowNetwork":"Status","reducedMotion":"Static"},
+{"id":"mfa-challenge","owner":"workos-hosted","copyOwner":"Product","recovery":"Use recovery path","keyboard":"Complete","screenReader":"Labeled","slowNetwork":"Status","reducedMotion":"Static"},
+{"id":"organization-selection","owner":"kit","copyOwner":"Product","recovery":"Choose or sign out","keyboard":"Complete","screenReader":"Labeled","slowNetwork":"Status","reducedMotion":"Static"},
+{"id":"sso-required","owner":"external-idp","copyOwner":"Product","recovery":"Return and retry","keyboard":"Complete","screenReader":"Labeled","slowNetwork":"Status","reducedMotion":"Static"},
+{"id":"no-authorized-organization","owner":"kit","copyOwner":"Product","recovery":"Contact administrator","keyboard":"Complete","screenReader":"Labeled","slowNetwork":"Status","reducedMotion":"Static"},
+{"id":"organization-switch","owner":"kit","copyOwner":"Product","recovery":"Keep current organization","keyboard":"Complete","screenReader":"Labeled","slowNetwork":"Status","reducedMotion":"Static"},
+{"id":"recovery","owner":"workos-hosted","copyOwner":"Product","recovery":"Restart safely","keyboard":"Complete","screenReader":"Labeled","slowNetwork":"Status","reducedMotion":"Static"},
+{"id":"locked-user","owner":"kit","copyOwner":"Product","recovery":"Contact administrator","keyboard":"Complete","screenReader":"Labeled","slowNetwork":"Status","reducedMotion":"Static"},
+{"id":"disabled-user","owner":"kit","copyOwner":"Product","recovery":"Contact administrator","keyboard":"Complete","screenReader":"Labeled","slowNetwork":"Status","reducedMotion":"Static"},
+{"id":"access-denied","owner":"kit","copyOwner":"Product","recovery":"Return safely","keyboard":"Complete","screenReader":"Labeled","slowNetwork":"Status","reducedMotion":"Static"},
+{"id":"session-expired","owner":"kit","copyOwner":"Product","recovery":"Reauthenticate","keyboard":"Complete","screenReader":"Labeled","slowNetwork":"Status","reducedMotion":"Static"},
+{"id":"callback-failure","owner":"kit","copyOwner":"Product","recovery":"Restart sign-in","keyboard":"Complete","screenReader":"Labeled","slowNetwork":"Status","reducedMotion":"Static"},
+{"id":"return-to-intent","owner":"kit","copyOwner":"Product","recovery":"Return home","keyboard":"Complete","screenReader":"Labeled","slowNetwork":"Status","reducedMotion":"Static"}
+]}
