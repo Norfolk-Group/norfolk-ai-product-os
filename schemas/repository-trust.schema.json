@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://product-os.norfolk.ai/schemas/repository-trust.schema.json",
+  "title": "Repository trust input",
+  "type": "object",
+  "required": ["organization", "repository", "defaultBranch", "writeRef", "identity", "controls"],
+  "properties": {
+    "organization": { "const": "Norfolk-Group" },
+    "repository": { "type": "string", "pattern": "^[A-Za-z0-9_.-]+$" },
+    "defaultBranch": { "type": "string", "minLength": 1 },
+    "writeRef": { "type": "string", "pattern": "^refs/heads/(?!main$|master$).+" },
+    "identity": {
+      "type": "object",
+      "required": ["kind", "expiresAt", "repositories", "permissions"],
+      "properties": {
+        "kind": { "enum": ["github-app", "oidc"] },
+        "expiresAt": { "type": "string", "format": "date-time" },
+        "repositories": { "type": "array", "minItems": 1, "maxItems": 1, "items": { "type": "string" } },
+        "permissions": {
+          "type": "object",
+          "propertyNames": { "enum": ["contents", "pullRequests", "metadata", "checks"] },
+          "additionalProperties": { "enum": ["read", "write"] }
+        }
+      },
+      "additionalProperties": false
+    },
+    "controls": {
+      "type": "object",
+      "required": ["protectedDefaultBranch", "ownerApproval", "requiredChecks", "releaseEnvironmentApproval", "branchOnlyWrites"],
+      "properties": {
+        "protectedDefaultBranch": { "const": true },
+        "ownerApproval": { "const": true },
+        "requiredChecks": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "releaseEnvironmentApproval": { "const": true },
+        "branchOnlyWrites": { "const": true }
+      },
+      "additionalProperties": false
+    },
+    "claimedAuthority": { "enum": ["product-os", "executable-kit", "product", "generated-view"] }
+  },
+  "additionalProperties": false
+}

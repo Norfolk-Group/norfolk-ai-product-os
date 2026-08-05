@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://norfolk.ai/schemas/promotion-proposal.schema.json",
+  "type": "object",
+  "required": ["id", "state", "source", "provenance", "ipClassification", "sensitivity", "sanitization", "evidence", "confidence", "impact", "reviewer"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^PP-[0-9]{4,}$" },
+    "state": { "enum": ["draft", "sanitization-review", "Norfolk-review", "accepted", "rejected", "withdrawn"] },
+    "source": { "type": "string", "minLength": 1 },
+    "provenance": { "type": "string", "minLength": 1 },
+    "ipClassification": { "enum": ["norfolk-owned", "licensed-for-reuse", "client-restricted", "unknown"] },
+    "sensitivity": { "enum": ["norfolk-only", "client-safe", "client-restricted"] },
+    "sanitization": { "type": "object", "required": ["syntheticExamples", "metadataStripped", "humanDisclosureReview"], "properties": { "syntheticExamples": { "type": "boolean" }, "metadataStripped": { "type": "boolean" }, "humanDisclosureReview": { "type": "boolean" } }, "additionalProperties": false },
+    "evidence": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+    "confidence": { "enum": ["low", "medium", "high"] },
+    "impact": { "type": "string", "minLength": 1 },
+    "reviewer": { "type": "string", "minLength": 1 }
+  },
+  "additionalProperties": false
+}

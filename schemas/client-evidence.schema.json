@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://norfolk.ai/schemas/client-evidence.schema.json",
+  "type": "object",
+  "required": ["sourceRef", "rights", "syntheticReplacement", "metadataStripped", "secretScan", "identifierScan", "humanDisclosureReview", "disposition"],
+  "properties": {
+    "sourceRef": { "type": "string", "minLength": 1 },
+    "rights": { "enum": ["approved-for-review", "approved-for-reuse", "restricted", "unknown"] },
+    "syntheticReplacement": { "type": "boolean" },
+    "metadataStripped": { "type": "boolean" },
+    "secretScan": { "const": "passed" },
+    "identifierScan": { "const": "passed" },
+    "humanDisclosureReview": { "type": "boolean" },
+    "disposition": { "enum": ["blocked", "client-local", "sanitized-proposal", "approved-canonical"] }
+  },
+  "additionalProperties": false
+}
