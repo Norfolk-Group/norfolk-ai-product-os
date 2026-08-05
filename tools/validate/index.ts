@@ -4,6 +4,7 @@ import { readFile } from "node:fs/promises";
 import fg from "fast-glob";
 import { validateRepository } from "./repository.js";
 import { validateImportedAdr, validateMigrationRegister, validatePromotedContent, validateSupersededDoctrine } from "./migration.js";
+import { scanSecrets, validateCapabilityMap, validateDataLifecycle, validatePreferredStack } from "./standards.js";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const result = await validateRepository(root);
@@ -24,11 +25,19 @@ for (const path of await fg(["migration/promoted/**/*"], { cwd: root, onlyFiles:
   result.errors.push(...validatePromotedContent(body).map((error) => `${path}: ${error}`));
 }
 
+result.errors.push(...validatePreferredStack(JSON.parse(await readFile(resolve(root, "standards/preferred-stack.json"), "utf8"))).map((error) => `standards/preferred-stack.json: ${error}`));
+result.errors.push(...validateCapabilityMap(JSON.parse(await readFile(resolve(root, "standards/capability-map.example.json"), "utf8"))).map((error) => `standards/capability-map.example.json: ${error}`));
+result.errors.push(...validateDataLifecycle(JSON.parse(await readFile(resolve(root, "standards/data-lifecycle.example.json"), "utf8"))).map((error) => `standards/data-lifecycle.example.json: ${error}`));
+for (const path of await fg(["{governance,product,design,standards,templates,outputs,migration,catalog}/**/*", "handbook/**/*"], { cwd: root, onlyFiles: true })) {
+  const body = await readFile(resolve(root, path), "utf8");
+  result.errors.push(...scanSecrets(body, path.startsWith("handbook/") ? "handbook" : path.includes("fixture") ? "fixture" : path.includes("manifest") ? "manifest" : "source").map((error) => `${path}: ${error}`));
+}
+
 for (const warning of result.warnings) console.warn(`warning: ${warning}`);
 if (result.errors.length > 0) {
   for (const error of result.errors) console.error(`error: ${error}`);
   process.exitCode = 1;
 } else {
-  const contractCount = (await fg(["governance/*.md", "decisions/*.md", "product/*.md", "design/*.md", "catalog/*.md", "migration/*.md", "outputs/{README,shared-principles,job-lifecycle,pdf,xlsx,pptx,docx,email,charts,print,investor-materials}.md", "playbooks/*.md", "templates/*.md"], { cwd: root })).length;
+  const contractCount = (await fg(["governance/*.md", "decisions/*.md", "product/*.md", "design/*.md", "catalog/*.md", "migration/*.md", "outputs/{README,shared-principles,job-lifecycle,pdf,xlsx,pptx,docx,email,charts,print,investor-materials}.md", "playbooks/*.md", "standards/*.md", "templates/*.md"], { cwd: root })).length;
   console.log(`validated ${contractCount} contracts with no blocking errors`);
 }

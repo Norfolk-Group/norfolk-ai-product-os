@@ -1,0 +1,1 @@
+{"capabilities":[{"id":"report.export","procedure":"","transports":[{"name":"ui","procedure":"","authorizationPolicy":"report-read","approvalPolicy":"none"}]}]}

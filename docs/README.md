@@ -21,6 +21,9 @@ Accepted decisions are append-only history. A later decision may supersede one, 
 - [0001 — Product OS is canonical](../decisions/0001-product-os-is-canonical.md)
 - [0002 — Product OS, Kit, and product roles](../decisions/0002-product-os-kit-and-product-roles.md)
 - [0003 — Generated handbook, not a Manual fork](../decisions/0003-generated-handbook-not-manual-fork.md)
+- [0004 — Transport-neutral capabilities](../decisions/0004-transport-neutral-capabilities.md)
+- [0005 — WorkOS is the production identity foundation](../decisions/0005-workos-production-identity.md)
+- [0006 — Direct governed media transfer](../decisions/0006-direct-media-transfer.md)
 
 ## Product method
 
@@ -99,6 +102,24 @@ These contracts keep product purpose, observed evidence, structure, and recommen
 - [Print](../outputs/print.md)
 - [Investor materials](../outputs/investor-materials.md)
 - [Output contract template](../templates/output-contract.md)
+
+## Technology, architecture, security, and data
+
+| Document | Tier | Owner | Purpose |
+|---|---|---|---|
+| [Preferred stack](../standards/preferred-stack.md) | CONTRACT | Architecture Owner | Current defaults, evidence, alternatives, and reversal |
+| [Application architecture](../standards/architecture.md) | CONTRACT | Architecture Owner | Transport-neutral authorized procedures |
+| [Security and authorization](../standards/security.md) | CONTRACT | Security Owner | Identity, authorization, sessions, approvals, and audit |
+| [Secrets](../standards/secrets.md) | CONTRACT | Security Owner | Runtime injection, rotation, scanning, and revocation |
+| [Data architecture](../standards/data.md) | CONTRACT | Data Owner | Postgres safety, migrations, isolation, and recovery |
+| [Data lifecycle](../standards/data-lifecycle.md) | CONTRACT | Data Owner | Retention, holds, deletion, backups, and evidence |
+| [Media transfer](../standards/media.md) | CONTRACT | Platform Owner | Direct upload, confirmation, quarantine, and cleanup |
+| [Agent-native architecture](../standards/agent-native.md) | CONTRACT | AI Platform Owner | Outcome parity, tools, context, completion, and approvals |
+| [Repository lifecycle](../standards/repository-lifecycle.md) | CONTRACT | Product OS Owner | Preservation and separately approved destructive actions |
+| [Vendor integration](../standards/vendor-integration.md) | CONTRACT | Architecture Owner | Official evidence, adapters, failure modes, and exit |
+| [Reusable modules](../standards/reusable-modules.md) | CONTRACT | Architecture Owner | Enable, govern, upgrade, disable, and remove capabilities |
+| [Decision record template](../templates/decision-record.md) | CONTRACT | Product OS Owner | Durable decision rationale and reversal |
+| [Module contract template](../templates/module-contract.md) | CONTRACT | Architecture Owner | Reusable capability contract |
 
 ## Work plans
 

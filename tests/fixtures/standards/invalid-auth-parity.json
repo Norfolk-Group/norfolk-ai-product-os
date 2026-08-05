@@ -1,0 +1,1 @@
+{"capabilities":[{"id":"record.delete","procedure":"records.delete","consequential":true,"transports":[{"name":"ui","procedure":"records.delete","authorizationPolicy":"admin","approvalPolicy":"human-only"},{"name":"mcp","procedure":"records.delete","authorizationPolicy":"member","approvalPolicy":"none"}]}]}
