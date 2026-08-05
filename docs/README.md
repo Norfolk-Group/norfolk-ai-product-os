@@ -78,6 +78,13 @@ These contracts keep product purpose, observed evidence, structure, and recommen
 - Generated private handbook: `handbook/index.html`
 - Generated abstract catalog: `catalog/generated/index.html`
 
+## Migration and provenance
+
+- [Migration source register](../migration/source-register.md)
+- [Content dispositions](../migration/content-dispositions.md)
+- [Superseded material](../migration/superseded-material.md)
+- [Imported ADR provenance](../migration/adr-provenance.md)
+
 ## Work plans
 
 - [Plan index and conventions](plans/README.md)

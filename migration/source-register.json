@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": "SRC-KIT-GOVERNANCE",
+      "repository": "Norfolk-Group/norfolk-kit",
+      "sourceRef": "f2680624596048a88f78e2a77b2a7e3d1d4aeed5",
+      "ownership": "Norfolk AI",
+      "sensitivity": "internal",
+      "evidence": "README.md; docs/SYSTEM-GOVERNANCE-RULE.md; docs/README.md",
+      "disposition": "promote",
+      "approval": "approved",
+      "destination": "governance/ and docs/README.md"
+    },
+    {
+      "id": "SRC-KIT-DESIGN",
+      "repository": "Norfolk-Group/norfolk-kit",
+      "sourceRef": "f2680624596048a88f78e2a77b2a7e3d1d4aeed5",
+      "ownership": "Norfolk AI",
+      "sensitivity": "internal",
+      "evidence": "docs/design-system.md and design decisions",
+      "disposition": "promote",
+      "approval": "approved",
+      "destination": "design/"
+    },
+    {
+      "id": "SRC-KIT-ADRS",
+      "repository": "Norfolk-Group/norfolk-kit",
+      "sourceRef": "f2680624596048a88f78e2a77b2a7e3d1d4aeed5",
+      "ownership": "Norfolk AI with classified client-context passages",
+      "sensitivity": "restricted-history",
+      "evidence": "docs/decisions/0001-0017",
+      "disposition": "historical-import",
+      "approval": "approved",
+      "destination": "decisions/imported/norfolk-kit/"
+    },
+    {
+      "id": "SRC-KIT-ANIMATIONS",
+      "repository": "Norfolk-Group/norfolk-kit",
+      "sourceRef": "f2680624596048a88f78e2a77b2a7e3d1d4aeed5",
+      "ownership": "Norfolk AI; production lineage may include client context",
+      "sensitivity": "restricted-evidence",
+      "evidence": "src/components/animations; docs/design/animations; _replit-export",
+      "disposition": "implement",
+      "approval": "approved",
+      "destination": "Kit implementation; Product OS design/motion.md and outputs/motion-source-inventory.md"
+    },
+    {
+      "id": "SRC-KIT-CLIENT-ASSETS",
+      "repository": "Norfolk-Group/norfolk-kit",
+      "sourceRef": "f2680624596048a88f78e2a77b2a7e3d1d4aeed5",
+      "ownership": "mixed client and Norfolk",
+      "sensitivity": "client-confidential",
+      "evidence": "brand/clients and large binary masters",
+      "disposition": "leave-behind",
+      "approval": "classified",
+      "destination": "pending separate preservation and rights-approved storage migration",
+      "releaseBlocker": true
+    },
+    {
+      "id": "SRC-MANUAL-DUPLICATES",
+      "repository": "Norfolk-Group/norfolk-manual",
+      "sourceRef": "b397f6e3d5e00d2be9ee608356f892daaca8dcd2",
+      "ownership": "Norfolk AI",
+      "sensitivity": "internal",
+      "evidence": "governance, animation specs, animation source, and agent files substantially duplicate Kit",
+      "disposition": "supersede",
+      "approval": "classified",
+      "destination": "Product OS doctrine and Kit executable implementation"
+    },
+    {
+      "id": "SRC-MANUAL-UNIQUE-TOOLS",
+      "repository": "Norfolk-Group/norfolk-manual",
+      "sourceRef": "b397f6e3d5e00d2be9ee608356f892daaca8dcd2",
+      "ownership": "Norfolk AI",
+      "sensitivity": "internal",
+      "evidence": "tools/launchers, tools/setup, and setup guides",
+      "disposition": "evaluate",
+      "approval": "pending",
+      "destination": "candidate Kit developer tooling; must be parity-tested before Manual retirement"
+    },
+    {
+      "id": "SRC-STARTER-LEGACY-STACK",
+      "repository": "Norfolk-Group/norfolk-starter",
+      "sourceRef": "3788ec74763018b73f4051613d90c0005874388b",
+      "ownership": "Norfolk AI",
+      "sensitivity": "public-legacy",
+      "evidence": "Next.js, Clerk, Prisma, starter UI, setup scripts",
+      "disposition": "supersede",
+      "approval": "classified",
+      "destination": "Kit; WorkOS, Drizzle, transport-neutral capability architecture"
+    },
+    {
+      "id": "SRC-STARTER-AGENT-METHODS",
+      "repository": "Norfolk-Group/norfolk-starter",
+      "sourceRef": "3788ec74763018b73f4051613d90c0005874388b",
+      "ownership": "Norfolk AI",
+      "sensitivity": "public-legacy",
+      "evidence": "claude-code commands and skills",
+      "disposition": "evaluate",
+      "approval": "pending",
+      "destination": "candidate U7 agent-native doctrine and reusable agent tooling"
+    }
+  ]
+}

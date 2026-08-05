@@ -597,7 +597,52 @@ Repository creation or migration credentials do not include deletion authority. 
 
 ## Verification before release
 
-Before a release, verify actual GitHub settings against this contract, exercise planted failures for direct default-branch writes, over-scoped identities, missing approval, bad signature or hash, unknown targets, and disclosure leakage, and retain the evidence with the release record.</pre></article><article id="playbooks-README-md"><p class="meta">playbooks/README.md · accepted · source-sha256 101918a65412b9f2303c2ab3d9a4b0638cfa2f4851b154ebe1d67cb51bf9ebec</p><pre># Domain playbooks
+Before a release, verify actual GitHub settings against this contract, exercise planted failures for direct default-branch writes, over-scoped identities, missing approval, bad signature or hash, unknown targets, and disclosure leakage, and retain the evidence with the release record.</pre></article><article id="migration-adr-provenance-md"><p class="meta">migration/adr-provenance.md · accepted · source-sha256 575f5a89d29647f769518762c7ef57f0e421f10b091235df6cab0c2309f3f913</p><pre># Imported ADR provenance
+
+Kit ADRs 0001–0017 were imported from pinned commit `f2680624596048a88f78e2a77b2a7e3d1d4aeed5`. [`imported-adrs.json`](imported-adrs.json) stores the source path, original date, exact body SHA-256, imported path, and historical disposition.
+
+Bodies are byte-for-byte source copies. Their original relative links may no longer resolve in Product OS and are intentionally not rewritten; rewriting would falsify the preserved body. Some bodies contain client-context examples and are restricted history, not reusable canonical guidance. A current decision must be authored in the top-level decision sequence and may cite, accept, reject, or supersede the imported record.
+
+Imported numbering is namespaced under `decisions/imported/norfolk-kit/`; it never competes with Product OS decision numbers.</pre></article><article id="migration-content-dispositions-md"><p class="meta">migration/content-dispositions.md · accepted · source-sha256 3c5eb185e8282647b56e0e4a4528006bb23f2c1c0e423f563e0884fc1db014a0</p><pre># Migration content dispositions
+
+| Source family | Disposition | Result |
+|---|---|---|
+| Kit universal governance and rationale | Promote | Re-authored as Product OS governance, decisions, product method, and design contracts with source register links |
+| Kit executable stack, adapters, UI, checks | Implement | Remains executable in Kit; Product OS owns WHAT and WHY |
+| Kit ADRs 0001–0017 | Historical import | Exact bodies live under `decisions/imported/norfolk-kit/`; they do not enter the current decision sequence |
+| Kit animation sources and Replit preservation | Implement + provenance | Remain in Kit; lineage and approval rules live in Product OS |
+| Kit client-brand assets and large masters | Leave behind | Release blocker pending rights classification and separate versioned storage; never copied into Product OS or future applications |
+| Manual duplicate governance, agent files, animation specs/source | Supersede | Product OS and Kit replacements exist; duplicates are not current authority |
+| Manual unique setup/launcher tools | Evaluate | Preserve until parity-tested in Kit; Manual cannot retire while unique value remains |
+| Starter Clerk/Prisma/Next.js implementation | Supersede | Archived legacy reference; current Kit uses WorkOS, Drizzle, and its approved reference architecture |
+| Starter agent-native commands and skills | Evaluate | Candidate input for U7; no automatic promotion |
+
+Product blanks become templates. Product- or client-specific identity, palettes, business rules, evidence, and credentials remain outside canonical content.</pre></article><article id="migration-source-register-md"><p class="meta">migration/source-register.md · accepted · source-sha256 1b125a78f4bb08ab3627ddbc5ec0c2ffcb9cf1c0b4076f4280369fd9d6e57dda</p><pre># Migration source register
+
+The machine-readable [`source-register.json`](source-register.json) records every source used or evaluated before the first Product OS release. A source requires ownership, sensitivity, evidence, pinned repository ref, disposition, approval, and destination. Promotion is fail-closed: pending, client-confidential, or destination-less material cannot become canonical.
+
+GitHub MCP confirmed on 2026-08-05:
+
+| Repository | Visibility | State | Default branch | Recorded ref |
+|---|---|---|---|---|
+| `Norfolk-Group/norfolk-ai-product-os` | private | active, empty upstream | `main` | local candidate only; not pushed |
+| `Norfolk-Group/norfolk-kit` | private | active | `main` | `f2680624596048a88f78e2a77b2a7e3d1d4aeed5` |
+| `Norfolk-Group/norfolk-manual` | private | active | `main` | `b397f6e3d5e00d2be9ee608356f892daaca8dcd2` |
+| `Norfolk-Group/norfolk-starter` | **public** | archived | `main` | `3788ec74763018b73f4051613d90c0005874388b` |
+
+The Starter being public and already archived is a discovered fact, not a deletion approval. The Product OS and Kit commits in this worktree remain local.</pre></article><article id="migration-superseded-material-md"><p class="meta">migration/superseded-material.md · accepted · source-sha256 5933d8dbf8183f941703c67b0c3d5505c2f1c143f6a184ba07d210286b2244cd</p><pre># Superseded material
+
+The following statements are historical only and fail validation if asserted as current doctrine:
+
+- Clerk as preferred or canonical authentication; WorkOS AuthKit is current.
+- Prisma as required ORM; Drizzle is current for the reference stack.
+- Norfolk Kit or Norfolk Manual as the universal source of truth; Product OS is canonical.
+- Large binary masters in Git; versioned object storage with verified retrieval is required.
+- Manual as a separate editable handbook; the handbook is generated from Product OS contracts.
+
+Legacy mentions may remain in exact imported history, migration explanations, or explicit forbidden-pattern tests. Context must make supersession unambiguous.
+
+Repository status does not equal deletion readiness. Starter is already archived but still requires a restoration-tested preservation dossier and exact deletion approval. Manual is active and retains unique setup/launcher material, so it is not ready for deletion.</pre></article><article id="playbooks-README-md"><p class="meta">playbooks/README.md · accepted · source-sha256 101918a65412b9f2303c2ab3d9a4b0638cfa2f4851b154ebe1d67cb51bf9ebec</p><pre># Domain playbooks
 
 Domain playbooks adapt shared Norfolk principles to a class of products without turning one client implementation into a universal rule. They are validated by [`domain-playbook.schema.json`](../schemas/domain-playbook.schema.json).
 

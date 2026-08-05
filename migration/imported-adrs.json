@@ -1,0 +1,155 @@
+[
+  {
+    "sourceRepository": "Norfolk-Group/norfolk-kit",
+    "sourceRef": "f2680624596048a88f78e2a77b2a7e3d1d4aeed5",
+    "sourcePath": "docs/decisions/0001-the-stack.md",
+    "importedPath": "decisions/imported/norfolk-kit/0001-the-stack.md",
+    "sourceDate": "2026-07-29",
+    "sourceBodySha256": "3dc7c52be58af66e474b9f4ded39407624d3dfd69aa2343f908c63658dd8154c",
+    "disposition": "historical-reference-not-current-sequence"
+  },
+  {
+    "sourceRepository": "Norfolk-Group/norfolk-kit",
+    "sourceRef": "f2680624596048a88f78e2a77b2a7e3d1d4aeed5",
+    "sourcePath": "docs/decisions/0002-presigned-direct-uploads.md",
+    "importedPath": "decisions/imported/norfolk-kit/0002-presigned-direct-uploads.md",
+    "sourceDate": "2026-07-29",
+    "sourceBodySha256": "78bf4cf3b199b82d74d517af0864e7ade5b65e3a8f48b549ba01bcc26c2e0742",
+    "disposition": "historical-reference-not-current-sequence"
+  },
+  {
+    "sourceRepository": "Norfolk-Group/norfolk-kit",
+    "sourceRef": "f2680624596048a88f78e2a77b2a7e3d1d4aeed5",
+    "sourcePath": "docs/decisions/0003-one-database-dialect.md",
+    "importedPath": "decisions/imported/norfolk-kit/0003-one-database-dialect.md",
+    "sourceDate": "2026-07-29",
+    "sourceBodySha256": "03f00447d9dce3bcb557e631ea466c7083db64e46c4ef3ed119f01e466662f64",
+    "disposition": "historical-reference-not-current-sequence"
+  },
+  {
+    "sourceRepository": "Norfolk-Group/norfolk-kit",
+    "sourceRef": "f2680624596048a88f78e2a77b2a7e3d1d4aeed5",
+    "sourcePath": "docs/decisions/0004-motion-tooling.md",
+    "importedPath": "decisions/imported/norfolk-kit/0004-motion-tooling.md",
+    "sourceDate": "2026-07-29",
+    "sourceBodySha256": "429842ed4953fcdcf911bd769207b5b9116c5bcc6392055d812994a715da3cb2",
+    "disposition": "historical-reference-not-current-sequence"
+  },
+  {
+    "sourceRepository": "Norfolk-Group/norfolk-kit",
+    "sourceRef": "f2680624596048a88f78e2a77b2a7e3d1d4aeed5",
+    "sourcePath": "docs/decisions/0005-railway-alone-for-hosting.md",
+    "importedPath": "decisions/imported/norfolk-kit/0005-railway-alone-for-hosting.md",
+    "sourceDate": "2026-07-31",
+    "sourceBodySha256": "9daa5ae0b9e7e23f9874e53ee485887541d39cbb678589e4435a602b00d577fe",
+    "disposition": "historical-reference-not-current-sequence"
+  },
+  {
+    "sourceRepository": "Norfolk-Group/norfolk-kit",
+    "sourceRef": "f2680624596048a88f78e2a77b2a7e3d1d4aeed5",
+    "sourcePath": "docs/decisions/0006-supabase-not-adopted.md",
+    "importedPath": "decisions/imported/norfolk-kit/0006-supabase-not-adopted.md",
+    "sourceDate": "2026-07-31",
+    "sourceBodySha256": "7c3f74fa4fa2959c6a69aaaabb73d9777bfd8d009d8229d8df2d95e8734bc404",
+    "disposition": "historical-reference-not-current-sequence"
+  },
+  {
+    "sourceRepository": "Norfolk-Group/norfolk-kit",
+    "sourceRef": "f2680624596048a88f78e2a77b2a7e3d1d4aeed5",
+    "sourcePath": "docs/decisions/0007-voyage-embeddings-standard.md",
+    "importedPath": "decisions/imported/norfolk-kit/0007-voyage-embeddings-standard.md",
+    "sourceDate": "2026-07-31",
+    "sourceBodySha256": "ef0646f6e2dc45e88ce2fcbd4a4da28c9cda75de0bad8a29b4fa3f8103a55c20",
+    "disposition": "historical-reference-not-current-sequence"
+  },
+  {
+    "sourceRepository": "Norfolk-Group/norfolk-kit",
+    "sourceRef": "f2680624596048a88f78e2a77b2a7e3d1d4aeed5",
+    "sourcePath": "docs/decisions/0008-docker-invisible-by-design.md",
+    "importedPath": "decisions/imported/norfolk-kit/0008-docker-invisible-by-design.md",
+    "sourceDate": "2026-07-31",
+    "sourceBodySha256": "4b56365a2c2f7fdd2a9f95189433138d513654952d98ec21494b78e201d09908",
+    "disposition": "historical-reference-not-current-sequence"
+  },
+  {
+    "sourceRepository": "Norfolk-Group/norfolk-kit",
+    "sourceRef": "f2680624596048a88f78e2a77b2a7e3d1d4aeed5",
+    "sourcePath": "docs/decisions/0009-agents-md-two-editor-architecture.md",
+    "importedPath": "decisions/imported/norfolk-kit/0009-agents-md-two-editor-architecture.md",
+    "sourceDate": "2026-07-31",
+    "sourceBodySha256": "a97982cd4b49009393d8c97ed4b3d2d1623fc9ee733f716db9b456da740c73e2",
+    "disposition": "historical-reference-not-current-sequence"
+  },
+  {
+    "sourceRepository": "Norfolk-Group/norfolk-kit",
+    "sourceRef": "f2680624596048a88f78e2a77b2a7e3d1d4aeed5",
+    "sourcePath": "docs/decisions/0010-model-fleet-doctrine.md",
+    "importedPath": "decisions/imported/norfolk-kit/0010-model-fleet-doctrine.md",
+    "sourceDate": "2026-07-31",
+    "sourceBodySha256": "ae6bc318325c97b15cafd1b0cb8f577f750578acd36e8db196d8f248cfb5c640",
+    "disposition": "historical-reference-not-current-sequence"
+  },
+  {
+    "sourceRepository": "Norfolk-Group/norfolk-kit",
+    "sourceRef": "f2680624596048a88f78e2a77b2a7e3d1d4aeed5",
+    "sourcePath": "docs/decisions/0011-large-files-live-in-r2-not-git.md",
+    "importedPath": "decisions/imported/norfolk-kit/0011-large-files-live-in-r2-not-git.md",
+    "sourceDate": "2026-07-31",
+    "sourceBodySha256": "28d6a092dabb82cc45eedac9bbbf4504eb51b0c0b03fd6dbdbbe7dd0c71f44b4",
+    "disposition": "historical-reference-not-current-sequence"
+  },
+  {
+    "sourceRepository": "Norfolk-Group/norfolk-kit",
+    "sourceRef": "f2680624596048a88f78e2a77b2a7e3d1d4aeed5",
+    "sourcePath": "docs/decisions/0012-naming-agents-orchestrators-specialists-minions.md",
+    "importedPath": "decisions/imported/norfolk-kit/0012-naming-agents-orchestrators-specialists-minions.md",
+    "sourceDate": "2026-07-31",
+    "sourceBodySha256": "e413098f0353f20b1e25ac31ceca7f67465dd60803fee248aa2a854df64ecddb",
+    "disposition": "historical-reference-not-current-sequence"
+  },
+  {
+    "sourceRepository": "Norfolk-Group/norfolk-kit",
+    "sourceRef": "f2680624596048a88f78e2a77b2a7e3d1d4aeed5",
+    "sourcePath": "docs/decisions/0013-agent-runtime-tool-runner-on-railway.md",
+    "importedPath": "decisions/imported/norfolk-kit/0013-agent-runtime-tool-runner-on-railway.md",
+    "sourceDate": "2026-07-31",
+    "sourceBodySha256": "ef269528504c0ba5c3817499d997065e19f9cd9b0311941219f27a1303dcdde8",
+    "disposition": "historical-reference-not-current-sequence"
+  },
+  {
+    "sourceRepository": "Norfolk-Group/norfolk-kit",
+    "sourceRef": "f2680624596048a88f78e2a77b2a7e3d1d4aeed5",
+    "sourcePath": "docs/decisions/0014-agentic-native-and-model-portability.md",
+    "importedPath": "decisions/imported/norfolk-kit/0014-agentic-native-and-model-portability.md",
+    "sourceDate": "2026-07-31",
+    "sourceBodySha256": "37cc1652d3efb966301be085ee706e39a76e969c98bac017f12fe63c97bbfe11",
+    "disposition": "historical-reference-not-current-sequence"
+  },
+  {
+    "sourceRepository": "Norfolk-Group/norfolk-kit",
+    "sourceRef": "f2680624596048a88f78e2a77b2a7e3d1d4aeed5",
+    "sourcePath": "docs/decisions/0015-database-environments-and-the-seed-safety-rule.md",
+    "importedPath": "decisions/imported/norfolk-kit/0015-database-environments-and-the-seed-safety-rule.md",
+    "sourceDate": "2026-07-31",
+    "sourceBodySha256": "daa42cf43ebfa5cca6d4c4e77b4b71b5a50e534281656c25ce3ff855ae0bd35f",
+    "disposition": "historical-reference-not-current-sequence"
+  },
+  {
+    "sourceRepository": "Norfolk-Group/norfolk-kit",
+    "sourceRef": "f2680624596048a88f78e2a77b2a7e3d1d4aeed5",
+    "sourcePath": "docs/decisions/0016-install-the-vendors-own-agent-skills.md",
+    "importedPath": "decisions/imported/norfolk-kit/0016-install-the-vendors-own-agent-skills.md",
+    "sourceDate": "2026-07-31",
+    "sourceBodySha256": "ed160c10e98b7abd3d81f6bb7de80d8221244c91f4a630c27a900560fa16a3ac",
+    "disposition": "historical-reference-not-current-sequence"
+  },
+  {
+    "sourceRepository": "Norfolk-Group/norfolk-kit",
+    "sourceRef": "f2680624596048a88f78e2a77b2a7e3d1d4aeed5",
+    "sourcePath": "docs/decisions/0017-the-app-shell-is-assembled-from-shadcn-blocks.md",
+    "importedPath": "decisions/imported/norfolk-kit/0017-the-app-shell-is-assembled-from-shadcn-blocks.md",
+    "sourceDate": "2026-07-31",
+    "sourceBodySha256": "6c71d4fec1f1e3e67c183880fbc7363b42a836b19105fe4a3da9f0a5b66e3968",
+    "disposition": "historical-reference-not-current-sequence"
+  }
+]

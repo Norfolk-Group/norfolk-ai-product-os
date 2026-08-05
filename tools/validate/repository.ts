@@ -6,7 +6,7 @@ import matter from "gray-matter";
 export type ValidationResult = { errors: string[]; warnings: string[] };
 
 const markdownLink = /\[[^\]]+\]\(([^)]+)\)/g;
-const contractGlobs = ["governance/*.md", "decisions/*.md", "product/*.md", "design/*.md", "catalog/*.md", "playbooks/*.md", "templates/*.md"];
+const contractGlobs = ["governance/*.md", "decisions/*.md", "product/*.md", "design/*.md", "catalog/*.md", "migration/*.md", "playbooks/*.md", "templates/*.md"];
 const allowedStatus = new Set(["draft", "proposed", "accepted", "deprecated", "superseded"]);
 const allowedTier = new Set(["CONTRACT", "REFERENCE"]);
 
@@ -34,7 +34,7 @@ export async function validateRepository(root: string, now = new Date()): Promis
     }
   }
 
-  const markdownFiles = await fg(["**/*.md", "!node_modules/**"], { cwd: root, onlyFiles: true });
+  const markdownFiles = await fg(["**/*.md", "!node_modules/**", "!decisions/imported/**"], { cwd: root, onlyFiles: true });
   for (const path of markdownFiles) {
     const content = await readFile(resolve(root, path), "utf8");
     for (const match of content.matchAll(markdownLink)) {
