@@ -1,0 +1,16 @@
+{
+  "id": "operations",
+  "domain": "operations",
+  "status": "accepted",
+  "owner": "Product OS Owner",
+  "lastVerified": "2026-08-05",
+  "claims": [{
+    "id": "claim-1",
+    "scope": "domain",
+    "statement": "Queue surfaces should preserve attributable priority evidence.",
+    "evidenceRefs": ["reference:synthetic-multi-product-review"],
+    "evidenceStrength": "multi-product",
+    "confidence": "medium"
+  }],
+  "review": { "reviewer": "Product OS Owner", "decision": "accepted", "reviewedAt": "2026-08-05T12:00:00Z" }
+}

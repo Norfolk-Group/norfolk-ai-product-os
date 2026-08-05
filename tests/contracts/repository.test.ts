@@ -27,6 +27,16 @@ test("Unicode paths do not bypass index completeness", async () => {
   assert.ok(result.errors.some((error) => error.includes("governance/résumé.md: not indexed")));
 });
 
+test("a product-method contract is rejected when the canonical index omits it", async () => {
+  const fixture = await mkdtemp(join(tmpdir(), "norfolk-os-product-"));
+  await mkdir(join(fixture, "docs"), { recursive: true });
+  await mkdir(join(fixture, "product"), { recursive: true });
+  await writeFile(join(fixture, "docs/README.md"), "# Index\n");
+  await writeFile(join(fixture, "product/discovery.md"), "---\ntitle: Discovery\nstatus: accepted\ntier: CONTRACT\nowner: Product OS Owner\nlastVerified: 2026-08-05\n---\n");
+  const result = await validateRepository(fixture, new Date("2026-08-05T12:00:00Z"));
+  assert.ok(result.errors.some((error) => error.includes("product/discovery.md: not indexed")));
+});
+
 test("canonical client evidence fails closed", () => {
   const errors = validateCanonicalClientEvidence({ disposition: "approved-canonical", rights: "unknown", syntheticReplacement: false, metadataStripped: false, secretScan: "passed", identifierScan: "passed", humanDisclosureReview: false });
   assert.equal(errors.length, 4);

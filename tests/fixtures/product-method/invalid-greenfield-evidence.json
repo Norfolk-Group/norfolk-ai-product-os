@@ -1,0 +1,9 @@
+{
+  "productProfile": { "id": "invented", "name": "Invented", "uiState": "none", "noExistingUiRecorded": true, "purpose": "Test", "users": ["user"], "payer": "owner", "value": "value", "decisions": ["decision"], "successMeasures": ["measure"], "trustPosture": "calm" },
+  "goals": [{ "id": "goal-1", "statement": "Goal", "measure": "measure" }],
+  "observations": [{ "id": "obs-invented", "kind": "fact", "statement": "The dashboard has three columns.", "evidence": [{ "sourceType": "none", "locator": "invented-current-state" }] }],
+  "inventory": { "uiState": "none", "routes": [], "navigation": [], "roles": [], "permissions": [], "dialogs": [], "backgroundWork": [], "apis": [], "reports": [], "exports": [], "componentPatterns": [], "stateCoverage": [] },
+  "informationArchitecture": { "status": "planned", "routes": [], "menus": [], "roleModel": [] },
+  "recommendations": [],
+  "workflow": { "stage": "inventory-complete" }
+}

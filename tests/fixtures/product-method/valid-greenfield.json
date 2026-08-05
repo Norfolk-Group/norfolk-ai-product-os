@@ -1,0 +1,25 @@
+{
+  "productProfile": {
+    "id": "synthetic-greenfield",
+    "name": "Synthetic Greenfield",
+    "uiState": "none",
+    "noExistingUiRecorded": true,
+    "purpose": "Help a small team capture decisions.",
+    "users": ["team lead"],
+    "payer": "organization",
+    "value": "Durable decision context.",
+    "decisions": ["what was decided"],
+    "successMeasures": ["decisions with an owner"],
+    "trustPosture": "plain and accountable"
+  },
+  "goals": [{ "id": "goal-1", "statement": "Make every decision attributable.", "measure": "owned decision rate" }],
+  "observations": [],
+  "inventory": {
+    "uiState": "none",
+    "routes": [], "navigation": [], "roles": [], "permissions": [], "dialogs": [],
+    "backgroundWork": [], "apis": [], "reports": [], "exports": [], "componentPatterns": [], "stateCoverage": []
+  },
+  "informationArchitecture": { "status": "planned", "routes": [], "menus": [], "roleModel": [] },
+  "recommendations": [],
+  "workflow": { "stage": "inventory-complete" }
+}

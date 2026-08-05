@@ -1,0 +1,9 @@
+{
+  "productProfile": { "id": "gated", "name": "Gated", "uiState": "none", "noExistingUiRecorded": true, "purpose": "Test", "users": ["user"], "payer": "owner", "value": "value", "decisions": ["decision"], "successMeasures": ["measure"], "trustPosture": "calm" },
+  "goals": [{ "id": "goal-1", "statement": "Goal", "measure": "measure" }],
+  "observations": [],
+  "inventory": { "uiState": "none", "routes": [], "navigation": [], "roles": [], "permissions": [], "dialogs": [], "backgroundWork": [], "apis": [], "reports": [], "exports": [], "componentPatterns": [], "stateCoverage": [] },
+  "informationArchitecture": { "status": "proposed", "routes": [{ "id": "admin", "path": "/admin", "gated": true, "roles": ["admin"] }], "menus": [], "roleModel": [] },
+  "recommendations": [],
+  "workflow": { "stage": "ia-proposed" }
+}

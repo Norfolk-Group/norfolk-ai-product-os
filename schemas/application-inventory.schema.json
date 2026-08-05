@@ -1,0 +1,243 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://norfolk.ai/schemas/application-inventory.schema.json",
+  "title": "Application inventory and product-method record",
+  "type": "object",
+  "required": ["productProfile", "goals", "observations", "inventory", "informationArchitecture", "recommendations", "workflow"],
+  "properties": {
+    "productProfile": { "$ref": "#/definitions/productProfile" },
+    "goals": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/goal" }
+    },
+    "observations": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/observation" }
+    },
+    "inventory": { "$ref": "#/definitions/inventory" },
+    "informationArchitecture": { "$ref": "#/definitions/informationArchitecture" },
+    "recommendations": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/recommendation" }
+    },
+    "workflow": { "$ref": "#/definitions/workflow" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "productProfile": { "properties": { "uiState": { "const": "none" } } } } },
+      "then": {
+        "properties": {
+          "observations": { "maxItems": 0 },
+          "inventory": { "properties": { "uiState": { "const": "none" } } }
+        }
+      },
+      "else": { "properties": { "inventory": { "properties": { "uiState": { "const": "existing" } } } } }
+    },
+    {
+      "if": { "properties": { "workflow": { "properties": { "stage": { "const": "design-contract-ready" } } } } },
+      "then": {
+        "properties": {
+          "informationArchitecture": {
+            "required": ["approval"],
+            "properties": { "status": { "const": "approved" } }
+          },
+          "workflow": { "required": ["iaApprovalId"] }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false,
+  "definitions": {
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "stringList": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/nonEmptyString" } },
+    "productProfile": {
+      "type": "object",
+      "required": ["id", "name", "uiState", "purpose", "users", "payer", "value", "decisions", "successMeasures", "trustPosture"],
+      "properties": {
+        "id": { "$ref": "#/definitions/nonEmptyString" },
+        "name": { "$ref": "#/definitions/nonEmptyString" },
+        "uiState": { "enum": ["existing", "none"] },
+        "noExistingUiRecorded": { "type": "boolean" },
+        "purpose": { "$ref": "#/definitions/nonEmptyString" },
+        "users": { "$ref": "#/definitions/stringList" },
+        "payer": { "$ref": "#/definitions/nonEmptyString" },
+        "value": { "$ref": "#/definitions/nonEmptyString" },
+        "decisions": { "$ref": "#/definitions/stringList" },
+        "successMeasures": { "$ref": "#/definitions/stringList" },
+        "trustPosture": { "$ref": "#/definitions/nonEmptyString" },
+        "domainConstraints": { "type": "array", "items": { "$ref": "#/definitions/nonEmptyString" } },
+        "integrationConstraints": { "type": "array", "items": { "$ref": "#/definitions/nonEmptyString" } }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "uiState": { "const": "none" } } },
+          "then": { "required": ["noExistingUiRecorded"], "properties": { "noExistingUiRecorded": { "const": true } } }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "goal": {
+      "type": "object",
+      "required": ["id", "statement", "measure"],
+      "properties": {
+        "id": { "$ref": "#/definitions/nonEmptyString" },
+        "statement": { "$ref": "#/definitions/nonEmptyString" },
+        "measure": { "$ref": "#/definitions/nonEmptyString" }
+      },
+      "additionalProperties": false
+    },
+    "observation": {
+      "type": "object",
+      "required": ["id", "kind", "statement", "evidence"],
+      "properties": {
+        "id": { "$ref": "#/definitions/nonEmptyString" },
+        "kind": { "const": "fact" },
+        "statement": { "$ref": "#/definitions/nonEmptyString" },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["sourceType", "locator"],
+            "properties": {
+              "sourceType": { "enum": ["route", "code", "screenshot", "interview", "artifact", "runtime", "document", "none"] },
+              "locator": { "$ref": "#/definitions/nonEmptyString" },
+              "capturedAt": { "type": "string", "format": "date-time" }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "inventoryItem": {
+      "type": "object",
+      "required": ["id", "observationIds"],
+      "properties": {
+        "id": { "$ref": "#/definitions/nonEmptyString" },
+        "name": { "$ref": "#/definitions/nonEmptyString" },
+        "path": { "$ref": "#/definitions/nonEmptyString" },
+        "owner": { "$ref": "#/definitions/nonEmptyString" },
+        "observationIds": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/nonEmptyString" } },
+        "states": { "type": "array", "items": { "$ref": "#/definitions/nonEmptyString" } }
+      },
+      "additionalProperties": false
+    },
+    "inventory": {
+      "type": "object",
+      "required": ["uiState", "routes", "navigation", "roles", "permissions", "dialogs", "backgroundWork", "apis", "reports", "exports", "componentPatterns", "stateCoverage"],
+      "properties": {
+        "uiState": { "enum": ["existing", "none"] },
+        "routes": { "type": "array", "items": { "$ref": "#/definitions/inventoryItem" } },
+        "navigation": { "type": "array", "items": { "$ref": "#/definitions/inventoryItem" } },
+        "roles": { "type": "array", "items": { "$ref": "#/definitions/inventoryItem" } },
+        "permissions": { "type": "array", "items": { "$ref": "#/definitions/inventoryItem" } },
+        "dialogs": { "type": "array", "items": { "$ref": "#/definitions/inventoryItem" } },
+        "backgroundWork": { "type": "array", "items": { "$ref": "#/definitions/inventoryItem" } },
+        "apis": { "type": "array", "items": { "$ref": "#/definitions/inventoryItem" } },
+        "reports": { "type": "array", "items": { "$ref": "#/definitions/inventoryItem" } },
+        "exports": { "type": "array", "items": { "$ref": "#/definitions/inventoryItem" } },
+        "componentPatterns": { "type": "array", "items": { "$ref": "#/definitions/inventoryItem" } },
+        "stateCoverage": { "type": "array", "items": { "$ref": "#/definitions/inventoryItem" } }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "uiState": { "const": "none" } } },
+          "then": {
+            "properties": {
+              "routes": { "maxItems": 0 }, "navigation": { "maxItems": 0 }, "roles": { "maxItems": 0 },
+              "permissions": { "maxItems": 0 }, "dialogs": { "maxItems": 0 }, "backgroundWork": { "maxItems": 0 },
+              "apis": { "maxItems": 0 }, "reports": { "maxItems": 0 }, "exports": { "maxItems": 0 },
+              "componentPatterns": { "maxItems": 0 }, "stateCoverage": { "maxItems": 0 }
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "iaRoute": {
+      "type": "object",
+      "required": ["id", "path", "gated", "roles"],
+      "properties": {
+        "id": { "$ref": "#/definitions/nonEmptyString" },
+        "path": { "$ref": "#/definitions/nonEmptyString" },
+        "gated": { "type": "boolean" },
+        "permissionOwner": { "$ref": "#/definitions/nonEmptyString" },
+        "roles": { "type": "array", "items": { "$ref": "#/definitions/nonEmptyString" } },
+        "disposition": { "enum": ["keep", "merge", "split", "remove", "new"] }
+      },
+      "allOf": [{ "if": { "properties": { "gated": { "const": true } } }, "then": { "required": ["permissionOwner"] } }],
+      "additionalProperties": false
+    },
+    "informationArchitecture": {
+      "type": "object",
+      "required": ["status", "routes", "menus", "roleModel"],
+      "properties": {
+        "status": { "enum": ["planned", "proposed", "approved", "invalidated"] },
+        "approval": {
+          "type": "object",
+          "required": ["id", "owner", "approvedAt"],
+          "properties": {
+            "id": { "$ref": "#/definitions/nonEmptyString" },
+            "owner": { "$ref": "#/definitions/nonEmptyString" },
+            "approvedAt": { "type": "string", "format": "date-time" }
+          },
+          "additionalProperties": false
+        },
+        "routes": { "type": "array", "items": { "$ref": "#/definitions/iaRoute" } },
+        "menus": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "routeIds"],
+            "properties": { "id": { "$ref": "#/definitions/nonEmptyString" }, "routeIds": { "type": "array", "items": { "$ref": "#/definitions/nonEmptyString" } } },
+            "additionalProperties": false
+          }
+        },
+        "roleModel": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["roleId", "permissionIds"],
+            "properties": { "roleId": { "$ref": "#/definitions/nonEmptyString" }, "permissionIds": { "type": "array", "items": { "$ref": "#/definitions/nonEmptyString" } } },
+            "additionalProperties": false
+          }
+        }
+      },
+      "allOf": [{ "if": { "properties": { "status": { "const": "approved" } } }, "then": { "required": ["approval"] } }],
+      "additionalProperties": false
+    },
+    "recommendation": {
+      "type": "object",
+      "required": ["id", "statement", "sourceObservationIds", "productGoalId", "confidence", "impact", "effort", "risk", "alternatives", "affectedSurfaces", "owner", "approval", "reviewDate"],
+      "properties": {
+        "id": { "$ref": "#/definitions/nonEmptyString" },
+        "statement": { "$ref": "#/definitions/nonEmptyString" },
+        "sourceObservationIds": { "$ref": "#/definitions/stringList" },
+        "productGoalId": { "$ref": "#/definitions/nonEmptyString" },
+        "confidence": { "enum": ["low", "medium", "high"] },
+        "impact": { "enum": ["low", "medium", "high"] },
+        "effort": { "enum": ["low", "medium", "high"] },
+        "risk": { "$ref": "#/definitions/nonEmptyString" },
+        "alternatives": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/nonEmptyString" } },
+        "affectedSurfaces": { "$ref": "#/definitions/stringList" },
+        "owner": { "$ref": "#/definitions/nonEmptyString" },
+        "approval": { "enum": ["proposed", "approved", "rejected", "deferred", "invalidated"] },
+        "reviewDate": { "type": "string", "format": "date" }
+      },
+      "additionalProperties": false
+    },
+    "workflow": {
+      "type": "object",
+      "required": ["stage"],
+      "properties": {
+        "stage": { "enum": ["profiled", "observation-complete", "inventory-complete", "ia-proposed", "ia-approved", "design-contract-ready", "invalidated"] },
+        "iaApprovalId": { "$ref": "#/definitions/nonEmptyString" },
+        "invalidatedBy": { "$ref": "#/definitions/nonEmptyString" },
+        "returnToStage": { "enum": ["profiled", "observation-complete", "inventory-complete", "ia-proposed"] }
+      },
+      "additionalProperties": false
+    }
+  }
+}

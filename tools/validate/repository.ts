@@ -6,7 +6,7 @@ import matter from "gray-matter";
 export type ValidationResult = { errors: string[]; warnings: string[] };
 
 const markdownLink = /\[[^\]]+\]\(([^)]+)\)/g;
-const contractGlobs = ["governance/*.md", "decisions/*.md"];
+const contractGlobs = ["governance/*.md", "decisions/*.md", "product/*.md", "playbooks/*.md", "templates/*.md"];
 const allowedStatus = new Set(["draft", "proposed", "accepted", "deprecated", "superseded"]);
 const allowedTier = new Set(["CONTRACT", "REFERENCE"]);
 
@@ -24,7 +24,7 @@ export async function validateRepository(root: string, now = new Date()): Promis
     }
     if (metadata.status && !allowedStatus.has(String(metadata.status))) errors.push(`${path}: invalid status ${metadata.status}`);
     if (metadata.tier && !allowedTier.has(String(metadata.tier))) errors.push(`${path}: invalid tier ${metadata.tier}`);
-    if (!index.includes(path.replace(/^governance\//, "../governance/").replace(/^decisions\//, "../decisions/"))) {
+    if (!index.includes(`../${path}`)) {
       errors.push(`${path}: not indexed in docs/README.md`);
     }
     if (metadata.tier === "CONTRACT" && metadata.lastVerified) {

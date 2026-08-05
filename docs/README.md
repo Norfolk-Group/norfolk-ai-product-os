@@ -22,6 +22,29 @@ Accepted decisions are append-only history. A later decision may supersede one, 
 - [0002 — Product OS, Kit, and product roles](../decisions/0002-product-os-kit-and-product-roles.md)
 - [0003 — Generated handbook, not a Manual fork](../decisions/0003-generated-handbook-not-manual-fork.md)
 
+## Product method
+
+These contracts keep product purpose, observed evidence, structure, and recommendations separate before design begins.
+
+| Document | Tier | Owner | Purpose |
+|---|---|---|---|
+| [Product principles](../product/product-principles.md) | CONTRACT | Product OS Owner | Product-first sequence, epistemic categories, greenfield handling, and invalidation |
+| [Discovery](../product/discovery.md) | CONTRACT | Product OS Owner | Required product profile, evidence, and exit gate |
+| [Observation](../product/observation.md) | CONTRACT | Product OS Owner | Evidence-only first pass and greenfield rule |
+| [Application inventory](../product/application-inventory.md) | CONTRACT | Product OS Owner | Required current-state coverage and traceability |
+| [Information architecture](../product/information-architecture.md) | CONTRACT | Product OS Owner | Route, menu, workflow, role, permission, and approval gate |
+| [Recommendations](../product/recommendations.md) | CONTRACT | Product OS Owner | Evidence-linked proposal, prioritization, approval, and expiry |
+| [Domain playbooks](../playbooks/README.md) | CONTRACT | Product OS Owner | Evidence-backed domain adaptation without client leakage |
+
+## Product templates
+
+- [Product profile](../templates/product-profile.md)
+- [Observation log](../templates/observation-log.md)
+- [Application inventory](../templates/application-inventory.md)
+- [Information architecture](../templates/information-architecture.md)
+- [Recommendation](../templates/recommendation.md)
+- [Domain playbook](../templates/domain-playbook.md)
+
 ## Work plans
 
 - [Plan index and conventions](plans/README.md)
@@ -32,5 +55,6 @@ Accepted decisions are append-only history. A later decision may supersede one, 
 - To introduce or change a binding rule, read [Knowledge tiers](../governance/knowledge-tiers.md) and create a decision record when rationale or compatibility changes materially.
 - To use client-derived evidence, complete [Client boundaries](../governance/client-boundaries.md) before [Promotion](../governance/promotion.md).
 - To prepare a release or automation, apply [Repository security](../governance/repository-security.md) and [Approvals](../governance/approvals.md).
+- To begin or redesign a product, complete [Discovery](../product/discovery.md), [Observation](../product/observation.md), [Application inventory](../product/application-inventory.md), and [Information architecture](../product/information-architecture.md) before creating a design contract.
 
 Generated handbook and catalog views will be added in later implementation units. They will be private outputs generated from these sources, never parallel editable doctrine.
