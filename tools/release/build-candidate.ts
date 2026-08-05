@@ -1,0 +1,25 @@
+import { generateKeyPairSync } from "node:crypto";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { resolve } from "node:path";
+import fg from "fast-glob";
+import { canonicalJson, sha256, signManifest, type ReleaseFile } from "./manifest.js";
+
+const root = resolve(import.meta.dirname, "../..");
+const version = "0.3.0-candidate.1";
+const sourceCommit = "d4efef99badf75844354cdd73e289ec233a1cd1a";
+const createdAt = "2026-08-05T08:00:00.000Z";
+const paths = await fg(["adoption/*.md", "compatibility/*.json", "design/*.md", "governance/*.md", "outputs/*.md", "product/*.md", "standards/*.{md,json}", "schemas/*.json", "handbook/index.html", "catalog/generated/index.html"], { cwd: root, onlyFiles: true });
+const files: ReleaseFile[] = [];
+for (const path of paths.sort()) files.push({ path, sha256: sha256(await readFile(resolve(root, path))), sensitivity: "norfolk-only" });
+const manifest = { schemaVersion: 1, version, status: "candidate", visibility: "private", sourceCommit, createdAt, minimumKitVersion: "0.1.0", files };
+const manifestSha256 = sha256(canonicalJson(manifest));
+const { privateKey, publicKey } = generateKeyPairSync("ed25519");
+const keyId = `local-candidate-${manifestSha256.slice(0, 16)}`;
+const bundle = signManifest(manifest, privateKey, keyId);
+const directory = resolve(root, `releases/${version}`);
+await mkdir(directory, { recursive: true });
+await writeFile(resolve(directory, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`);
+await writeFile(resolve(directory, "signed-manifest.json"), `${JSON.stringify(bundle, null, 2)}\n`);
+await writeFile(resolve(directory, "candidate-public-key.pem"), publicKey.export({ type: "spki", format: "pem" }));
+await writeFile(resolve(directory, "release.json"), `${JSON.stringify({ version, status: "candidate", sourceCommit, manifestSha256, standards: paths.filter((path) => path.startsWith("standards/") && path.endsWith(".md")), createdAt, visibility: "private", signedBy: keyId, minimumKitVersion: "0.1.0" }, null, 2)}\n`);
+console.log(`built ${version} manifest ${manifestSha256}; local candidate key is integrity-only and not trusted for publication`);
