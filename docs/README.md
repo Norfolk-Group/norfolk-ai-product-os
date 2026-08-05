@@ -45,6 +45,26 @@ These contracts keep product purpose, observed evidence, structure, and recommen
 - [Recommendation](../templates/recommendation.md)
 - [Domain playbook](../templates/domain-playbook.md)
 
+## Design system
+
+[Design system index](../design/README.md) routes the major design pillar. Every page below is a CONTRACT owned by the Product OS Owner.
+
+- [Method](../design/method.md)
+- [Foundations](../design/foundations.md)
+- [Composition](../design/composition.md)
+- [Components](../design/components.md)
+- [States](../design/states.md)
+- [Responsive](../design/responsive.md)
+- [Accessibility](../design/accessibility.md)
+- [Voice](../design/voice.md)
+- [Themes and inheritance](../design/themes.md)
+- [Authentication experience](../design/authentication.md)
+- [Forbidden patterns](../design/forbidden-patterns.md)
+- [References](../design/references.md)
+- [Approval gates](../design/approval-gates.md)
+- [Design contract template](../templates/design-contract.md)
+- [Design reference template](../templates/design-reference.md)
+
 ## Work plans
 
 - [Plan index and conventions](plans/README.md)

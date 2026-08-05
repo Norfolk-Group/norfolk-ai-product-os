@@ -1,0 +1,9 @@
+{
+  "id": "incomplete",
+  "status": "accepted",
+  "owner": "Product owner",
+  "lastVerified": "2026-08-05",
+  "foundations": { "typography": { "bodyFamily": "Inter" } },
+  "responsive": {},
+  "forbiddenPatterns": []
+}

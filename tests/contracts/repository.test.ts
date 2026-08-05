@@ -37,6 +37,16 @@ test("a product-method contract is rejected when the canonical index omits it", 
   assert.ok(result.errors.some((error) => error.includes("product/discovery.md: not indexed")));
 });
 
+test("a design contract is rejected when the canonical index omits it", async () => {
+  const fixture = await mkdtemp(join(tmpdir(), "norfolk-os-design-"));
+  await mkdir(join(fixture, "docs"), { recursive: true });
+  await mkdir(join(fixture, "design"), { recursive: true });
+  await writeFile(join(fixture, "docs/README.md"), "# Index\n");
+  await writeFile(join(fixture, "design/foundations.md"), "---\ntitle: Design foundations\nstatus: accepted\ntier: CONTRACT\nowner: Product OS Owner\nlastVerified: 2026-08-05\n---\n");
+  const result = await validateRepository(fixture, new Date("2026-08-05T12:00:00Z"));
+  assert.ok(result.errors.some((error) => error.includes("design/foundations.md: not indexed")));
+});
+
 test("canonical client evidence fails closed", () => {
   const errors = validateCanonicalClientEvidence({ disposition: "approved-canonical", rights: "unknown", syntheticReplacement: false, metadataStripped: false, secretScan: "passed", identifierScan: "passed", humanDisclosureReview: false });
   assert.equal(errors.length, 4);

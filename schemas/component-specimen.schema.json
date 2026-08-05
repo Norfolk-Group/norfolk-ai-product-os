@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://norfolk.ai/schemas/component-specimen.schema.json",
+  "title": "Component specimen",
+  "type": "object",
+  "required": ["id", "source", "primitive", "states", "keyboard", "responsive", "reducedMotion", "sourceMapping", "permittedDeviations"],
+  "properties": {
+    "id": { "$ref": "#/definitions/string" },
+    "source": { "$ref": "#/definitions/string" },
+    "primitive": { "$ref": "#/definitions/string" },
+    "states": {
+      "type": "object",
+      "required": ["default", "hover", "focus", "active", "disabled", "loading", "error", "empty", "success", "cancel"],
+      "properties": {
+        "default": { "$ref": "#/definitions/state" }, "hover": { "$ref": "#/definitions/state" }, "focus": { "$ref": "#/definitions/state" },
+        "active": { "$ref": "#/definitions/state" }, "disabled": { "$ref": "#/definitions/state" }, "loading": { "$ref": "#/definitions/state" },
+        "error": { "$ref": "#/definitions/state" }, "empty": { "$ref": "#/definitions/state" }, "success": { "$ref": "#/definitions/state" }, "cancel": { "$ref": "#/definitions/state" }
+      },
+      "additionalProperties": false
+    },
+    "keyboard": {
+      "type": "object", "required": ["required", "behavior"],
+      "properties": { "required": { "type": "boolean" }, "behavior": { "$ref": "#/definitions/string" } }, "additionalProperties": false
+    },
+    "responsive": {
+      "type": "object", "required": ["mobile", "tablet", "desktop"],
+      "properties": { "mobile": { "$ref": "#/definitions/string" }, "tablet": { "$ref": "#/definitions/string" }, "desktop": { "$ref": "#/definitions/string" } }, "additionalProperties": false
+    },
+    "reducedMotion": {
+      "type": "object", "required": ["required", "behavior"],
+      "properties": { "required": { "const": true }, "behavior": { "$ref": "#/definitions/string" } }, "additionalProperties": false
+    },
+    "sourceMapping": {
+      "type": "object", "required": ["storybook", "artifact"],
+      "properties": { "storybook": { "$ref": "#/definitions/string" }, "artifact": { "$ref": "#/definitions/string" } }, "additionalProperties": false
+    },
+    "permittedDeviations": { "type": "array", "items": { "$ref": "#/definitions/string" } }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "string": { "type": "string", "minLength": 1 },
+    "state": {
+      "type": "object", "required": ["applicable"],
+      "properties": { "applicable": { "type": "boolean" }, "behavior": { "$ref": "#/definitions/string" }, "rationale": { "$ref": "#/definitions/string" } },
+      "allOf": [
+        { "if": { "properties": { "applicable": { "const": true } } }, "then": { "required": ["behavior"] }, "else": { "required": ["rationale"] } }
+      ],
+      "additionalProperties": false
+    }
+  }
+}

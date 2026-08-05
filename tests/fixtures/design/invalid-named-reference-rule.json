@@ -1,0 +1,4 @@
+{
+  "reference": { "id": "ref-unexamined", "state": "named" },
+  "rule": { "id": "rule-1", "statement": "Use this pattern everywhere.", "sources": [{ "referenceId": "ref-unexamined", "state": "named" }] }
+}

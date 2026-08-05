@@ -1,0 +1,9 @@
+{
+  "registrySource": "https://ui.shadcn.com",
+  "upstreamVersion": "synthetic-commit",
+  "recordedHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "resolvedHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "verification": "matched",
+  "installedFiles": ["src/components/ui/button.tsx"],
+  "localDeviations": []
+}
