@@ -29,6 +29,6 @@ if (result.errors.length > 0) {
   for (const error of result.errors) console.error(`error: ${error}`);
   process.exitCode = 1;
 } else {
-  const contractCount = (await fg(["governance/*.md", "decisions/*.md", "product/*.md", "design/*.md", "catalog/*.md", "migration/*.md", "playbooks/*.md", "templates/*.md"], { cwd: root })).length;
+  const contractCount = (await fg(["governance/*.md", "decisions/*.md", "product/*.md", "design/*.md", "catalog/*.md", "migration/*.md", "outputs/{README,shared-principles,job-lifecycle,pdf,xlsx,pptx,docx,email,charts,print,investor-materials}.md", "playbooks/*.md", "templates/*.md"], { cwd: root })).length;
   console.log(`validated ${contractCount} contracts with no blocking errors`);
 }

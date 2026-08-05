@@ -1,17 +1,30 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://norfolk.ai/schemas/output-contract.schema.json",
+  "title": "Output surface contract",
   "type": "object",
-  "required": ["id", "format", "audience", "purpose", "dataAuthority", "overflow", "accessibility", "validation"],
+  "required": ["id", "format", "audience", "purpose", "canvas", "typographyFloorPt", "margins", "pagination", "overflow", "sourceAttribution", "confidentiality", "accessibility", "generatedAssetPolicy", "fixtures"],
   "properties": {
     "id": { "type": "string", "minLength": 1 },
-    "format": { "enum": ["pdf", "xlsx", "pptx", "docx", "email", "chart", "print"] },
+    "format": { "enum": ["pdf", "xlsx", "pptx", "docx", "email", "chart", "print", "investor"] },
     "audience": { "type": "string", "minLength": 1 },
     "purpose": { "type": "string", "minLength": 1 },
-    "dataAuthority": { "type": "string", "minLength": 1 },
-    "overflow": { "type": "string", "minLength": 1 },
-    "accessibility": { "type": "string", "minLength": 1 },
-    "validation": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+    "canvas": { "enum": ["fixed", "fluid", "paged", "grid"] },
+    "typographyFloorPt": { "type": "number", "minimum": 8 },
+    "margins": { "type": "object", "required": ["top", "right", "bottom", "left"], "properties": { "top": { "type": "number", "minimum": 18 }, "right": { "type": "number", "minimum": 18 }, "bottom": { "type": "number", "minimum": 18 }, "left": { "type": "number", "minimum": 18 } }, "additionalProperties": false },
+    "pagination": { "type": "string", "minLength": 1, "not": { "const": "clip" } },
+    "overflow": { "type": "string", "minLength": 1, "not": { "const": "clip" } },
+    "sourceAttribution": { "const": true },
+    "confidentiality": { "enum": ["public", "internal", "confidential", "restricted"] },
+    "accessibility": { "type": "object", "required": ["tagged", "language", "readingOrder"], "properties": { "tagged": { "type": "boolean" }, "language": { "type": "boolean" }, "readingOrder": { "type": "boolean" }, "textAlternative": { "type": "string" } }, "additionalProperties": false },
+    "chartSemantics": { "type": "object", "properties": { "units": { "type": "string" }, "source": { "type": "string" }, "dateBasis": { "type": "string" }, "textAlternative": { "type": "string" } }, "additionalProperties": false },
+    "numericalTieOut": { "type": "object", "properties": { "required": { "type": "boolean" }, "authoritativeSnapshot": { "type": "string" }, "tolerance": { "type": "number", "minimum": 0 } }, "additionalProperties": false },
+    "generatedAssetPolicy": { "type": "object", "required": ["gitThresholdBytes", "storage"], "properties": { "sizeBytes": { "type": "integer", "minimum": 0 }, "gitThresholdBytes": { "type": "integer", "minimum": 1 }, "storage": { "enum": ["git-fixture", "r2-manifest"] }, "objectVersion": { "type": "string" }, "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" } }, "additionalProperties": false },
+    "fixtures": { "type": "array", "uniqueItems": true, "items": { "enum": ["normal", "overflow", "empty", "unavailable"] }, "allOf": [{ "contains": { "const": "normal" } }, { "contains": { "const": "overflow" } }, { "contains": { "const": "empty" } }, { "contains": { "const": "unavailable" } }] }
   },
+  "allOf": [
+    { "if": { "properties": { "format": { "const": "chart" } } }, "then": { "required": ["chartSemantics"] } },
+    { "if": { "properties": { "format": { "const": "investor" } } }, "then": { "required": ["numericalTieOut"] } }
+  ],
   "additionalProperties": false
 }

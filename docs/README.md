@@ -85,6 +85,21 @@ These contracts keep product purpose, observed evidence, structure, and recommen
 - [Superseded material](../migration/superseded-material.md)
 - [Imported ADR provenance](../migration/adr-provenance.md)
 
+## Reports, exports, and fixed outputs
+
+- [Output system index](../outputs/README.md)
+- [Shared output principles](../outputs/shared-principles.md)
+- [Output job lifecycle](../outputs/job-lifecycle.md)
+- [PDF](../outputs/pdf.md)
+- [XLSX](../outputs/xlsx.md)
+- [PPTX](../outputs/pptx.md)
+- [DOCX](../outputs/docx.md)
+- [Email](../outputs/email.md)
+- [Charts](../outputs/charts.md)
+- [Print](../outputs/print.md)
+- [Investor materials](../outputs/investor-materials.md)
+- [Output contract template](../templates/output-contract.md)
+
 ## Work plans
 
 - [Plan index and conventions](plans/README.md)

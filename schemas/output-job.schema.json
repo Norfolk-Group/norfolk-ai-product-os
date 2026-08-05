@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://norfolk.ai/schemas/output-job.schema.json",
+  "title": "Output generation job",
+  "type": "object",
+  "required": ["id", "format", "state", "idempotencyKey", "attempt", "requestScope", "renderedScope", "authorization", "snapshot", "delivery"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "format": { "enum": ["pdf", "xlsx", "pptx", "docx", "email", "chart", "print", "investor"] },
+    "state": { "enum": ["queued", "running", "indeterminate", "determinate", "cancelling", "cancelled", "failed", "retrying", "completed", "expired", "downloaded"] },
+    "idempotencyKey": { "type": "string" },
+    "attempt": { "type": "integer", "minimum": 1 },
+    "requestScope": { "$ref": "#/definitions/scope" }, "renderedScope": { "$ref": "#/definitions/scope" },
+    "authorization": { "type": "object", "required": ["requestedBy", "recipient", "recipientAuthorized"], "properties": { "requestedBy": { "type": "string" }, "recipient": { "type": "string" }, "recipientAuthorized": { "type": "boolean" } }, "additionalProperties": false },
+    "snapshot": { "type": "object", "required": ["locale", "currency", "timezone", "rounding", "disclosures", "generatedAt", "calculationVersion", "contentSha256"], "properties": { "locale": { "type": "string" }, "currency": { "type": "string" }, "timezone": { "type": "string" }, "rounding": { "type": "string" }, "disclosures": { "type": "array", "items": { "type": "string" } }, "generatedAt": { "type": "string" }, "calculationVersion": { "type": "string" }, "contentSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" } }, "additionalProperties": false },
+    "delivery": { "type": "object", "required": ["signedUrlExpiresAt", "downloadState"], "properties": { "signedUrlExpiresAt": { "type": "string" }, "downloadState": { "enum": ["unavailable", "available", "downloaded", "expired", "revoked"] } }, "additionalProperties": false }
+  },
+  "additionalProperties": false,
+  "definitions": { "scope": { "type": "object", "required": ["filters", "selection"], "properties": { "filters": { "type": "object" }, "selection": { "type": "array", "items": { "type": "string" } } }, "additionalProperties": false } }
+}
