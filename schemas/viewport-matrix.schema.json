@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://norfolk.ai/schemas/viewport-matrix.schema.json",
+  "title": "Comparable visual capture environment",
+  "type": "object",
+  "required": ["browser", "runtime", "fonts", "viewports", "deviceScaleFactor", "orientation", "locale", "timezone", "clock", "randomSeed", "animationState", "pixelThreshold", "retentionDays", "baselineApproval"],
+  "properties": {
+    "browser": { "type": "string", "minLength": 1 }, "runtime": { "type": "string", "minLength": 1 },
+    "fonts": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+    "viewports": { "type": "array", "minItems": 1, "items": { "type": "object", "required": ["name", "width", "height"], "properties": { "name": { "type": "string" }, "width": { "type": "integer", "minimum": 1 }, "height": { "type": "integer", "minimum": 1 } }, "additionalProperties": false } },
+    "deviceScaleFactor": { "type": "number", "exclusiveMinimum": 0 }, "orientation": { "enum": ["portrait", "landscape"] },
+    "locale": { "type": "string", "minLength": 1 }, "timezone": { "type": "string", "minLength": 1 }, "clock": { "type": "string", "minLength": 1 },
+    "randomSeed": { "type": ["string", "number"] }, "animationState": { "type": "string", "minLength": 1 },
+    "pixelThreshold": { "type": "number", "minimum": 0, "maximum": 1 }, "retentionDays": { "type": "integer", "minimum": 1 },
+    "baselineApproval": { "enum": ["approved", "pending", "rejected"] }
+  }, "additionalProperties": false
+}

@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "canonicalSourceOrder": ["figma-make:creative-intent", "replit:best-original-export", "h-analytics:best-production", "norfolk-kit:portable-preservation"],
+  "requiredControls": ["play", "pause", "replay", "speed", "reduced-motion", "freeze"],
+  "requiredStates": ["idle", "waiting", "indeterminate", "determinate", "paused", "disconnected", "retrying", "timeout", "cancellation-requested", "cancelled", "late-completion", "duplicate-event", "failure", "success"],
+  "progressRules": { "indeterminateHasPercent": false, "determinateSource": "server", "regressionRequiresRestart": true },
+  "preservation": { "retainOriginals": true, "immutableVersionRequired": true, "retrievalVerificationRequired": true }
+}

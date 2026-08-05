@@ -6,7 +6,7 @@ import matter from "gray-matter";
 export type ValidationResult = { errors: string[]; warnings: string[] };
 
 const markdownLink = /\[[^\]]+\]\(([^)]+)\)/g;
-const contractGlobs = ["governance/*.md", "decisions/*.md", "product/*.md", "design/*.md", "playbooks/*.md", "templates/*.md"];
+const contractGlobs = ["governance/*.md", "decisions/*.md", "product/*.md", "design/*.md", "catalog/*.md", "playbooks/*.md", "templates/*.md"];
 const allowedStatus = new Set(["draft", "proposed", "accepted", "deprecated", "superseded"]);
 const allowedTier = new Set(["CONTRACT", "REFERENCE"]);
 

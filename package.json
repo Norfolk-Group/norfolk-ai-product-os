@@ -8,6 +8,7 @@
     "node": ">=22"
   },
   "scripts": {
+    "generate": "tsx tools/generate.ts",
     "test": "node --import tsx --test tests/**/*.test.ts",
     "typecheck": "tsc --noEmit",
     "validate": "tsx tools/validate/index.ts"

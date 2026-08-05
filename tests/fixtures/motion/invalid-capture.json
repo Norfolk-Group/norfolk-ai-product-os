@@ -1,0 +1,16 @@
+{
+  "browser": "latest",
+  "runtime": "node",
+  "fonts": [],
+  "viewports": [{ "width": 1440, "height": 900 }],
+  "deviceScaleFactor": 0,
+  "orientation": "auto",
+  "locale": "system",
+  "timezone": "system",
+  "clock": "live",
+  "randomSeed": null,
+  "animationState": "live",
+  "pixelThreshold": 0.5,
+  "retentionDays": 0,
+  "baselineApproval": "missing"
+}

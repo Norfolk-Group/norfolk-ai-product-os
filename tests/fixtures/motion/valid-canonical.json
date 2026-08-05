@@ -1,0 +1,14 @@
+{
+  "id": "motion-processing-orb",
+  "status": "canonical",
+  "approval": { "decision": "approved", "by": "Product OS Owner", "date": "2026-08-05", "rationale": "Best verified production behavior with original intent retained." },
+  "implementation": { "sourcePath": "Norfolk Kit/src/components/animations/ProcessingOrb.tsx", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+  "lineage": [
+    { "role": "creative-intent", "kind": "figma-make", "sourcePath": "local/Figma/Create animated icons.make", "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "objectVersion": "r2:v1", "retrievedSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" },
+    { "role": "best-original-export", "kind": "replit", "sourcePath": "local/Replit/animation.tsx", "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "objectVersion": "r2:v2", "retrievedSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" },
+    { "role": "best-production", "kind": "h-analytics", "sourcePath": "H-Analytics/components/animation.tsx", "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "objectVersion": "r2:v3", "retrievedSha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" }
+  ],
+  "motion": { "essential": false, "timelineSource": "recorded", "timingPreserved": true, "easingPreserved": true },
+  "reducedMotion": { "behavior": "Replace continuous transform with static state and text updates.", "preservedInformation": ["state", "elapsed time", "completion"] },
+  "states": ["idle", "waiting", "indeterminate", "determinate", "paused", "disconnected", "retrying", "timeout", "cancellation-requested", "cancelled", "late-completion", "duplicate-event", "failure", "success"]
+}

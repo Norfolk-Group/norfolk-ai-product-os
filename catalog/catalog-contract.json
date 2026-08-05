@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "visibility": "private",
+  "approvalStatus": "accepted",
+  "sections": ["Foundations", "Composition", "Components", "States", "Themes", "Motion", "Accessibility", "Provenance"],
+  "controls": ["Search", "Filter", "Theme", "Reduced motion", "Replay", "Approve", "Reject", "Defer", "Rationale", "Exit"],
+  "comparisons": ["state", "theme", "breakpoint", "reduced-motion"],
+  "metadata": ["Product OS version", "source-sha256", "freshness", "approval status", "Source path"]
+}

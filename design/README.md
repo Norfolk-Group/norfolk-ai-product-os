@@ -27,5 +27,10 @@ Design is a first-class Product OS pillar. It governs how product purpose become
 | Explicit anti-patterns | [Forbidden patterns](forbidden-patterns.md) |
 | Reference evidence lifecycle | [References](references.md) |
 | Approval, exceptions, and anti-regression | [Approval gates](approval-gates.md) |
+| Motion meaning, fidelity, and lineage | [Motion](motion.md) |
+| Honest long-process feedback | [Process progress](progress.md) |
+| Source hashes and preservation | [Provenance](provenance.md) |
+| Responsive evidence matrix | [Viewport matrix](viewport-matrix.md) |
+| Comparable visual captures | [Visual test environment](visual-test-environment.md) |
 
 The machine-readable product contract is [`design-contract.schema.json`](../schemas/design-contract.schema.json). Reusable components use [`component-specimen.schema.json`](../schemas/component-specimen.schema.json). Norfolk Kit implements compatible executable components and catalogs; it does not own this doctrine.

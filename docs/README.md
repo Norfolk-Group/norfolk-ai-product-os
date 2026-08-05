@@ -62,8 +62,21 @@ These contracts keep product purpose, observed evidence, structure, and recommen
 - [Forbidden patterns](../design/forbidden-patterns.md)
 - [References](../design/references.md)
 - [Approval gates](../design/approval-gates.md)
+- [Motion](../design/motion.md)
+- [Process progress](../design/progress.md)
+- [Design provenance](../design/provenance.md)
+- [Viewport matrix](../design/viewport-matrix.md)
+- [Visual test environment](../design/visual-test-environment.md)
 - [Design contract template](../templates/design-contract.md)
 - [Design reference template](../templates/design-reference.md)
+- [Motion record template](../templates/motion-record.md)
+
+## Living review views
+
+- [Living visual catalogs](../catalog/README.md)
+- [Catalog review experience](../catalog/review-experience.md)
+- Generated private handbook: `handbook/index.html`
+- Generated abstract catalog: `catalog/generated/index.html`
 
 ## Work plans
 
@@ -77,4 +90,4 @@ These contracts keep product purpose, observed evidence, structure, and recommen
 - To prepare a release or automation, apply [Repository security](../governance/repository-security.md) and [Approvals](../governance/approvals.md).
 - To begin or redesign a product, complete [Discovery](../product/discovery.md), [Observation](../product/observation.md), [Application inventory](../product/application-inventory.md), and [Information architecture](../product/information-architecture.md) before creating a design contract.
 
-Generated handbook and catalog views will be added in later implementation units. They will be private outputs generated from these sources, never parallel editable doctrine.
+Generated handbook and catalog views are private outputs generated from these sources, never parallel editable doctrine.
