@@ -6,6 +6,7 @@ import { validateRepository } from "./repository.js";
 import { validateImportedAdr, validateMigrationRegister, validatePromotedContent, validateSupersededDoctrine } from "./migration.js";
 import { scanSecrets, validateCapabilityMap, validateDataLifecycle, validatePreferredStack } from "./standards.js";
 import { validateAuthExperience, validateAuthSecurity } from "./auth.js";
+import { validateRetirementDossier, validateValidationArtifact } from "./retirement.js";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const result = await validateRepository(root);
@@ -31,7 +32,12 @@ result.errors.push(...validateCapabilityMap(JSON.parse(await readFile(resolve(ro
 result.errors.push(...validateDataLifecycle(JSON.parse(await readFile(resolve(root, "standards/data-lifecycle.example.json"), "utf8"))).map((error) => `standards/data-lifecycle.example.json: ${error}`));
 result.errors.push(...validateAuthExperience(JSON.parse(await readFile(resolve(root, "tests/fixtures/auth/valid-experience.json"), "utf8"))).map((error) => `tests/fixtures/auth/valid-experience.json: ${error}`));
 result.errors.push(...validateAuthSecurity(JSON.parse(await readFile(resolve(root, "tests/fixtures/auth/valid-security.json"), "utf8"))).map((error) => `tests/fixtures/auth/valid-security.json: ${error}`));
-for (const path of await fg(["{governance,product,design,standards,templates,outputs,migration,catalog,adoption,compatibility,releases}/**/*", "handbook/**/*"], { cwd: root, onlyFiles: true })) {
+for (const name of ["norfolk-starter", "norfolk-manual"]) result.errors.push(...validateRetirementDossier(JSON.parse(await readFile(resolve(root, `retirement/${name}.json`), "utf8"))).map((error) => `retirement/${name}.json: ${error}`));
+for (const name of ["h-analytics.md", "motion-lineage.md", "report-output.md"]) {
+  const body = await readFile(resolve(root, `validation/${name}`), "utf8");
+  result.errors.push(...validateValidationArtifact(body).map((error) => `validation/${name}: ${error}`));
+}
+for (const path of await fg(["{governance,product,design,standards,templates,outputs,migration,catalog,adoption,compatibility,releases,validation,retirement}/**/*", "handbook/**/*"], { cwd: root, onlyFiles: true })) {
   const body = await readFile(resolve(root, path), "utf8");
   result.errors.push(...scanSecrets(body, path.startsWith("handbook/") ? "handbook" : path.includes("fixture") ? "fixture" : path.includes("manifest") ? "manifest" : "source").map((error) => `${path}: ${error}`));
 }

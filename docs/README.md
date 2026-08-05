@@ -142,6 +142,17 @@ These contracts keep product purpose, observed evidence, structure, and recommen
 - [Exception template](../templates/exception.md)
 - [Promotion proposal template](../templates/promotion-proposal.md)
 
+## Validation and retirement evidence
+
+- [Throwaway adoption validation](../validation/throwaway-application.md)
+- [Bounded client product validation](../validation/h-analytics.md)
+- [Motion lineage validation](../validation/motion-lineage.md)
+- [Report/output validation](../validation/report-output.md)
+- [Candidate release readiness](../validation/release-readiness.md)
+- [Preservation evidence](../retirement/preservation-bundle.md)
+- [Norfolk Starter dossier](../retirement/norfolk-starter.md)
+- [Norfolk Manual dossier](../retirement/norfolk-manual.md)
+
 ## Reading by need
 
 - To determine which statement wins, start with [Fundamental governance](../governance/fundamental-governance.md#authority-and-precedence).
