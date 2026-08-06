@@ -65,3 +65,24 @@ export function validateVisualCapture(value: unknown): string[] {
   if (value.baselineApproval !== "approved") errors.push("visual baseline requires explicit approval");
   return errors;
 }
+
+export function validateAnimationRegistry(value: unknown): string[] {
+  if (!isRecord(value)) return ["animation registry must be an object"];
+  const errors: string[] = [];
+  if (value.ownership !== "product-exclusive" || value.reusePolicy !== "architecture-only") errors.push("product animation identities remain exclusive; only architecture is reusable");
+  if (value.serverConfigured !== true || value.superAdminControlled !== true) errors.push("animation assignment must be server-configured and Super Admin controlled");
+  const seenIds = new Set<string>();
+  const seenNames = new Set<string>();
+  const entries = Array.isArray(value.entries) ? value.entries.filter(isRecord) : [];
+  for (const [index, entry] of entries.entries()) {
+    if (typeof entry.id !== "string" || entry.id.length === 0 || seenIds.has(entry.id)) errors.push(`entries[${index}] requires a unique id`);
+    if (typeof entry.name !== "string" || entry.name.length === 0 || seenNames.has(entry.name)) errors.push(`entries[${index}] requires a unique name`);
+    if (entry.stableId !== true) errors.push(`entries[${index}] protected animation requires a stable identifier`);
+    if (entry.nameMutable !== false) errors.push(`entries[${index}] protected name cannot be renamed`);
+    if (entry.reducedMotionFallback !== true) errors.push(`entries[${index}] requires a reduced-motion fallback`);
+    if (typeof entry.id === "string") seenIds.add(entry.id);
+    if (typeof entry.name === "string") seenNames.add(entry.name);
+  }
+  if (entries.length === 0) errors.push("animation registry has no entries");
+  return errors;
+}

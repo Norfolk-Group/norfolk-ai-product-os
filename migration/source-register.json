@@ -100,6 +100,17 @@
       "disposition": "evaluate",
       "approval": "pending",
       "destination": "candidate U7 agent-native doctrine and reusable agent tooling"
+    },
+    {
+      "id": "SRC-H-ANALYTICS-DESIGN-AGENT-MOTION",
+      "repository": "Norfolk-Group/H-Analytics",
+      "sourceRef": "70d1ea8cb554a4bb154f864a18bf144bcf6e8ee3",
+      "ownership": "Norfolk AI reusable architecture with product-exclusive visual identities and restricted product context",
+      "sensitivity": "restricted-evidence",
+      "evidence": "README.md agent taxonomy; current design system; animation registry/catalog/assignments; canonical progress dialog; slide-factory member contract",
+      "disposition": "promote",
+      "approval": "approved",
+      "destination": "design/brand-architecture.md; design/asset-experience.md; design/animation-registry.md; design/progress.md; standards/agent-identity.md"
     }
   ]
 }

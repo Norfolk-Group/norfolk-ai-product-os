@@ -22,12 +22,15 @@ Design is a first-class Product OS pillar. It governs how product purpose become
 | Mobile, tablet, desktop, reflow, and safe areas | [Responsive](responsive.md) |
 | Keyboard, screen reader, contrast, motion, and evidence | [Accessibility](accessibility.md) |
 | Interface language and conversational posture | [Voice](voice.md) |
+| Norfolk/client brand modes and mandatory endorsement | [Brand architecture](brand-architecture.md) |
 | Inheritance, brand, organization themes, preferences | [Themes](themes.md) |
+| Governed logos, portraits, property imagery, sharing, deletion | [Identity and media assets](asset-experience.md) |
 | WorkOS-backed first-party identity experience | [Authentication](authentication.md) |
 | Explicit anti-patterns | [Forbidden patterns](forbidden-patterns.md) |
 | Reference evidence lifecycle | [References](references.md) |
 | Approval, exceptions, and anti-regression | [Approval gates](approval-gates.md) |
 | Motion meaning, fidelity, and lineage | [Motion](motion.md) |
+| Protected product animation names and assignments | [Product animation registries](animation-registry.md) |
 | Honest long-process feedback | [Process progress](progress.md) |
 | Source hashes and preservation | [Provenance](provenance.md) |
 | Responsive evidence matrix | [Viewport matrix](viewport-matrix.md) |

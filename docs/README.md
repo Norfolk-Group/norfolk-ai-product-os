@@ -60,12 +60,15 @@ These contracts keep product purpose, observed evidence, structure, and recommen
 - [Responsive](../design/responsive.md)
 - [Accessibility](../design/accessibility.md)
 - [Voice](../design/voice.md)
+- [Brand architecture](../design/brand-architecture.md)
 - [Themes and inheritance](../design/themes.md)
+- [Identity and media assets](../design/asset-experience.md)
 - [Authentication experience](../design/authentication.md)
 - [Forbidden patterns](../design/forbidden-patterns.md)
 - [References](../design/references.md)
 - [Approval gates](../design/approval-gates.md)
 - [Motion](../design/motion.md)
+- [Product animation registries](../design/animation-registry.md)
 - [Process progress](../design/progress.md)
 - [Design provenance](../design/provenance.md)
 - [Viewport matrix](../design/viewport-matrix.md)
@@ -118,6 +121,7 @@ These contracts keep product purpose, observed evidence, structure, and recommen
 | [Data lifecycle](../standards/data-lifecycle.md) | CONTRACT | Data Owner | Retention, holds, deletion, backups, and evidence |
 | [Media transfer](../standards/media.md) | CONTRACT | Platform Owner | Direct upload, confirmation, quarantine, and cleanup |
 | [Agent-native architecture](../standards/agent-native.md) | CONTRACT | AI Platform Owner | Outcome parity, tools, context, completion, and approvals |
+| [Agent identity and naming](../standards/agent-identity.md) | CONTRACT | AI Platform Owner | Agents, Specialists, Orchestrators, Minions, names, personas, and attribution |
 | [Repository lifecycle](../standards/repository-lifecycle.md) | CONTRACT | Product OS Owner | Preservation and separately approved destructive actions |
 | [Vendor integration](../standards/vendor-integration.md) | CONTRACT | Architecture Owner | Official evidence, adapters, failure modes, and exit |
 | [Reusable modules](../standards/reusable-modules.md) | CONTRACT | Architecture Owner | Enable, govern, upgrade, disable, and remove capabilities |

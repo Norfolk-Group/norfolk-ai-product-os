@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { createRequire } from "node:module";
 import { resolve } from "node:path";
 import test from "node:test";
-import { validateMotionRecord, validateProgressEvents, validateVisualCapture } from "../../tools/validate/motion.js";
+import { validateAnimationRegistry, validateMotionRecord, validateProgressEvents, validateVisualCapture } from "../../tools/validate/motion.js";
 
 type Validator = ((value: unknown) => boolean) & { errors?: unknown[] | null };
 type AjvInstance = { compile: (schema: unknown) => Validator };
@@ -83,4 +83,14 @@ test("an immutable copy checksum mismatch stops reconciliation", async () => {
   const record = await json("tests/fixtures/motion/valid-canonical.json");
   record.lineage[0].retrievedSha256 = "0".repeat(64);
   assert.ok(validateMotionRecord(record).some((error) => error.includes("retrieval checksum")));
+});
+
+test("a product animation registry protects names and stable identifiers", async () => {
+  const registry = await json("design/animation-registry.example.json");
+  assert.deepEqual(validateAnimationRegistry(registry), []);
+  registry.entries[0].stableId = false;
+  registry.entries[0].nameMutable = true;
+  const errors = validateAnimationRegistry(registry);
+  assert.ok(errors.some((error) => error.includes("stable identifier")));
+  assert.ok(errors.some((error) => error.includes("protected name")));
 });

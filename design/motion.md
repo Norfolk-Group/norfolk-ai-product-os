@@ -23,3 +23,5 @@ Source role is explicit and is not inferred from filename, modification time, ar
 Before reconciliation, hash every variant, copy it to a versioned immutable object, retrieve it, verify the checksum, and retain the local original. A mismatch stops reconciliation; it never authorizes deletion. Canonical status requires complete lineage and explicit Product OS Owner approval.
 
 Figma motion data is authoritative for recorded values. The implementation must honor `prefers-reduced-motion`, preserve state and completion information, validate one entire timeline before batching, and leave unsupported source motion visibly recorded rather than silently dropped.
+
+Accepted names and identifiers are governed by [Product animation registries](animation-registry.md). An implementation refinement may version an animation but cannot silently rename its identity. For the currently reviewed H+ family, the current H+ production implementation is the working master; its visual identities remain product-exclusive while the architecture and quality bar are reusable.

@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://norfolk.ai/schemas/animation-registry.schema.json",
+  "title": "Animation registry",
+  "type": "object",
+  "required": ["id", "productScope", "ownership", "reusePolicy", "serverConfigured", "superAdminControlled", "categories", "entries"],
+  "properties": {
+    "id": { "$ref": "#/definitions/string" }, "productScope": { "$ref": "#/definitions/string" }, "ownership": { "const": "product-exclusive" }, "reusePolicy": { "const": "architecture-only" }, "serverConfigured": { "const": true }, "superAdminControlled": { "const": true },
+    "categories": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/definitions/string" } },
+    "entries": { "type": "array", "minItems": 1, "items": { "type": "object", "required": ["id", "name", "stableId", "nameMutable", "reducedMotionFallback", "status"], "additionalProperties": false, "properties": { "id": { "$ref": "#/definitions/string" }, "name": { "$ref": "#/definitions/string" }, "stableId": { "const": true }, "nameMutable": { "const": false }, "reducedMotionFallback": { "const": true }, "status": { "enum": ["candidate", "protected", "retired"] } } } }
+  },
+  "additionalProperties": false,
+  "definitions": { "string": { "type": "string", "minLength": 1 } }
+}

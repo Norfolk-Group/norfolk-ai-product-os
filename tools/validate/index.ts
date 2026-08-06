@@ -4,10 +4,12 @@ import { readFile } from "node:fs/promises";
 import fg from "fast-glob";
 import { validateRepository } from "./repository.js";
 import { validateImportedAdr, validateMigrationRegister, validatePromotedContent, validateSupersededDoctrine } from "./migration.js";
-import { validateCapabilityMap, validateDataLifecycle, validatePreferredStack } from "./standards.js";
+import { validateAgentIdentityRegistry, validateCapabilityMap, validateDataLifecycle, validatePreferredStack } from "./standards.js";
 import { scanRepositorySecrets } from "./repository-secrets.js";
 import { validateAuthExperience, validateAuthSecurity } from "./auth.js";
 import { validateRetirementDossier, validateValidationArtifact } from "./retirement.js";
+import { validateBrandProfile, validateMediaAssetWorkflow } from "./design.js";
+import { validateAnimationRegistry } from "./motion.js";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const result = await validateRepository(root);
@@ -31,6 +33,10 @@ for (const path of await fg(["migration/promoted/**/*"], { cwd: root, onlyFiles:
 result.errors.push(...validatePreferredStack(JSON.parse(await readFile(resolve(root, "standards/preferred-stack.json"), "utf8"))).map((error) => `standards/preferred-stack.json: ${error}`));
 result.errors.push(...validateCapabilityMap(JSON.parse(await readFile(resolve(root, "standards/capability-map.example.json"), "utf8"))).map((error) => `standards/capability-map.example.json: ${error}`));
 result.errors.push(...validateDataLifecycle(JSON.parse(await readFile(resolve(root, "standards/data-lifecycle.example.json"), "utf8"))).map((error) => `standards/data-lifecycle.example.json: ${error}`));
+result.errors.push(...validateAgentIdentityRegistry(JSON.parse(await readFile(resolve(root, "standards/agent-identity.example.json"), "utf8"))).map((error) => `standards/agent-identity.example.json: ${error}`));
+result.errors.push(...validateBrandProfile(JSON.parse(await readFile(resolve(root, "design/brand-profile.example.json"), "utf8"))).map((error) => `design/brand-profile.example.json: ${error}`));
+result.errors.push(...validateMediaAssetWorkflow(JSON.parse(await readFile(resolve(root, "standards/media-asset-workflow.example.json"), "utf8"))).map((error) => `standards/media-asset-workflow.example.json: ${error}`));
+result.errors.push(...validateAnimationRegistry(JSON.parse(await readFile(resolve(root, "design/animation-registry.example.json"), "utf8"))).map((error) => `design/animation-registry.example.json: ${error}`));
 result.errors.push(...validateAuthExperience(JSON.parse(await readFile(resolve(root, "tests/fixtures/auth/valid-experience.json"), "utf8"))).map((error) => `tests/fixtures/auth/valid-experience.json: ${error}`));
 result.errors.push(...validateAuthSecurity(JSON.parse(await readFile(resolve(root, "tests/fixtures/auth/valid-security.json"), "utf8"))).map((error) => `tests/fixtures/auth/valid-security.json: ${error}`));
 for (const name of ["norfolk-starter", "norfolk-manual"]) result.errors.push(...validateRetirementDossier(JSON.parse(await readFile(resolve(root, `retirement/${name}.json`), "utf8"))).map((error) => `retirement/${name}.json: ${error}`));

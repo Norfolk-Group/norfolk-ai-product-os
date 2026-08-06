@@ -68,6 +68,20 @@ test("capability map schema rejects context-free UI-only capabilities", async ()
   assert.equal(validate({ capabilities: [{ id: "document.create", procedure: "documents.create", consequential: false, transports: [{ name: "ui", procedure: "documents.create", authorizationPolicy: "document-write", approvalPolicy: "none" }] }] }), false);
 });
 
+test("brand and media schemas accept the governed examples", async () => {
+  const brand = compile(await schema("brand-profile"));
+  const media = compile(await schema("media-asset-workflow"));
+  assert.equal(brand(JSON.parse(await readFile(resolve(root, "design/brand-profile.example.json"), "utf8"))), true);
+  assert.equal(media(JSON.parse(await readFile(resolve(root, "standards/media-asset-workflow.example.json"), "utf8"))), true);
+});
+
+test("agent and animation schemas accept governed registries", async () => {
+  const agents = compile(await schema("agent-identity"));
+  const animations = compile(await schema("animation-registry"));
+  assert.equal(agents(JSON.parse(await readFile(resolve(root, "standards/agent-identity.example.json"), "utf8"))), true);
+  assert.equal(animations(JSON.parse(await readFile(resolve(root, "design/animation-registry.example.json"), "utf8"))), true);
+});
+
 test("every published schema compiles", async () => {
   const schemaFiles = await fg("schemas/*.schema.json", { cwd: root, onlyFiles: true });
   assert.ok(schemaFiles.length > 0);

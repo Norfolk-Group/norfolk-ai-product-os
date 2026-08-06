@@ -127,3 +127,45 @@ export function validateMediaTransfer(value: unknown): string[] {
   if (record.authorizationRechecked !== true) errors.push("authorization must be rechecked at confirmation and access");
   return errors;
 }
+
+export function validateAgentIdentityRegistry(value: unknown): string[] {
+  const root = value as RecordValue;
+  const errors: string[] = [];
+  const naming = isRecord(root.naming) ? root.naming : {};
+  const traditions = new Set(list(naming.traditions));
+  if (!traditions.has("italian") || !traditions.has("brazilian")) errors.push("agent names must use Italian and Brazilian traditions");
+  if (naming.roleAligned !== true) errors.push("agent naming must be role-aligned");
+
+  const seen = new Set<string>();
+  for (const [index, raw] of list(root.members).entries()) {
+    const member = raw as RecordValue;
+    for (const field of ["id", "name", "productScope", "type", "role", "shortDescription", "longDescription", "pronunciation"]) {
+      if (!text(member[field])) errors.push(`members[${index}] missing ${field}`);
+    }
+    const key = `${member.productScope}:${String(member.name).toLocaleLowerCase()}`;
+    if (seen.has(key)) errors.push(`members[${index}] duplicate name within product scope`);
+    seen.add(key);
+
+    if (member.type === "minion") {
+      if (member.usesLlm !== false) errors.push(`members[${index}] minion cannot use an LLM`);
+      if (member.exercisesJudgment !== false) errors.push(`members[${index}] minion cannot exercise judgment`);
+    } else if (["agent", "specialist", "orchestrator"].includes(String(member.type)) && member.usesLlm !== true) {
+      errors.push(`members[${index}] ${member.type} must use an LLM; deterministic workers are minions`);
+    }
+    if (member.type === "orchestrator" && (member.routesWork !== true || member.producesContent !== false)) errors.push(`members[${index}] orchestrator routes work and does not produce content directly`);
+    if (member.scope === "cross-product" && member.type !== "specialist") errors.push(`members[${index}] only a Specialist may have cross-product scope`);
+
+    if (member.conversational === true) {
+      const presentation = isRecord(member.presentation) ? member.presentation : {};
+      const modes = new Set(list(presentation.modes));
+      if (presentation.genderIdentity !== "female") errors.push(`members[${index}] conversational identity must be female`);
+      if (presentation.explicitAiDisclosure !== true) errors.push(`members[${index}] conversational identity requires explicit AI disclosure`);
+      if (!modes.has("abstract-animation") || !modes.has("photoreal-animated-human")) errors.push(`members[${index}] conversational identity requires abstract and photoreal modes`);
+      if (presentation.candidateCount !== 3 || presentation.regenerationAllowed !== true) errors.push(`members[${index}] photoreal identity requires three candidates and regeneration`);
+      if (presentation.abstractFallback !== true) errors.push(`members[${index}] photoreal identity requires an abstract fallback`);
+      if (presentation.syntheticIdentity !== true || presentation.realPersonImitation !== false) errors.push(`members[${index}] photoreal identity must be synthetic and cannot imitate a real person`);
+    }
+  }
+  if (list(root.members).length === 0) errors.push("agent identity registry has no members");
+  return errors;
+}

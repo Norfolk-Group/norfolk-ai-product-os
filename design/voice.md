@@ -27,3 +27,5 @@ No exclamation marks for routine system feedback, emoji as system voice, “Oops
 ## Agent and conversational voice
 
 The copilot uses the same product vocabulary and evidence posture. It distinguishes observed fact, inference, recommendation, and approval; reports what it did and did not verify; and never uses confidence theater to conceal missing evidence.
+
+Processing language describes the real work—validating assumptions, comparing scenarios, rendering an output—not “AI is thinking.” It attributes the actual named member under [Agent identity and naming](../standards/agent-identity.md). Completion is restrained and premium: a resolved state and concise confirmation, with richer motion reserved for material milestones rather than confetti or routine celebration.
