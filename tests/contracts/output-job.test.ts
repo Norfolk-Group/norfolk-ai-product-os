@@ -7,7 +7,13 @@ import { validateOutputJob } from "../../tools/validate/outputs.js";
 const root = resolve(import.meta.dirname, "../..");
 const json = async (path: string) => JSON.parse(await readFile(resolve(root, path), "utf8"));
 
-test("a complete authorized output job is accepted", async () => assert.deepEqual(validateOutputJob(await json("tests/fixtures/outputs/valid-job.json")), []));
+test("a complete authorized output job is accepted before its signed URL expires", async () => {
+  assert.deepEqual(validateOutputJob(await json("tests/fixtures/outputs/valid-job.json"), new Date("2026-08-05T12:00:00Z")), []);
+});
+
+test("implicit output-job validation uses the current clock", async () => {
+  assert.ok(validateOutputJob(await json("tests/fixtures/outputs/valid-job.json")).some((error) => error.includes("expired")));
+});
 
 test("XLSX scope must preserve every filter and selection declared by the request", async () => {
   assert.ok(validateOutputJob(await json("tests/fixtures/outputs/invalid-scope-job.json")).some((error) => error.includes("scope")));

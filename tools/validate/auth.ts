@@ -23,8 +23,14 @@ export function isSafeReturnIntent(value: string, allowlist: string[]): boolean 
   try { decoded = decodeURIComponent(value); } catch { return false; }
   if (!decoded.startsWith("/") || decoded.startsWith("//") || /^(?:[a-z]+:|\\)/i.test(decoded)) return false;
   if (decoded.includes("//") || decoded.includes("\\") || /[\u0000-\u001f]/.test(decoded)) return false;
-  const path = decoded.split(/[?#]/, 1)[0];
-  return allowlist.some((prefix) => path === prefix || path.startsWith(`${prefix}/`));
+  const origin = "https://return-intent.invalid";
+  let path: string;
+  try { path = new URL(decoded, origin).pathname; } catch { return false; }
+  return allowlist.some((prefix) => {
+    let allowed: string;
+    try { allowed = new URL(prefix, origin).pathname; } catch { return false; }
+    return path === allowed || path.startsWith(`${allowed}/`);
+  });
 }
 
 export function validateAuthSecurity(value: unknown): string[] {

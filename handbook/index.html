@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Norfolk AI Product OS Handbook</title><style>body{font:15px/1.55 Inter,system-ui,sans-serif;max-width:1100px;margin:auto;padding:32px;color:#172320;background:#f6f2e9}header{border-bottom:1px solid #b8c2bd}article{background:#fff;padding:24px;margin:20px 0;border-radius:14px}pre{white-space:pre-wrap;font:inherit}.meta{color:#4f6c64;font-size:12px}</style></head><body><header><p>Private Norfolk AI standard · Product OS 0.0.0 · generated from canonical source</p><h1>Norfolk AI Product OS Handbook</h1></header><article id="design-accessibility-md"><p class="meta">design/accessibility.md · accepted · source-sha256 b93cf9e481951c19cf7a6e9b9da4ca3d989708eaa235d0abedc9e332851bf75d</p><pre># Accessibility
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Norfolk AI Product OS Handbook</title><style>body{font:15px/1.55 Inter,system-ui,sans-serif;max-width:1100px;margin:auto;padding:32px;color:#172320;background:#f6f2e9}header{border-bottom:1px solid #b8c2bd}article{background:#fff;padding:24px;margin:20px 0;border-radius:14px}pre{white-space:pre-wrap;font:inherit}.meta{color:#4f6c64;font-size:12px}</style></head><body><header><p>Private Norfolk AI standard · Product OS 0.3.0-candidate.2 · generated from canonical source</p><h1>Norfolk AI Product OS Handbook</h1></header><article id="design-accessibility-md"><p class="meta">design/accessibility.md · accepted · source-sha256 b93cf9e481951c19cf7a6e9b9da4ca3d989708eaa235d0abedc9e332851bf75d</p><pre># Accessibility
 
 WCAG 2.2 AA is the minimum product contract, not the ceiling. Accessibility is designed with each pattern and state; it is not a final audit layer.
 
@@ -617,20 +617,20 @@ Imported numbering is namespaced under `decisions/imported/norfolk-kit/`; it nev
 | Starter Clerk/Prisma/Next.js implementation | Supersede | Archived legacy reference; current Kit uses WorkOS, Drizzle, and its approved reference architecture |
 | Starter agent-native commands and skills | Evaluate | Candidate input for U7; no automatic promotion |
 
-Product blanks become templates. Product- or client-specific identity, palettes, business rules, evidence, and credentials remain outside canonical content.</pre></article><article id="migration-source-register-md"><p class="meta">migration/source-register.md · accepted · source-sha256 1b125a78f4bb08ab3627ddbc5ec0c2ffcb9cf1c0b4076f4280369fd9d6e57dda</p><pre># Migration source register
+Product blanks become templates. Product- or client-specific identity, palettes, business rules, evidence, and credentials remain outside canonical content.</pre></article><article id="migration-source-register-md"><p class="meta">migration/source-register.md · accepted · source-sha256 cd941ecbf68656a5940717faf24562f82296af6dee920799173bf713a8c7d97f</p><pre># Migration source register
 
 The machine-readable [`source-register.json`](source-register.json) records every source used or evaluated before the first Product OS release. A source requires ownership, sensitivity, evidence, pinned repository ref, disposition, approval, and destination. Promotion is fail-closed: pending, client-confidential, or destination-less material cannot become canonical.
 
-GitHub MCP confirmed on 2026-08-05:
+GitHub and the local upstream refs confirmed on 2026-08-06:
 
 | Repository | Visibility | State | Default branch | Recorded ref |
 |---|---|---|---|---|
-| `Norfolk-Group/norfolk-ai-product-os` | private | active, empty upstream | `main` | local candidate only; not pushed |
-| `Norfolk-Group/norfolk-kit` | private | active | `main` | `f2680624596048a88f78e2a77b2a7e3d1d4aeed5` |
+| `Norfolk-Group/norfolk-ai-product-os` | private | active, draft PR #1 | `main` | `21a972efd68c5c565c8724e41ea23270dead7f0e` |
+| `Norfolk-Group/norfolk-kit` | private | active, draft PR #1 | `main` | `f13a47590342042cb34816c899823994f265e1bb` |
 | `Norfolk-Group/norfolk-manual` | private | active | `main` | `b397f6e3d5e00d2be9ee608356f892daaca8dcd2` |
 | `Norfolk-Group/norfolk-starter` | **public** | archived | `main` | `3788ec74763018b73f4051613d90c0005874388b` |
 
-The Starter being public and already archived is a discovered fact, not a deletion approval. The Product OS and Kit commits in this worktree remain local.</pre></article><article id="migration-superseded-material-md"><p class="meta">migration/superseded-material.md · accepted · source-sha256 5933d8dbf8183f941703c67b0c3d5505c2f1c143f6a184ba07d210286b2244cd</p><pre># Superseded material
+The Starter being public and already archived is a discovered fact, not a deletion approval. Product OS and Kit feature branches are pushed for draft review; neither PR is merged and no release is published.</pre></article><article id="migration-superseded-material-md"><p class="meta">migration/superseded-material.md · accepted · source-sha256 5933d8dbf8183f941703c67b0c3d5505c2f1c143f6a184ba07d210286b2244cd</p><pre># Superseded material
 
 The following statements are historical only and fail validation if asserted as current doctrine:
 

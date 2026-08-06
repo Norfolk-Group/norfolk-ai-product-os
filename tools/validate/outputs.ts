@@ -29,7 +29,7 @@ export function validateSpreadsheetCell(value: string): string[] {
   return /^[=+\-@]/.test(value) ? ["spreadsheet cell begins with a formula-control character and must be rejected or safely escaped"] : [];
 }
 
-export function validateOutputJob(value: unknown, now = new Date("2026-08-05T12:00:00Z")): string[] {
+export function validateOutputJob(value: unknown, now = new Date()): string[] {
   if (!isRecord(value)) return ["output job must be an object"];
   const errors: string[] = [];
   if (JSON.stringify(value.requestScope) !== JSON.stringify(value.renderedScope)) errors.push("rendered scope does not preserve request scope");

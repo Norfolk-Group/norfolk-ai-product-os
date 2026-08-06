@@ -17,7 +17,8 @@ test("manifest signing is deterministic over key-sorted canonical JSON", () => {
 });
 
 test("the 0.3 adoption candidate is signed and binds every included file hash", async () => {
-  const directory = resolve(root, "releases/0.3.0-candidate.1");
+  const pkg = JSON.parse(await readFile(resolve(root, "package.json"), "utf8"));
+  const directory = resolve(root, `releases/${pkg.version}`);
   const bundle = JSON.parse(await readFile(resolve(directory, "signed-manifest.json"), "utf8"));
   const key = createPublicKey(await readFile(resolve(directory, "candidate-public-key.pem"), "utf8"));
   assert.equal(verifyManifest(bundle, key), true);

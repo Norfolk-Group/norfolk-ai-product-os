@@ -12,7 +12,13 @@
     "createdAt": { "type": "string", "format": "date-time" },
     "visibility": { "const": "private" },
     "signedBy": { "type": "string", "minLength": 1 },
-    "minimumKitVersion": { "type": "string" }
+    "minimumKitVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z]+(?:\\.[0-9A-Za-z]+)*)?$" }
   },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "enum": ["candidate", "released"] } }, "required": ["status"] },
+      "then": { "required": ["signedBy", "minimumKitVersion"] }
+    }
+  ],
   "additionalProperties": false
 }

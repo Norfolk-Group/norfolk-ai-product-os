@@ -31,6 +31,7 @@ export function validateProgressEvents(events: unknown[]): string[] {
   const ids = new Set<string>();
   for (const [index, raw] of events.entries()) {
     if (!isRecord(raw)) continue;
+    if (raw.restart === true) lastPercent = undefined;
     if (raw.state === "indeterminate" && typeof raw.percent === "number") errors.push(`events[${index}]: indeterminate progress cannot display a percentage`);
     if (raw.state === "determinate") {
       if (raw.source !== "server" || typeof raw.stageId !== "string") errors.push(`events[${index}]: determinate progress must be server-grounded`);
@@ -39,12 +40,13 @@ export function validateProgressEvents(events: unknown[]): string[] {
         lastPercent = raw.percent;
       }
     }
-    if (raw.restart === true) lastPercent = undefined;
     if (raw.state === "cancelled") cancelled = true;
     if (cancelled && raw.state === "success") errors.push(`events[${index}]: completion after cancellation must be recorded as late-completion, not success`);
     if (typeof raw.eventId === "string") {
-      if (ids.has(raw.eventId)) errors.push(`events[${index}]: duplicate event id must be recorded as duplicate-event`);
-      ids.add(raw.eventId);
+      const duplicate = ids.has(raw.eventId);
+      if (duplicate && raw.state !== "duplicate-event") errors.push(`events[${index}]: duplicate event id must be recorded as duplicate-event`);
+      if (!duplicate && raw.state === "duplicate-event") errors.push(`events[${index}]: duplicate-event must reference a previous event id`);
+      if (!duplicate) ids.add(raw.eventId);
     }
   }
   return errors;

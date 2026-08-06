@@ -12,4 +12,4 @@ Canonical releases are immutable private bundles containing manifest, standards,
 
 Patch releases clarify or repair without changing obligations. Minor `0.x` releases add or materially change contracts and require opt-in adoption. Removal, incompatible schema, or authority change records migration and may require the next minor while pre-1.0. Released manifests are never edited; correction is a new version. Deprecated and unsupported states name support end and migration.
 
-`0.3.0-candidate.1` is an internal adoption candidate, not a published release. U11 may publish only after validation and trusted signing approval.
+`0.3.0-candidate.1` is preserved as the initial internal adoption candidate. `0.3.0-candidate.2` is the review-corrected candidate and is not a published release. U11 may publish only after validation and trusted signing approval.

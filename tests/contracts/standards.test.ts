@@ -4,6 +4,7 @@ import { resolve } from "node:path";
 import test from "node:test";
 import {
   validateDatabaseOperation,
+  validateCapabilityMap,
   validatePreferredStack,
   validateVendorEvidence,
 } from "../../tools/validate/standards.js";
@@ -31,4 +32,11 @@ test("destructive database work fails closed outside a self-stamped local databa
 
 test("time-sensitive vendor readiness requires official current evidence and diagnostics", async () => {
   assert.ok(validateVendorEvidence(await json("tests/fixtures/standards/invalid-vendor-evidence.json")).length >= 3);
+});
+
+test("capability maps require complete context, recovery, and adapter dispositions", () => {
+  const errors = validateCapabilityMap({ capabilities: [{ id: "document.create", procedure: "documents.create", consequential: false, transports: [{ name: "ui", procedure: "documents.create", authorizationPolicy: "document-write", approvalPolicy: "none" }] }] });
+  for (const field of ["userVocabulary", "callers", "contextAvailability", "completionSignal", "recovery", "mcp", "copilot", "jobs", "reports", "schedules"]) {
+    assert.ok(errors.some((error) => error.includes(field)), field);
+  }
 });

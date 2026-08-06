@@ -2,7 +2,7 @@ type R = Record<string, unknown>;
 export function validateRetirementDossier(value: unknown): string[] {
   const d = value as R; const errors: string[] = [];
   for (const field of ["preservation","uniqueContent","consumers","branches","pullRequests","settings","recoveryTest"]) if (!d[field] || typeof d[field] !== "object") errors.push(`missing ${field}`);
-  if (d.readiness === "ready-for-exact-approval") {
+  if (d.readiness === "ready-for-exact-approval" || d.readiness === "approved") {
     for (const field of ["preservation","uniqueContent","consumers","branches","pullRequests","settings","recoveryTest"]) if ((d[field] as R)?.complete !== true) errors.push(`${field} is incomplete`);
   }
   if (d.readiness !== "approved" && d.missingApproval !== true) errors.push("destructive action requires exact missing approval");
@@ -11,7 +11,7 @@ export function validateRetirementDossier(value: unknown): string[] {
 
 export function destructiveActionAvailable(value: unknown): boolean {
   const d = value as R;
-  return d.readiness === "approved" && d.missingApproval === false && (d.recommendedAction === "delete" || d.recommendedAction === "archive");
+  return validateRetirementDossier(value).length === 0 && d.readiness === "approved" && d.missingApproval === false && (d.recommendedAction === "delete" || d.recommendedAction === "archive");
 }
 
 export function validateValidationArtifact(value: string): string[] {

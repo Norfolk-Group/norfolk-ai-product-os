@@ -4,7 +4,7 @@ import { isSafeReturnIntent, validateAuthSecurity } from "../../tools/validate/a
 
 test("return intent is application-relative, allowlisted, and rejects encoded bypasses", () => {
   assert.equal(isSafeReturnIntent("/reports/weekly", ["/reports", "/home"]), true);
-  for (const value of ["https://evil.example/x", "//evil.example", "/%2f%2fevil.example", "%2F%2Fevil.example", "/admin/secrets", "javascript:alert(1)"]) {
+  for (const value of ["https://evil.example/x", "//evil.example", "/%2f%2fevil.example", "%2F%2Fevil.example", "/admin/secrets", "javascript:alert(1)", "/reports/../admin", "/reports/%2e%2e/admin"]) {
     assert.equal(isSafeReturnIntent(value, ["/reports", "/home"]), false, value);
   }
 });

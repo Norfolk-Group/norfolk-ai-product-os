@@ -40,6 +40,15 @@ test("determinate progress is server-grounded and cannot regress without restart
   assert.ok(validateProgressEvents(events).some((error) => error.includes("regress")));
 });
 
+test("a restart establishes the next monotonic progress baseline", () => {
+  const events = [
+    { state: "determinate", percent: 80, source: "server", stageId: "build" },
+    { state: "determinate", percent: 10, source: "server", stageId: "build", restart: true },
+    { state: "determinate", percent: 5, source: "server", stageId: "build" },
+  ];
+  assert.ok(validateProgressEvents(events).some((error) => error.includes("regress")));
+});
+
 test("late completion and duplicates do not turn cancellation into normal success", () => {
   const events = [
     { state: "cancelled", eventId: "1" },
@@ -49,6 +58,14 @@ test("late completion and duplicates do not turn cancellation into normal succes
   const errors = validateProgressEvents(events);
   assert.ok(errors.some((error) => error.includes("late-completion")));
   assert.ok(errors.some((error) => error.includes("duplicate")));
+});
+
+test("duplicate-event records reconcile only an event already observed", () => {
+  assert.deepEqual(validateProgressEvents([
+    { state: "waiting", eventId: "1" },
+    { state: "duplicate-event", eventId: "1" },
+  ]), []);
+  assert.ok(validateProgressEvents([{ state: "duplicate-event", eventId: "missing" }]).some((error) => error.includes("previous")));
 });
 
 test("reduced motion preserves semantic state and completion information", async () => {

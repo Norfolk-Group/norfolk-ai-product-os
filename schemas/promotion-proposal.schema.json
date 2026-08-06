@@ -16,5 +16,23 @@
     "impact": { "type": "string", "minLength": 1 },
     "reviewer": { "type": "string", "minLength": 1 }
   },
+  "allOf": [
+    {
+      "if": { "properties": { "state": { "const": "accepted" } }, "required": ["state"] },
+      "then": {
+        "properties": {
+          "ipClassification": { "enum": ["norfolk-owned", "licensed-for-reuse"] },
+          "sensitivity": { "enum": ["norfolk-only", "client-safe"] },
+          "sanitization": {
+            "properties": {
+              "syntheticExamples": { "const": true },
+              "metadataStripped": { "const": true },
+              "humanDisclosureReview": { "const": true }
+            }
+          }
+        }
+      }
+    }
+  ],
   "additionalProperties": false
 }

@@ -2,6 +2,7 @@ type RecordValue = Record<string, unknown>;
 
 const text = (value: unknown) => typeof value === "string" && value.trim().length > 0;
 const list = (value: unknown) => Array.isArray(value) ? value : [];
+const isRecord = (value: unknown): value is RecordValue => typeof value === "object" && value !== null && !Array.isArray(value);
 
 export function validatePreferredStack(value: unknown): string[] {
   const root = value as RecordValue;
@@ -45,17 +46,33 @@ export function validateVendorEvidence(value: unknown): string[] {
 export function validateCapabilityMap(value: unknown): string[] {
   const root = value as RecordValue;
   const errors: string[] = [];
+  const requiredTransports = ["ui", "trpc", "mcp", "copilot", "jobs", "reports", "schedules"];
   for (const [index, raw] of list(root.capabilities).entries()) {
     const capability = raw as RecordValue;
     if (!text(capability.id)) errors.push(`capabilities[${index}] missing id`);
     if (!text(capability.procedure)) errors.push(`capabilities[${index}] missing shared authorized procedure`);
+    if (list(capability.userVocabulary).length === 0) errors.push(`capabilities[${index}] missing userVocabulary`);
+    if (list(capability.callers).length === 0) errors.push(`capabilities[${index}] missing callers`);
+    for (const field of ["contextAvailability", "completionSignal", "recovery"]) if (!text(capability[field])) errors.push(`capabilities[${index}] missing ${field}`);
     const transports = list(capability.transports) as RecordValue[];
     if (transports.length === 0) errors.push(`capabilities[${index}] has no transports`);
-    const auth = new Set(transports.map((entry) => entry.authorizationPolicy));
-    const approvals = new Set(transports.map((entry) => entry.approvalPolicy));
+    const names = transports.map((entry) => String(entry.name ?? ""));
+    for (const name of requiredTransports) if (!names.includes(name)) errors.push(`capabilities[${index}] missing ${name} transport disposition`);
+    if (new Set(names).size !== names.length) errors.push(`capabilities[${index}] has duplicate transport dispositions`);
+    for (const [transportIndex, entry] of transports.entries()) {
+      if (entry.applicability === "not-applicable") {
+        const exception = isRecord(entry.exception) ? entry.exception : {};
+        if (!["physical", "legal", "security"].includes(String(exception.reasonType)) || !text(exception.reason) || !text(exception.humanProcedure) || !text(exception.approvalId)) {
+          errors.push(`capabilities[${index}].transports[${transportIndex}] needs a governed physical, legal, or security exception and human procedure`);
+        }
+      } else if (entry.applicability !== "implemented") errors.push(`capabilities[${index}].transports[${transportIndex}] missing applicability`);
+    }
+    const implemented = transports.filter((entry) => entry.applicability === "implemented");
+    const auth = new Set(implemented.map((entry) => entry.authorizationPolicy));
+    const approvals = new Set(implemented.map((entry) => entry.approvalPolicy));
     if (auth.size !== 1 || auth.has(undefined)) errors.push(`capabilities[${index}] authorization differs across transports`);
     if (approvals.size !== 1 || approvals.has(undefined)) errors.push(`capabilities[${index}] approval differs across transports`);
-    if (transports.some((entry) => !text(entry.procedure) || entry.procedure !== capability.procedure)) {
+    if (implemented.some((entry) => !text(entry.procedure) || entry.procedure !== capability.procedure)) {
       errors.push(`capabilities[${index}] transport does not use the shared procedure`);
     }
     if (capability.consequential === true && !approvals.has("human-only")) {

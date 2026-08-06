@@ -6,7 +6,7 @@ It owns product doctrine and the reasons behind it: product method, design, arch
 
 ## Current status
 
-The repository is establishing its `0.1` canonical kernel. Until a versioned release is published, content marked `accepted` is authoritative for this repository but is not automatically adopted by Kit or any product.
+The repository is reviewing its `0.3.0-candidate.2` canonical foundation. Until a trusted versioned release is published, content marked `accepted` is authoritative for this repository but is not automatically adopted by Kit or any product.
 
 Norfolk AI owns this repository and its reusable intellectual property. KIT Capital, H-Analytics, and other accounts are clients or products, not Norfolk AI identity and not automatic sources of canonical standards. Client-derived learning must pass the [promotion](governance/promotion.md) and [client-boundary](governance/client-boundaries.md) gates before it can enter the canon.
 

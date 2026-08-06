@@ -22,3 +22,11 @@ test("a ready claim fails when any preservation or recovery category is incomple
   dossier.readiness = "ready-for-exact-approval";
   assert.ok(validateRetirementDossier(dossier).length > 0);
 });
+
+test("approval cannot expose a destructive action while the dossier is incomplete", async () => {
+  const dossier = await json("retirement/norfolk-starter.json");
+  dossier.readiness = "approved";
+  dossier.missingApproval = false;
+  assert.ok(validateRetirementDossier(dossier).length > 0);
+  assert.equal(destructiveActionAvailable(dossier), false);
+});

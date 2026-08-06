@@ -4,7 +4,8 @@ import { readFile } from "node:fs/promises";
 import fg from "fast-glob";
 import { validateRepository } from "./repository.js";
 import { validateImportedAdr, validateMigrationRegister, validatePromotedContent, validateSupersededDoctrine } from "./migration.js";
-import { scanSecrets, validateCapabilityMap, validateDataLifecycle, validatePreferredStack } from "./standards.js";
+import { validateCapabilityMap, validateDataLifecycle, validatePreferredStack } from "./standards.js";
+import { scanRepositorySecrets } from "./repository-secrets.js";
 import { validateAuthExperience, validateAuthSecurity } from "./auth.js";
 import { validateRetirementDossier, validateValidationArtifact } from "./retirement.js";
 
@@ -37,10 +38,7 @@ for (const name of ["h-analytics.md", "motion-lineage.md", "report-output.md"]) 
   const body = await readFile(resolve(root, `validation/${name}`), "utf8");
   result.errors.push(...validateValidationArtifact(body).map((error) => `validation/${name}: ${error}`));
 }
-for (const path of await fg(["{governance,product,design,standards,templates,outputs,migration,catalog,adoption,compatibility,releases,validation,retirement}/**/*", "handbook/**/*"], { cwd: root, onlyFiles: true })) {
-  const body = await readFile(resolve(root, path), "utf8");
-  result.errors.push(...scanSecrets(body, path.startsWith("handbook/") ? "handbook" : path.includes("fixture") ? "fixture" : path.includes("manifest") ? "manifest" : "source").map((error) => `${path}: ${error}`));
-}
+result.errors.push(...await scanRepositorySecrets(root, { history: "--all" }));
 
 for (const warning of result.warnings) console.warn(`warning: ${warning}`);
 if (result.errors.length > 0) {

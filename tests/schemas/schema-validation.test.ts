@@ -37,9 +37,12 @@ test("standard metadata rejects missing owner and invalid tier", async () => {
 
 test("release manifest requires private visibility and content hashes", async () => {
   const validate = compile(await schema("product-os-release"));
-  const valid = { version: "0.1.0", status: "candidate", sourceCommit: "a".repeat(40), manifestSha256: "b".repeat(64), standards: ["governance/fundamental-governance.md"], createdAt: "2026-08-04T12:00:00Z", visibility: "private" };
+  const valid = { version: "0.1.0", status: "candidate", sourceCommit: "a".repeat(40), manifestSha256: "b".repeat(64), standards: ["governance/fundamental-governance.md"], createdAt: "2026-08-04T12:00:00Z", visibility: "private", signedBy: "trusted-release-key", minimumKitVersion: "0.1.0" };
   assert.equal(validate(valid), true);
   assert.equal(validate({ ...valid, visibility: "public" }), false);
+  const { signedBy: _signedBy, ...unsigned } = valid;
+  assert.equal(validate(unsigned), false);
+  assert.equal(validate({ ...valid, minimumKitVersion: "latest" }), false);
 });
 
 test("exception requires accountable review and migration consequence", async () => {
@@ -57,7 +60,12 @@ test("promotion proposal cannot omit sanitization review", async () => {
 test("adoption lock requires pinned Product OS and Kit versions", async () => {
   const validate = compile(await schema("adoption-lock"));
   assert.equal(validate({ productOSVersion: "0.1.0", kitVersion: "0.1.0", state: "adopted", sourceManifestSha256: "c".repeat(64), exceptions: [] }), true);
-  assert.equal(validate({ productOSVersion: "head", state: "adopted", exceptions: [] }), false);
+  assert.equal(validate({ productOSVersion: "head", kitVersion: "latest", state: "adopted", sourceManifestSha256: "c".repeat(64), exceptions: [] }), false);
+});
+
+test("capability map schema rejects context-free UI-only capabilities", async () => {
+  const validate = compile(await schema("capability-map"));
+  assert.equal(validate({ capabilities: [{ id: "document.create", procedure: "documents.create", consequential: false, transports: [{ name: "ui", procedure: "documents.create", authorizationPolicy: "document-write", approvalPolicy: "none" }] }] }), false);
 });
 
 test("every published schema compiles", async () => {

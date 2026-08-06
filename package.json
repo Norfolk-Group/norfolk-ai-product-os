@@ -1,6 +1,6 @@
 {
   "name": "@norfolk-ai/product-os",
-  "version": "0.0.0",
+  "version": "0.3.0-candidate.2",
   "private": true,
   "type": "module",
   "packageManager": "pnpm@11.13.0",

@@ -1,1 +1,23 @@
-{"schemaVersion":1,"entries":[{"productOS":"0.3.0-candidate.1","kit":">=0.1.0 <0.2.0","status":"candidate","validation":"contract-and-reference-foundation","databaseWindow":"expand-and-contract only","rollback":"code-and-configuration only","knownIncompatibilities":["untrusted or unsigned Product OS bundles","Clerk production identity","Prisma canonical ORM"]}]}
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "productOS": "0.3.0-candidate.1",
+      "kit": ">=0.1.0 <0.2.0",
+      "status": "candidate",
+      "validation": "contract-and-reference-foundation",
+      "databaseWindow": "expand-and-contract only",
+      "rollback": "code-and-configuration only",
+      "knownIncompatibilities": ["untrusted or unsigned Product OS bundles", "Clerk production identity", "Prisma canonical ORM"]
+    },
+    {
+      "productOS": "0.3.0-candidate.2",
+      "kit": ">=0.1.0 <0.2.0",
+      "status": "candidate",
+      "validation": "review-corrected contract-and-reference-foundation",
+      "databaseWindow": "expand-and-contract only",
+      "rollback": "code-and-configuration only",
+      "knownIncompatibilities": ["untrusted or unsigned Product OS bundles", "Clerk production identity", "Prisma canonical ORM"]
+    }
+  ]
+}
