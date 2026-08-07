@@ -7,7 +7,7 @@ import { destructiveActionAvailable, validateRetirementDossier } from "../../too
 const root = resolve(import.meta.dirname, "../..");
 const json = async (path: string) => JSON.parse(await readFile(resolve(root, path), "utf8"));
 
-test("Starter and Manual remain not ready and expose no destructive operation", async () => {
+test("the historical Starter dossier and current Manual dossier expose no destructive operation", async () => {
   for (const name of ["norfolk-starter", "norfolk-manual"]) {
     const dossier = await json(`retirement/${name}.json`);
     assert.deepEqual(validateRetirementDossier(dossier), []);
@@ -15,6 +15,14 @@ test("Starter and Manual remain not ready and expose no destructive operation", 
     assert.equal(dossier.readiness, "not-ready");
     assert.equal(dossier.missingApproval, true);
   }
+});
+
+test("Starter deletion is recorded without rewriting its incomplete pre-deletion evidence", async () => {
+  const dossier = await json("retirement/norfolk-starter.json");
+  assert.equal(dossier.observedState, "deleted-outside-governed-workflow");
+  assert.equal(dossier.preservation.complete, false);
+  assert.equal(dossier.recoveryTest.complete, false);
+  assert.equal(dossier.missingApproval, true);
 });
 
 test("a ready claim fails when any preservation or recovery category is incomplete", async () => {

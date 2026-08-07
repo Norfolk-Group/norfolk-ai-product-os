@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Norfolk AI Product OS Handbook</title><style>body{font:15px/1.55 Inter,system-ui,sans-serif;max-width:1100px;margin:auto;padding:32px;color:#172320;background:#f6f2e9}header{border-bottom:1px solid #b8c2bd}article{background:#fff;padding:24px;margin:20px 0;border-radius:14px}pre{white-space:pre-wrap;font:inherit}.meta{color:#4f6c64;font-size:12px}</style></head><body><header><p>Private Norfolk AI standard · Product OS 0.3.0-candidate.3 · generated from canonical source</p><h1>Norfolk AI Product OS Handbook</h1></header><article id="design-accessibility-md"><p class="meta">design/accessibility.md · accepted · source-sha256 b93cf9e481951c19cf7a6e9b9da4ca3d989708eaa235d0abedc9e332851bf75d</p><pre># Accessibility
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Norfolk AI Product OS Handbook</title><style>body{font:15px/1.55 Inter,system-ui,sans-serif;max-width:1100px;margin:auto;padding:32px;color:#172320;background:#f6f2e9}header{border-bottom:1px solid #b8c2bd}article{background:#fff;padding:24px;margin:20px 0;border-radius:14px}pre{white-space:pre-wrap;font:inherit}.meta{color:#4f6c64;font-size:12px}</style></head><body><header><p>Private Norfolk AI standard · Product OS 0.3.0-candidate.4 · generated from canonical source</p><h1>Norfolk AI Product OS Handbook</h1></header><article id="design-accessibility-md"><p class="meta">design/accessibility.md · accepted · source-sha256 b93cf9e481951c19cf7a6e9b9da4ca3d989708eaa235d0abedc9e332851bf75d</p><pre># Accessibility
 
 WCAG 2.2 AA is the minimum product contract, not the ceiling. Accessibility is designed with each pattern and state; it is not a final audit layer.
 
@@ -527,7 +527,7 @@ Renewal appends an event and updates the review or expiry date; it does not eras
 
 Exceptions cannot transfer Norfolk AI ownership, expose client data, authorize unlawful behavior, remove an approval owned by another accountable role, permit silent consumer rewrites, or bundle destructive action. A proposed exception to these boundaries must be rejected or handled as a new governing decision by the proper authority.
 
-Adoption tooling must preserve approved product-local exceptions. A later Product OS or Kit release may propose resolving an exception but cannot overwrite it silently.</pre></article><article id="governance-fundamental-governance-md"><p class="meta">governance/fundamental-governance.md · accepted · source-sha256 d9d11de2781eb33bd64c0f210f71186b270b77a62f90ad7d6b7fec12c0660ae7</p><pre># Fundamental governance
+Adoption tooling must preserve approved product-local exceptions. A later Product OS or Kit release may propose resolving an exception but cannot overwrite it silently.</pre></article><article id="governance-fundamental-governance-md"><p class="meta">governance/fundamental-governance.md · accepted · source-sha256 dd6cf06bd167aecd8b5974f2ab5eb14c8888e18310664ec9f475801c591dfee6</p><pre># Fundamental governance
 
 ## Purpose
 
@@ -578,7 +578,7 @@ All changes use a branch and review. Releases are versioned and machine-readable
 
 Creation, migration, promotion, adoption, equip, tidy, validation, and retirement-readiness work do not authorize deletion. Repository deletion, branch deletion, PR closure, archive removal, history rewriting, and destructive migrations each require a separate proposal naming the exact target, preservation and recoverability evidence, impact, and explicit target-specific approval.
 
-`norfolk-starter` is the first likely repository retirement candidate and `norfolk-manual` the second. That ordering is a reminder, not approval. Both remain untouched until their independent gates are satisfied.
+`norfolk-starter` was deleted outside this governed retirement workflow after its incomplete pre-deletion dossier had identified missing preservation and recovery evidence. Product OS preserves that record rather than retroactively claiming the gate passed. `norfolk-manual` remains a retirement candidate and stays untouched until its independent gate is satisfied and its exact destructive action is approved.
 
 ## Amendment
 
@@ -710,20 +710,20 @@ Imported numbering is namespaced under `decisions/imported/norfolk-kit/`; it nev
 | Starter agent-native commands and skills | Evaluate | Candidate input for U7; no automatic promotion |
 | H+ design, agent, progress, and animation architecture | Promote sanitized doctrine | Reuse taxonomy, truthful attribution, server-configured registries, and quality gates; keep product names, personas, visual identities, palette, and business rules product-local |
 
-Product blanks become templates. Product- or client-specific identity, palettes, business rules, evidence, and credentials remain outside canonical content.</pre></article><article id="migration-source-register-md"><p class="meta">migration/source-register.md · accepted · source-sha256 cd941ecbf68656a5940717faf24562f82296af6dee920799173bf713a8c7d97f</p><pre># Migration source register
+Product blanks become templates. Product- or client-specific identity, palettes, business rules, evidence, and credentials remain outside canonical content.</pre></article><article id="migration-source-register-md"><p class="meta">migration/source-register.md · accepted · source-sha256 a2e7893f1753dffcc1db09f6eb99855fe608daa2c2037afddba0b0c0d836ab39</p><pre># Migration source register
 
 The machine-readable [`source-register.json`](source-register.json) records every source used or evaluated before the first Product OS release. A source requires ownership, sensitivity, evidence, pinned repository ref, disposition, approval, and destination. Promotion is fail-closed: pending, client-confidential, or destination-less material cannot become canonical.
 
-GitHub and the local upstream refs confirmed on 2026-08-06:
+GitHub and the local upstream refs confirmed through 2026-08-07:
 
 | Repository | Visibility | State | Default branch | Recorded ref |
 |---|---|---|---|---|
 | `Norfolk-Group/norfolk-ai-product-os` | private | active, draft PR #1 | `main` | `21a972efd68c5c565c8724e41ea23270dead7f0e` |
 | `Norfolk-Group/norfolk-kit` | private | active, draft PR #1 | `main` | `f13a47590342042cb34816c899823994f265e1bb` |
 | `Norfolk-Group/norfolk-manual` | private | active | `main` | `b397f6e3d5e00d2be9ee608356f892daaca8dcd2` |
-| `Norfolk-Group/norfolk-starter` | **public** | archived | `main` | `3788ec74763018b73f4051613d90c0005874388b` |
+| `Norfolk-Group/norfolk-starter` | **public before deletion** | deleted; no longer resolves | `main` before deletion | `3788ec74763018b73f4051613d90c0005874388b` |
 
-The Starter being public and already archived is a discovered fact, not a deletion approval. Product OS and Kit feature branches are pushed for draft review; neither PR is merged and no release is published.</pre></article><article id="migration-superseded-material-md"><p class="meta">migration/superseded-material.md · accepted · source-sha256 5933d8dbf8183f941703c67b0c3d5505c2f1c143f6a184ba07d210286b2244cd</p><pre># Superseded material
+Starter was deleted outside the Product OS retirement workflow after this register captured its final reviewed main ref. The incomplete retirement dossier is retained as historical evidence rather than being rewritten as successful. Product OS and Kit feature branches are pushed for draft review; neither PR is merged and no release is published.</pre></article><article id="migration-superseded-material-md"><p class="meta">migration/superseded-material.md · accepted · source-sha256 5933d8dbf8183f941703c67b0c3d5505c2f1c143f6a184ba07d210286b2244cd</p><pre># Superseded material
 
 The following statements are historical only and fail validation if asserted as current doctrine:
 

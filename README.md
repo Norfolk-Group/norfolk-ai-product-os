@@ -6,7 +6,7 @@ It owns product doctrine and the reasons behind it: product method, design, arch
 
 ## Current status
 
-The repository is reviewing its `0.3.0-candidate.3` brand-governed canonical foundation. Until a trusted versioned release is published, content marked `accepted` is authoritative for this repository but is not automatically adopted by Kit or any product.
+The repository is reviewing its `0.3.0-candidate.4` canonical foundation. Until a trusted versioned release is published, content marked `accepted` is authoritative for this repository but is not automatically adopted by Kit or any product.
 
 Norfolk AI owns this repository and its reusable intellectual property. KIT Capital, H-Analytics, and other accounts are clients or products, not Norfolk AI identity and not automatic sources of canonical standards. Client-derived learning must pass the [promotion](governance/promotion.md) and [client-boundary](governance/client-boundaries.md) gates before it can enter the canon.
 
@@ -35,7 +35,7 @@ Norfolk AI owns this repository and its reusable intellectual property. KIT Capi
 
 Read [AGENTS.md](AGENTS.md) before making changes. Work on a branch, keep durable decisions in the indexed documents, and use a new decision record to supersede an accepted decision rather than rewriting its history. Generated handbook and catalog files are outputs; edit their canonical sources instead.
 
-No migration or creation work authorizes deletion. `norfolk-starter` is the first likely retirement candidate and `norfolk-manual` the second, but each repository needs preservation and parity evidence followed by its own exact, explicit approval before any destructive action.
+No migration or creation work authorizes deletion. `norfolk-starter` was subsequently deleted outside the Product OS retirement workflow; its incomplete pre-deletion dossier remains preserved as evidence. `norfolk-manual` remains a retirement candidate, but it requires preservation and parity evidence followed by exact, explicit approval before any destructive action.
 
 ## Accountable owner
 

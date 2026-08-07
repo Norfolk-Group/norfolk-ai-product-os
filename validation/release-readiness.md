@@ -1,6 +1,6 @@
 # Candidate release readiness
 
-Candidate `0.3.0-candidate.3` is the current local brand-governed review candidate. Candidates `0.3.0-candidate.1` and `0.3.0-candidate.2` remain preserved as immutable history. None is publishable yet.
+Candidate `0.3.0-candidate.4` is the current local review candidate. Candidates `0.3.0-candidate.1` through `0.3.0-candidate.3` remain preserved as immutable history. None is publishable yet.
 
 Passed locally:
 
@@ -30,13 +30,19 @@ Brand and identity governance added in candidate `0.3.0-candidate.3`:
 - protected animation identities and reusable quality architecture promoted from the pinned H+ Analytics implementation without copying its product-exclusive names or visual identity;
 - explicit Orchestrator, Agent, Specialist, and deterministic non-LLM Minion semantics, culturally governed naming, and disclosed abstract or synthetic-human conversational presentation.
 
+Repository-state reconciliation in candidate `0.3.0-candidate.4`:
+
+- records that Starter was deleted outside the governed retirement workflow;
+- preserves the pre-deletion dossier and its incomplete preservation, consumer, metadata, branch, and recovery evidence without retroactive approval;
+- keeps Manual protected behind its independent preservation, parity, recovery, and exact-approval gates.
+
 Open publication gates:
 
 - trusted release-environment signature and explicit permission to publish;
 - live WorkOS diagnostic and staging login against configured dashboard values;
 - R2 destination/credentials and preservation decision for large client/brand masters currently retained in Kit;
-- official Norfolk AI logo, colors, and typography from the future Claude Design engagement;
+- official Norfolk AI logo, colors, and typography are explicitly deferred to the future Claude Design engagement; neutral semantic placeholders make this deferral non-blocking for candidate merge;
 - resolution or explicit deferral of `PP-U11-ICON-GRAMMAR`, `PP-U11-PARITY-EXCEPTIONS`, and `PP-U11-DECK-IR`;
 - complete retirement preservation/restoration and consumer evidence are not release blockers for Product OS, but they block repository deletion.
 
-Draft review branches are pushed and open as [Product OS PR #1](https://github.com/Norfolk-Group/norfolk-ai-product-os/pull/1) and [Kit PR #1](https://github.com/Norfolk-Group/norfolk-kit/pull/1). Candidate `0.3.0-candidate.2` review corrections and candidate `0.3.0-candidate.3` brand-governance work remain local until separately approved for push. No release publication, merge, repository archive, PR closure, or deletion has occurred.
+Draft review branches are pushed and open as [Product OS PR #1](https://github.com/Norfolk-Group/norfolk-ai-product-os/pull/1) and [Kit PR #1](https://github.com/Norfolk-Group/norfolk-kit/pull/1). Candidate `0.3.0-candidate.4` repository-state reconciliation remains local until pushed. No release publication or PR merge has occurred through this workflow; Starter's externally completed deletion is recorded above.

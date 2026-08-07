@@ -27,6 +27,15 @@
       "databaseWindow": "expand-and-contract only",
       "rollback": "code-and-configuration only",
       "knownIncompatibilities": ["untrusted or unsigned Product OS bundles", "Clerk production identity", "Prisma canonical ORM"]
+    },
+    {
+      "productOS": "0.3.0-candidate.4",
+      "kit": ">=0.1.0 <0.2.0",
+      "status": "candidate",
+      "validation": "post-starter-retirement canonical foundation",
+      "databaseWindow": "expand-and-contract only",
+      "rollback": "code-and-configuration only",
+      "knownIncompatibilities": ["untrusted or unsigned Product OS bundles", "Clerk production identity", "Prisma canonical ORM"]
     }
   ]
 }

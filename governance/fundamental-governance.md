@@ -3,7 +3,7 @@ title: Fundamental governance
 status: accepted
 tier: CONTRACT
 owner: Product OS Owner
-lastVerified: 2026-08-04
+lastVerified: 2026-08-07
 ---
 
 # Fundamental governance
@@ -57,7 +57,7 @@ All changes use a branch and review. Releases are versioned and machine-readable
 
 Creation, migration, promotion, adoption, equip, tidy, validation, and retirement-readiness work do not authorize deletion. Repository deletion, branch deletion, PR closure, archive removal, history rewriting, and destructive migrations each require a separate proposal naming the exact target, preservation and recoverability evidence, impact, and explicit target-specific approval.
 
-`norfolk-starter` is the first likely repository retirement candidate and `norfolk-manual` the second. That ordering is a reminder, not approval. Both remain untouched until their independent gates are satisfied.
+`norfolk-starter` was deleted outside this governed retirement workflow after its incomplete pre-deletion dossier had identified missing preservation and recovery evidence. Product OS preserves that record rather than retroactively claiming the gate passed. `norfolk-manual` remains a retirement candidate and stays untouched until its independent gate is satisfied and its exact destructive action is approved.
 
 ## Amendment
 
