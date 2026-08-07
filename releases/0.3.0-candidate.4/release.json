@@ -1,0 +1,27 @@
+{
+  "version": "0.3.0-candidate.4",
+  "status": "candidate",
+  "sourceCommit": "bc06ee577176692ae43a04224f0911ea0d52555c",
+  "manifestSha256": "666b0d7c89ec88469f5b8814a110dc5bfef7ee7a225f4191024e055fe215ff09",
+  "standards": [
+    "standards/agent-identity.md",
+    "standards/agent-native.md",
+    "standards/architecture.md",
+    "standards/auth-security.md",
+    "standards/authentication.md",
+    "standards/data-lifecycle.md",
+    "standards/data.md",
+    "standards/media.md",
+    "standards/preferred-stack.md",
+    "standards/repository-lifecycle.md",
+    "standards/reusable-modules.md",
+    "standards/secrets.md",
+    "standards/security.md",
+    "standards/vendor-integration.md",
+    "standards/workos-evidence.md"
+  ],
+  "createdAt": "2026-08-07T15:00:00.000Z",
+  "visibility": "private",
+  "signedBy": "local-candidate-666b0d7c89ec8846",
+  "minimumKitVersion": "0.1.0"
+}
