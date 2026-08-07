@@ -1,0 +1,1 @@
+{"artifacts":[{"classification":"confidential","systemOfRecord":"R2","roles":["owner"],"retention":"30 days","legalHold":false,"deletionProcedure":"expire link","backupExpiry":"","deletionEvidence":"signed-url-expiry"}]}

@@ -1,0 +1,60 @@
+{
+  "id": "governed-media-assets",
+  "libraries": {
+    "platformPrivate": true,
+    "organizationIsolated": true,
+    "crossOrganizationLeakage": false,
+    "selectivePlatformSharing": true
+  },
+  "superAdminCapabilities": ["create", "read", "update", "delete", "restore", "approve", "share", "purge"],
+  "generation": {
+    "originalPreserved": true,
+    "candidateCount": 3,
+    "regenerationAllowed": true,
+    "historyPreserved": true,
+    "explicitSelection": true
+  },
+  "logos": {
+    "preserveRecognizableMark": true,
+    "allowedProcessing": ["crop", "padding", "container", "contrast", "format", "size-variants", "light-dark-preview"],
+    "recolorOrRedrawRequiresApproval": true
+  },
+  "portraits": {
+    "identityFidelity": true,
+    "modelTrainingAllowed": false,
+    "explicitSelectionRequired": true,
+    "manualEditingAllowed": false,
+    "initialsFallback": "first-last-or-first-two",
+    "singleProductBackgroundStandard": true,
+    "generationRoundsDefault": 3,
+    "additionalRoundsBy": "super-admin"
+  },
+  "propertyImages": {
+    "factualChangesAllowed": false,
+    "allowedProcessing": ["crop", "exposure", "resolution", "color-balance", "non-factual-cleanup"],
+    "disclosure": "metadata-and-report-not-render-overlay",
+    "originalTraceable": true
+  },
+  "externalProvider": {
+    "noTraining": true,
+    "minimalRetention": true,
+    "encryptedTransfer": true,
+    "verifiedDeletion": true,
+    "sensitiveLogging": false,
+    "failClosed": true
+  },
+  "sharing": {
+    "privateByDefault": true,
+    "approval": "super-admin",
+    "recipientSpecific": true,
+    "revocable": true,
+    "reshareAllowed": false
+  },
+  "deletion": {
+    "recoverable": true,
+    "referenceAware": true,
+    "finalPurgeBy": "super-admin",
+    "imageRemovedFromAudit": true,
+    "nonImageAuditEventRetained": true
+  }
+}

@@ -1,0 +1,1 @@
+{"stateBound":true,"nonceBound":true,"pkce":true,"exactCallbackOrigin":true,"cookie":{"httpOnly":true,"secure":true,"sameSite":"lax","path":"/"},"sessionRotation":true,"revocation":true,"csrf":true,"replayProtection":true,"rateLimits":true,"redactedLogs":true}

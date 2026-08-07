@@ -1,0 +1,10 @@
+{
+  "id": "incomplete-component",
+  "source": "src/components/incomplete.tsx",
+  "primitive": "custom",
+  "states": { "default": { "applicable": true, "behavior": "Renders." } },
+  "keyboard": { "required": true, "behavior": "Unknown." },
+  "responsive": { "mobile": "unknown", "tablet": "unknown", "desktop": "unknown" },
+  "sourceMapping": { "storybook": "none", "artifact": "none" },
+  "permittedDeviations": []
+}

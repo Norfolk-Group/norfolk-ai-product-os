@@ -1,0 +1,22 @@
+{
+  "id": "status-card",
+  "source": "src/client/components/StatusCard.tsx",
+  "primitive": "shadcn-compatible",
+  "states": {
+    "default": { "applicable": true, "behavior": "Shows current status." },
+    "hover": { "applicable": false, "rationale": "The card is not interactive." },
+    "focus": { "applicable": false, "rationale": "The card is not focusable." },
+    "active": { "applicable": false, "rationale": "The card is not interactive." },
+    "disabled": { "applicable": false, "rationale": "The card does not accept input." },
+    "loading": { "applicable": true, "behavior": "Shows honest indeterminate state." },
+    "error": { "applicable": true, "behavior": "Names failure and next action." },
+    "empty": { "applicable": false, "rationale": "A subject is required." },
+    "success": { "applicable": true, "behavior": "Shows ready state." },
+    "cancel": { "applicable": false, "rationale": "No cancellable work is owned by the card." }
+  },
+  "keyboard": { "required": false, "behavior": "No interactive descendants." },
+  "responsive": { "mobile": "reflows text", "tablet": "bounded", "desktop": "bounded" },
+  "reducedMotion": { "required": true, "behavior": "Removes rotation and preserves state." },
+  "sourceMapping": { "storybook": "Reference/StatusCard", "artifact": "docs/artifacts/reference.html" },
+  "permittedDeviations": []
+}

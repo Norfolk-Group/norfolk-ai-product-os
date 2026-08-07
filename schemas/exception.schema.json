@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://norfolk.ai/schemas/exception.schema.json",
+  "type": "object",
+  "required": ["id", "state", "owner", "product", "standard", "scope", "rationale", "risk", "approver", "reviewAt", "migrationConsequence"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^EX-[0-9]{4,}$" },
+    "state": { "enum": ["proposed", "approved", "expired", "revoked", "resolved"] },
+    "owner": { "type": "string", "minLength": 1 },
+    "product": { "type": "string", "minLength": 1 },
+    "standard": { "type": "string", "minLength": 1 },
+    "scope": { "type": "string", "minLength": 1 },
+    "rationale": { "type": "string", "minLength": 1 },
+    "risk": { "type": "string", "minLength": 1 },
+    "approver": { "type": "string", "minLength": 1 },
+    "reviewAt": { "type": "string", "format": "date" },
+    "migrationConsequence": { "type": "string", "minLength": 1 }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,8 @@
+{
+  "$schema":"http://json-schema.org/draft-07/schema#",
+  "$id":"https://norfolk.ai/schemas/data-lifecycle.schema.json",
+  "type":"object",
+  "required":["artifacts"],
+  "properties":{"artifacts":{"type":"array","minItems":1,"items":{"type":"object","required":["name","classification","systemOfRecord","roles","retention","legalHold","deletionProcedure","backupExpiry","deletionEvidence"],"properties":{"name":{"type":"string","minLength":1},"classification":{"type":"string","minLength":1},"systemOfRecord":{"type":"string","minLength":1},"roles":{"type":"array","minItems":1,"items":{"type":"string","minLength":1}},"retention":{"type":"string","minLength":1},"legalHold":{"type":"boolean"},"deletionProcedure":{"type":"string","minLength":1},"backupExpiry":{"type":"string","minLength":1},"deletionEvidence":{"type":"string","minLength":1,"not":{"const":"signed-url-expiry"}}},"additionalProperties":true}}},
+  "additionalProperties":false
+}

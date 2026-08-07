@@ -1,0 +1,10 @@
+{
+  "id": "motion-unknown",
+  "status": "canonical",
+  "approval": { "decision": "deferred" },
+  "implementation": { "sourcePath": "unknown.tsx", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+  "lineage": [],
+  "motion": { "essential": false, "timelineSource": "invented", "timingPreserved": false, "easingPreserved": false },
+  "reducedMotion": { "behavior": "none", "preservedInformation": [] },
+  "states": ["idle"]
+}

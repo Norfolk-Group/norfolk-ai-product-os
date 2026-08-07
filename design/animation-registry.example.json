@@ -1,0 +1,27 @@
+{
+  "id": "example-product-animation-registry",
+  "productScope": "example-product",
+  "ownership": "product-exclusive",
+  "reusePolicy": "architecture-only",
+  "serverConfigured": true,
+  "superAdminControlled": true,
+  "categories": ["logo", "conversational-agent", "file-export", "agent-ticker", "narration-ticker"],
+  "entries": [
+    {
+      "id": "example-thinking-orbit",
+      "name": "Example Thinking Orbit",
+      "stableId": true,
+      "nameMutable": false,
+      "reducedMotionFallback": true,
+      "status": "protected"
+    },
+    {
+      "id": "example-export-pulse",
+      "name": "Example Export Pulse",
+      "stableId": true,
+      "nameMutable": false,
+      "reducedMotionFallback": true,
+      "status": "protected"
+    }
+  ]
+}

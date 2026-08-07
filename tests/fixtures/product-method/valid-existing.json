@@ -1,0 +1,58 @@
+{
+  "productProfile": {
+    "id": "synthetic-analytics",
+    "name": "Synthetic Analytics",
+    "uiState": "existing",
+    "purpose": "Help an operations team decide which work needs attention.",
+    "users": ["operations lead"],
+    "payer": "organization",
+    "value": "Faster, better-supported prioritization.",
+    "decisions": ["which work to address first"],
+    "successMeasures": ["time to supported decision"],
+    "trustPosture": "calm and evidence-forward"
+  },
+  "goals": [{ "id": "goal-1", "statement": "Reduce time to a supported decision.", "measure": "median decision time" }],
+  "observations": [{
+    "id": "obs-1",
+    "kind": "fact",
+    "statement": "The existing application exposes a work queue at /work.",
+    "evidence": [{ "sourceType": "route", "locator": "src/routes/work.tsx" }]
+  }],
+  "inventory": {
+    "uiState": "existing",
+    "routes": [{ "id": "route-work", "path": "/work", "observationIds": ["obs-1"] }],
+    "navigation": [],
+    "roles": [{ "id": "operations-lead", "name": "Operations lead", "observationIds": ["obs-1"] }],
+    "permissions": [{ "id": "work-read", "owner": "Product owner", "observationIds": ["obs-1"] }],
+    "dialogs": [],
+    "backgroundWork": [],
+    "apis": [],
+    "reports": [],
+    "exports": [],
+    "componentPatterns": [],
+    "stateCoverage": []
+  },
+  "informationArchitecture": {
+    "status": "approved",
+    "approval": { "id": "ia-approval-1", "owner": "Product owner", "approvedAt": "2026-08-05T12:00:00Z" },
+    "routes": [{ "id": "route-work", "path": "/work", "gated": true, "permissionOwner": "Product owner", "roles": ["operations-lead"] }],
+    "menus": [{ "id": "primary", "routeIds": ["route-work"] }],
+    "roleModel": [{ "roleId": "operations-lead", "permissionIds": ["work-read"] }]
+  },
+  "recommendations": [{
+    "id": "rec-1",
+    "statement": "Keep the work queue as the primary scan surface.",
+    "sourceObservationIds": ["obs-1"],
+    "productGoalId": "goal-1",
+    "confidence": "high",
+    "impact": "high",
+    "effort": "low",
+    "risk": "Users may rely on the current route name.",
+    "alternatives": ["Add a second dashboard"],
+    "affectedSurfaces": ["/work"],
+    "owner": "Product owner",
+    "approval": "proposed",
+    "reviewDate": "2026-09-05"
+  }],
+  "workflow": { "stage": "design-contract-ready", "iaApprovalId": "ia-approval-1" }
+}

@@ -1,0 +1,30 @@
+{
+  "id": "norfolk-brand-architecture",
+  "modes": ["norfolk-master", "client-master"],
+  "incompleteClientBrand": "derived-client-system",
+  "foundationProtected": true,
+  "norfolkMaster": {
+    "name": "Norfolk AI",
+    "visualAuthority": "Claude Design",
+    "interimVisuals": "neutral-semantic-placeholders"
+  },
+  "productIdentity": {
+    "scope": "product",
+    "globalAcrossInstances": true,
+    "configuredBy": "super-admin",
+    "organizationOverride": false
+  },
+  "endorsement": {
+    "text": "Powered by Norfolk AI",
+    "url": "https://www.norfolk.ai",
+    "required": true,
+    "removable": false,
+    "newTab": true,
+    "surfaces": ["login", "launch", "about", "footer", "reports", "exports"]
+  },
+  "appearance": {
+    "variants": ["light", "dark"],
+    "firstVisit": "system",
+    "persistSelection": true
+  }
+}

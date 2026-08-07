@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://norfolk.ai/schemas/agent-identity.schema.json",
+  "title": "Agent identity registry",
+  "type": "object",
+  "required": ["id", "naming", "members"],
+  "properties": {
+    "id": { "$ref": "#/definitions/string" },
+    "naming": {
+      "type": "object", "required": ["traditions", "prioritySources", "roleAligned", "uniquenessScope", "animationNamesExempt"], "additionalProperties": false,
+      "properties": {
+        "traditions": { "type": "array", "uniqueItems": true, "allOf": [{ "contains": { "const": "italian" } }, { "contains": { "const": "brazilian" } }], "items": { "enum": ["italian", "brazilian"] } },
+        "prioritySources": { "$ref": "#/definitions/stringList" }, "roleAligned": { "const": true }, "uniquenessScope": { "const": "product-or-project" }, "animationNamesExempt": { "const": true }
+      }
+    },
+    "members": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/member" } }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "string": { "type": "string", "minLength": 1 },
+    "stringList": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/definitions/string" } },
+    "presentation": {
+      "type": "object", "required": ["genderIdentity", "explicitAiDisclosure", "modes", "defaultChosenBy", "userMayChooseAbstract", "candidateCount", "regenerationAllowed", "abstractFallback", "syntheticIdentity", "realPersonImitation"], "additionalProperties": false,
+      "properties": { "genderIdentity": { "const": "female" }, "explicitAiDisclosure": { "const": true }, "modes": { "type": "array", "uniqueItems": true, "allOf": [{ "contains": { "const": "abstract-animation" } }, { "contains": { "const": "photoreal-animated-human" } }], "items": { "enum": ["abstract-animation", "photoreal-animated-human"] } }, "defaultChosenBy": { "const": "super-admin" }, "userMayChooseAbstract": { "const": true }, "candidateCount": { "const": 3 }, "regenerationAllowed": { "const": true }, "abstractFallback": { "const": true }, "syntheticIdentity": { "const": true }, "realPersonImitation": { "const": false } }
+    },
+    "member": {
+      "type": "object", "required": ["id", "name", "pronunciation", "productScope", "scope", "type", "role", "shortDescription", "longDescription", "usesLlm", "exercisesJudgment", "conversational"],
+      "properties": { "id": { "$ref": "#/definitions/string" }, "name": { "$ref": "#/definitions/string" }, "pronunciation": { "$ref": "#/definitions/string" }, "productScope": { "$ref": "#/definitions/string" }, "scope": { "enum": ["product", "cross-product"] }, "type": { "enum": ["agent", "specialist", "orchestrator", "minion"] }, "role": { "$ref": "#/definitions/string" }, "shortDescription": { "$ref": "#/definitions/string" }, "longDescription": { "$ref": "#/definitions/string" }, "usesLlm": { "type": "boolean" }, "exercisesJudgment": { "type": "boolean" }, "conversational": { "type": "boolean" }, "routesWork": { "type": "boolean" }, "producesContent": { "type": "boolean" }, "presentation": { "$ref": "#/definitions/presentation" } },
+      "allOf": [
+        { "if": { "properties": { "type": { "const": "minion" } } }, "then": { "properties": { "usesLlm": { "const": false }, "exercisesJudgment": { "const": false } } }, "else": { "properties": { "usesLlm": { "const": true } } } },
+        { "if": { "properties": { "type": { "const": "orchestrator" } } }, "then": { "required": ["routesWork", "producesContent"], "properties": { "routesWork": { "const": true }, "producesContent": { "const": false } } } },
+        { "if": { "properties": { "conversational": { "const": true } } }, "then": { "required": ["presentation"] } },
+        { "if": { "properties": { "scope": { "const": "cross-product" } } }, "then": { "properties": { "type": { "const": "specialist" } } } }
+      ],
+      "additionalProperties": false
+    }
+  }
+}

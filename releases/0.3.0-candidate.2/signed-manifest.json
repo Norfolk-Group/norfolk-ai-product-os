@@ -1,0 +1,491 @@
+{
+  "manifest": {
+    "schemaVersion": 1,
+    "version": "0.3.0-candidate.2",
+    "status": "candidate",
+    "visibility": "private",
+    "sourceCommit": "db5a4ee7b578c78a1aa723c4f6265489d284ac2f",
+    "createdAt": "2026-08-06T14:39:57Z",
+    "minimumKitVersion": "0.1.0",
+    "files": [
+      {
+        "path": "adoption/README.md",
+        "sha256": "0a787494c30c1610799ed9d0aadfaefc85b8dd1f9ab508c5d8646ddce9ed9c3e",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "adoption/compatibility.md",
+        "sha256": "80532d92fdd5ada6859c0261b4c53436fbc051f9c6eac81042ccbb510e74f123",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "adoption/cutover.md",
+        "sha256": "34d1627624aaa8a113ca7fe288852f299e25d9a04fb7977f53f59cad8b62c1d3",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "adoption/distribution.md",
+        "sha256": "20a960cc0d25cb41cf2287293dc058207aa5515728fd2f67019dd9f22986b55a",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "adoption/equip.md",
+        "sha256": "0f21a47c83a82d6421e318a3d213c100c3a8a3641092162693fcab80696296f1",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "adoption/release-policy.md",
+        "sha256": "510716d821564910aaa573594e497d027b2145eed5a8c546a72c9aa5cf3b9b4b",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "adoption/rollback.md",
+        "sha256": "9e8609278fd37d449f6c4320dddb6fc3a9bdda672d36265a36dd619b29274e81",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "adoption/tidy.md",
+        "sha256": "cbb9454ef476f301868ef9c0722f3fd715826a85f0f1425af53dbae24a949ef2",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "catalog/generated/index.html",
+        "sha256": "4b14c33d8a310872fff3c84926099999fec118d881fa454ba032b053cea76d36",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "compatibility/kit.json",
+        "sha256": "4c002e2fcc311107b5d301dcea2dbaf30d270b6693c1425f77f846fea3d355fe",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "design/README.md",
+        "sha256": "ea4a4e6740e00e5e9b42f14014e62c3fa82c0eda4cee68653d390fab2c4b6f26",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "design/accessibility.md",
+        "sha256": "b93cf9e481951c19cf7a6e9b9da4ca3d989708eaa235d0abedc9e332851bf75d",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "design/approval-gates.md",
+        "sha256": "595d3e587434626740143c1504d20c6a7f8666b765ae4abe6d84439e80d853b0",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "design/authentication.md",
+        "sha256": "25c6043e064a08f572b252fa00fd9a3e3d9dfc3d5a2cd9359c87a29d67124bcc",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "design/components.md",
+        "sha256": "58a5ebb4cdf6466a184fff19dfd2ad2175616a6ac22a84daa6af911a6281240d",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "design/composition.md",
+        "sha256": "72a0783b6d0431c9a87f97db5a91e7c9b0e0face45d5d19ca82de3441a6a1498",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "design/forbidden-patterns.md",
+        "sha256": "b133c52d12a63441a1f7154eccbc4150e2164565ed0c841fc724b2da41307b76",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "design/foundations.md",
+        "sha256": "5d5e74ccd90263bbbaf41834cac3d9bf7b7fc919c8adde04636e08227855a769",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "design/method.md",
+        "sha256": "f69da2265323dabaadb93246c45f87d37bd90298cd967f0de82be86cc731287e",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "design/motion.md",
+        "sha256": "c089a946b74c69052ac17336c5e4817b865427cc257e5569bc3d4fbb0dd1f504",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "design/progress.md",
+        "sha256": "0d3f998eff3303209d53d813bb0c99aeb987b3cae433e6d46e6f9009c6b22cf8",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "design/provenance.md",
+        "sha256": "36ccd4bf4f7e6934c59a685c3f16dc4bb0024bcc90bdf7e6d53cdd4a1f94da15",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "design/references.md",
+        "sha256": "971f8b582128404f508271221500e6ef322b8c634f4e96a80cc050126c447c32",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "design/responsive.md",
+        "sha256": "9cde77fe9fc29472a4542cebad449490a8e0568aaff7e5d116e1f384c9d38b18",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "design/states.md",
+        "sha256": "73024ce5b941e58b14b2b6af78c2d63d555e517fbd076b77acdfec67da036a4a",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "design/themes.md",
+        "sha256": "ade90e1028025a5bfcb064862a182841f0c345b3e01b730f00c934fee48a5068",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "design/viewport-matrix.md",
+        "sha256": "03ecacaba554d44b4d095929b7c4a9dd1800da21c29e28c46ebd8dbab337bf38",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "design/visual-test-environment.md",
+        "sha256": "ba2297f27879369a918e49fa1fea4f343436065873d96c2e1cf8a0c0bbf653bd",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "design/voice.md",
+        "sha256": "3bd6c308a3ea067f280872397a5587e109eed50ce3bf6afc1bfa76135eba1a58",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "governance/approvals.md",
+        "sha256": "0d25f0a1674c8bf834769d85ba66fec7400a84caf0229b36fa72bb8a008ba52e",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "governance/client-boundaries.md",
+        "sha256": "122acfe834f50ea4960b2f4eafa8e46394483b00e653666aebb625e3f6748ac0",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "governance/exceptions.md",
+        "sha256": "94ce67cdf7eaa35d69134d3b6b1dce9c2f6b3f7a3521d825f0ccaa19853be304",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "governance/fundamental-governance.md",
+        "sha256": "d9d11de2781eb33bd64c0f210f71186b270b77a62f90ad7d6b7fec12c0660ae7",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "governance/knowledge-tiers.md",
+        "sha256": "50606c944aef06f11a2ed4115b21f21dbeaaa68df9258a2cd5259ca6d3e41eb0",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "governance/promotion.md",
+        "sha256": "9c3205d11736114142152b7401252b89ea3b4fa37ca65e949a1ab933d7e75b6f",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "governance/repository-security.md",
+        "sha256": "1cdda82e27ac0cec6a9a67b80e5af364e30534ae7448ce22e30aff09b50d4627",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "handbook/index.html",
+        "sha256": "32332a6b04e2124aa2d157d76b723187a341dc0f1de3ccbda53c64aa9b35c2a3",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "outputs/README.md",
+        "sha256": "a2c776d8313a3bbbe060a8381cf99662a5fdb88472b92e557fe8d793c8a7acdb",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "outputs/charts.md",
+        "sha256": "f30b15477fcbdab146660b9e732bd448b5c8be53eb28973768771f111ef2fc93",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "outputs/docx.md",
+        "sha256": "fb25ca80fbb9f8f1f84da5f1cc012832ab2806c3378bce646f104ae0c7896307",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "outputs/email.md",
+        "sha256": "8790cf6899ff4ce222598da83cef0b8663f61d506cad2ef8c2a2ce0c9a402862",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "outputs/investor-materials.md",
+        "sha256": "da177b06b80db9f7c303c6e43033d4e73c0108aa3fb142ea5e28e146f09269ad",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "outputs/job-lifecycle.md",
+        "sha256": "539daf81d417a7aeae1564e5322dae19ed002445427ab42b234ee07bdd0bf290",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "outputs/motion-source-inventory.md",
+        "sha256": "df2829e8e8714edb100a0390317d1a4b2b81f31d02ed70108a892e8ae59def99",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "outputs/norfolk-ai-product-os-conversation-audit.md",
+        "sha256": "3118d6630f46202b57563204601cca7e4fda6809e9356014f5faa968e3d0dd55",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "outputs/pdf.md",
+        "sha256": "6baecb0fae2bbceebcc486475d01f2fbaa700ca1dffdbf5aa4c43fa4c7f6eee5",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "outputs/pptx.md",
+        "sha256": "599f9af920d026fc5657f117ee1c60d1534345dd2e95ad2eecc6fd66cf7c6e2e",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "outputs/print.md",
+        "sha256": "ad95e5007d26375ae77c992fa075c543a35c2b12adde8b2020d5bc0e38151bdf",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "outputs/shared-principles.md",
+        "sha256": "e709a800ab3eac7b23be83581c8165a6f5ad13cd8a161f957d909015a6f63052",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "outputs/xlsx.md",
+        "sha256": "bd1a2e40a2daa1b4fcf9c64d4c2886843b97c0cf60b0ff642b7c2ac5c6015975",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "product/application-inventory.md",
+        "sha256": "6c5849db4fd4c31c55a72f77b6e1349c740ba853297448d14daff8757d219b57",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "product/discovery.md",
+        "sha256": "bb70bb9d421d87205361f9226028cb8fb677fb38083c8f69646cbfc5bd86e796",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "product/information-architecture.md",
+        "sha256": "7b047bc327eaca0a1fa4a797ad64d943d129af3a26dd2caa7c45a45f4a70d1ad",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "product/observation.md",
+        "sha256": "fadad5987f3034fc66658bc01f0131e72cae45a8bd7bf3e09e826937e4c11f21",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "product/product-principles.md",
+        "sha256": "9c073b7e20f55005db7f529256f9a55631cce6970d2453246ae2634ddfdc3e26",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "product/recommendations.md",
+        "sha256": "9dc109e262ec6c68da72184a847fab91d4795f25090ed84011b8df96c24ac0ec",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "schemas/adoption-lock.schema.json",
+        "sha256": "ae7bcd410893ffc19df34d663b3c12e39432980d231bde5ab18403d8017b71ea",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "schemas/application-inventory.schema.json",
+        "sha256": "9e88b55a98e5fcd45d18d8cec24e505b2ea04d8fa1a47b1354b690cf628e9ba2",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "schemas/auth-experience.schema.json",
+        "sha256": "d4b2d29704cb576cf76f2580e95cdbc28cf5ea5c20f64983a9e4034e93ff54c0",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "schemas/capability-map.schema.json",
+        "sha256": "9a6e0d6a503120fc99f00c84d3bf5a9d037f14c1878935f5694e02d3caf410f6",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "schemas/client-evidence.schema.json",
+        "sha256": "9c4c9c9064d29d80d5f66f050dea40167f21a8a75a3e05233bd8554b434bc8d4",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "schemas/component-specimen.schema.json",
+        "sha256": "fa237447b9856c26bed312235239f4bfe3f94d015ba2db956b90aeadeecc7e7b",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "schemas/data-lifecycle.schema.json",
+        "sha256": "c0cdf0a6f2e84f4eb997083414d068ca365955a798e9ec6c312700b7e44068bd",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "schemas/design-contract.schema.json",
+        "sha256": "e9ad55ccb2af752033824f481dda28afb4909ccb4c56a784623f32026de682dd",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "schemas/domain-playbook.schema.json",
+        "sha256": "78e52a0d1b86ab986386e85fa9a4f361bf328322214f83e2722640e2d98e3697",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "schemas/exception.schema.json",
+        "sha256": "f2eb44b18d4a0bb8d736b96a7e12579680cc4e006a523b61c2947fd8ef738ed1",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "schemas/module-contract.schema.json",
+        "sha256": "b47ee985f13a5e1ef7204cc60e3a630e7bdeadc947a3aec449f880cd4ff1b4b3",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "schemas/motion-record.schema.json",
+        "sha256": "e92b7b075da640e0c9ad9592e5aaf778494e3aa0bc264b9a8e5c97f510b7a571",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "schemas/output-contract.schema.json",
+        "sha256": "a6ec11d816763e4203ceebe1e4aeb3418080cfa1b45e0dba4a93ea4444b9e641",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "schemas/output-job.schema.json",
+        "sha256": "cc6cc49e35564f3ac8ae542488396e3739b4502bf20d1f2eef523b1d068637aa",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "schemas/preferred-stack.schema.json",
+        "sha256": "1d77129f7e28b6931005119abaf13f1f20d37cbf3d4f6bddb8daea39c30381ff",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "schemas/product-os-release.schema.json",
+        "sha256": "ad3ffd9e6ff734bcde859b0c9bef6317c68bda0bfee680d0467a4d08fa3154b7",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "schemas/promotion-proposal.schema.json",
+        "sha256": "e673b0b6f46b212711505f876e385d542468b52f399bfd798c46cffc1a310c21",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "schemas/reference-evidence.schema.json",
+        "sha256": "d3a68e742e0338343aa864bb4e7c80e333b6aa10a90d3ef3b7e27332b7cdf3a3",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "schemas/repository-trust.schema.json",
+        "sha256": "d90aa6885b5b86f751eb062b9c17ec13ff890dd465a02b05180e16bbc953ec61",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "schemas/retirement-dossier.schema.json",
+        "sha256": "f10aa4f16b5540a81d742b92a0a0e07b55fd0040b19beb01d5a6f883396e38eb",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "schemas/standard-metadata.schema.json",
+        "sha256": "482bb2f61d9edffb1dd2b249a2c2e3324fd3f9417926547aa1af5bca3a5c3708",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "schemas/viewport-matrix.schema.json",
+        "sha256": "b3e8fdb582739b15c97df0253118577345fd9dc2f26d5cc04edc165ba5eb88ac",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "standards/agent-native.md",
+        "sha256": "65538ec79bc77659726544b0586bfd4b26cb588e572e2a84dd7a096d5c35df82",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "standards/architecture.md",
+        "sha256": "b6051f3cda0957837bd586080c97a24b47d3b9d7bfb084d268977b3d5dfac104",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "standards/auth-security.md",
+        "sha256": "9e39bc2eff133b445435a3bf47f5330adb915fa2eb046000b4fc1ce5143ce5f6",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "standards/authentication.md",
+        "sha256": "325c3ffbab2fbde8673b04d41b8a146973a9f59fc3a5fde90cf32f44c76f6f1c",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "standards/capability-map.example.json",
+        "sha256": "7639c5b4a98949283cffe1c575cb7b2f85b379b58cbc695ce4bd513e750d9fd4",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "standards/data-lifecycle.example.json",
+        "sha256": "6eb5b3b8a9dc6dccb4dc68693df8a39f35af93af7540b034397f3a1009c88c17",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "standards/data-lifecycle.md",
+        "sha256": "f14a0a51d962fa84c0dce8cefd53207c24ca85f29bfc271ee06eb65cd5b48335",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "standards/data.md",
+        "sha256": "f14a7ef12d614262476aa05fc68dd13d85de9c5639597562b6206afc32b3865c",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "standards/media.md",
+        "sha256": "7536ea77b80507eb3a5f78b47afb68f1f14f0e116f15a8cf8f1017f30b310825",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "standards/preferred-stack.json",
+        "sha256": "1445a23f6fce4e2c988c73e13a753855a858e0dd9069cefda210443016b0172a",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "standards/preferred-stack.md",
+        "sha256": "9707d8c7e37ae045a08d59a08a2e3e87076779bec6e14de0a4509a61eed5b02a",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "standards/repository-lifecycle.md",
+        "sha256": "ceeac60d72fd266ed6e6496e41aa0ac4a2617f9f1f6730c5088a02eb6ca20a2f",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "standards/reusable-modules.md",
+        "sha256": "488e615102a77f9117a403a229a0edba4941b5672fb7f2bfb535cecfb440e452",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "standards/secrets.md",
+        "sha256": "684fcfa6447a95b6b4cdc067a23d4ccc86a0b05274b1e8eb04a265cd1699c35f",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "standards/security.md",
+        "sha256": "a93f3f77552f334f73912c7da117af941a501d443c30640c8983741a0e442ee8",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "standards/vendor-integration.md",
+        "sha256": "a9181b70d07060c1351f66b432eaf66540da196775a29712886fff94020fe9c1",
+        "sensitivity": "norfolk-only"
+      },
+      {
+        "path": "standards/workos-evidence.md",
+        "sha256": "9a66e831bb1f9f89b5d1f6ea6b135f8e51386231148ed2cd8d254488d6eb60eb",
+        "sensitivity": "norfolk-only"
+      }
+    ]
+  },
+  "signature": "HWEgMknQkG4bzE9XH7zcttNmUZFI6zALOOJTSHOMW8f6K7A7mZyGfLGV7yTu9hMTN8Nm9luutr+2FGop5ho8Bg==",
+  "algorithm": "Ed25519",
+  "keyId": "local-candidate-8126723320a0695f"
+}

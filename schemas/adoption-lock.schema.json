@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://norfolk.ai/schemas/adoption-lock.schema.json",
+  "type": "object",
+  "required": ["productOSVersion", "kitVersion", "state", "sourceManifestSha256", "exceptions"],
+  "properties": {
+    "productOSVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z]+(?:\\.[0-9A-Za-z]+)*)?$" },
+    "kitVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z]+(?:\\.[0-9A-Za-z]+)*)?$" },
+    "state": { "enum": ["available", "proposed", "adopted", "deferred", "rejected", "rollback-requested", "rolled-back"] },
+    "sourceManifestSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "exceptions": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+    "adoptedAt": { "type": "string", "format": "date-time" },
+    "rollbackRef": { "type": "string" }
+  },
+  "additionalProperties": false
+}

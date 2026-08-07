@@ -1,0 +1,9 @@
+{
+  "productProfile": { "id": "untraceable", "name": "Untraceable", "uiState": "existing", "purpose": "Test", "users": ["user"], "payer": "owner", "value": "value", "decisions": ["decision"], "successMeasures": ["measure"], "trustPosture": "calm" },
+  "goals": [{ "id": "goal-1", "statement": "Goal", "measure": "measure" }],
+  "observations": [{ "id": "obs-1", "kind": "fact", "statement": "A route exists.", "evidence": [{ "sourceType": "route", "locator": "/work" }] }],
+  "inventory": { "uiState": "existing", "routes": [{ "id": "route-work", "path": "/work" }], "navigation": [], "roles": [], "permissions": [], "dialogs": [], "backgroundWork": [], "apis": [], "reports": [], "exports": [], "componentPatterns": [], "stateCoverage": [] },
+  "informationArchitecture": { "status": "planned", "routes": [], "menus": [], "roleModel": [] },
+  "recommendations": [],
+  "workflow": { "stage": "inventory-complete" }
+}

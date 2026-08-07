@@ -1,0 +1,4 @@
+{
+  "allowed": ["appearance", "contrast", "density", "motion"],
+  "values": { "appearance": "dark", "clientBrandColor": "purple" }
+}

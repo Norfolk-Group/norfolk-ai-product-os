@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://norfolk.ai/schemas/standard-metadata.schema.json",
+  "type": "object",
+  "required": ["title", "status", "tier", "owner", "lastVerified"],
+  "properties": {
+    "title": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["draft", "proposed", "accepted", "deprecated", "superseded"] },
+    "tier": { "enum": ["CONTRACT", "REFERENCE"] },
+    "owner": { "type": "string", "minLength": 1 },
+    "lastVerified": { "type": "string", "format": "date" },
+    "supersedes": { "type": "string", "minLength": 1 },
+    "sensitivity": { "enum": ["norfolk-only", "client-safe", "public"] }
+  },
+  "additionalProperties": true
+}

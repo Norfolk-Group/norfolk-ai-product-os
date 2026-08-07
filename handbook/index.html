@@ -1,0 +1,941 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Norfolk AI Product OS Handbook</title><style>body{font:15px/1.55 Inter,system-ui,sans-serif;max-width:1100px;margin:auto;padding:32px;color:#172320;background:#f6f2e9}header{border-bottom:1px solid #b8c2bd}article{background:#fff;padding:24px;margin:20px 0;border-radius:14px}pre{white-space:pre-wrap;font:inherit}.meta{color:#4f6c64;font-size:12px}</style></head><body><header><p>Private Norfolk AI standard · Product OS 0.3.0-candidate.4 · generated from canonical source</p><h1>Norfolk AI Product OS Handbook</h1></header><article id="design-accessibility-md"><p class="meta">design/accessibility.md · accepted · source-sha256 b93cf9e481951c19cf7a6e9b9da4ca3d989708eaa235d0abedc9e332851bf75d</p><pre># Accessibility
+
+WCAG 2.2 AA is the minimum product contract, not the ceiling. Accessibility is designed with each pattern and state; it is not a final audit layer.
+
+## Required behavior
+
+- semantic structure and accessible names;
+- complete keyboard operation, visible focus, logical order, and focus restoration;
+- screen-reader state, error, progress, and completion announcements without noise;
+- text and non-text contrast across themes and states;
+- zoom, text resize, reflow, and localization resilience;
+- touch targets of at least 44×44px on mobile;
+- reduced-motion behavior that preserves meaning and completion information;
+- charts and visualizations with accessible summaries, data access, and non-color encoding;
+- authentication and recovery that remain operable without precision, memory tricks, or inaccessible time pressure.
+
+## Evidence
+
+Automated checks catch only part of the contract. Acceptance combines semantic and keyboard tests, screen-reader review for material flows, contrast evidence, viewport/zoom review, and human visual inspection. Record browser, assistive technology, viewport, theme, state, and result.
+
+An exception names the user impact, scope, owner, mitigation, expiry, and migration consequence. “Third-party component” is not an exemption.</pre></article><article id="design-animation-registry-md"><p class="meta">design/animation-registry.md · accepted · source-sha256 bcbaa568ea04e74fe2baa122fe066826dc69ada80b328dc4cfd27b014964f3ae</p><pre># Product animation registries
+
+Each product owns a versioned animation registry. Super Admin assigns registered motion to server-configured semantic categories; components resolve the assignment rather than hardcoding a favorite animation. Categories cover persistent identity and long operations without multiplying configuration by individual screen.
+
+Once accepted, an animation's display name and technical identifier are protected. Refinements create versions under the same identity. Retirement preserves the name, identifiers, lineage, compatibility, and replacement; it does not recycle the name for a different animation.
+
+## Reuse boundary
+
+H+ Analytics currently preserves the best known production implementations of its animation family and progress experience. Its product names, assistant identity, logo motion, and animation identities remain exclusive to that product. Product OS promotes the architecture, truthful progress behavior, registry pattern, preview/assignment experience, reduced-motion behavior, and quality bar—not the H+ visual identity.
+
+The future Norfolk AI animation family will be visually distinct and remains provisional until Claude Design supplies or approves its masters. Customer products may adopt that family or register their own approved family.
+
+Figma originals and Replit exports remain preserved lineage evidence. For the currently reviewed H+ family, the current H+ production implementation is the approved working master; an older artifact does not win merely because it came first. Reconciliation still preserves every variant and checksum.
+
+The executable registry contract is [`animation-registry.schema.json`](../schemas/animation-registry.schema.json) with [`animation-registry.example.json`](animation-registry.example.json).</pre></article><article id="design-approval-gates-md"><p class="meta">design/approval-gates.md · accepted · source-sha256 595d3e587434626740143c1504d20c6a7f8666b765ae4abe6d84439e80d853b0</p><pre># Design approval gates
+
+## Gate 1 — prerequisites
+
+Product profile, observation, inventory, and IA are current. IA status is approved and its approval ID appears in the design contract. Missing or invalidated prerequisites block acceptance.
+
+## Gate 2 — contract completeness
+
+The contract covers foundations, numeric typography, density, composition, components, responsive behavior, accessibility, voice, themes, authentication, state behavior, motion, feedback, references, shadcn inputs, variations, and forbidden patterns. Every component records all applicable states and reasons for non-applicability.
+
+## Gate 3 — evidence
+
+Representative desktop, tablet, and mobile views show supported themes, material routes, authentication, long content, loading, error, empty, success, cancellation, and reduced motion. Before/after evidence identifies the product/user goal rather than relying on taste.
+
+## Gate 4 — decision
+
+An accountable human chooses `approve`, `reject`, or `defer` and records rationale. Baseline changes are visible; neither an agent nor a generated catalog approves itself. Consequential access, brand, legal, financial, security, or outward-facing changes use the appropriate additional owner.
+
+## Implementation and drift
+
+Approved work lands incrementally with tests and synchronized contract updates. A proposed implementation that violates the adopted cascade, state matrix, accessibility, source pin, or exception record blocks. Better patterns become upstream promotion proposals; they do not silently establish precedent in one product.
+
+## Invalidation
+
+Changed product purpose, roles, permissions, inventory, IA, brand ownership, or material accessibility evidence returns the contract to the affected earlier gate. Preserve the old approval record and mark it superseded or invalidated rather than rewriting history.</pre></article><article id="design-asset-experience-md"><p class="meta">design/asset-experience.md · accepted · source-sha256 dd9dff405b240e5fca1b61fd68f007a6874949df11dc39be7231343180b756a5</p><pre># Identity and media assets
+
+Products provide a governed Asset Manager rather than isolated upload controls. Super Admin can create, read, update, organize, approve, replace, restore, share, and delete logos, photos, and other supported files. Platform assets and organization-private assets are isolated at storage, query, preview, export, and delivery boundaries; interface hiding is never the authorization control.
+
+## Three-choice transformation
+
+Every AI-processed asset follows the same interaction:
+
+1. preserve the private original;
+2. validate rights, file type, size, safety, and quality;
+3. generate three compliant candidates;
+4. preview them in every material context;
+5. let the authorized person explicitly select one;
+6. regenerate another set of three when none is suitable;
+7. preserve selections and prior generations for audit and rollback.
+
+The selector is role-specific: Super Admin selects product and authoritative assets; an authorized organization administrator may propose organization identity; a person selects their own portrait; an owner selects imagery for their private imported record. A proposal does not become active where Super Admin approval is required.
+
+## Logos and organization identity
+
+Logo processing may normalize crop, padding, safe area, container, contrast, file format, size, and light/dark presentation. It preserves the recognizable mark. Redrawing or recoloring requires explicit approval. One selected canonical treatment produces the technical variants; products do not use unrelated marks on different screens.
+
+An organization identity pack may contain approved name, logo, accent, and imagery. The app may propose an accessible accent palette from a logo, but Super Admin approves activation. Product typography, navigation, components, charts, motion, and accessibility remain product-owned. When no logo exists, use an intentional typographic monogram or neutral product placeholder, never a broken image or misleading stock asset.
+
+## People and portraits
+
+A profile photograph is always optional. The person explicitly chooses **Create professional portrait**, reviews three identity-faithful candidates, may regenerate up to the product allowance, and selects the active portrait. Processing may improve lighting, exposure, framing, background, resolution, and natural photographic quality. It must not silently change age, ethnicity, facial structure, or recognizable identity.
+
+Manual crop, filters, and appearance editing are not offered. The product owns a consistent portrait composition and background standard. Compact surfaces use a circular crop; larger profile contexts use the approved softly rounded treatment from the same selected portrait.
+
+The permanent fallback is a letter avatar: first and last initials where available, otherwise the first two characters of the single display name. It is used by preference, before upload, after deletion, on processing failure, or after moderation. Super Admin may remove a noncompliant portrait and restore the initials fallback, but cannot select a different likeness for the person.
+
+Originals and generated portraits are never used for model training, marketing, or unrelated analysis. An external processor must provide no-training terms, minimal retention, encrypted transfer, sensitive-log exclusion, and verifiable deletion; missing guarantees stop processing. Deleting all portrait imagery retains only a non-image audit event.
+
+## Property and factual imagery
+
+Property imagery may improve crop, exposure, resolution, color balance, and non-factual distractions. It must not invent renovations, erase defects, alter structures, or misrepresent condition. Enhancement disclosure belongs in provenance metadata and material report notes, not as a badge or watermark over the clean render. Authorized users can retrieve the original.
+
+## Sharing and deletion
+
+Private assets stay private. Sharing is recipient-specific, revocable, optionally expiring, non-reshareable, and requires the approval named by the product contract. Deletion first creates a recoverable archive. Permanent purge is blocked while an asset is referenced by a product, profile, record, scenario, report, export, or required evidence; Super Admin controls final purge under the retention contract.
+
+The executable contract is [`media-asset-workflow.schema.json`](../schemas/media-asset-workflow.schema.json) with [`media-asset-workflow.example.json`](../standards/media-asset-workflow.example.json).</pre></article><article id="design-authentication-md"><p class="meta">design/authentication.md · accepted · source-sha256 25c6043e064a08f572b252fa00fd9a3e3d9dfc3d5a2cd9359c87a29d67124bcc</p><pre># Authentication experience
+
+WorkOS AuthKit supplies identity infrastructure; Norfolk owns the end-to-end product experience. Clerk is not part of the approved stack.
+
+## Required journeys and states
+
+- login and logout;
+- invitations and account activation;
+- passwordless, recovery, and email verification as configured;
+- MFA enrollment, challenge, recovery, and unavailable-factor handling;
+- organization choice and switching;
+- SSO discovery and routing;
+- session expiry, reauthentication, and return to safe intent;
+- loading, locked, access denied, and recoverable errors.
+
+## Continuity
+
+Hosted WorkOS surfaces use the approved client/product brand and plain product voice. Transitions explain why the user is moving, preserve allowlisted return intent, and return focus and context safely. The user should not feel deposited in an unrelated vendor product.
+
+## Safety and disclosure
+
+Errors do not reveal whether an unrelated account exists. Denial distinguishes authentication from authorization without exposing policy detail. Consequential organization changes require explicit confirmation and server-side authorization. Session and OAuth integrity controls live in the security contract; design must expose their states without weakening them.
+
+## Responsive and accessible identity
+
+All journeys work by keyboard and screen reader, handle zoom and mobile keyboards, meet target and contrast rules, avoid inaccessible countdown pressure, and offer a recoverable next step.</pre></article><article id="design-brand-architecture-md"><p class="meta">design/brand-architecture.md · accepted · source-sha256 19d91b05c73039ca5790882fd30d93407c09edf971d1c9d71aaf5ac8965ab821</p><pre># Brand architecture
+
+Product OS supports both a complete Norfolk AI master brand and a customer master brand. Neither owns the neutral product foundation: accessibility, state behavior, responsive composition, data truth, progress semantics, and component contracts survive every brand.
+
+## Brand modes
+
+- **Norfolk master:** the ready-to-use identity when a customer chooses Norfolk AI's complete product language.
+- **Client master:** the customer's approved identity applied through bounded semantic tokens and governed assets.
+- **Incomplete client master:** Norfolk derives a coherent client system from the evidence supplied. It uses neutral foundation values for unresolved decisions and does not visibly mix recognizable Norfolk styling into the client identity.
+
+The canonical visible company name is **Norfolk AI**. Official Norfolk logos, colors, typography, imagery, and expressive visual masters remain deferred to the future Claude Design engagement. Until accepted assets exist, implementations use neutral semantic placeholders and must not invent an official Norfolk palette.
+
+## Product, organization, and endorsement identity
+
+A product has one global name and primary app logo across its instances. Super Admin governs that product identity, previews it across light/dark, navigation, authentication, reports, and exports, and can restore a prior approved version. An organization may have a secondary name, logo, accent, and imagery only where the product contract permits it; organization identity never renames the product.
+
+Every client-branded and Norfolk-branded product carries **Powered by Norfolk AI**. It links to `https://www.norfolk.ai`, opens in a new tab in interactive surfaces, and cannot be removed by theme, customer configuration, or a white-label setting. Use restrained placement on identity surfaces such as login, launch, About, and footer. Reports and exports carry the endorsement in the footer; non-interactive formats print `norfolk.ai`.
+
+## Appearance and hierarchy
+
+Light and dark are first-class brand variants. First use follows system preference and later honors the saved user choice. A single-mode deployment requires an approved exception with accessibility evidence.
+
+In a client-branded product, the product identity remains primary, contextual organization identity is secondary, and the Norfolk endorsement is quiet but persistent. Client and organization layers may set identity expression; they cannot override accessibility, truthful states, interaction behavior, chart meaning, report provenance, or other foundation safeguards.
+
+The machine-readable example is [`brand-profile.example.json`](brand-profile.example.json); its contract is [`brand-profile.schema.json`](../schemas/brand-profile.schema.json).</pre></article><article id="design-components-md"><p class="meta">design/components.md · accepted · source-sha256 58a5ebb4cdf6466a184fff19dfd2ad2175616a6ac22a84daa6af911a6281240d</p><pre># Component contracts
+
+Every reusable primitive or composite has one specimen record validated by [`component-specimen.schema.json`](../schemas/component-specimen.schema.json).
+
+## Required record
+
+- purpose, permitted uses, and forbidden uses;
+- source path and Storybook/artifact mapping;
+- shadcn primitive or documented custom basis;
+- variants and sizes;
+- applicable state behavior, with rationale for every non-applicable state;
+- keyboard and screen-reader behavior;
+- mobile, tablet, and desktop treatment;
+- reduced-motion behavior;
+- token dependencies and theme coverage;
+- governed deviations and known product use.
+
+## shadcn input control
+
+Record registry source, upstream version or commit, SHA-256 content hash, resolved hash, installed files, and local deviations. An upgrade is a reviewed source change, not a blind CLI refresh. A hash mismatch blocks reproduction and acceptance.
+
+## Custom components
+
+Custom work is justified when reviewed primitives cannot satisfy the product or accessibility requirement. It must still use canonical tokens, interaction grammar, state records, and evidence. “Looks different” is not sufficient rationale.
+
+## Ownership
+
+Product OS owns this contract. Kit owns executable reference components and tests. Product repositories own their composed product behavior and approved local exceptions. A product implementation becomes reusable only through promotion.</pre></article><article id="design-composition-md"><p class="meta">design/composition.md · accepted · source-sha256 72a0783b6d0431c9a87f97db5a91e7c9b0e0face45d5d19ca82de3441a6a1498</p><pre># Design composition
+
+## Compose from accessible primitives
+
+Prefer reviewed shadcn/ui components and their underlying accessible primitives when they satisfy the job. Compose and theme them; do not create an arbitrary local alternative because it is quicker. A deviation records the unmet need, source, accessibility consequences, and governed variation or exception.
+
+## Choose density from the job
+
+- **Focus surfaces**—composer, form, single record, explanation—use one clear hero, bounded width, generous space, and a reading measure near 65 characters. Extra viewport becomes margin; controls do not stretch merely because space exists.
+- **Scan surfaces**—table, queue, dashboard, ledger—use the available width, stable row/column grids, tabular numerals, aligned metadata, and state encoded in form as well as words. Density comes from removing needless chrome, not shrinking type below comfortable reading.
+
+Applying a scan layout to a focused task creates noise. Applying a focus layout to a dense operational surface wastes attention.
+
+## Hierarchy
+
+Use one primary action or input per focused surface. Fixed top-level navigation may use meaningful icons; nested navigation becomes quieter. Group headings and rules usually outperform nested cards and boxes. Counts sit beside what they count. Labels remain neutral; a small semantic mark may carry state without turning the page into confetti.
+
+## Conversational surfaces
+
+The composer is the hero. Attachments, role/mode, model configuration, and voice controls live within or immediately adjacent to it. Suggestions are quiet, concrete actions rather than competing cards. User-facing choices describe roles or jobs; model vendor configuration stays underneath.</pre></article><article id="design-forbidden-patterns-md"><p class="meta">design/forbidden-patterns.md · accepted · source-sha256 b133c52d12a63441a1f7154eccbc4150e2164565ed0c841fc724b2da41307b76</p><pre># Forbidden design patterns
+
+- Designing or broadly restyling before approved product and IA gates.
+- Presenting product/client palette values as universal Norfolk foundations.
+- Silent local “improvements,” unrecorded token values, inline escape styles, or erased exceptions.
+- A second icon library, mixed stroke weights, decorative icons, emoji interface icons, or icons on homogeneous name lists.
+- Stretching focus controls to fill a wide viewport or forcing dense scan work into narrow cards.
+- Nested card chrome where hierarchy, spacing, and rules suffice.
+- Hover-only meaning, invisible focus, color-only state, or touch targets below 44px.
+- Missing loading, error, empty, success, cancel, mobile, keyboard, or reduced-motion behavior.
+- Fabricated percentages, fake elapsed time, irreversible optimistic success, or cancellation that only hides the surface.
+- Vague errors with no next step, machine nouns, fake certainty, apology filler, or routine cheerleading.
+- Treating WorkOS as permission to deliver an unbranded, discontinuous identity journey.
+- Promoting a rule from a named but unexamined reference.
+- Refreshing a shadcn input without pinned provenance, hashes, file list, and deviation review.
+- Replacing a visual baseline without an explicit approve, reject, or defer decision.
+- Treating Figma, Replit, H-Analytics, or Kit motion as canonical by filename or recency before lineage reconciliation.</pre></article><article id="design-foundations-md"><p class="meta">design/foundations.md · accepted · source-sha256 5d5e74ccd90263bbbaf41834cac3d9bf7b7fc919c8adde04636e08227855a769</p><pre># Design foundations
+
+## Universal foundation versus product expression
+
+Norfolk-wide foundations define semantic roles, evidence requirements, accessibility, icon grammar, state completeness, and inheritance rules. They do not impose a single client palette, typeface personality, density, or visual mood on unrelated products. Product-specific values declare `client-brand`, `product`, or `organization-theme` scope; labeling them `foundation` is a contract violation.
+
+## Tokens
+
+Use semantic names tied to purpose: background, foreground, surface, primary action, destructive action, warning, success, muted text, border, input, focus ring, chart series, and data states. Record light/dark/contrast values, supported combinations, contrast evidence, and ownership. Components consume semantic tokens, not literal product colors.
+
+## Typography and numerals
+
+Declare bundled font sources, fallback, sizes, weights, line heights, tracking, and reading measure. Numeric typography is separate: tabular numerals, decimal alignment, currency symbols, negative values, percentages, dates, units, precision, and zero/null behavior are explicit. A visually attractive font that makes financial columns hard to compare is not acceptable.
+
+## Spacing, radius, border, and shadow
+
+Use a named scale with documented jobs rather than one-off values. Hairlines are 1px. Radius expresses component family and hierarchy, not decoration. Shadows are reserved for true elevation such as an overlay; use space, tone, and borders for ordinary grouping.
+
+## Iconography
+
+Lucide is the sole canonical interface library. The default stroke is `1.5`; large feature marks may use `1.25`. Do not render monoline icons below 14px. Custom icons use Lucide's 24×24 grid, round caps/joins, compatible stroke, and review. Style is locked while meaning varies. Use an icon only when it adds information the label does not; fixed navigation may use icons, homogeneous user-named lists generally do not.
+
+Emoji, filled/duotone sets, a second icon library, ad hoc per-row icons, and color-coded icon confetti are forbidden.</pre></article><article id="design-method-md"><p class="meta">design/method.md · accepted · source-sha256 f69da2265323dabaadb93246c45f87d37bd90298cd967f0de82be86cc731287e</p><pre># Design method
+
+## Prerequisites
+
+No design contract is accepted until the product profile, observation record, application inventory, and information architecture are current and the IA carries an accountable approval ID. Design exploration may test feasibility earlier; it cannot silently change routes, roles, permissions, product purpose, or implementation commitments.
+
+## Discover before inventing
+
+For an existing product, extract the actual language first: semantic colors, typography and numerals, density, spacing, radii, borders, shadows, iconography, controls, tables, navigation, charts, states, responsive behavior, accessibility, motion, feedback, authentication, outputs, and voice. Record which patterns are consistent, isolated, duplicated, inaccessible, or unexplained.
+
+The proposed contract then states what is retained, replaced, introduced, deprecated, or preserved as an exception—and why. A greenfield product begins from the approved product and domain contracts, never from invented “existing” evidence.
+
+## Contract sequence
+
+1. Confirm product and IA prerequisites.
+2. Extract existing brand, theme, component, interaction, and output evidence.
+3. Apply the inheritance cascade in [Themes](themes.md).
+4. Complete every field in the [design contract template](../templates/design-contract.md).
+5. Validate component state, responsive, accessibility, source, and deviation records.
+6. Produce visual evidence for representative routes, states, themes, and viewports.
+7. Record approve, reject, or defer with rationale.
+8. Implement incrementally in Kit or the product; propose reusable learning upstream.
+
+## Design-agent authority
+
+A design agent reads the adopted Product OS version, approved product profile, domain playbook, client brand, product design contract, theme, inventory, IA, and exceptions before proposing change. It identifies violations and options; it never silently restyles, changes brand ownership, broadens a user preference, replaces an accepted pattern, or approves its own recommendation.</pre></article><article id="design-motion-md"><p class="meta">design/motion.md · accepted · source-sha256 1e2ac0f34307b67dea858d41e72d0320102d56fb20f9c87a4a52744a601b4234</p><pre># Motion
+
+Motion communicates state, causality, continuity, focus, and progress. It is never decoration that competes with the job. Implementations preserve recorded timing, easing, transform origin, and coordinated timelines; they do not invent animation for static source nodes. Repeated behavior is factored into reusable primitives.
+
+## Lineage and source roles
+
+Source role is explicit and is not inferred from filename, modification time, archive size, or repository recency:
+
+1. Local Figma Make archives preserve creative intent and editable originals.
+2. Replit exports preserve the best original exported implementation.
+3. H-Analytics preserves the best known complete production behavior.
+4. Norfolk Kit preserves portable implementation and history.
+5. Supporting Figma-design repositories are recipes, not automatic authority.
+
+Before reconciliation, hash every variant, copy it to a versioned immutable object, retrieve it, verify the checksum, and retain the local original. A mismatch stops reconciliation; it never authorizes deletion. Canonical status requires complete lineage and explicit Product OS Owner approval.
+
+Figma motion data is authoritative for recorded values. The implementation must honor `prefers-reduced-motion`, preserve state and completion information, validate one entire timeline before batching, and leave unsupported source motion visibly recorded rather than silently dropped.
+
+Accepted names and identifiers are governed by [Product animation registries](animation-registry.md). An implementation refinement may version an animation but cannot silently rename its identity. For the currently reviewed H+ family, the current H+ production implementation is the working master; its visual identities remain product-exclusive while the architecture and quality bar are reusable.</pre></article><article id="design-progress-md"><p class="meta">design/progress.md · accepted · source-sha256 32bc1f34676dd1f49d18a860d151a63daf0e751912769124c0891347e57ab44a</p><pre># Process progress
+
+Progress must be honest. Required states are idle, waiting, indeterminate, determinate, paused, disconnected, retrying, timeout, cancellation-requested, cancelled, late-completion, duplicate-event, failure, and success.
+
+- Indeterminate work shows activity and elapsed time, never a fabricated percent.
+- Determinate progress comes from measured server stages or units. It cannot regress unless a declared restart begins a new attempt.
+- Jobs exceeding five seconds expose a compact persistent progress surface; blocking work may use a modal only when interaction truly cannot continue.
+- Cancellation is a request until the server confirms it. A later completion is recorded as late completion and never presented as ordinary success.
+- Duplicate and out-of-order events are recorded and reconciled by event identity and server order.
+- Reduced motion removes nonessential transforms while retaining text, state, elapsed time, error, and completion information.
+- Agentic work names the actual active Agent, Specialist, Orchestrator, or Minion and its concrete action. Attribution comes from real server state, never a synthetic ticker.
+- Minions use deterministic verbs and never appear to reason. Handoffs and completion name the responsible members.</pre></article><article id="design-provenance-md"><p class="meta">design/provenance.md · accepted · source-sha256 36ccd4bf4f7e6934c59a685c3f16dc4bb0024bcc90bdf7e6d53cdd4a1f94da15</p><pre># Design provenance
+
+Every catalog specimen and motion record names its source path, normalized SHA-256, source role, repository or local archive, Product OS and Kit versions, approval state, freshness, and supersession relationship. Client-derived sources also require reuse rights, sanitization, identifier and secret scans, and disclosure review.
+
+Original local Figma, Replit, H-Analytics, and Kit sources are immutable evidence. Reconciliation creates governed derivatives; it does not rewrite, relocate, archive, or delete the original. Object-storage preservation is complete only after a version identifier is recorded and retrieval reproduces the expected checksum.</pre></article><article id="design-README-md"><p class="meta">design/README.md · accepted · source-sha256 22e29ed608fffdd11f0167ad7232e744193bab5a7714e2ad62495e16c7b9c2fc</p><pre># Design system
+
+Design is a first-class Product OS pillar. It governs how product purpose becomes information hierarchy, composition, interaction, language, authentication, responsive behavior, accessible states, and reviewable visual evidence. It is broader than tokens and components, and it does not replace fundamental governance.
+
+## Route by need
+
+| Need | Contract |
+|---|---|
+| Sequence and agent authority | [Method](method.md) |
+| Tokens, typography, spacing, radii, shadows, icons | [Foundations](foundations.md) |
+| Focus and scan layouts, hierarchy, shadcn composition | [Composition](composition.md) |
+| Reusable patterns and upstream inputs | [Components](components.md) |
+| Interaction, process, error, success, and cancel states | [States](states.md) |
+| Mobile, tablet, desktop, reflow, and safe areas | [Responsive](responsive.md) |
+| Keyboard, screen reader, contrast, motion, and evidence | [Accessibility](accessibility.md) |
+| Interface language and conversational posture | [Voice](voice.md) |
+| Norfolk/client brand modes and mandatory endorsement | [Brand architecture](brand-architecture.md) |
+| Inheritance, brand, organization themes, preferences | [Themes](themes.md) |
+| Governed logos, portraits, property imagery, sharing, deletion | [Identity and media assets](asset-experience.md) |
+| WorkOS-backed first-party identity experience | [Authentication](authentication.md) |
+| Explicit anti-patterns | [Forbidden patterns](forbidden-patterns.md) |
+| Reference evidence lifecycle | [References](references.md) |
+| Approval, exceptions, and anti-regression | [Approval gates](approval-gates.md) |
+| Motion meaning, fidelity, and lineage | [Motion](motion.md) |
+| Protected product animation names and assignments | [Product animation registries](animation-registry.md) |
+| Honest long-process feedback | [Process progress](progress.md) |
+| Source hashes and preservation | [Provenance](provenance.md) |
+| Responsive evidence matrix | [Viewport matrix](viewport-matrix.md) |
+| Comparable visual captures | [Visual test environment](visual-test-environment.md) |
+
+The machine-readable product contract is [`design-contract.schema.json`](../schemas/design-contract.schema.json). Reusable components use [`component-specimen.schema.json`](../schemas/component-specimen.schema.json). Norfolk Kit implements compatible executable components and catalogs; it does not own this doctrine.</pre></article><article id="design-references-md"><p class="meta">design/references.md · accepted · source-sha256 971f8b582128404f508271221500e6ef322b8c634f4e96a80cc050126c447c32</p><pre># Design references
+
+A reference record moves through `named` → `observed` → `extracted` → `accepted`, or to `rejected`/`superseded`. Naming a product or aesthetic creates no rule. Observation records the actual source. Extraction states the transferable pattern. Acceptance names scope, evidence, reviewer, and conflicts.
+
+## Current accepted extractions
+
+| Reference | State | Accepted extraction |
+|---|---|---|
+| Manus sidebar evidence | accepted | Content-type icons may vary while library, weight, size, and color stay locked; homogeneous name lists do not need repeated icons. |
+| Perplexity desktop evidence | accepted | A conversational surface has one hero—the bounded composer—with quiet inline controls and restrained suggestions. |
+| Linear workspace evidence | accepted | Dense operational lists use a stable row grid, form-plus-text state, quiet labels, and minimal group chrome. |
+| Richard Thaler and David Brooks bodies of work | accepted | Plain, concrete language that respects the reader, explains through cases, stays warm without cheerleading, and admits uncertainty. |
+
+These are narrow extractions, not instructions to copy a product's brand or layout wholesale.
+
+## Named or incomplete references
+
+Cloudflare's assistant, Codex workflow, ElevenLabs, Qurrent AI, and any other unexamined reference remain `named` until evidence is captured and reviewed. Blank is better than plausible invention.
+
+## Motion provenance
+
+Figma Make, Replit exports, H-Analytics production behavior, and Kit copies are lineage sources rather than ordinary inspiration. Preserve all variants; U9 will record hashes, availability, visual intent, production behavior, and the reason a promoted implementation wins.</pre></article><article id="design-responsive-md"><p class="meta">design/responsive.md · accepted · source-sha256 9cde77fe9fc29472a4542cebad449490a8e0568aaff7e5d116e1f384c9d38b18</p><pre># Responsive design
+
+Mobile is a first-class surface, not a shrunken desktop. Every contract describes mobile, tablet, and desktop evidence and names unsupported behavior explicitly.
+
+## Mobile requirements
+
+- Interactive targets are at least 44×44px.
+- Layout honors viewport and device safe areas.
+- Reading order, keyboard order, and screen-reader order remain intentional after reflow.
+- Dense grids choose a documented strategy: prioritized columns, horizontal scroll with context, stacked record, or task-specific mobile view.
+- Fixed actions do not cover content or the on-screen keyboard.
+- A desktop copilot side panel becomes a sheet or equivalent mobile surface with focus return, dismiss behavior, and preserved work state.
+
+## Breakpoints and content
+
+Breakpoints follow content failure rather than named devices. Record the widths used for review and why the layout changes there. Focus surfaces remain bounded as viewports grow. Scan surfaces may expand while maintaining stable columns and readable line length.
+
+## Responsive evidence
+
+Review navigation, dialogs, forms, tables, charts, authentication, errors, long content, localization expansion, zoom, reduced motion, and virtual keyboard behavior. Passing a single home-page screenshot does not establish responsive conformance.</pre></article><article id="design-states-md"><p class="meta">design/states.md · accepted · source-sha256 73024ce5b941e58b14b2b6af78c2d63d555e517fbd076b77acdfec67da036a4a</p><pre># Design states
+
+For every reusable component or pattern, record default, hover, focus, active, disabled, loading, error, empty, success, and cancel. A state may be non-applicable only with a reason.
+
+## Interaction states
+
+Hover never carries information unavailable to touch or keyboard users. Focus is visible and distinct from hover. Active communicates current engagement or selection. Disabled explains why when that knowledge is useful and is not used to hide authorization policy.
+
+## Data and process states
+
+- Loading preserves layout and describes what is happening when it exceeds a brief threshold.
+- Empty distinguishes “no records exist,” “filters found none,” “not authorized,” and “not loaded.”
+- Error names what failed and the next safe action; technical detail stays available without replacing plain language.
+- Success confirms the actual outcome near the action.
+- Cancel distinguishes available, requested, confirmed, too-late, and completed-after-request behavior.
+
+Long work records idle, waiting, indeterminate, determinate, paused/disconnected, retrying, timeout, cancellation-requested, cancelled, late completion, duplicate event, failure, and success where applicable. Percentages appear only when grounded in measured work or real stages; elapsed time is honest.
+
+## State transitions
+
+Transitions preserve semantic truth under retries, duplicate events, stale responses, navigation, and reconnect. A visual reset cannot erase a completed server-side action. Consequential actions use the named human-only approval policy shared with the capability layer.</pre></article><article id="design-themes-md"><p class="meta">design/themes.md · accepted · source-sha256 a98ec18602833056a659025f59ec92a397c442ebb220e2c909e4cbce0e4c9157</p><pre># Design inheritance and themes
+
+Design inheritance is an explicit, reviewable cascade:
+
+```text
+Norfolk foundation
+  → domain playbook
+    → client brand
+      → product contract
+        → organization-admin theme
+          → bounded user preferences
+```
+
+Each layer declares its owner, source/version, fields it may set, and fields downstream layers may override. Unknown ownership fails closed.
+
+The supported top-level modes and non-removable Norfolk endorsement are governed by [Brand architecture](brand-architecture.md). Asset creation, approval, and transformation are governed by [Identity and media assets](asset-experience.md).
+
+## Ownership
+
+- Product OS Owner governs Norfolk foundations and accepted domain playbooks.
+- The client or authorized brand owner governs client identity.
+- The product owner governs product composition and product-scoped tokens.
+- Super Admin governs global product name, primary app logo, product animation assignments, and final organization-brand activation.
+- Organization administrators may choose approved variants or propose identity changes only where the product contract delegates that ability.
+- Users choose only supported appearance, contrast, density, and motion preferences.
+
+A user cannot redefine logo, brand color, type identity, legal copy, product structure, or component contract. An organization theme cannot silently contradict the client brand or accessibility requirements.
+
+## Theme contract
+
+Record semantic token values, typography, density, supported light/dark/contrast variants, charts, authentication surfaces, emails/outputs affected, accessibility evidence, and fallback. Theme switching preserves state and avoids a flash of the wrong brand or appearance.
+
+## Variation
+
+A local difference is either an approved variant or an exception with a record ID. Untracked overrides and “temporary” CSS values are drift, not a theme system.</pre></article><article id="design-viewport-matrix-md"><p class="meta">design/viewport-matrix.md · accepted · source-sha256 03ecacaba554d44b4d095929b7c4a9dd1800da21c29e28c46ebd8dbab337bf38</p><pre># Viewport matrix
+
+Every responsive catalog covers named mobile, tablet, and desktop viewports, both relevant orientations, safe areas, keyboard focus, zoom, reduced motion, and long or localized content. Width and height are exact integers; “responsive” or “latest device” is not a comparable baseline. Product contracts may add breakpoints but cannot omit the canonical matrix without an approved exception.</pre></article><article id="design-visual-test-environment-md"><p class="meta">design/visual-test-environment.md · accepted · source-sha256 ba2297f27879369a918e49fa1fea4f343436065873d96c2e1cf8a0c0bbf653bd</p><pre># Visual test environment
+
+Comparable visual evidence pins browser build, runtime, font files, viewport, device scale, orientation, locale, timezone, clock, random seed, animation state, pixel threshold, and evidence retention. Missing fonts, a live clock, uncontrolled randomness, or an unpinned browser makes a capture non-comparable.
+
+A changed baseline requires an approved design-contract change or explicit baseline approval. CI presents the before/after diff and blocks acceptance until the accountable decision is recorded; it never updates baselines merely because a screenshot changed.</pre></article><article id="design-voice-md"><p class="meta">design/voice.md · accepted · source-sha256 69030c4f5a3915ec1a642aed855b684fa766b421c1719479db9e261a6279ae6b</p><pre># Product voice
+
+Norfolk product language assumes an intelligent reader who may not be a specialist. It handles serious ideas in plain words, uses concrete cases and numbers, stays warm without cheerleading, and admits uncertainty instead of manufacturing confidence.
+
+## Rules
+
+- Name things as users understand them; keep internal nouns out of the interface.
+- Prefer concrete people, quantities, dates, actions, and consequences over abstractions.
+- State what happened and what the person can do next.
+- A control says exactly what will happen; confirmation uses the same verb.
+- Use short sentences and ordinary words without talking down.
+- State uncertainty, stale evidence, and partial completion plainly.
+- Keep success concise. Routine actions do not need congratulations.
+
+## Forbidden language
+
+No exclamation marks for routine system feedback, emoji as system voice, “Oops,” vague “Something went wrong,” machine nouns presented as user concepts, fake certainty, apology filler, or celebratory copy for ordinary completion.
+
+## Agent and conversational voice
+
+The copilot uses the same product vocabulary and evidence posture. It distinguishes observed fact, inference, recommendation, and approval; reports what it did and did not verify; and never uses confidence theater to conceal missing evidence.
+
+Processing language describes the real work—validating assumptions, comparing scenarios, rendering an output—not “AI is thinking.” It attributes the actual named member under [Agent identity and naming](../standards/agent-identity.md). Completion is restrained and premium: a resolved state and concise confirmation, with richer motion reserved for material milestones rather than confetti or routine celebration.</pre></article><article id="governance-approvals-md"><p class="meta">governance/approvals.md · accepted · source-sha256 0d25f0a1674c8bf834769d85ba66fec7400a84caf0229b36fa72bb8a008ba52e</p><pre># Approval policy
+
+## Accountable roles
+
+- **Product OS Owner:** initially Ricardo Cidale. Approves Product OS releases, authority changes, accepted standards and decisions, compatibility policy, promotions, and disputed exceptions.
+- **Product owner:** approves a product's adoption, local implementation, and product-local exceptions within authority delegated by Norfolk AI and the client agreement.
+- **Security or data owner:** approves scoped security, privacy, retention, legal-hold, and destructive-data decisions when assigned.
+- **Reviewer:** supplies evidence or review but does not gain approval authority merely by reviewing.
+
+Delegation must be written, scoped, attributable, and revocable. A client approver cannot approve client material as Norfolk AI intellectual property.
+
+## Required human approval
+
+Human approval is mandatory for:
+
+- accepting or superseding CONTRACT standards and decisions;
+- publishing a Product OS release or declaring Kit compatibility;
+- approving, renewing, or revoking an exception;
+- accepting a promotion proposal, especially one derived from a client or product;
+- changing protected-branch, owner, required-check, release-environment, signing, or identity policy;
+- payments, legal commitments, external communications, production migrations, credential or authorization changes, and other consequential outward actions;
+- baseline changes that alter approved visual or behavioral evidence;
+- destructive actions, including repository, branch, PR, asset, history, data, or environment deletion.
+
+Automation may prepare evidence and a reviewable proposal. It may not grant its own approval, widen its identity, bypass a required check, or convert silence into consent.
+
+## Decision record
+
+An approval records the exact target, proposed action, approver identity, timestamp, evidence reviewed, scope, conditions, and expiry where applicable. Approval for one action or target does not authorize a related action. “Ready for deletion decision” is a readiness state, not permission to delete.
+
+## Conflicts and uncertainty
+
+Fail closed when approver identity, authority, scope, client ownership, or target is unclear. Preserve the current state and route the decision to the Product OS Owner or the separately accountable security, data, or client owner.</pre></article><article id="governance-client-boundaries-md"><p class="meta">governance/client-boundaries.md · accepted · source-sha256 122acfe834f50ea4960b2f4eafa8e46394483b00e653666aebb625e3f6748ac0</p><pre># Client boundaries
+
+## Ownership
+
+Norfolk AI owns Product OS, Norfolk Kit, and reusable Norfolk intellectual property. KIT Capital is a client account. H-Analytics is a product and validation source associated with client work. Neither is Norfolk AI identity, a co-owner of Product OS, or an automatic source of portfolio standards.
+
+Client agreements and applicable law remain controlling for client material. When ownership or reuse rights are unknown, classification fails closed and the material stays outside canonical history.
+
+## Material excluded from canon by default
+
+- client names, brands, logos, palettes, domains, URLs, and contact details;
+- credentials, secrets, identifiers, customer or employee data, and financial data;
+- client-specific calculations, workflows, permissions, business rules, and personas;
+- screenshots, documents, images, source paths, commit metadata, or examples that reveal client identity directly or indirectly;
+- client code copied as a purported Norfolk default without provenance, rights, sanitization, and approval.
+
+Visual similarity or removal of a visible name is not sufficient sanitization. Intake must inspect structured identifiers, URLs, paths, image metadata, document properties, encoded values, and semantic combinations that could disclose the source.
+
+## Permitted learning
+
+A reusable behavior or insight may be proposed through [Promotion](promotion.md) only after rights classification, minimum-necessary extraction, synthetic replacement, machine checks, and human disclosure review. The canonical record describes the general problem and evidence without exposing the client.
+
+Client repositories may adopt Norfolk releases and retain local exceptions. Their code and data do not flow back upstream by default. Client approval of a product change does not substitute for Norfolk AI approval of a canonical promotion.
+
+## Review outcome
+
+Every intake ends as `blocked`, `client-local`, `sanitized proposal`, or `approved canonical`. Ambiguous evidence remains `blocked`. Review records identify the source privately without placing the sensitive payload in the canonical repository.</pre></article><article id="governance-exceptions-md"><p class="meta">governance/exceptions.md · accepted · source-sha256 94ce67cdf7eaa35d69134d3b6b1dce9c2f6b3f7a3521d825f0ccaa19853be304</p><pre># Exceptions
+
+An exception is a bounded, reviewable departure from a CONTRACT standard in an adopting product. It is not an undocumented preference, a permanent fork, or permission to change the Product OS.
+
+## Required record
+
+Every exception records:
+
+- stable identifier and lifecycle state;
+- owning product and accountable owner;
+- affected Product OS version and standard;
+- exact scope and rationale;
+- risk, user and business impact, and compensating controls;
+- approval and approver;
+- review or expiry date;
+- migration and rollback consequence;
+- links to evidence and later renewal, revocation, or resolution events.
+
+## Lifecycle
+
+`proposed` → `approved` → `expired`, `revoked`, or `resolved`.
+
+Renewal appends an event and updates the review or expiry date; it does not erase earlier approval history. Security and client-boundary exceptions block on expiry. Lower-risk exceptions warn until their declared review gate, but may not be described as current compliance when their status is unknown.
+
+## Limits
+
+Exceptions cannot transfer Norfolk AI ownership, expose client data, authorize unlawful behavior, remove an approval owned by another accountable role, permit silent consumer rewrites, or bundle destructive action. A proposed exception to these boundaries must be rejected or handled as a new governing decision by the proper authority.
+
+Adoption tooling must preserve approved product-local exceptions. A later Product OS or Kit release may propose resolving an exception but cannot overwrite it silently.</pre></article><article id="governance-fundamental-governance-md"><p class="meta">governance/fundamental-governance.md · accepted · source-sha256 dd6cf06bd167aecd8b5974f2ab5eb14c8888e18310664ec9f475801c591dfee6</p><pre># Fundamental governance
+
+## Purpose
+
+The Norfolk AI Product OS is the canonical authority for Norfolk AI product doctrine, standards, decision rationale, governance, and adoption contracts. It exists to make durable product knowledge explicit, reviewable, versioned, and usable by people and agents.
+
+Norfolk AI owns the Product OS and reusable intellectual property. The initial accountable Product OS Owner is Ricardo Cidale.
+
+## Authority and precedence
+
+Within the affected scope, authority follows this order:
+
+1. Explicit human instruction from an authorized owner for the current action.
+2. An approved product-local exception.
+3. The Product OS version explicitly adopted by that product.
+4. The compatible Norfolk Kit version explicitly adopted by that product.
+5. Product-local reference material.
+6. Generated artifacts.
+7. Current code behavior as observational evidence.
+
+A newer Product OS release that a product has not adopted has no authority over that product. An explicit instruction cannot waive Norfolk AI ownership, client confidentiality, legal duties, or an approval held by a different accountable owner unless the instructor has that authority.
+
+When two statements at the same level conflict, prefer the narrower scope, then the more recent accepted decision or standard with an explicit supersession link. If the conflict remains unresolved, stop and ask the Product OS Owner; do not improvise.
+
+## Repository roles
+
+- **Product OS** owns WHAT and WHY: portfolio doctrine, methods, contracts, rationale, governance, and release/adoption rules.
+- **Norfolk Kit** owns executable HOW: reference application code, components, integrations, modules, checks, and adoption tooling pinned to a Product OS release.
+- **Product repositories** own product and client context, data, implementation, adopted versions, and approved local exceptions.
+- **Generated handbook and catalogs** are private, non-editable views of canonical sources.
+
+Kit or a product may reveal a better pattern, but it becomes Norfolk doctrine only through the promotion process. No repository becomes canonical by containing the most mature implementation.
+
+## Knowledge lifecycle
+
+Standards and decisions use `draft`, `proposed`, `accepted`, `deprecated`, and `superseded`. Accepted decisions are historical records: correct them through a new linked decision rather than silent replacement. Binding knowledge must be indexed, owned, tiered, and reviewable under [Knowledge tiers](knowledge-tiers.md).
+
+The Product OS follows a minimal-and-true rule. Remove filler, duplicate memory, and claims unsupported by evidence. Preserve rationale and provenance where deletion would erase why a decision exists.
+
+## Generated views
+
+Canonical content is structured source in this repository. Handbooks, catalogs, and other presentations are generated from it, include their release version and source identity, and are not edited by hand. A generated view cannot add authority absent from its source.
+
+## Change and adoption
+
+All changes use a branch and review. Releases are versioned and machine-readable. Adoption is pinned, compatible, proposal-based, and reversible within its stated limits; it never silently rewrites a consumer. Product learning travels upstream through [Promotion](promotion.md), not direct copying.
+
+## Destructive boundary
+
+Creation, migration, promotion, adoption, equip, tidy, validation, and retirement-readiness work do not authorize deletion. Repository deletion, branch deletion, PR closure, archive removal, history rewriting, and destructive migrations each require a separate proposal naming the exact target, preservation and recoverability evidence, impact, and explicit target-specific approval.
+
+`norfolk-starter` was deleted outside this governed retirement workflow after its incomplete pre-deletion dossier had identified missing preservation and recovery evidence. Product OS preserves that record rather than retroactively claiming the gate passed. `norfolk-manual` remains a retirement candidate and stays untouched until its independent gate is satisfied and its exact destructive action is approved.
+
+## Amendment
+
+A material change to authority, ownership, precedence, repository roles, or lifecycle requires Product OS Owner approval and a new decision record. Changing this file alone cannot silently overturn an accepted decision.</pre></article><article id="governance-knowledge-tiers-md"><p class="meta">governance/knowledge-tiers.md · accepted · source-sha256 50606c944aef06f11a2ed4115b21f21dbeaaa68df9258a2cd5259ca6d3e41eb0</p><pre># Knowledge tiers
+
+## Tiers
+
+| Tier | Meaning | Effect |
+|---|---|---|
+| CONTRACT | A binding rule for the scope and released version that contains it | Conformance is required unless an approved exception applies |
+| REFERENCE | Evidence, explanation, example, or prior art | Informs judgment but cannot create a binding rule |
+
+Generated artifacts are views, not a third authority tier. Plans are proposals or execution records and do not become CONTRACT merely by being approved for work.
+
+## Required metadata
+
+Every canonical document declares, in frontmatter or an adjacent machine-readable record:
+
+- `title`
+- `status`: `draft`, `proposed`, `accepted`, `deprecated`, or `superseded`
+- `tier`: `CONTRACT` or `REFERENCE`
+- `owner`: an accountable role or named individual
+- `lastVerified`: ISO date for the last evidence or policy verification
+
+Where applicable it also declares source provenance, superseded and superseding records, release inclusion, compatibility effect, sensitivity, and reviewer.
+
+## Freshness
+
+CONTRACT material receives an explicit freshness review at least every 90 days or before a release claims it as newly verified, whichever occurs first. Age is a visible signal, not automatic invalidation: an accepted standard remains accepted until deprecated or superseded, but stale claims cannot be presented as freshly verified. Time-sensitive vendor details require current official-source evidence before implementation.
+
+REFERENCE material records when and how it was observed. A named but unexamined reference cannot support a promoted rule.
+
+## Index and links
+
+Canonical documents must be reachable from [the documentation index](../docs/README.md). Links use repository-relative targets. Missing index entries, owners, tiers, source records, or supersession links block release once automated gates are available; until then reviewers check them manually.
+
+## Supersession
+
+Do not rewrite accepted rationale to make history appear cleaner. A superseding record names the prior record, explains what changed, states compatibility consequences, and links forward and backward. Deprecated material remains readable and clearly labeled until retention policy permits removal.
+
+## Avoiding duplicate memory
+
+Binding rules have one canonical home. Agent files, Kit implementation notes, product docs, and generated handbook pages link to that source rather than copying it. A concise summary may orient a reader, but it must name the authoritative document and cannot introduce new obligations.</pre></article><article id="governance-promotion-md"><p class="meta">governance/promotion.md · accepted · source-sha256 9c3205d11736114142152b7401252b89ea3b4fa37ca65e949a1ab933d7e75b6f</p><pre># Promotion of reusable learning
+
+Promotion is the only path by which learning from Norfolk Kit, a product, a client engagement, Figma, Replit, H-Analytics, or another source becomes canonical Norfolk AI doctrine.
+
+## Lifecycle
+
+`draft` → `sanitization-review` → `Norfolk-review` → `accepted`, `rejected`, or `withdrawn`.
+
+Rejected and withdrawn proposals remain traceable. Nothing is promoted automatically because it is mature, deployed, visually stronger, newer, or present in multiple repositories.
+
+## Required proposal
+
+A proposal records:
+
+- source, provenance, evidence, and observation date;
+- source ownership, IP rights, sensitivity, and client relationship;
+- the reusable problem and the behavior or rule proposed;
+- sanitized canonical payload using synthetic examples;
+- disclosure review, including indirect identifiers and file metadata;
+- comparison with current doctrine and alternatives;
+- confidence, expected impact, effort, compatibility, and migration consequence;
+- proposed tier, owner, freshness reviewer, and destination;
+- Norfolk AI approval or rejection.
+
+## Promotion sequence
+
+1. Observe the product or source without converting observation into a recommendation.
+2. Classify ownership and sensitivity; unknown classification fails closed.
+3. Remove names, brands, palettes, credentials, data, personas, paths, URLs, and indirect identity markers.
+4. Replace examples with synthetic equivalents and complete human disclosure review.
+5. Compare the underlying pattern—not its client identity—with current Product OS doctrine.
+6. Approve or reject through Norfolk review.
+7. Land accepted WHAT and WHY in Product OS first.
+8. If executable support is needed, propose a compatible Kit implementation.
+9. Offer downstream adoption as a separate reviewable proposal.
+
+H-Analytics and other products validate or challenge the Product OS; they never become upstream dependencies. For motion, preserve and compare Figma creative intent, Replit handoff, H-Analytics production behavior, and Kit portability before selecting a canonical contract. Filename and timestamp are not quality evidence.</pre></article><article id="governance-repository-security-md"><p class="meta">governance/repository-security.md · accepted · source-sha256 1cdda82e27ac0cec6a9a67b80e5af364e30534ae7448ce22e30aff09b50d4627</p><pre># Repository security
+
+This contract states required repository controls. A statement here is not evidence that a GitHub setting has already been configured; implementation and verification must be recorded separately.
+
+## Change control
+
+- Protect the default branch and prohibit direct human or automation writes.
+- Require pull requests, current required checks, CODEOWNERS approval, resolved review conversations, and non-stale approval after material changes.
+- Prevent force pushes and branch deletion on protected release and default branches.
+- Use release environments with named human approval for publication.
+- Keep accepted release manifests immutable, signed, and content-addressed; record actor, source commit, checks, and included standards.
+
+## Automation identity
+
+Automation uses repository-scoped, least-privilege, short-lived GitHub App or OIDC identities. It writes only to a named branch and opens a reviewable change. It may not use a broad personal token, read unrelated repositories, push directly to the default branch, approve itself, or expand permissions at runtime.
+
+Unknown organizations, repositories, refs, actors, or classification fail before fetch or mutation. Private adoption consumes a pinned release bundle and verifies its signature and hashes; it never clones or executes unpinned Product OS head.
+
+## Secrets and sensitive data
+
+Keep credentials in approved secret management, never Git. Redact logs, errors, manifests, generated views, and review artifacts. Client evidence follows [Client boundaries](client-boundaries.md) before canonical commit. Large binary masters live in the approved object store; Git contains manifests, provenance, hashes, approved URLs, and small fixtures.
+
+## Auditability
+
+Security-relevant actions record attributable actor identity, time, target, source revision, requested permissions, approval, result, and correlation identifier. Failed preflights and denied operations are evidence and must not be hidden by retries.
+
+## Destructive operations
+
+Repository creation or migration credentials do not include deletion authority. Deletion, history rewriting, branch or PR removal, ruleset weakening, environment removal, and secret destruction require a separately scoped identity and exact human approval under [Approvals](approvals.md). Readiness or a cleanup recommendation is not authorization.
+
+## Verification before release
+
+Before a release, verify actual GitHub settings against this contract, exercise planted failures for direct default-branch writes, over-scoped identities, missing approval, bad signature or hash, unknown targets, and disclosure leakage, and retain the evidence with the release record.</pre></article><article id="migration-adr-provenance-md"><p class="meta">migration/adr-provenance.md · accepted · source-sha256 575f5a89d29647f769518762c7ef57f0e421f10b091235df6cab0c2309f3f913</p><pre># Imported ADR provenance
+
+Kit ADRs 0001–0017 were imported from pinned commit `f2680624596048a88f78e2a77b2a7e3d1d4aeed5`. [`imported-adrs.json`](imported-adrs.json) stores the source path, original date, exact body SHA-256, imported path, and historical disposition.
+
+Bodies are byte-for-byte source copies. Their original relative links may no longer resolve in Product OS and are intentionally not rewritten; rewriting would falsify the preserved body. Some bodies contain client-context examples and are restricted history, not reusable canonical guidance. A current decision must be authored in the top-level decision sequence and may cite, accept, reject, or supersede the imported record.
+
+Imported numbering is namespaced under `decisions/imported/norfolk-kit/`; it never competes with Product OS decision numbers.</pre></article><article id="migration-content-dispositions-md"><p class="meta">migration/content-dispositions.md · accepted · source-sha256 1249b950caea264680cc74aa75dc28c817c0d41c09834ba9e77d07aa69da73af</p><pre># Migration content dispositions
+
+| Source family | Disposition | Result |
+|---|---|---|
+| Kit universal governance and rationale | Promote | Re-authored as Product OS governance, decisions, product method, and design contracts with source register links |
+| Kit executable stack, adapters, UI, checks | Implement | Remains executable in Kit; Product OS owns WHAT and WHY |
+| Kit ADRs 0001–0017 | Historical import | Exact bodies live under `decisions/imported/norfolk-kit/`; they do not enter the current decision sequence |
+| Kit animation sources and Replit preservation | Implement + provenance | Remain in Kit; lineage and approval rules live in Product OS |
+| Kit client-brand assets and large masters | Leave behind | Release blocker pending rights classification and separate versioned storage; never copied into Product OS or future applications |
+| Manual duplicate governance, agent files, animation specs/source | Supersede | Product OS and Kit replacements exist; duplicates are not current authority |
+| Manual unique setup/launcher tools | Evaluate | Preserve until parity-tested in Kit; Manual cannot retire while unique value remains |
+| Starter Clerk/Prisma/Next.js implementation | Supersede | Archived legacy reference; current Kit uses WorkOS, Drizzle, and its approved reference architecture |
+| Starter agent-native commands and skills | Evaluate | Candidate input for U7; no automatic promotion |
+| H+ design, agent, progress, and animation architecture | Promote sanitized doctrine | Reuse taxonomy, truthful attribution, server-configured registries, and quality gates; keep product names, personas, visual identities, palette, and business rules product-local |
+
+Product blanks become templates. Product- or client-specific identity, palettes, business rules, evidence, and credentials remain outside canonical content.</pre></article><article id="migration-source-register-md"><p class="meta">migration/source-register.md · accepted · source-sha256 a2e7893f1753dffcc1db09f6eb99855fe608daa2c2037afddba0b0c0d836ab39</p><pre># Migration source register
+
+The machine-readable [`source-register.json`](source-register.json) records every source used or evaluated before the first Product OS release. A source requires ownership, sensitivity, evidence, pinned repository ref, disposition, approval, and destination. Promotion is fail-closed: pending, client-confidential, or destination-less material cannot become canonical.
+
+GitHub and the local upstream refs confirmed through 2026-08-07:
+
+| Repository | Visibility | State | Default branch | Recorded ref |
+|---|---|---|---|---|
+| `Norfolk-Group/norfolk-ai-product-os` | private | active, draft PR #1 | `main` | `21a972efd68c5c565c8724e41ea23270dead7f0e` |
+| `Norfolk-Group/norfolk-kit` | private | active, draft PR #1 | `main` | `f13a47590342042cb34816c899823994f265e1bb` |
+| `Norfolk-Group/norfolk-manual` | private | active | `main` | `b397f6e3d5e00d2be9ee608356f892daaca8dcd2` |
+| `Norfolk-Group/norfolk-starter` | **public before deletion** | deleted; no longer resolves | `main` before deletion | `3788ec74763018b73f4051613d90c0005874388b` |
+
+Starter was deleted outside the Product OS retirement workflow after this register captured its final reviewed main ref. The incomplete retirement dossier is retained as historical evidence rather than being rewritten as successful. Product OS and Kit feature branches are pushed for draft review; neither PR is merged and no release is published.</pre></article><article id="migration-superseded-material-md"><p class="meta">migration/superseded-material.md · accepted · source-sha256 5933d8dbf8183f941703c67b0c3d5505c2f1c143f6a184ba07d210286b2244cd</p><pre># Superseded material
+
+The following statements are historical only and fail validation if asserted as current doctrine:
+
+- Clerk as preferred or canonical authentication; WorkOS AuthKit is current.
+- Prisma as required ORM; Drizzle is current for the reference stack.
+- Norfolk Kit or Norfolk Manual as the universal source of truth; Product OS is canonical.
+- Large binary masters in Git; versioned object storage with verified retrieval is required.
+- Manual as a separate editable handbook; the handbook is generated from Product OS contracts.
+
+Legacy mentions may remain in exact imported history, migration explanations, or explicit forbidden-pattern tests. Context must make supersession unambiguous.
+
+Repository status does not equal deletion readiness. Starter is already archived but still requires a restoration-tested preservation dossier and exact deletion approval. Manual is active and retains unique setup/launcher material, so it is not ready for deletion.</pre></article><article id="outputs-charts-md"><p class="meta">outputs/charts.md · accepted · source-sha256 f30b15477fcbdab146660b9e732bd448b5c8be53eb28973768771f111ef2fc93</p><pre># Charts
+
+Every chart names measure, units, currency/scale, population, source, as-of/date basis, aggregation, precision, and missing-data behavior. Encodings do not rely on color alone. Axes and baselines do not mislead; dual axes require explicit approval. Empty, partial, stale, negative, zero, outlier, and dense-label states are fixtures. Each chart has an accessible text alternative describing the finding and the underlying data table when disclosure permits.</pre></article><article id="outputs-docx-md"><p class="meta">outputs/docx.md · accepted · source-sha256 fb25ca80fbb9f8f1f84da5f1cc012832ab2806c3378bce646f104ae0c7896307</p><pre># DOCX
+
+DOCX is paged but editable. Use semantic heading, list, table, caption, header/footer, footnote, and cross-reference styles. Keep-with-next and controlled page breaks prevent orphan headings. Long paragraphs and tables reflow; no text boxes are used for primary reading order. Tracked-change policy, template version, language, accessibility, fields, sources, and final PDF parity are declared.</pre></article><article id="outputs-email-md"><p class="meta">outputs/email.md · accepted · source-sha256 8790cf6899ff4ce222598da83cef0b8663f61d506cad2ef8c2a2ce0c9a402862</p><pre># Email
+
+Email is a fluid, hostile-client canvas. The subject, preheader, sender identity, reply path, audience authorization, confidentiality, plain-text alternative, unsubscribe/legal obligations, link destination, and expiry are explicit. Core meaning survives blocked images and narrow screens. Tables are presentation-only and responsive; attachments follow their own format contracts. Delivery is a human-only consequential action unless a separately approved automation contract says otherwise.</pre></article><article id="outputs-investor-materials-md"><p class="meta">outputs/investor-materials.md · accepted · source-sha256 da177b06b80db9f7c303c6e43033d4e73c0108aa3fb142ea5e28e146f09269ad</p><pre># Investor materials
+
+Every displayed number ties exactly to the authoritative snapshot under the declared currency, timezone, period, precision, and rounding policy. Derived values record formula/calculation version. Totals, subtotals, percentages, comparatives, and footnotes reconcile before visual approval. Data freshness, estimates, exclusions, forward-looking statements, confidentiality, and source disclosures are visible. A visually correct file with a numerical mismatch fails release.
+
+Investor outputs require an independent calculation review and a separate design review. Neither substitutes for recipient authorization or legal/compliance approval where applicable.</pre></article><article id="outputs-job-lifecycle-md"><p class="meta">outputs/job-lifecycle.md · accepted · source-sha256 539daf81d417a7aeae1564e5322dae19ed002445427ab42b234ee07bdd0bf290</p><pre># Output job lifecycle
+
+States are queued, running, indeterminate, determinate, cancelling, cancelled, failed, retrying, completed, available-to-download, downloaded, and expired. Determinate progress is grounded in server stages; indeterminate work shows elapsed time without a percentage.
+
+Every job has an idempotency key and attempt number. A retry resumes or replaces the attributable attempt without duplicate generation or delivery. Cancellation remains requested until acknowledged. Completed output after cancellation is a late-completion event and is not delivered automatically.
+
+Signed URLs are short-lived, audience-bound, revocable, and never logged. Download rechecks current authorization and confidentiality. Expired or revoked jobs present an explicit regeneration path. Jobs retain the authoritative snapshot and audit record according to the data-lifecycle contract.</pre></article><article id="outputs-pdf-md"><p class="meta">outputs/pdf.md · accepted · source-sha256 6baecb0fae2bbceebcc486475d01f2fbaa700ca1dffdbf5aa4c43fa4c7f6eee5</p><pre># PDF
+
+PDF is a fixed, paged canvas. Body text is at least 8pt and contracts should choose 9–11pt; margins are at least 18pt. Tables repeat headers, split only at governed row boundaries, and move to landscape or appendices before type shrinks below the floor. Page numbers, document title, language, reading order, bookmarks, tagged structure, alt text, source notes, confidentiality, and generated-at basis are explicit. Missing fonts or glyphs fail rendering; silent substitution is prohibited.</pre></article><article id="outputs-pptx-md"><p class="meta">outputs/pptx.md · accepted · source-sha256 599f9af920d026fc5657f117ee1c60d1534345dd2e95ad2eecc6fd66cf7c6e2e</p><pre># PPTX
+
+Slides are fixed canvases with declared aspect ratio, safe area, typography floor, theme, and speaker-note policy. One message dominates each slide. Long titles recompose or split; they never shrink without limit. Tables move to appendix/detail slides before becoming unreadable. Charts retain units, source, date basis, and editable data when allowed. Font substitution, overflow, off-slide objects, reading order, contrast, notes, and export-to-PDF are verified.</pre></article><article id="outputs-print-md"><p class="meta">outputs/print.md · accepted · source-sha256 ad95e5007d26375ae77c992fa075c543a35c2b12adde8b2020d5bc0e38151bdf</p><pre># Print
+
+Print contracts declare trim size, bleed, safe area, margins, color space, profile, ink/contrast constraints, image resolution, overprint, crop marks, binding allowance, duplex behavior, paper assumption, and proof method. Typography respects the PDF floor. Web screenshots and unverified RGB-to-CMYK conversions are not print masters. Large masters live in versioned R2 storage with a lightweight manifest and proof fixture in Git.</pre></article><article id="outputs-README-md"><p class="meta">outputs/README.md · accepted · source-sha256 a2c776d8313a3bbbe060a8381cf99662a5fdb88472b92e557fe8d793c8a7acdb</p><pre># Output system
+
+Generated business materials are product surfaces with their own design, data, authorization, confidentiality, lifecycle, and verification contracts. They are not screenshots of the application and do not inherit safe behavior by accident.
+
+Read [shared principles](shared-principles.md) and [job lifecycle](job-lifecycle.md), then the format contract: [PDF](pdf.md), [XLSX](xlsx.md), [PPTX](pptx.md), [DOCX](docx.md), [email](email.md), [charts](charts.md), [print](print.md), or [investor materials](investor-materials.md).</pre></article><article id="outputs-shared-principles-md"><p class="meta">outputs/shared-principles.md · accepted · source-sha256 e709a800ab3eac7b23be83581c8165a6f5ad13cd8a161f957d909015a6f63052</p><pre># Shared output principles
+
+Every output contract declares purpose, audience, fixed/fluid/paged/grid canvas, typography floor, controlled margins, pagination, overflow, chart semantics, sources, confidentiality, numerical tie-out, accessibility, and asset policy.
+
+One immutable input/calculation snapshot is authoritative for each job: request scope, locale, currency, timezone, rounding, disclosures, generated-at time, calculation/code version, and content hash. Rendering never recalculates independently. Recipient authorization is checked when requested and again when downloaded.
+
+Required golden states are normal, overflow, empty, and unavailable. Fixtures also exercise wide tables, partial/stale data, font substitution, print margins, precision, and charts. Overflow reflows, paginates, scales within an approved floor, wraps, truncates with disclosure, or fails visibly; it never clips silently.
+
+Generated masters above the Git threshold live in versioned R2 objects with manifests and retrieval-tested checksums. Git contains lightweight golden fixtures only. External assets are pinned and licensed; generative assets record model/tool, prompt or transformation provenance, rights, review, and accessibility alternative.</pre></article><article id="outputs-xlsx-md"><p class="meta">outputs/xlsx.md · accepted · source-sha256 bd1a2e40a2daa1b4fcf9c64d4c2886843b97c0cf60b0ff642b7c2ac5c6015975</p><pre># XLSX
+
+XLSX preserves every requested filter, selection, column, sort, locale, unit, precision, and date basis. A visible context sheet records them. Values remain typed; displayed rounding never changes authoritative precision. Formulas are governed and auditable. User-controlled cells beginning with `=`, `+`, `-`, or `@` are rejected or safely escaped to prevent formula injection. Wide data uses frozen identifiers, filters, sensible widths, wrap, and separate sheets—never hidden truncation.</pre></article><article id="playbooks-README-md"><p class="meta">playbooks/README.md · accepted · source-sha256 101918a65412b9f2303c2ab3d9a4b0638cfa2f4851b154ebe1d67cb51bf9ebec</p><pre># Domain playbooks
+
+Domain playbooks adapt shared Norfolk principles to a class of products without turning one client implementation into a universal rule. They are validated by [`domain-playbook.schema.json`](../schemas/domain-playbook.schema.json).
+
+## Lifecycle
+
+`planned` → `evidence-review` → `accepted` → `deprecated` or `superseded`.
+
+A planned playbook may be mostly empty. That is preferable to fluent filler. Accepted guidance requires cited evidence, confidence, an accountable owner, and an accepted review. Universal claims require multi-product, research, or authoritative evidence; one attractive example cannot support them.
+
+## Scope
+
+Label each claim `universal`, `domain`, or `product-pattern`. Domain guidance may shape information density, terminology, trust posture, calculations, disclosures, role patterns, and output expectations. Client brand, private data, and product-specific exceptions remain downstream.
+
+## Evidence boundary
+
+Named but unexamined references remain planned. Client evidence is sanitized, rights-reviewed, and promoted under [client boundaries](../governance/client-boundaries.md) before citation. H-Analytics can validate an analytics pattern, but cannot become an upstream dependency or Norfolk identity.</pre></article><article id="product-application-inventory-md"><p class="meta">product/application-inventory.md · accepted · source-sha256 6c5849db4fd4c31c55a72f77b6e1349c740ba853297448d14daff8757d219b57</p><pre># Application inventory
+
+The inventory is the structured current-state map validated by [`application-inventory.schema.json`](../schemas/application-inventory.schema.json). Every existing item links to one or more observation IDs.
+
+## Required collections
+
+- routes, pages, and views;
+- primary, secondary, nested, and contextual navigation;
+- roles, permissions, owners, and administrative surfaces;
+- dialogs, forms, drawers, collapsible regions, cards, tables, and charts;
+- APIs, procedures, integrations, events, and background work;
+- reports, exports, emails, print, and generated artifacts;
+- reusable component and token patterns, duplicates, and deviations;
+- state coverage: default, hover, focus, active, disabled, loading, error, empty, success, cancel, timeout, offline, and reduced motion where applicable.
+
+An empty collection is valid only when it means “observed and none found” or the product is explicitly greenfield. “Not yet checked” is a coverage gap, not an empty fact.
+
+## Completion and invalidation
+
+The inventory owner signs off on coverage. New evidence that materially changes a route, workflow, role, permission, or output invalidates the affected IA and recommendations and returns them to review.</pre></article><article id="product-discovery-md"><p class="meta">product/discovery.md · accepted · source-sha256 bb70bb9d421d87205361f9226028cb8fb677fb38083c8f69646cbfc5bd86e796</p><pre># Product discovery
+
+Discovery produces an approved product profile and goals; it does not produce screens or implementation scope.
+
+## Required product profile
+
+Record:
+
+- product name and purpose;
+- users, buyers or payers, and accountable product owner;
+- jobs and decisions the product supports;
+- value created for the user and organization;
+- measurable success outcomes and current baseline when known;
+- domain vocabulary and constraints;
+- trust, emotional, brand, and accessibility posture;
+- data sensitivity, legal, security, and integration constraints;
+- whether an existing UI is available for observation.
+
+Unknowns remain explicit. Do not convert an assumption into a fact because the workflow wants a complete field.
+
+## Evidence sources
+
+Use owner interviews, user interviews, existing product and business documents, analytics, support evidence, approved research, and direct system observation. Label the source, date, rights, sensitivity, confidence, and any conflict. Client-derived material follows the client-boundary gate before it enters Product OS evidence.
+
+## Exit gate
+
+Discovery is complete when the accountable product owner accepts the purpose, audience, value, decisions, success measures, trust posture, constraints, and existing-versus-greenfield state. Conflicting goals are resolved or recorded as an explicit decision before observation begins.</pre></article><article id="product-information-architecture-md"><p class="meta">product/information-architecture.md · accepted · source-sha256 7b047bc327eaca0a1fa4a797ad64d943d129af3a26dd2caa7c45a45f4a70d1ad</p><pre># Information architecture
+
+Information architecture is a separate product discipline between inventory and design. It asks whether the current structure deserves to exist before visual work hardens it.
+
+## Analysis questions
+
+- Does each route support a product goal or required responsibility?
+- Should a route, view, or workflow remain, merge, split, move, or disappear?
+- Can navigation lose entries or levels without hiding necessary work?
+- Are administrative functions grouped coherently?
+- Do roles and permissions match responsibility and least privilege?
+- Does progressive disclosure reduce complexity without concealing material information?
+- Are reports and exports located where the decisions they support are made?
+
+## Required proposal
+
+The IA proposal contains a route model, menu tree, workflow map, role-permission model, disposition for existing surfaces, evidence links, conflicts, migration implications, and open questions. Every gated route names its permission owner and roles. A menu cannot reference an unowned or undefined route.
+
+## Approval gate
+
+The accountable product owner approves the route, menu, role, permission, and workflow model. Only an approved IA record with a stable approval ID may advance to `design-contract-ready`. Design concepts may explore feasibility earlier, but cannot acquire contract status or create irreversible implementation commitments.
+
+## Invalidation
+
+A material change to purpose, users, roles, permissions, inventory, or success measures marks the IA `invalidated`, records the cause, and returns the workflow to the earliest affected stage.</pre></article><article id="product-observation-md"><p class="meta">product/observation.md · accepted · source-sha256 fadad5987f3034fc66658bc01f0131e72cae45a8bd7bf3e09e826937e4c11f21</p><pre># Product observation
+
+The first application pass is inventory-only. Its purpose is to establish a defensible current state before any agent recommends changes.
+
+## Observation record
+
+Each observation has a stable ID, one factual statement, and at least one source type and locator. Useful locators include a route, source path, reproducible runtime step, screenshot manifest, interview record, generated artifact, or approved document. Record capture time when the source can change.
+
+An observation may say “the navigation contains nine top-level items.” It may not say “the navigation is cluttered” or “reduce it to five.” The first is a fact; the others are interpretation and recommendation.
+
+## Coverage
+
+Observe routes, nested navigation, roles, permissions, administrative surfaces, dialogs, forms, progressive disclosure, components, states, APIs, jobs, long-running work, reports, exports, emails, generated artifacts, tokens, themes, responsive behavior, accessibility behavior, inconsistencies, and duplicates.
+
+## Greenfield rule
+
+When no UI exists, record that fact once and keep the observation and current-state inventory collections empty. Product and domain evidence can still support a future IA proposal, but no route, screen, component, or behavior is described as observed.
+
+## Exit gate
+
+Observation is complete when evidence is reproducible, sensitive sources are classified, coverage gaps are explicit, and no recommendation language remains in the observation log.</pre></article><article id="product-product-principles-md"><p class="meta">product/product-principles.md · accepted · source-sha256 9c073b7e20f55005db7f529256f9a55631cce6970d2453246ae2634ddfdc3e26</p><pre># Product principles
+
+## Begin with the product, not the interface
+
+Norfolk AI first establishes why a product exists, who uses it, who pays for it, which decisions it improves, what value it creates, how success is measured, and which trust, domain, risk, data, and integration constraints shape it. Code and visual style are downstream expressions of those answers.
+
+The operating sequence is:
+
+1. approved product profile and goals;
+2. observation-only evidence collection;
+3. complete application inventory, or an explicit record that no application exists;
+4. interpretation and information-architecture proposal;
+5. approved route, menu, role, permission, and workflow model;
+6. evidence-linked recommendations;
+7. design contract, architecture, and implementation.
+
+No later artifact may manufacture evidence that an earlier gate did not produce.
+
+## Keep epistemic categories separate
+
+- **Fact:** directly observed, with a reproducible locator or named source.
+- **Interpretation:** what multiple facts may mean; labeled as analysis and permitted to be uncertain.
+- **Recommendation:** a proposed change linked to observations and a product goal, with confidence, impact, effort, risk, alternatives, ownership, and review state.
+- **Approval:** an accountable human decision. Agent output is never approval.
+
+Mixing recommendation language into an observation corrupts the evidence base and blocks the workflow.
+
+## Respect existing and greenfield products
+
+An existing application is inventoried before it is judged. A greenfield product records `uiState: none` and `noExistingUiRecorded: true`; it proceeds from product goals without inventing routes, screens, components, user behavior, or “current-state” evidence.
+
+## Invalidate downstream work honestly
+
+A material change to purpose, users, payer, value, success measures, roles, permissions, or inventory invalidates dependent IA, recommendations, and design contracts. The workflow returns to the earliest affected gate and preserves the prior record as history. A later artifact cannot silently patch around a changed premise.
+
+## Client evidence does not become identity
+
+A product such as H-Analytics may validate or challenge the method through a bounded, sanitized evidence slice. It remains a product repository, not the source of Norfolk AI identity or automatic canon. Promotion follows [client boundaries](../governance/client-boundaries.md) and [promotion](../governance/promotion.md).</pre></article><article id="product-recommendations-md"><p class="meta">product/recommendations.md · accepted · source-sha256 9dc109e262ec6c68da72184a847fab91d4795f25090ed84011b8df96c24ac0ec</p><pre># Product recommendations
+
+A recommendation is a reviewable proposal, never a disguised observation or automatic mutation.
+
+## Required record
+
+Every recommendation names:
+
+- the proposed change;
+- one or more source observation IDs;
+- the product goal it advances;
+- confidence, expected impact, and effort;
+- risk and at least one alternative;
+- affected routes, workflows, outputs, or roles;
+- accountable owner;
+- approval state and review date.
+
+Use `proposed`, `approved`, `rejected`, `deferred`, or `invalidated`. An agent may draft and rank recommendations; it cannot approve them.
+
+## Prioritization
+
+Rank with evidence, not visual novelty. Product value, risk reduction, access correctness, user effort, decision quality, and reversibility matter more than how impressive a change appears. State uncertainty and competing evidence plainly.
+
+## Traceability and expiry
+
+The source observations and goal must remain addressable. If any premise is invalidated, the recommendation returns to `invalidated` until re-evaluated. Review dates prevent old proposals from masquerading as current direction.</pre></article></body></html>

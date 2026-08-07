@@ -1,0 +1,42 @@
+{
+  "capabilities": [
+    {
+      "id": "document.create",
+      "userVocabulary": ["create document", "draft document"],
+      "procedure": "documents.create",
+      "callers": ["person", "agent", "scheduled job"],
+      "contextAvailability": "authorized workspace, template, locale, and source records",
+      "completionSignal": "document identifier, version, and review state",
+      "recovery": "discard the unapproved version or restore the prior approved version",
+      "consequential": false,
+      "transports": [
+        { "name": "ui", "applicability": "implemented", "procedure": "documents.create", "authorizationPolicy": "document-write", "approvalPolicy": "none" },
+        { "name": "trpc", "applicability": "implemented", "procedure": "documents.create", "authorizationPolicy": "document-write", "approvalPolicy": "none" },
+        { "name": "mcp", "applicability": "implemented", "procedure": "documents.create", "authorizationPolicy": "document-write", "approvalPolicy": "none" },
+        { "name": "copilot", "applicability": "implemented", "procedure": "documents.create", "authorizationPolicy": "document-write", "approvalPolicy": "none" },
+        { "name": "jobs", "applicability": "implemented", "procedure": "documents.create", "authorizationPolicy": "document-write", "approvalPolicy": "none" },
+        { "name": "reports", "applicability": "implemented", "procedure": "documents.create", "authorizationPolicy": "document-write", "approvalPolicy": "none" },
+        { "name": "schedules", "applicability": "implemented", "procedure": "documents.create", "authorizationPolicy": "document-write", "approvalPolicy": "none" }
+      ]
+    },
+    {
+      "id": "external-message.send",
+      "userVocabulary": ["send message"],
+      "procedure": "communications.send",
+      "callers": ["person", "agent", "scheduled job"],
+      "contextAvailability": "authorized recipient, approved content, delivery channel, and approval grant",
+      "completionSignal": "provider message identifier and attributable delivery result",
+      "recovery": "stop retries, revoke pending delivery where supported, and record follow-up",
+      "consequential": true,
+      "transports": [
+        { "name": "ui", "applicability": "implemented", "procedure": "communications.send", "authorizationPolicy": "external-communications", "approvalPolicy": "human-only" },
+        { "name": "trpc", "applicability": "implemented", "procedure": "communications.send", "authorizationPolicy": "external-communications", "approvalPolicy": "human-only" },
+        { "name": "mcp", "applicability": "implemented", "procedure": "communications.send", "authorizationPolicy": "external-communications", "approvalPolicy": "human-only" },
+        { "name": "copilot", "applicability": "implemented", "procedure": "communications.send", "authorizationPolicy": "external-communications", "approvalPolicy": "human-only" },
+        { "name": "jobs", "applicability": "implemented", "procedure": "communications.send", "authorizationPolicy": "external-communications", "approvalPolicy": "human-only" },
+        { "name": "reports", "applicability": "not-applicable", "exception": { "reasonType": "security", "reason": "A report is evidence, not an outward communication transport.", "humanProcedure": "Open the approved message in the UI and issue a scoped send approval.", "approvalId": "EXAMPLE-REPORT-SEND-BOUNDARY" } },
+        { "name": "schedules", "applicability": "implemented", "procedure": "communications.send", "authorizationPolicy": "external-communications", "approvalPolicy": "human-only" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,245 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://norfolk.ai/schemas/design-contract.schema.json",
+  "title": "Design contract",
+  "type": "object",
+  "required": ["id", "status", "owner", "lastVerified", "productContext", "inheritance", "foundations", "density", "composition", "responsive", "accessibility", "voice", "themes", "authentication", "stateBehavior", "motion", "feedback", "forbiddenPatterns", "references", "rules", "shadcnInputs", "variations", "approval"],
+  "properties": {
+    "id": { "$ref": "#/definitions/string" },
+    "status": { "enum": ["draft", "proposed", "accepted", "deprecated", "superseded"] },
+    "owner": { "$ref": "#/definitions/string" },
+    "lastVerified": { "type": "string", "format": "date" },
+    "productContext": {
+      "type": "object",
+      "required": ["productProfile", "inventory", "iaApprovalId"],
+      "properties": {
+        "productProfile": { "$ref": "#/definitions/string" },
+        "inventory": { "$ref": "#/definitions/string" },
+        "iaApprovalId": { "$ref": "#/definitions/string" },
+        "domainPlaybook": { "$ref": "#/definitions/string" }
+      },
+      "additionalProperties": false
+    },
+    "inheritance": { "$ref": "#/definitions/inheritance" },
+    "foundations": { "$ref": "#/definitions/foundations" },
+    "density": {
+      "type": "object",
+      "required": ["rule", "focus", "scan"],
+      "properties": {
+        "rule": { "const": "job-based" },
+        "focus": { "const": "bounded" },
+        "scan": { "const": "fixed-grid" }
+      },
+      "additionalProperties": false
+    },
+    "composition": {
+      "type": "object",
+      "required": ["primitiveDefault", "focusMaxWidthPx", "readingMeasureCh", "scanGridRequired"],
+      "properties": {
+        "primitiveDefault": { "const": "shadcn" },
+        "focusMaxWidthPx": { "type": "integer", "minimum": 480, "maximum": 640 },
+        "readingMeasureCh": { "type": "integer", "minimum": 45, "maximum": 75 },
+        "scanGridRequired": { "const": true }
+      },
+      "additionalProperties": false
+    },
+    "responsive": {
+      "type": "object",
+      "required": ["mobile", "tablet", "desktop"],
+      "properties": {
+        "mobile": {
+          "type": "object",
+          "required": ["minimumTargetPx", "safeArea", "reflow", "copilotTreatment"],
+          "properties": {
+            "minimumTargetPx": { "type": "integer", "minimum": 44 },
+            "safeArea": { "const": true },
+            "reflow": { "const": "intentional" },
+            "copilotTreatment": { "enum": ["sheet", "equivalent-mobile-surface"] }
+          },
+          "additionalProperties": false
+        },
+        "tablet": { "$ref": "#/definitions/reviewedViewport" },
+        "desktop": { "$ref": "#/definitions/reviewedViewport" }
+      },
+      "additionalProperties": false
+    },
+    "accessibility": {
+      "type": "object",
+      "required": ["standard", "keyboard", "screenReader", "contrast", "reducedMotion"],
+      "properties": {
+        "standard": { "const": "WCAG 2.2 AA" },
+        "keyboard": { "const": true }, "screenReader": { "const": true }, "contrast": { "const": true }, "reducedMotion": { "const": true }
+      },
+      "additionalProperties": false
+    },
+    "voice": {
+      "type": "object",
+      "required": ["register", "rules"],
+      "properties": { "register": { "const": "plain-concrete" }, "rules": { "$ref": "#/definitions/stringList" } },
+      "additionalProperties": false
+    },
+    "themes": {
+      "type": "object",
+      "required": ["organizationOwned", "variants", "userSelectable"],
+      "properties": {
+        "organizationOwned": { "const": true },
+        "variants": { "$ref": "#/definitions/stringList" },
+        "userSelectable": { "type": "array", "uniqueItems": true, "items": { "enum": ["appearance", "contrast", "density", "motion"] } }
+      },
+      "additionalProperties": false
+    },
+    "authentication": {
+      "type": "object",
+      "required": ["provider", "states"],
+      "properties": {
+        "provider": { "const": "WorkOS AuthKit" },
+        "states": {
+          "type": "array", "minItems": 12, "maxItems": 12, "uniqueItems": true,
+          "items": { "enum": ["login", "invitation", "recovery", "email-verification", "mfa", "organization-choice", "organization-switch", "sso-routing", "session-expiry", "access-denied", "loading", "recoverable-error"] }
+        }
+      },
+      "additionalProperties": false
+    },
+    "stateBehavior": {
+      "type": "object",
+      "required": ["requiredStates"],
+      "properties": {
+        "requiredStates": {
+          "type": "array", "minItems": 10, "maxItems": 10, "uniqueItems": true,
+          "items": { "enum": ["default", "hover", "focus", "active", "disabled", "loading", "error", "empty", "success", "cancel"] }
+        }
+      },
+      "additionalProperties": false
+    },
+    "motion": {
+      "type": "object",
+      "required": ["honestProgress", "reducedMotion", "fabricatedPercentage"],
+      "properties": { "honestProgress": { "const": true }, "reducedMotion": { "const": true }, "fabricatedPercentage": { "const": false } },
+      "additionalProperties": false
+    },
+    "feedback": {
+      "type": "object",
+      "required": ["success", "error", "consequential"],
+      "properties": { "success": { "$ref": "#/definitions/string" }, "error": { "$ref": "#/definitions/string" }, "consequential": { "$ref": "#/definitions/string" } },
+      "additionalProperties": false
+    },
+    "forbiddenPatterns": { "$ref": "#/definitions/stringList" },
+    "references": { "type": "array", "items": { "$ref": "#/definitions/reference" } },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "statement", "sources"],
+        "properties": {
+          "id": { "$ref": "#/definitions/string" }, "statement": { "$ref": "#/definitions/string" },
+          "sources": {
+            "type": "array", "minItems": 1,
+            "items": {
+              "type": "object", "required": ["referenceId", "state"],
+              "properties": { "referenceId": { "$ref": "#/definitions/string" }, "state": { "const": "accepted" } },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "shadcnInputs": { "type": "array", "items": { "$ref": "#/definitions/shadcnInput" } },
+    "variations": { "type": "array", "items": { "$ref": "#/definitions/variation" } },
+    "approval": {
+      "type": "object",
+      "required": ["owner", "decision", "approvedAt"],
+      "properties": { "owner": { "$ref": "#/definitions/string" }, "decision": { "enum": ["accepted", "rejected", "deferred"] }, "approvedAt": { "type": "string", "format": "date-time" } },
+      "additionalProperties": false
+    }
+  },
+  "allOf": [{ "if": { "properties": { "status": { "const": "accepted" } } }, "then": { "properties": { "approval": { "properties": { "decision": { "const": "accepted" } } } } } }],
+  "additionalProperties": false,
+  "definitions": {
+    "string": { "type": "string", "minLength": 1 },
+    "stringList": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/string" } },
+    "ownedSource": {
+      "type": "object", "required": ["source", "owner"],
+      "properties": { "source": { "$ref": "#/definitions/string" }, "owner": { "$ref": "#/definitions/string" } },
+      "additionalProperties": false
+    },
+    "inheritance": {
+      "type": "object",
+      "required": ["foundation", "domain", "clientBrand", "product", "organizationTheme", "userPreferences"],
+      "properties": {
+        "foundation": { "$ref": "#/definitions/ownedSource" }, "domain": { "$ref": "#/definitions/ownedSource" },
+        "clientBrand": { "$ref": "#/definitions/ownedSource" }, "product": { "$ref": "#/definitions/ownedSource" }, "organizationTheme": { "$ref": "#/definitions/ownedSource" },
+        "userPreferences": {
+          "type": "object", "required": ["allowed"],
+          "properties": {
+            "allowed": { "type": "array", "uniqueItems": true, "items": { "enum": ["appearance", "contrast", "density", "motion"] } },
+            "values": {
+              "type": "object",
+              "properties": {
+                "appearance": { "enum": ["light", "dark", "system"] }, "contrast": { "enum": ["standard", "high"] },
+                "density": { "enum": ["comfortable", "compact"] }, "motion": { "enum": ["full", "reduced"] }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "tokenSet": {
+      "type": "object",
+      "required": ["id", "scope", "semanticOnly", "productSpecific", "tokens"],
+      "properties": {
+        "id": { "$ref": "#/definitions/string" }, "scope": { "enum": ["foundation", "domain", "client-brand", "product", "organization-theme"] },
+        "semanticOnly": { "type": "boolean" }, "productSpecific": { "type": "boolean" },
+        "tokens": {
+          "type": "array", "minItems": 1,
+          "items": { "type": "object", "required": ["name", "role"], "properties": { "name": { "$ref": "#/definitions/string" }, "role": { "$ref": "#/definitions/string" }, "value": { "$ref": "#/definitions/string" } }, "additionalProperties": false }
+        }
+      },
+      "allOf": [{ "if": { "properties": { "scope": { "const": "foundation" } } }, "then": { "properties": { "semanticOnly": { "const": true }, "productSpecific": { "const": false } } } }],
+      "additionalProperties": false
+    },
+    "foundations": {
+      "type": "object",
+      "required": ["tokenSets", "typography", "spacing", "radii", "shadows", "iconography"],
+      "properties": {
+        "tokenSets": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/tokenSet" } },
+        "typography": {
+          "type": "object", "required": ["bodyFamily", "source", "scale", "numeric"],
+          "properties": {
+            "bodyFamily": { "$ref": "#/definitions/string" }, "source": { "$ref": "#/definitions/string" }, "scale": { "$ref": "#/definitions/stringList" },
+            "numeric": { "type": "object", "required": ["family", "tabular", "decimalAlignment"], "properties": { "family": { "$ref": "#/definitions/string" }, "tabular": { "const": true }, "decimalAlignment": { "const": true } }, "additionalProperties": false }
+          },
+          "additionalProperties": false
+        },
+        "spacing": { "type": "object", "required": ["basePx", "scale"], "properties": { "basePx": { "type": "integer", "minimum": 1 }, "scale": { "type": "array", "minItems": 1, "items": { "type": "number", "minimum": 0 } } }, "additionalProperties": false },
+        "radii": { "type": "object", "required": ["scale"], "properties": { "scale": { "type": "array", "minItems": 1, "items": { "type": "number", "minimum": 0 } } }, "additionalProperties": false },
+        "shadows": { "type": "object", "required": ["permitted"], "properties": { "permitted": { "$ref": "#/definitions/stringList" } }, "additionalProperties": false },
+        "iconography": { "type": "object", "required": ["library", "defaultStrokeWidth", "largeStrokeWidth", "minimumSizePx"], "properties": { "library": { "const": "Lucide" }, "defaultStrokeWidth": { "const": 1.5 }, "largeStrokeWidth": { "const": 1.25 }, "minimumSizePx": { "type": "integer", "minimum": 14 } }, "additionalProperties": false }
+      },
+      "additionalProperties": false
+    },
+    "reviewedViewport": { "type": "object", "required": ["reviewed"], "properties": { "reviewed": { "const": true } }, "additionalProperties": false },
+    "reference": {
+      "type": "object", "required": ["id", "state"],
+      "properties": { "id": { "$ref": "#/definitions/string" }, "state": { "enum": ["named", "observed", "extracted", "accepted", "rejected", "superseded"] }, "locator": { "$ref": "#/definitions/string" }, "extracted": { "$ref": "#/definitions/string" } },
+      "additionalProperties": false
+    },
+    "shadcnInput": {
+      "type": "object", "required": ["registrySource", "upstreamVersion", "recordedHash", "resolvedHash", "verification", "installedFiles", "localDeviations"],
+      "properties": {
+        "registrySource": { "type": "string", "format": "uri" }, "upstreamVersion": { "$ref": "#/definitions/string" },
+        "recordedHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "resolvedHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "verification": { "const": "matched" }, "installedFiles": { "$ref": "#/definitions/stringList" }, "localDeviations": { "type": "array", "items": { "$ref": "#/definitions/string" } }
+      },
+      "additionalProperties": false
+    },
+    "variation": {
+      "type": "object", "required": ["id", "field", "value", "governance", "recordId"],
+      "properties": { "id": { "$ref": "#/definitions/string" }, "field": { "$ref": "#/definitions/string" }, "value": {}, "governance": { "enum": ["approved-variant", "exception"] }, "recordId": { "$ref": "#/definitions/string" } },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "$schema":"http://json-schema.org/draft-07/schema#",
+  "$id":"https://norfolk.ai/schemas/module-contract.schema.json",
+  "type":"object",
+  "required":["name","owner","status","compatibility","procedures","authorization","dataLifecycle","accessibility","enable","disable","remove","tests"],
+  "properties":{"name":{"type":"string","minLength":1},"owner":{"type":"string","minLength":1},"status":{"enum":["proposed","active","deprecated","removed"]},"compatibility":{"type":"object"},"procedures":{"type":"array","minItems":1},"authorization":{"type":"object"},"dataLifecycle":{"type":"object"},"accessibility":{"type":"object"},"enable":{"type":"object"},"disable":{"type":"object"},"remove":{"type":"object"},"tests":{"type":"array","minItems":1}},
+  "additionalProperties":true
+}

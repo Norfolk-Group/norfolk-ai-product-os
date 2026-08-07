@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://norfolk.ai/schemas/motion-record.schema.json",
+  "title": "Motion record",
+  "type": "object",
+  "required": ["id", "status", "approval", "implementation", "lineage", "motion", "reducedMotion", "states"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["candidate", "canonical", "rejected", "superseded"] },
+    "approval": {
+      "type": "object",
+      "required": ["decision"],
+      "properties": {
+        "decision": { "enum": ["approved", "rejected", "deferred"] },
+        "by": { "type": "string" },
+        "date": { "type": "string" },
+        "rationale": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "implementation": { "$ref": "#/definitions/source" },
+    "lineage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["role", "kind", "sourcePath", "sha256"],
+        "properties": {
+          "role": { "enum": ["creative-intent", "best-original-export", "best-production", "portable-preservation", "supporting-recipe"] },
+          "kind": { "type": "string", "minLength": 1 },
+          "sourcePath": { "type": "string", "minLength": 1 },
+          "sha256": { "$ref": "#/definitions/hash" },
+          "objectVersion": { "type": "string" },
+          "retrievedSha256": { "$ref": "#/definitions/hash" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "motion": {
+      "type": "object",
+      "required": ["essential", "timelineSource", "timingPreserved", "easingPreserved"],
+      "properties": {
+        "essential": { "type": "boolean" },
+        "timelineSource": { "enum": ["recorded", "server-state", "invented"] },
+        "timingPreserved": { "type": "boolean" },
+        "easingPreserved": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "reducedMotion": {
+      "type": "object",
+      "required": ["behavior", "preservedInformation"],
+      "properties": {
+        "behavior": { "type": "string", "minLength": 1 },
+        "preservedInformation": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+      },
+      "additionalProperties": false
+    },
+    "states": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "source": {
+      "type": "object",
+      "required": ["sourcePath", "sha256"],
+      "properties": {
+        "sourcePath": { "type": "string", "minLength": 1 },
+        "sha256": { "$ref": "#/definitions/hash" }
+      },
+      "additionalProperties": false
+    }
+  }
+}
