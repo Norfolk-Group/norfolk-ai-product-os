@@ -22,6 +22,22 @@ test("the bounded validation records the current source commit and accepted U11 
   assert.match(body, /decisions\/0007-governed-icon-and-capability-parity-exceptions\.md/);
 });
 
+test("the presentation IR proposal is accepted without opening publication or client reuse", async () => {
+  const evidence = await readFile(resolve(root, "validation/report-output.md"), "utf8");
+  assert.match(evidence, /Source commit: `eeb05f9563b93f8842d2257eb7054555935f7e44`/);
+  assert.match(evidence, /\| PP-U11-DECK-IR \| accepted \|/);
+  assert.match(evidence, /outputs\/presentation-ir\.md/);
+  assert.match(evidence, /Publication: blocked/i);
+
+  const outputIndex = await readFile(resolve(root, "outputs/README.md"), "utf8");
+  const pptx = await readFile(resolve(root, "outputs/pptx.md"), "utf8");
+  assert.match(outputIndex, /\[Presentation IR\]\(presentation-ir\.md\)/);
+  assert.match(pptx, /\[presentation IR\]\(presentation-ir\.md\)/i);
+
+  const readiness = await readFile(resolve(root, "validation/release-readiness.md"), "utf8");
+  assert.doesNotMatch(readiness, /resolution or explicit deferral[^\n]+PP-U11-DECK-IR/);
+});
+
 test("the throwaway application verifies adoption, rollback, and exception preservation", async () => {
   const body = await readFile(resolve(root, "validation/throwaway-application.md"), "utf8");
   for (const phrase of ["signature verified", "all content hashes verified", "rollback verified", "local exception preserved", "no repository mutation"]) assert.ok(body.includes(phrase), phrase);

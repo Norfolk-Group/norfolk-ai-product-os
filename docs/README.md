@@ -99,6 +99,7 @@ These contracts keep product purpose, observed evidence, structure, and recommen
 - [Output system index](../outputs/README.md)
 - [Shared output principles](../outputs/shared-principles.md)
 - [Output job lifecycle](../outputs/job-lifecycle.md)
+- [Presentation IR](../outputs/presentation-ir.md)
 - [PDF](../outputs/pdf.md)
 - [XLSX](../outputs/xlsx.md)
 - [PPTX](../outputs/pptx.md)

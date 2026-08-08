@@ -755,15 +755,62 @@ Every job has an idempotency key and attempt number. A retry resumes or replaces
 
 Signed URLs are short-lived, audience-bound, revocable, and never logged. Download rechecks current authorization and confidentiality. Expired or revoked jobs present an explicit regeneration path. Jobs retain the authoritative snapshot and audit record according to the data-lifecycle contract.</pre></article><article id="outputs-pdf-md"><p class="meta">outputs/pdf.md · accepted · source-sha256 6baecb0fae2bbceebcc486475d01f2fbaa700ca1dffdbf5aa4c43fa4c7f6eee5</p><pre># PDF
 
-PDF is a fixed, paged canvas. Body text is at least 8pt and contracts should choose 9–11pt; margins are at least 18pt. Tables repeat headers, split only at governed row boundaries, and move to landscape or appendices before type shrinks below the floor. Page numbers, document title, language, reading order, bookmarks, tagged structure, alt text, source notes, confidentiality, and generated-at basis are explicit. Missing fonts or glyphs fail rendering; silent substitution is prohibited.</pre></article><article id="outputs-pptx-md"><p class="meta">outputs/pptx.md · accepted · source-sha256 599f9af920d026fc5657f117ee1c60d1534345dd2e95ad2eecc6fd66cf7c6e2e</p><pre># PPTX
+PDF is a fixed, paged canvas. Body text is at least 8pt and contracts should choose 9–11pt; margins are at least 18pt. Tables repeat headers, split only at governed row boundaries, and move to landscape or appendices before type shrinks below the floor. Page numbers, document title, language, reading order, bookmarks, tagged structure, alt text, source notes, confidentiality, and generated-at basis are explicit. Missing fonts or glyphs fail rendering; silent substitution is prohibited.</pre></article><article id="outputs-pptx-md"><p class="meta">outputs/pptx.md · accepted · source-sha256 707cc1d6bd579bbdf06e9f9b9b3ec0d5ea1a70a20882d4e98ce979a74c2d5a79</p><pre># PPTX
 
-Slides are fixed canvases with declared aspect ratio, safe area, typography floor, theme, and speaker-note policy. One message dominates each slide. Long titles recompose or split; they never shrink without limit. Tables move to appendix/detail slides before becoming unreadable. Charts retain units, source, date basis, and editable data when allowed. Font substitution, overflow, off-slide objects, reading order, contrast, notes, and export-to-PDF are verified.</pre></article><article id="outputs-print-md"><p class="meta">outputs/print.md · accepted · source-sha256 ad95e5007d26375ae77c992fa075c543a35c2b12adde8b2020d5bc0e38151bdf</p><pre># Print
+PPTX generation starts from the Norfolk-owned [presentation IR](presentation-ir.md): durable semantics are authored and validated before vendor-neutral render geometry is derived. Slides are fixed canvases with declared aspect ratio, safe area, typography floor, theme, and speaker-note policy. One message dominates each slide. Long titles recompose or split; they never shrink without limit. Tables move to appendix/detail slides before becoming unreadable. Charts retain units, source, date basis, and editable data when allowed. Font substitution, overflow, off-slide objects, native reading order, contrast, notes, renderer identity, deterministic output hash, and export-to-PDF are verified.</pre></article><article id="outputs-presentation-ir-md"><p class="meta">outputs/presentation-ir.md · accepted · source-sha256 45cdb709f4c7506534edca3fe046ea4d7a462d109f576c50d5771b52a9255c64</p><pre># Presentation intermediate representation
 
-Print contracts declare trim size, bleed, safe area, margins, color space, profile, ink/contrast constraints, image resolution, overprint, crop marks, binding allowance, duplex behavior, paper assumption, and proof method. Typography respects the PDF floor. Web screenshots and unverified RGB-to-CMYK conversions are not print masters. Large masters live in versioned R2 storage with a lightweight manifest and proof fixture in Git.</pre></article><article id="outputs-README-md"><p class="meta">outputs/README.md · accepted · source-sha256 a2c776d8313a3bbbe060a8381cf99662a5fdb88472b92e557fe8d793c8a7acdb</p><pre># Output system
+## Purpose and authority
+
+The presentation intermediate representation (IR) is Norfolk AI's vendor-neutral contract for expressing a presentation before a renderer produces PPTX, PDF, HTML, or image output. Product OS owns its semantics, governance, and verification requirements. Norfolk Kit or a product may implement renderers, editors, storage, and format adapters, but no renderer or product template becomes canonical by implementing this contract.
+
+The canonical machine-readable profile is [`presentation-ir.schema.json`](../schemas/presentation-ir.schema.json). Its [`synthetic example`](presentation-ir.example.json) is Norfolk-owned and contains no client fields, brands, slot names, templates, assets, or identity. Canonical fixtures and evidence remain synthetic-only. Product data and instances stay in the adopting product under its authorization, confidentiality, retention, and output-job controls; they do not enter Product OS.
+
+## Semantic before geometric
+
+Author the durable `semantic` document first. It declares stable slide and element IDs, purpose, content, provenance, accessibility, reading order, overflow behavior, and theme-token intent without coordinates or renderer-specific structures. Every semantic element carries synthetic provenance in the canonical profile. Geometry in semantic content is invalid.
+
+Derive `render` only from a validated semantic revision. Render IR links to that revision and to semantic IDs, then adds fixed-canvas primitives, point-based geometry, z-order, asset references, and style-token references. It does not redefine meaning, data bindings, provenance, or reading order. A semantic revision may be redesigned into new geometry without changing durable meaning or IDs.
+
+Version 1 uses points with a top-left origin. Width, height, position, z-order, and rotation are explicit; percentages, implicit renderer defaults, and vendor-native object models are excluded. Renderers convert points at their output boundary.
+
+## Stable identity and themes
+
+Deck, revision, theme, slide, element, token, asset, and render-node IDs are stable, human-readable identifiers. Reordering is expressed separately from identity. Writers and renderers must reject duplicate IDs, missing references, mismatched semantic revisions, and render nodes that cannot be traced to a semantic element.
+
+Themes are registries of semantic tokens. The canonical profile supports color, font, size, spacing, and stroke roles. Render geometry refers to tokens by ID; it does not embed a product brand or assume a vendor theme mechanism. A product resolves its authorized local theme outside Product OS.
+
+## Governed assets
+
+Assets are registry entries, never anonymous URLs or copied binaries. Each entry has a stable ID, kind, Norfolk registry reference, SHA-256 digest, ownership and rights-review record, and accessibility treatment. Canonical assets are Norfolk-owned synthetic placeholders. A renderer must resolve assets before rendering, verify their hashes and governance, and fail closed on missing, changed, unapproved, inaccessible, or remotely fetched assets.
+
+## Accessibility and overflow
+
+Every slide declares a language, accessible title, and explicit reading order over non-decorative semantic elements. Each element declares whether it is decorative and otherwise supplies an accessible name. Reading order is semantic and remains stable when geometry changes.
+
+Overflow must use an explicit strategy: reflow, split, paginate, truncate with disclosure, or fail. Every strategy preserves the declared typography floor. Silent clipping, off-canvas content, undisclosed truncation, and unlimited shrinking are invalid. The renderer verifies bounds and overflow after fonts and assets resolve.
+
+## Deterministic rendering and verification
+
+Finalized IR pins canonical JSON serialization, semantic and render hashes, renderer identity and version, configuration hash, random seed, fixed clock, and a no-external-fetch rule. The same validated input and renderer configuration must produce the same bytes and output SHA-256 digest.
+
+Before an output may be delivered, the renderer records passed checks for:
+
+- schema validity and semantic-to-render linkage;
+- asset integrity, canvas bounds, and overflow behavior;
+- reading order, contrast, and font availability;
+- output format, slide count, and output digest.
+
+Unknown checks, missing evidence, pending or failed status, hash drift, nondeterministic inputs, or renderer substitution block delivery. Format-specific verification still applies; for example, PPTX also verifies native reading order, speaker notes, editability where required, and PDF export parity.
+
+## Client-evidence boundary
+
+The architecture was evaluated against pinned, read-only product evidence and then reauthored as a Norfolk-owned contract. That evidence did not donate code or canonical content. Its domain fields, brands, slot names, templates, assets, identity, and product-specific renderer choices remain excluded. Only the abstract decision to separate durable semantics from derived geometry, backed by independent Norfolk schema and synthetic fixtures, is accepted.</pre></article><article id="outputs-print-md"><p class="meta">outputs/print.md · accepted · source-sha256 ad95e5007d26375ae77c992fa075c543a35c2b12adde8b2020d5bc0e38151bdf</p><pre># Print
+
+Print contracts declare trim size, bleed, safe area, margins, color space, profile, ink/contrast constraints, image resolution, overprint, crop marks, binding allowance, duplex behavior, paper assumption, and proof method. Typography respects the PDF floor. Web screenshots and unverified RGB-to-CMYK conversions are not print masters. Large masters live in versioned R2 storage with a lightweight manifest and proof fixture in Git.</pre></article><article id="outputs-README-md"><p class="meta">outputs/README.md · accepted · source-sha256 d80df94a9e5e7e39f6fe1c8d03dde114881498c5a06e31db34eb1e36f09b4064</p><pre># Output system
 
 Generated business materials are product surfaces with their own design, data, authorization, confidentiality, lifecycle, and verification contracts. They are not screenshots of the application and do not inherit safe behavior by accident.
 
-Read [shared principles](shared-principles.md) and [job lifecycle](job-lifecycle.md), then the format contract: [PDF](pdf.md), [XLSX](xlsx.md), [PPTX](pptx.md), [DOCX](docx.md), [email](email.md), [charts](charts.md), [print](print.md), or [investor materials](investor-materials.md).</pre></article><article id="outputs-shared-principles-md"><p class="meta">outputs/shared-principles.md · accepted · source-sha256 e709a800ab3eac7b23be83581c8165a6f5ad13cd8a161f957d909015a6f63052</p><pre># Shared output principles
+Read [shared principles](shared-principles.md) and [job lifecycle](job-lifecycle.md). Presentation-producing systems also apply the Norfolk-owned [Presentation IR](presentation-ir.md) before the format contract: [PDF](pdf.md), [XLSX](xlsx.md), [PPTX](pptx.md), [DOCX](docx.md), [email](email.md), [charts](charts.md), [print](print.md), or [investor materials](investor-materials.md).</pre></article><article id="outputs-shared-principles-md"><p class="meta">outputs/shared-principles.md · accepted · source-sha256 e709a800ab3eac7b23be83581c8165a6f5ad13cd8a161f957d909015a6f63052</p><pre># Shared output principles
 
 Every output contract declares purpose, audience, fixed/fluid/paged/grid canvas, typography floor, controlled margins, pagination, overflow, chart semantics, sources, confidentiality, numerical tie-out, accessibility, and asset policy.
 

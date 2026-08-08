@@ -45,13 +45,15 @@ Repository-state reconciliation in candidate `0.3.0-candidate.4`:
 - preserves the pre-deletion dossier and its incomplete preservation, consumer, metadata, branch, and recovery evidence without retroactive approval;
 - keeps Manual protected behind its independent preservation, parity, recovery, and exact-approval gates.
 
+Output design-decision resolution on 2026-08-08 accepted `PP-U11-DECK-IR` as the independent Norfolk-owned [presentation IR](../outputs/presentation-ir.md). The canonical contract and example are vendor-neutral and synthetic-only; the bounded product evidence remains publication-blocked and contributes no client fields, brands, slots, templates, assets, or identity.
+
 Open publication gates:
 
 - a release-specific authorization record and explicit permission to publish remain mandatory after the implementation merges;
 - each adopting application's end-to-end WorkOS staging login remains mandatory despite the successful structural diagnostic; the dedicated diagnostic key must be rotated before `2026-08-14`;
 - R2 source-master preservation for motion and other client/brand masters remains pending a separately authorized inventory, immutable versioned target, retrieval verification, and no-source-mutation proof;
 - official Norfolk AI logo, colors, and typography are explicitly deferred to the future Claude Design engagement; neutral semantic placeholders make this deferral non-blocking for candidate merge;
-- resolution or explicit deferral of `PP-U11-ICON-GRAMMAR`, `PP-U11-PARITY-EXCEPTIONS`, and `PP-U11-DECK-IR`;
+- resolution or explicit deferral of `PP-U11-ICON-GRAMMAR` and `PP-U11-PARITY-EXCEPTIONS`;
 - complete retirement preservation/restoration and consumer evidence are not release blockers for Product OS, but they block repository deletion.
 
 [Product OS PR #1](https://github.com/Norfolk-Group/norfolk-ai-product-os/pull/1) merged at `692b94a3878cc3505f5ce95582ca1a91b3516da7`; [Kit PR #1](https://github.com/Norfolk-Group/norfolk-kit/pull/1) merged at `848d8e71dca8cc1de72a123b6444f8fe5e08af70`; the trusted private-release implementation merged at `f4cfd925856ec1cdb1441e4016e0554f22bb3afa`. No release has been published. Starter's externally completed deletion remains recorded as incomplete evidence, and Manual deletion remains blocked pending complete preservation, recovery, consumers, and exact approval.
