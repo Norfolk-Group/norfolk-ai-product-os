@@ -156,6 +156,7 @@ These contracts keep product purpose, observed evidence, structure, and recommen
 - [Report/output validation](../validation/report-output.md)
 - [Norfolk Manual pinned audit](../validation/norfolk-manual.md)
 - [Candidate release readiness](../validation/release-readiness.md)
+- [Provider readiness evidence](../validation/provider-readiness.md)
 - [Preservation evidence](../retirement/preservation-bundle.md)
 - [Norfolk Starter dossier](../retirement/norfolk-starter.md)
 - [Norfolk Manual dossier](../retirement/norfolk-manual.md)
