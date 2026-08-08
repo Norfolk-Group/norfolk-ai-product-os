@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { generateKeyPairSync, createPublicKey } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import test from "node:test";
@@ -23,7 +24,7 @@ test("the 0.3 adoption candidate is signed and binds every included file hash", 
   const key = createPublicKey(await readFile(resolve(directory, "candidate-public-key.pem"), "utf8"));
   assert.equal(verifyManifest(bundle, key), true);
   for (const file of bundle.manifest.files) {
-    const body = await readFile(resolve(root, file.path));
+    const body = execFileSync("git", ["show", `${bundle.manifest.sourceCommit}:${file.path}`], { cwd: root, maxBuffer: 64 * 1024 * 1024 });
     const { sha256 } = await import("../../tools/release/manifest.js");
     assert.equal(sha256(body), file.sha256, file.path);
   }
