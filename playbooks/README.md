@@ -22,4 +22,4 @@ Label each claim `universal`, `domain`, or `product-pattern`. Domain guidance ma
 
 ## Evidence boundary
 
-Named but unexamined references remain planned. Client evidence is sanitized, rights-reviewed, and promoted under [client boundaries](../governance/client-boundaries.md) before citation. H-Analytics can validate an analytics pattern, but cannot become an upstream dependency or Norfolk identity.
+Named but unexamined references remain planned. Client evidence is sanitized, rights-reviewed, and promoted under [client boundaries](../governance/client-boundaries.md) before citation. A bounded product evidence slice can validate an analytics pattern, but cannot become an upstream dependency or Norfolk identity; exact product identity remains publication-blocked.

@@ -217,7 +217,60 @@
         "spacing": { "type": "object", "required": ["basePx", "scale"], "properties": { "basePx": { "type": "integer", "minimum": 1 }, "scale": { "type": "array", "minItems": 1, "items": { "type": "number", "minimum": 0 } } }, "additionalProperties": false },
         "radii": { "type": "object", "required": ["scale"], "properties": { "scale": { "type": "array", "minItems": 1, "items": { "type": "number", "minimum": 0 } } }, "additionalProperties": false },
         "shadows": { "type": "object", "required": ["permitted"], "properties": { "permitted": { "$ref": "#/definitions/stringList" } }, "additionalProperties": false },
-        "iconography": { "type": "object", "required": ["library", "defaultStrokeWidth", "largeStrokeWidth", "minimumSizePx"], "properties": { "library": { "const": "Lucide" }, "defaultStrokeWidth": { "const": 1.5 }, "largeStrokeWidth": { "const": 1.25 }, "minimumSizePx": { "type": "integer", "minimum": 14 } }, "additionalProperties": false }
+        "iconography": {
+          "oneOf": [
+            {
+              "type": "object",
+              "required": ["library", "defaultStrokeWidth", "largeStrokeWidth", "minimumSizePx"],
+              "properties": {
+                "library": { "const": "Lucide" },
+                "defaultStrokeWidth": { "const": 1.5 },
+                "largeStrokeWidth": { "const": 1.25 },
+                "minimumSizePx": { "type": "integer", "minimum": 14 }
+              },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "required": ["library", "minimumSizePx", "exception"],
+              "properties": {
+                "library": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^\\S(?:.*\\S)?$",
+                  "not": { "pattern": "^@?[Ll][Uu][Cc][Ii][Dd][Ee](?:$|[^A-Za-z0-9])" }
+                },
+                "minimumSizePx": { "type": "integer", "minimum": 14 },
+                "exception": {
+                  "type": "object",
+                  "required": ["id", "state", "product", "standard", "scope", "rationale", "risk", "compensatingControls", "singleLibrary", "grammar", "accessibilityEvidence", "evidence", "owner", "migrationBoundary", "migrationConsequence", "approver", "approvedAt", "reviewAt"],
+                  "properties": {
+                    "id": { "type": "string", "pattern": "^EX-[0-9]{4,}$" },
+                    "state": { "const": "approved" },
+                    "product": { "$ref": "#/definitions/string" },
+                    "standard": { "const": "design/foundations.md#iconography" },
+                    "scope": { "$ref": "#/definitions/string" },
+                    "rationale": { "$ref": "#/definitions/string" },
+                    "risk": { "$ref": "#/definitions/string" },
+                    "compensatingControls": { "$ref": "#/definitions/stringList" },
+                    "singleLibrary": { "const": true },
+                    "grammar": { "$ref": "#/definitions/string" },
+                    "accessibilityEvidence": { "$ref": "#/definitions/stringList" },
+                    "evidence": { "$ref": "#/definitions/stringList" },
+                    "owner": { "$ref": "#/definitions/string" },
+                    "migrationBoundary": { "$ref": "#/definitions/string" },
+                    "migrationConsequence": { "$ref": "#/definitions/string" },
+                    "approver": { "$ref": "#/definitions/string" },
+                    "approvedAt": { "type": "string", "format": "date-time", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$" },
+                    "reviewAt": { "type": "string", "format": "date", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          ]
+        }
       },
       "additionalProperties": false
     },

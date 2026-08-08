@@ -4,17 +4,10 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
 import { canonicalJson, sha256, signManifest, type ReleaseFile } from "./manifest.js";
+import { isReleaseInputPath } from "./inputs.js";
 
 type BuildCandidateOptions = { root: string; version: string; createdAt: string; sourceCommit: string };
 type BuildCandidateResult = { directory: string; manifestPath: string; manifestSha256: string };
-
-function isReleasePath(path: string): boolean {
-  return /^(?:adoption|design|governance|outputs|product)\/[^/]+\.md$/.test(path)
-    || /^(?:compatibility|schemas)\/[^/]+\.json$/.test(path)
-    || /^standards\/[^/]+\.(?:md|json)$/.test(path)
-    || path === "handbook/index.html"
-    || path === "catalog/generated/index.html";
-}
 
 function gitText(root: string, args: string[]): string {
   return execFileSync("git", args, { cwd: root, encoding: "utf8", maxBuffer: 64 * 1024 * 1024 });
@@ -23,7 +16,7 @@ function gitText(root: string, args: string[]): string {
 export async function buildCandidate(options: BuildCandidateOptions): Promise<BuildCandidateResult> {
   const { root, version, createdAt, sourceCommit } = options;
   gitText(root, ["cat-file", "-e", `${sourceCommit}^{commit}`]);
-  const paths = gitText(root, ["ls-tree", "-r", "--name-only", sourceCommit]).split("\n").filter(isReleasePath).sort();
+  const paths = gitText(root, ["ls-tree", "-r", "--name-only", sourceCommit]).split("\n").filter(isReleaseInputPath).sort();
   const files: ReleaseFile[] = paths.map((path) => ({
     path,
     sha256: sha256(execFileSync("git", ["show", `${sourceCommit}:${path}`], { cwd: root, maxBuffer: 64 * 1024 * 1024 })),

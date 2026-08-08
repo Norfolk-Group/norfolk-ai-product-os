@@ -1,5 +1,7 @@
 # Motion source inventory — 2026-08-05
 
+Publication: **blocked**. This exact-identity source inventory is validation evidence only and is excluded from release inputs and generated outputs.
+
 Status: **recovered and locally hashed; not yet preserved to immutable R2 versions; no source is canonical solely because it appears here.** Original files were read only and retained in place.
 
 ## Source aliases

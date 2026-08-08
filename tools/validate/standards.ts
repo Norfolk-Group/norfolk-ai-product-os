@@ -1,6 +1,11 @@
 type RecordValue = Record<string, unknown>;
 
 const text = (value: unknown) => typeof value === "string" && value.trim().length > 0;
+const isoDate = (value: unknown) => {
+  if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const parsed = new Date(`${value}T00:00:00.000Z`);
+  return !Number.isNaN(parsed.valueOf()) && parsed.toISOString().slice(0, 10) === value;
+};
 const list = (value: unknown) => Array.isArray(value) ? value : [];
 const isRecord = (value: unknown): value is RecordValue => typeof value === "object" && value !== null && !Array.isArray(value);
 
@@ -62,8 +67,20 @@ export function validateCapabilityMap(value: unknown): string[] {
     for (const [transportIndex, entry] of transports.entries()) {
       if (entry.applicability === "not-applicable") {
         const exception = isRecord(entry.exception) ? entry.exception : {};
-        if (!["physical", "legal", "security"].includes(String(exception.reasonType)) || !text(exception.reason) || !text(exception.humanProcedure) || !text(exception.approvalId)) {
-          errors.push(`capabilities[${index}].transports[${transportIndex}] needs a governed physical, legal, or security exception and human procedure`);
+        const prefix = `capabilities[${index}].transports[${transportIndex}].exception`;
+        if (!["physical", "legal", "security"].includes(String(exception.reasonType))) errors.push(`${prefix}.reasonType must be physical, legal, or security`);
+        if (!text(exception.reason)) errors.push(`${prefix}.reason is required`);
+        if (!text(exception.humanProcedure)) errors.push(`${prefix}.humanProcedure is required`);
+        if (exception.implementationGap !== false) errors.push(`${prefix}.implementationGap must explicitly be false`);
+        const approval = isRecord(exception.approval) ? exception.approval : {};
+        if (!["record", "class"].includes(String(approval.kind)) || !text(approval.reference)) errors.push(`${prefix}.approval requires a record or class reference`);
+        if (!text(exception.owner)) errors.push(`${prefix}.owner is required`);
+        if (!text(exception.recovery)) errors.push(`${prefix}.recovery is required`);
+        const review = isRecord(exception.review) ? exception.review : {};
+        if (!text(review.reviewer)) errors.push(`${prefix}.review requires a reviewer`);
+        if (!isoDate(review.reviewAt)) errors.push(`${prefix}.review.reviewAt requires an ISO calendar date`);
+        if (text(exception.reason) && /\b(?:adapter|framework|sdk|transport|wrapper|integration|implementation|tooling|endpoint|backlog|unsupported|unavailable|unimplemented)\b|\bnot[\s-]+(?:yet[\s-]+)?(?:implemented|supported|built)\b/i.test(String(exception.reason))) {
+          errors.push(`${prefix}: an implementation or adapter limitation is a parity gap, not an exception`);
         }
       } else if (entry.applicability !== "implemented") errors.push(`capabilities[${index}].transports[${transportIndex}] missing applicability`);
     }

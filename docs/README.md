@@ -26,6 +26,7 @@ Accepted decisions are append-only history. A later decision may supersede one, 
 - [0004 — Transport-neutral capabilities](../decisions/0004-transport-neutral-capabilities.md)
 - [0005 — WorkOS is the production identity foundation](../decisions/0005-workos-production-identity.md)
 - [0006 — Direct governed media transfer](../decisions/0006-direct-media-transfer.md)
+- [0007 — Governed icon and capability-parity exceptions](../decisions/0007-governed-icon-and-capability-parity-exceptions.md)
 
 ## Product method
 
@@ -98,6 +99,7 @@ These contracts keep product purpose, observed evidence, structure, and recommen
 - [Output system index](../outputs/README.md)
 - [Shared output principles](../outputs/shared-principles.md)
 - [Output job lifecycle](../outputs/job-lifecycle.md)
+- [Presentation IR](../outputs/presentation-ir.md)
 - [PDF](../outputs/pdf.md)
 - [XLSX](../outputs/xlsx.md)
 - [PPTX](../outputs/pptx.md)
@@ -156,6 +158,9 @@ These contracts keep product purpose, observed evidence, structure, and recommen
 - [Report/output validation](../validation/report-output.md)
 - [Norfolk Manual pinned audit](../validation/norfolk-manual.md)
 - [Candidate release readiness](../validation/release-readiness.md)
+- [Provider readiness evidence](../validation/provider-readiness.md)
+- [Publication-blocked motion source inventory](../validation/motion-source-inventory.md)
+- [Publication-blocked conversation audit](../validation/norfolk-ai-product-os-conversation-audit.md)
 - [Preservation evidence](../retirement/preservation-bundle.md)
 - [Norfolk Starter dossier](../retirement/norfolk-starter.md)
 - [Norfolk Manual dossier](../retirement/norfolk-manual.md)

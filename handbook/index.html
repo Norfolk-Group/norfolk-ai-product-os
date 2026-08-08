@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Norfolk AI Product OS Handbook</title><style>body{font:15px/1.55 Inter,system-ui,sans-serif;max-width:1100px;margin:auto;padding:32px;color:#172320;background:#f6f2e9}header{border-bottom:1px solid #b8c2bd}article{background:#fff;padding:24px;margin:20px 0;border-radius:14px}pre{white-space:pre-wrap;font:inherit}.meta{color:#4f6c64;font-size:12px}</style></head><body><header><p>Private Norfolk AI standard · Product OS 0.3.0-candidate.4 · generated from canonical source</p><h1>Norfolk AI Product OS Handbook</h1></header><article id="design-accessibility-md"><p class="meta">design/accessibility.md · accepted · source-sha256 b93cf9e481951c19cf7a6e9b9da4ca3d989708eaa235d0abedc9e332851bf75d</p><pre># Accessibility
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Norfolk AI Product OS Handbook</title><style>body{font:15px/1.55 Inter,system-ui,sans-serif;max-width:1100px;margin:auto;padding:32px;color:#172320;background:#f6f2e9}header{border-bottom:1px solid #b8c2bd}article{background:#fff;padding:24px;margin:20px 0;border-radius:14px}pre{white-space:pre-wrap;font:inherit}.meta{color:#4f6c64;font-size:12px}</style></head><body><header><p>Private Norfolk AI standard · unreleased canonical source after immutable 0.3.0-candidate.4 · new signed candidate required</p><h1>Norfolk AI Product OS Handbook</h1></header><article id="design-accessibility-md"><p class="meta">design/accessibility.md · accepted · source-sha256 b93cf9e481951c19cf7a6e9b9da4ca3d989708eaa235d0abedc9e332851bf75d</p><pre># Accessibility
 
 WCAG 2.2 AA is the minimum product contract, not the ceiling. Accessibility is designed with each pattern and state; it is not a final audit layer.
 
@@ -18,7 +18,7 @@ WCAG 2.2 AA is the minimum product contract, not the ceiling. Accessibility is d
 
 Automated checks catch only part of the contract. Acceptance combines semantic and keyboard tests, screen-reader review for material flows, contrast evidence, viewport/zoom review, and human visual inspection. Record browser, assistive technology, viewport, theme, state, and result.
 
-An exception names the user impact, scope, owner, mitigation, expiry, and migration consequence. “Third-party component” is not an exemption.</pre></article><article id="design-animation-registry-md"><p class="meta">design/animation-registry.md · accepted · source-sha256 bcbaa568ea04e74fe2baa122fe066826dc69ada80b328dc4cfd27b014964f3ae</p><pre># Product animation registries
+An exception names the user impact, scope, owner, mitigation, expiry, and migration consequence. “Third-party component” is not an exemption.</pre></article><article id="design-animation-registry-md"><p class="meta">design/animation-registry.md · accepted · source-sha256 a0c3fca8e019273a07721725ac08bf0058f66f3961d12331fd0c1a1476721c8d</p><pre># Product animation registries
 
 Each product owns a versioned animation registry. Super Admin assigns registered motion to server-configured semantic categories; components resolve the assignment rather than hardcoding a favorite animation. Categories cover persistent identity and long operations without multiplying configuration by individual screen.
 
@@ -26,11 +26,11 @@ Once accepted, an animation's display name and technical identifier are protecte
 
 ## Reuse boundary
 
-H+ Analytics currently preserves the best known production implementations of its animation family and progress experience. Its product names, assistant identity, logo motion, and animation identities remain exclusive to that product. Product OS promotes the architecture, truthful progress behavior, registry pattern, preview/assignment experience, reduced-motion behavior, and quality bar—not the H+ visual identity.
+Product implementations may preserve the best known production behavior for their own animation family and progress experience. Their product names, assistant identities, logo motion, animation identities, and visual language remain product-local. Product OS promotes the architecture, truthful progress behavior, registry pattern, preview/assignment experience, reduced-motion behavior, and quality bar—not any product's visual identity.
 
 The future Norfolk AI animation family will be visually distinct and remains provisional until Claude Design supplies or approves its masters. Customer products may adopt that family or register their own approved family.
 
-Figma originals and Replit exports remain preserved lineage evidence. For the currently reviewed H+ family, the current H+ production implementation is the approved working master; an older artifact does not win merely because it came first. Reconciliation still preserves every variant and checksum.
+Editable originals and implementation exports remain preserved lineage evidence. A current production implementation may be the working behavior reference only; it is not an approved visual master. An older artifact does not win merely because it came first. Visual-master selection remains deferred until pinned comparison, reuse-rights approval, and immutable preservation are complete, and reconciliation still preserves every variant and checksum.
 
 The executable registry contract is [`animation-registry.schema.json`](../schemas/animation-registry.schema.json) with [`animation-registry.example.json`](animation-registry.example.json).</pre></article><article id="design-approval-gates-md"><p class="meta">design/approval-gates.md · accepted · source-sha256 595d3e587434626740143c1504d20c6a7f8666b765ae4abe6d84439e80d853b0</p><pre># Design approval gates
 
@@ -193,7 +193,7 @@ Use one primary action or input per focused surface. Fixed top-level navigation 
 
 ## Conversational surfaces
 
-The composer is the hero. Attachments, role/mode, model configuration, and voice controls live within or immediately adjacent to it. Suggestions are quiet, concrete actions rather than competing cards. User-facing choices describe roles or jobs; model vendor configuration stays underneath.</pre></article><article id="design-forbidden-patterns-md"><p class="meta">design/forbidden-patterns.md · accepted · source-sha256 b133c52d12a63441a1f7154eccbc4150e2164565ed0c841fc724b2da41307b76</p><pre># Forbidden design patterns
+The composer is the hero. Attachments, role/mode, model configuration, and voice controls live within or immediately adjacent to it. Suggestions are quiet, concrete actions rather than competing cards. User-facing choices describe roles or jobs; model vendor configuration stays underneath.</pre></article><article id="design-forbidden-patterns-md"><p class="meta">design/forbidden-patterns.md · accepted · source-sha256 1adbe496b939fca50cdf2cea521fa4079a26363bd3e1e58ae7377789df540239</p><pre># Forbidden design patterns
 
 - Designing or broadly restyling before approved product and IA gates.
 - Presenting product/client palette values as universal Norfolk foundations.
@@ -209,7 +209,7 @@ The composer is the hero. Attachments, role/mode, model configuration, and voice
 - Promoting a rule from a named but unexamined reference.
 - Refreshing a shadcn input without pinned provenance, hashes, file list, and deviation review.
 - Replacing a visual baseline without an explicit approve, reject, or defer decision.
-- Treating Figma, Replit, H-Analytics, or Kit motion as canonical by filename or recency before lineage reconciliation.</pre></article><article id="design-foundations-md"><p class="meta">design/foundations.md · accepted · source-sha256 5d5e74ccd90263bbbaf41834cac3d9bf7b7fc919c8adde04636e08227855a769</p><pre># Design foundations
+- Treating any design master, implementation export, deployed product variant, or portable reference as canonical by filename or recency before lineage reconciliation.</pre></article><article id="design-foundations-md"><p class="meta">design/foundations.md · accepted · source-sha256 8645452cefd021776bdc35eeb02cc976c833dcaf2d22b2783bba5e8e1d5d803a</p><pre># Design foundations
 
 ## Universal foundation versus product expression
 
@@ -229,7 +229,9 @@ Use a named scale with documented jobs rather than one-off values. Hairlines are
 
 ## Iconography
 
-Lucide is the sole canonical interface library. The default stroke is `1.5`; large feature marks may use `1.25`. Do not render monoline icons below 14px. Custom icons use Lucide's 24×24 grid, round caps/joins, compatible stroke, and review. Style is locked while meaning varies. Use an icon only when it adds information the label does not; fixed navigation may use icons, homogeneous user-named lists generally do not.
+Lucide remains the sole canonical interface library and the Norfolk/Kit default. The default stroke is `1.5`; large feature marks may use `1.25`. Do not render monoline icons below 14px. Custom icons use Lucide's 24×24 grid, round caps/joins, compatible stroke, and review. Style is locked while meaning varies. Use an icon only when it adds information the label does not; fixed navigation may use icons, homogeneous user-named lists generally do not.
+
+A product may adopt a different icon library only through an approved product-local design-contract exception. The exception proves a coherent single-library grammar, records accessibility evidence, names the owner and approver, bounds migration to the affected product, and sets a review date. It does not change the Norfolk/Kit default, authorize a mixed-library surface, or establish precedent for another product. See the [synthetic product-local exception example](iconography.product-local-exception.example.json).
 
 Emoji, filled/duotone sets, a second icon library, ad hoc per-row icons, and color-coded icon confetti are forbidden.</pre></article><article id="design-method-md"><p class="meta">design/method.md · accepted · source-sha256 f69da2265323dabaadb93246c45f87d37bd90298cd967f0de82be86cc731287e</p><pre># Design method
 
@@ -256,7 +258,7 @@ The proposed contract then states what is retained, replaced, introduced, deprec
 
 ## Design-agent authority
 
-A design agent reads the adopted Product OS version, approved product profile, domain playbook, client brand, product design contract, theme, inventory, IA, and exceptions before proposing change. It identifies violations and options; it never silently restyles, changes brand ownership, broadens a user preference, replaces an accepted pattern, or approves its own recommendation.</pre></article><article id="design-motion-md"><p class="meta">design/motion.md · accepted · source-sha256 1e2ac0f34307b67dea858d41e72d0320102d56fb20f9c87a4a52744a601b4234</p><pre># Motion
+A design agent reads the adopted Product OS version, approved product profile, domain playbook, client brand, product design contract, theme, inventory, IA, and exceptions before proposing change. It identifies violations and options; it never silently restyles, changes brand ownership, broadens a user preference, replaces an accepted pattern, or approves its own recommendation.</pre></article><article id="design-motion-md"><p class="meta">design/motion.md · accepted · source-sha256 0523f6a4f4d32752bb98d185e72fbb118103da313dd601c43814b55deaab0374</p><pre># Motion
 
 Motion communicates state, causality, continuity, focus, and progress. It is never decoration that competes with the job. Implementations preserve recorded timing, easing, transform origin, and coordinated timelines; they do not invent animation for static source nodes. Repeated behavior is factored into reusable primitives.
 
@@ -264,17 +266,17 @@ Motion communicates state, causality, continuity, focus, and progress. It is nev
 
 Source role is explicit and is not inferred from filename, modification time, archive size, or repository recency:
 
-1. Local Figma Make archives preserve creative intent and editable originals.
-2. Replit exports preserve the best original exported implementation.
-3. H-Analytics preserves the best known complete production behavior.
-4. Norfolk Kit preserves portable implementation and history.
-5. Supporting Figma-design repositories are recipes, not automatic authority.
+1. Editable design masters preserve creative intent and original source values.
+2. Original implementation exports preserve the handoff from design to code.
+3. Deployed product implementations preserve observed production behavior.
+4. Portable reference implementations preserve reusable execution and history.
+5. Supporting recipe repositories are implementation aids, not automatic authority.
 
 Before reconciliation, hash every variant, copy it to a versioned immutable object, retrieve it, verify the checksum, and retain the local original. A mismatch stops reconciliation; it never authorizes deletion. Canonical status requires complete lineage and explicit Product OS Owner approval.
 
 Figma motion data is authoritative for recorded values. The implementation must honor `prefers-reduced-motion`, preserve state and completion information, validate one entire timeline before batching, and leave unsupported source motion visibly recorded rather than silently dropped.
 
-Accepted names and identifiers are governed by [Product animation registries](animation-registry.md). An implementation refinement may version an animation but cannot silently rename its identity. For the currently reviewed H+ family, the current H+ production implementation is the working master; its visual identities remain product-exclusive while the architecture and quality bar are reusable.</pre></article><article id="design-progress-md"><p class="meta">design/progress.md · accepted · source-sha256 32bc1f34676dd1f49d18a860d151a63daf0e751912769124c0891347e57ab44a</p><pre># Process progress
+Accepted names and identifiers are governed by [Product animation registries](animation-registry.md). An implementation refinement may version an animation but cannot silently rename its identity. A product's current production implementation may be a working behavior reference, but it is not thereby an accepted Norfolk visual master. The reusable registry, resolver, honest-progress, reduced-motion, assignment, and quality rules are accepted independently. A visual master remains deferred until a pinned comparison, reuse-rights approval, and immutable source-master preservation establish that narrower choice.</pre></article><article id="design-progress-md"><p class="meta">design/progress.md · accepted · source-sha256 32bc1f34676dd1f49d18a860d151a63daf0e751912769124c0891347e57ab44a</p><pre># Process progress
 
 Progress must be honest. Required states are idle, waiting, indeterminate, determinate, paused, disconnected, retrying, timeout, cancellation-requested, cancelled, late-completion, duplicate-event, failure, and success.
 
@@ -285,11 +287,11 @@ Progress must be honest. Required states are idle, waiting, indeterminate, deter
 - Duplicate and out-of-order events are recorded and reconciled by event identity and server order.
 - Reduced motion removes nonessential transforms while retaining text, state, elapsed time, error, and completion information.
 - Agentic work names the actual active Agent, Specialist, Orchestrator, or Minion and its concrete action. Attribution comes from real server state, never a synthetic ticker.
-- Minions use deterministic verbs and never appear to reason. Handoffs and completion name the responsible members.</pre></article><article id="design-provenance-md"><p class="meta">design/provenance.md · accepted · source-sha256 36ccd4bf4f7e6934c59a685c3f16dc4bb0024bcc90bdf7e6d53cdd4a1f94da15</p><pre># Design provenance
+- Minions use deterministic verbs and never appear to reason. Handoffs and completion name the responsible members.</pre></article><article id="design-provenance-md"><p class="meta">design/provenance.md · accepted · source-sha256 e3842b383e71a6e39f415c67b361c9fe4db92aab3e2e211beebf1c9b7f1e869c</p><pre># Design provenance
 
 Every catalog specimen and motion record names its source path, normalized SHA-256, source role, repository or local archive, Product OS and Kit versions, approval state, freshness, and supersession relationship. Client-derived sources also require reuse rights, sanitization, identifier and secret scans, and disclosure review.
 
-Original local Figma, Replit, H-Analytics, and Kit sources are immutable evidence. Reconciliation creates governed derivatives; it does not rewrite, relocate, archive, or delete the original. Object-storage preservation is complete only after a version identifier is recorded and retrieval reproduces the expected checksum.</pre></article><article id="design-README-md"><p class="meta">design/README.md · accepted · source-sha256 22e29ed608fffdd11f0167ad7232e744193bab5a7714e2ad62495e16c7b9c2fc</p><pre># Design system
+Original editable masters, implementation exports, deployed product variants, and portable reference variants are immutable evidence. Reconciliation creates governed derivatives; it does not rewrite, relocate, archive, or delete the original. Object-storage preservation is complete only after a version identifier is recorded and retrieval reproduces the expected checksum.</pre></article><article id="design-README-md"><p class="meta">design/README.md · accepted · source-sha256 22e29ed608fffdd11f0167ad7232e744193bab5a7714e2ad62495e16c7b9c2fc</p><pre># Design system
 
 Design is a first-class Product OS pillar. It governs how product purpose becomes information hierarchy, composition, interaction, language, authentication, responsive behavior, accessible states, and reviewable visual evidence. It is broader than tokens and components, and it does not replace fundamental governance.
 
@@ -319,7 +321,7 @@ Design is a first-class Product OS pillar. It governs how product purpose become
 | Responsive evidence matrix | [Viewport matrix](viewport-matrix.md) |
 | Comparable visual captures | [Visual test environment](visual-test-environment.md) |
 
-The machine-readable product contract is [`design-contract.schema.json`](../schemas/design-contract.schema.json). Reusable components use [`component-specimen.schema.json`](../schemas/component-specimen.schema.json). Norfolk Kit implements compatible executable components and catalogs; it does not own this doctrine.</pre></article><article id="design-references-md"><p class="meta">design/references.md · accepted · source-sha256 971f8b582128404f508271221500e6ef322b8c634f4e96a80cc050126c447c32</p><pre># Design references
+The machine-readable product contract is [`design-contract.schema.json`](../schemas/design-contract.schema.json). Reusable components use [`component-specimen.schema.json`](../schemas/component-specimen.schema.json). Norfolk Kit implements compatible executable components and catalogs; it does not own this doctrine.</pre></article><article id="design-references-md"><p class="meta">design/references.md · accepted · source-sha256 457bb446adbe4132fe2ea5b69c2363a6799b6751037c5601e6abc3ceff6e8267</p><pre># Design references
 
 A reference record moves through `named` → `observed` → `extracted` → `accepted`, or to `rejected`/`superseded`. Naming a product or aesthetic creates no rule. Observation records the actual source. Extraction states the transferable pattern. Acceptance names scope, evidence, reviewer, and conflicts.
 
@@ -340,7 +342,7 @@ Cloudflare's assistant, Codex workflow, ElevenLabs, Qurrent AI, and any other un
 
 ## Motion provenance
 
-Figma Make, Replit exports, H-Analytics production behavior, and Kit copies are lineage sources rather than ordinary inspiration. Preserve all variants; U9 will record hashes, availability, visual intent, production behavior, and the reason a promoted implementation wins.</pre></article><article id="design-responsive-md"><p class="meta">design/responsive.md · accepted · source-sha256 9cde77fe9fc29472a4542cebad449490a8e0568aaff7e5d116e1f384c9d38b18</p><pre># Responsive design
+Editable design masters, original implementation exports, deployed production behavior, and portable reference copies are lineage sources rather than ordinary inspiration. Preserve all variants; the bounded validation record carries their pins, hashes, availability, visual intent, production behavior, and any later approval rationale.</pre></article><article id="design-responsive-md"><p class="meta">design/responsive.md · accepted · source-sha256 9cde77fe9fc29472a4542cebad449490a8e0568aaff7e5d116e1f384c9d38b18</p><pre># Responsive design
 
 Mobile is a first-class surface, not a shrunken desktop. Every contract describes mobile, tablet, and desktop evidence and names unsupported behavior explicitly.
 
@@ -473,11 +475,11 @@ An approval records the exact target, proposed action, approver identity, timest
 
 ## Conflicts and uncertainty
 
-Fail closed when approver identity, authority, scope, client ownership, or target is unclear. Preserve the current state and route the decision to the Product OS Owner or the separately accountable security, data, or client owner.</pre></article><article id="governance-client-boundaries-md"><p class="meta">governance/client-boundaries.md · accepted · source-sha256 122acfe834f50ea4960b2f4eafa8e46394483b00e653666aebb625e3f6748ac0</p><pre># Client boundaries
+Fail closed when approver identity, authority, scope, client ownership, or target is unclear. Preserve the current state and route the decision to the Product OS Owner or the separately accountable security, data, or client owner.</pre></article><article id="governance-client-boundaries-md"><p class="meta">governance/client-boundaries.md · accepted · source-sha256 947639f7c6b6c8b0f524b3e8400e516c47731a1670e8e386d539d46ba55df8fc</p><pre># Client boundaries
 
 ## Ownership
 
-Norfolk AI owns Product OS, Norfolk Kit, and reusable Norfolk intellectual property. KIT Capital is a client account. H-Analytics is a product and validation source associated with client work. Neither is Norfolk AI identity, a co-owner of Product OS, or an automatic source of portfolio standards.
+Norfolk AI owns Product OS, Norfolk Kit, and reusable Norfolk intellectual property. Client accounts and product validation sources are not Norfolk AI identity, co-owners of Product OS, or automatic sources of portfolio standards. Exact client and product identities belong only in publication-blocked validation evidence.
 
 Client agreements and applicable law remain controlling for client material. When ownership or reuse rights are unknown, classification fails closed and the material stays outside canonical history.
 
@@ -621,9 +623,9 @@ Do not rewrite accepted rationale to make history appear cleaner. A superseding 
 
 ## Avoiding duplicate memory
 
-Binding rules have one canonical home. Agent files, Kit implementation notes, product docs, and generated handbook pages link to that source rather than copying it. A concise summary may orient a reader, but it must name the authoritative document and cannot introduce new obligations.</pre></article><article id="governance-promotion-md"><p class="meta">governance/promotion.md · accepted · source-sha256 9c3205d11736114142152b7401252b89ea3b4fa37ca65e949a1ab933d7e75b6f</p><pre># Promotion of reusable learning
+Binding rules have one canonical home. Agent files, Kit implementation notes, product docs, and generated handbook pages link to that source rather than copying it. A concise summary may orient a reader, but it must name the authoritative document and cannot introduce new obligations.</pre></article><article id="governance-promotion-md"><p class="meta">governance/promotion.md · accepted · source-sha256 05977051f2eff18c8a92a648d680379429f811717a403adda4f5f7d0d03e5d47</p><pre># Promotion of reusable learning
 
-Promotion is the only path by which learning from Norfolk Kit, a product, a client engagement, Figma, Replit, H-Analytics, or another source becomes canonical Norfolk AI doctrine.
+Promotion is the only path by which learning from Norfolk Kit, a product, a client engagement, a creative-intent source, an implementation handoff, or another source becomes canonical Norfolk AI doctrine.
 
 ## Lifecycle
 
@@ -657,7 +659,7 @@ A proposal records:
 8. If executable support is needed, propose a compatible Kit implementation.
 9. Offer downstream adoption as a separate reviewable proposal.
 
-H-Analytics and other products validate or challenge the Product OS; they never become upstream dependencies. For motion, preserve and compare Figma creative intent, Replit handoff, H-Analytics production behavior, and Kit portability before selecting a canonical contract. Filename and timestamp are not quality evidence.</pre></article><article id="governance-repository-security-md"><p class="meta">governance/repository-security.md · accepted · source-sha256 1cdda82e27ac0cec6a9a67b80e5af364e30534ae7448ce22e30aff09b50d4627</p><pre># Repository security
+Products may validate or challenge the Product OS; they never become upstream dependencies. For motion, preserve and compare creative intent, implementation handoff, production behavior, and Kit portability before selecting a canonical contract. Filename and timestamp are not quality evidence. Exact source identity and lineage remain in publication-blocked validation evidence.</pre></article><article id="governance-repository-security-md"><p class="meta">governance/repository-security.md · accepted · source-sha256 1cdda82e27ac0cec6a9a67b80e5af364e30534ae7448ce22e30aff09b50d4627</p><pre># Repository security
 
 This contract states required repository controls. A statement here is not evidence that a GitHub setting has already been configured; implementation and verification must be recorded separately.
 
@@ -695,20 +697,20 @@ Kit ADRs 0001–0017 were imported from pinned commit `f2680624596048a88f78e2a77
 
 Bodies are byte-for-byte source copies. Their original relative links may no longer resolve in Product OS and are intentionally not rewritten; rewriting would falsify the preserved body. Some bodies contain client-context examples and are restricted history, not reusable canonical guidance. A current decision must be authored in the top-level decision sequence and may cite, accept, reject, or supersede the imported record.
 
-Imported numbering is namespaced under `decisions/imported/norfolk-kit/`; it never competes with Product OS decision numbers.</pre></article><article id="migration-content-dispositions-md"><p class="meta">migration/content-dispositions.md · accepted · source-sha256 1249b950caea264680cc74aa75dc28c817c0d41c09834ba9e77d07aa69da73af</p><pre># Migration content dispositions
+Imported numbering is namespaced under `decisions/imported/norfolk-kit/`; it never competes with Product OS decision numbers.</pre></article><article id="migration-content-dispositions-md"><p class="meta">migration/content-dispositions.md · accepted · source-sha256 ad35ccd602dce263c52d18832fceee6f9001b2b7e1df46a8d80518151de9f172</p><pre># Migration content dispositions
 
 | Source family | Disposition | Result |
 |---|---|---|
 | Kit universal governance and rationale | Promote | Re-authored as Product OS governance, decisions, product method, and design contracts with source register links |
 | Kit executable stack, adapters, UI, checks | Implement | Remains executable in Kit; Product OS owns WHAT and WHY |
 | Kit ADRs 0001–0017 | Historical import | Exact bodies live under `decisions/imported/norfolk-kit/`; they do not enter the current decision sequence |
-| Kit animation sources and Replit preservation | Implement + provenance | Remain in Kit; lineage and approval rules live in Product OS |
+| Kit animation sources and preserved implementation handoffs | Implement + provenance | Remain in Kit; lineage and approval rules live in Product OS |
 | Kit client-brand assets and large masters | Leave behind | Release blocker pending rights classification and separate versioned storage; never copied into Product OS or future applications |
 | Manual duplicate governance, agent files, animation specs/source | Supersede | Product OS and Kit replacements exist; duplicates are not current authority |
 | Manual unique setup/launcher tools | Evaluate | Preserve until parity-tested in Kit; Manual cannot retire while unique value remains |
 | Starter Clerk/Prisma/Next.js implementation | Supersede | Archived legacy reference; current Kit uses WorkOS, Drizzle, and its approved reference architecture |
 | Starter agent-native commands and skills | Evaluate | Candidate input for U7; no automatic promotion |
-| H+ design, agent, progress, and animation architecture | Promote sanitized doctrine | Reuse taxonomy, truthful attribution, server-configured registries, and quality gates; keep product names, personas, visual identities, palette, and business rules product-local |
+| Restricted product design, agent, progress, and animation architecture | Promote sanitized doctrine | Reuse taxonomy, truthful attribution, server-configured registries, and quality gates; keep product names, personas, visual identities, palette, and business rules product-local |
 
 Product blanks become templates. Product- or client-specific identity, palettes, business rules, evidence, and credentials remain outside canonical content.</pre></article><article id="migration-source-register-md"><p class="meta">migration/source-register.md · accepted · source-sha256 44c115daf61274c5ef2248b81c153050a4fa6807b5a3384357b853cb4c816797</p><pre># Migration source register
 
@@ -753,15 +755,64 @@ Every job has an idempotency key and attempt number. A retry resumes or replaces
 
 Signed URLs are short-lived, audience-bound, revocable, and never logged. Download rechecks current authorization and confidentiality. Expired or revoked jobs present an explicit regeneration path. Jobs retain the authoritative snapshot and audit record according to the data-lifecycle contract.</pre></article><article id="outputs-pdf-md"><p class="meta">outputs/pdf.md · accepted · source-sha256 6baecb0fae2bbceebcc486475d01f2fbaa700ca1dffdbf5aa4c43fa4c7f6eee5</p><pre># PDF
 
-PDF is a fixed, paged canvas. Body text is at least 8pt and contracts should choose 9–11pt; margins are at least 18pt. Tables repeat headers, split only at governed row boundaries, and move to landscape or appendices before type shrinks below the floor. Page numbers, document title, language, reading order, bookmarks, tagged structure, alt text, source notes, confidentiality, and generated-at basis are explicit. Missing fonts or glyphs fail rendering; silent substitution is prohibited.</pre></article><article id="outputs-pptx-md"><p class="meta">outputs/pptx.md · accepted · source-sha256 599f9af920d026fc5657f117ee1c60d1534345dd2e95ad2eecc6fd66cf7c6e2e</p><pre># PPTX
+PDF is a fixed, paged canvas. Body text is at least 8pt and contracts should choose 9–11pt; margins are at least 18pt. Tables repeat headers, split only at governed row boundaries, and move to landscape or appendices before type shrinks below the floor. Page numbers, document title, language, reading order, bookmarks, tagged structure, alt text, source notes, confidentiality, and generated-at basis are explicit. Missing fonts or glyphs fail rendering; silent substitution is prohibited.</pre></article><article id="outputs-pptx-md"><p class="meta">outputs/pptx.md · accepted · source-sha256 707cc1d6bd579bbdf06e9f9b9b3ec0d5ea1a70a20882d4e98ce979a74c2d5a79</p><pre># PPTX
 
-Slides are fixed canvases with declared aspect ratio, safe area, typography floor, theme, and speaker-note policy. One message dominates each slide. Long titles recompose or split; they never shrink without limit. Tables move to appendix/detail slides before becoming unreadable. Charts retain units, source, date basis, and editable data when allowed. Font substitution, overflow, off-slide objects, reading order, contrast, notes, and export-to-PDF are verified.</pre></article><article id="outputs-print-md"><p class="meta">outputs/print.md · accepted · source-sha256 ad95e5007d26375ae77c992fa075c543a35c2b12adde8b2020d5bc0e38151bdf</p><pre># Print
+PPTX generation starts from the Norfolk-owned [presentation IR](presentation-ir.md): durable semantics are authored and validated before vendor-neutral render geometry is derived. Slides are fixed canvases with declared aspect ratio, safe area, typography floor, theme, and speaker-note policy. One message dominates each slide. Long titles recompose or split; they never shrink without limit. Tables move to appendix/detail slides before becoming unreadable. Charts retain units, source, date basis, and editable data when allowed. Font substitution, overflow, off-slide objects, native reading order, contrast, notes, renderer identity, deterministic output hash, and export-to-PDF are verified.</pre></article><article id="outputs-presentation-ir-md"><p class="meta">outputs/presentation-ir.md · accepted · source-sha256 7269ee99013541886caede229662cff7008567f93f3bc4d2eefff59aaa2f5d77</p><pre># Presentation intermediate representation
 
-Print contracts declare trim size, bleed, safe area, margins, color space, profile, ink/contrast constraints, image resolution, overprint, crop marks, binding allowance, duplex behavior, paper assumption, and proof method. Typography respects the PDF floor. Web screenshots and unverified RGB-to-CMYK conversions are not print masters. Large masters live in versioned R2 storage with a lightweight manifest and proof fixture in Git.</pre></article><article id="outputs-README-md"><p class="meta">outputs/README.md · accepted · source-sha256 a2c776d8313a3bbbe060a8381cf99662a5fdb88472b92e557fe8d793c8a7acdb</p><pre># Output system
+## Purpose and authority
+
+The presentation intermediate representation (IR) is Norfolk AI's vendor-neutral contract for expressing a presentation before a renderer produces PPTX, PDF, HTML, or image output. Product OS owns its semantics, governance, and verification requirements. Norfolk Kit or a product may implement renderers, editors, storage, and format adapters, but no renderer or product template becomes canonical by implementing this contract.
+
+The canonical machine-readable profile is [`presentation-ir.schema.json`](../schemas/presentation-ir.schema.json). Its [`synthetic example`](presentation-ir.example.json) is Norfolk-owned and contains no client fields, brands, slot names, templates, assets, or identity. Canonical fixtures and evidence remain synthetic-only. Product data and instances stay in the adopting product under its authorization, confidentiality, retention, and output-job controls; they do not enter Product OS.
+
+## Semantic before geometric
+
+Author the durable `semantic` document first. It declares stable slide and element IDs, purpose, content, provenance, accessibility, reading order, overflow behavior, and theme-token intent without coordinates or renderer-specific structures. Every semantic element carries synthetic provenance in the canonical profile. Geometry in semantic content is invalid.
+
+Derive `render` only from a validated semantic revision. Render IR links to that revision and to semantic IDs, then adds fixed-canvas primitives, point-based geometry, z-order, asset references, and style-token references. It does not redefine meaning, data bindings, provenance, or reading order. A semantic revision may be redesigned into new geometry without changing durable meaning or IDs.
+
+Version 1 uses points with a top-left origin. Width, height, position, z-order, and rotation are explicit; every geometry object carries `rotationDegrees`, using `0` when unrotated. Omission is invalid. Percentages, implicit renderer defaults, and vendor-native object models are excluded. Renderers convert points at their output boundary.
+
+## Stable identity and themes
+
+Deck, revision, theme, slide, element, token, asset, and render-node IDs are stable, human-readable identifiers. Reordering is expressed separately from identity, and every semantic slide has a unique `order`. Every semantic slide must have render coverage, and every render slide must reference an existing semantic slide. One semantic slide maps to one render slide by default; only a semantic slide whose overflow strategy is `split` or `paginate` may map to multiple render slides. Their order in `render.slides` is the output sequence. Writers and renderers must reject duplicate IDs or orders, missing references or coverage, mismatched semantic revisions, and render nodes that cannot be traced to a semantic element.
+
+JSON Schema checks each field's shape. The companion [`presentation.ts`](../tools/validate/presentation.ts) semantic validator enforces cross-document uniqueness, reference resolution, revision equality, and exact reading-order coverage of every non-decorative semantic element.
+
+Themes are registries of semantic tokens. The canonical profile supports color, font, size, spacing, and stroke roles. Render geometry refers to tokens by ID; it does not embed a product brand or assume a vendor theme mechanism. A product resolves its authorized local theme outside Product OS.
+
+## Governed assets
+
+Assets are registry entries, never anonymous URLs or copied binaries. Each entry has a stable ID, kind, Norfolk registry reference, SHA-256 digest, ownership and rights-review record, and accessibility treatment. Canonical assets are Norfolk-owned synthetic placeholders. Semantic-to-render compatibility is bidirectional: semantic `asset` content must use an `image` primitive carrying the same governed `assetId` and accepting only `image` or `svg`; semantic `chart` content must use a `chart` primitive carrying the same governed data asset and accepting only `data`. Conversely, `image` and `chart` primitives require those matching semantic content types. Other primitives cannot attach or stand in for an asset. JSON Schema enforces the local shape while the semantic validator enforces this cross-document relationship. A renderer must resolve assets before rendering, verify their hashes and governance, and fail closed on missing, changed, incompatible, unapproved, inaccessible, or remotely fetched assets.
+
+## Accessibility and overflow
+
+Every slide declares a language, accessible title, and explicit reading order over non-decorative semantic elements. Each element declares whether it is decorative and otherwise supplies an accessible name. Reading order is semantic and remains stable when geometry changes.
+
+Overflow must use an explicit strategy: reflow, split, paginate, truncate with disclosure, or fail. Every strategy preserves the declared typography floor. Silent clipping, off-canvas content, undisclosed truncation, and unlimited shrinking are invalid. The renderer verifies bounds and overflow after fonts and assets resolve.
+
+## Deterministic rendering and verification
+
+Finalized IR pins canonical JSON serialization, semantic and render hashes, renderer identity and version, configuration hash, random seed, fixed clock, and a no-external-fetch rule. The same validated input and renderer configuration must produce the same bytes and output SHA-256 digest.
+
+Before an output may be delivered, the renderer records passed checks for:
+
+- schema validity and semantic-to-render linkage;
+- asset integrity, canvas bounds, and overflow behavior;
+- reading order, contrast, and font availability;
+- output format, a slide count exactly equal to `render.slides.length`, and output digest.
+
+Unknown checks, missing evidence, pending or failed status, hash drift, nondeterministic inputs, or renderer substitution block delivery. Format-specific verification still applies; for example, PPTX also verifies native reading order, speaker notes, editability where required, and PDF export parity.
+
+## Client-evidence boundary
+
+The architecture was evaluated against pinned, read-only product evidence and then reauthored as a Norfolk-owned contract. That evidence did not donate code or canonical content. Its domain fields, brands, slot names, templates, assets, identity, and product-specific renderer choices remain excluded. Only the abstract decision to separate durable semantics from derived geometry, backed by independent Norfolk schema and synthetic fixtures, is accepted.</pre></article><article id="outputs-print-md"><p class="meta">outputs/print.md · accepted · source-sha256 ad95e5007d26375ae77c992fa075c543a35c2b12adde8b2020d5bc0e38151bdf</p><pre># Print
+
+Print contracts declare trim size, bleed, safe area, margins, color space, profile, ink/contrast constraints, image resolution, overprint, crop marks, binding allowance, duplex behavior, paper assumption, and proof method. Typography respects the PDF floor. Web screenshots and unverified RGB-to-CMYK conversions are not print masters. Large masters live in versioned R2 storage with a lightweight manifest and proof fixture in Git.</pre></article><article id="outputs-README-md"><p class="meta">outputs/README.md · accepted · source-sha256 d80df94a9e5e7e39f6fe1c8d03dde114881498c5a06e31db34eb1e36f09b4064</p><pre># Output system
 
 Generated business materials are product surfaces with their own design, data, authorization, confidentiality, lifecycle, and verification contracts. They are not screenshots of the application and do not inherit safe behavior by accident.
 
-Read [shared principles](shared-principles.md) and [job lifecycle](job-lifecycle.md), then the format contract: [PDF](pdf.md), [XLSX](xlsx.md), [PPTX](pptx.md), [DOCX](docx.md), [email](email.md), [charts](charts.md), [print](print.md), or [investor materials](investor-materials.md).</pre></article><article id="outputs-shared-principles-md"><p class="meta">outputs/shared-principles.md · accepted · source-sha256 e709a800ab3eac7b23be83581c8165a6f5ad13cd8a161f957d909015a6f63052</p><pre># Shared output principles
+Read [shared principles](shared-principles.md) and [job lifecycle](job-lifecycle.md). Presentation-producing systems also apply the Norfolk-owned [Presentation IR](presentation-ir.md) before the format contract: [PDF](pdf.md), [XLSX](xlsx.md), [PPTX](pptx.md), [DOCX](docx.md), [email](email.md), [charts](charts.md), [print](print.md), or [investor materials](investor-materials.md).</pre></article><article id="outputs-shared-principles-md"><p class="meta">outputs/shared-principles.md · accepted · source-sha256 e709a800ab3eac7b23be83581c8165a6f5ad13cd8a161f957d909015a6f63052</p><pre># Shared output principles
 
 Every output contract declares purpose, audience, fixed/fluid/paged/grid canvas, typography floor, controlled margins, pagination, overflow, chart semantics, sources, confidentiality, numerical tie-out, accessibility, and asset policy.
 
@@ -771,7 +822,7 @@ Required golden states are normal, overflow, empty, and unavailable. Fixtures al
 
 Generated masters above the Git threshold live in versioned R2 objects with manifests and retrieval-tested checksums. Git contains lightweight golden fixtures only. External assets are pinned and licensed; generative assets record model/tool, prompt or transformation provenance, rights, review, and accessibility alternative.</pre></article><article id="outputs-xlsx-md"><p class="meta">outputs/xlsx.md · accepted · source-sha256 bd1a2e40a2daa1b4fcf9c64d4c2886843b97c0cf60b0ff642b7c2ac5c6015975</p><pre># XLSX
 
-XLSX preserves every requested filter, selection, column, sort, locale, unit, precision, and date basis. A visible context sheet records them. Values remain typed; displayed rounding never changes authoritative precision. Formulas are governed and auditable. User-controlled cells beginning with `=`, `+`, `-`, or `@` are rejected or safely escaped to prevent formula injection. Wide data uses frozen identifiers, filters, sensible widths, wrap, and separate sheets—never hidden truncation.</pre></article><article id="playbooks-README-md"><p class="meta">playbooks/README.md · accepted · source-sha256 101918a65412b9f2303c2ab3d9a4b0638cfa2f4851b154ebe1d67cb51bf9ebec</p><pre># Domain playbooks
+XLSX preserves every requested filter, selection, column, sort, locale, unit, precision, and date basis. A visible context sheet records them. Values remain typed; displayed rounding never changes authoritative precision. Formulas are governed and auditable. User-controlled cells beginning with `=`, `+`, `-`, or `@` are rejected or safely escaped to prevent formula injection. Wide data uses frozen identifiers, filters, sensible widths, wrap, and separate sheets—never hidden truncation.</pre></article><article id="playbooks-README-md"><p class="meta">playbooks/README.md · accepted · source-sha256 febe1d003d87f77049e22de3a4489a6cfc0c3b901b562cada1dbbf8ae9dbe15f</p><pre># Domain playbooks
 
 Domain playbooks adapt shared Norfolk principles to a class of products without turning one client implementation into a universal rule. They are validated by [`domain-playbook.schema.json`](../schemas/domain-playbook.schema.json).
 
@@ -787,7 +838,7 @@ Label each claim `universal`, `domain`, or `product-pattern`. Domain guidance ma
 
 ## Evidence boundary
 
-Named but unexamined references remain planned. Client evidence is sanitized, rights-reviewed, and promoted under [client boundaries](../governance/client-boundaries.md) before citation. H-Analytics can validate an analytics pattern, but cannot become an upstream dependency or Norfolk identity.</pre></article><article id="product-application-inventory-md"><p class="meta">product/application-inventory.md · accepted · source-sha256 6c5849db4fd4c31c55a72f77b6e1349c740ba853297448d14daff8757d219b57</p><pre># Application inventory
+Named but unexamined references remain planned. Client evidence is sanitized, rights-reviewed, and promoted under [client boundaries](../governance/client-boundaries.md) before citation. A bounded product evidence slice can validate an analytics pattern, but cannot become an upstream dependency or Norfolk identity; exact product identity remains publication-blocked.</pre></article><article id="product-application-inventory-md"><p class="meta">product/application-inventory.md · accepted · source-sha256 6c5849db4fd4c31c55a72f77b6e1349c740ba853297448d14daff8757d219b57</p><pre># Application inventory
 
 The inventory is the structured current-state map validated by [`application-inventory.schema.json`](../schemas/application-inventory.schema.json). Every existing item links to one or more observation IDs.
 
@@ -876,7 +927,7 @@ When no UI exists, record that fact once and keep the observation and current-st
 
 ## Exit gate
 
-Observation is complete when evidence is reproducible, sensitive sources are classified, coverage gaps are explicit, and no recommendation language remains in the observation log.</pre></article><article id="product-product-principles-md"><p class="meta">product/product-principles.md · accepted · source-sha256 9c073b7e20f55005db7f529256f9a55631cce6970d2453246ae2634ddfdc3e26</p><pre># Product principles
+Observation is complete when evidence is reproducible, sensitive sources are classified, coverage gaps are explicit, and no recommendation language remains in the observation log.</pre></article><article id="product-product-principles-md"><p class="meta">product/product-principles.md · accepted · source-sha256 ba1e6434eaa131182107f304643021f0f687f04c5a54ae1cdaabf755161f0f7c</p><pre># Product principles
 
 ## Begin with the product, not the interface
 
@@ -913,7 +964,7 @@ A material change to purpose, users, payer, value, success measures, roles, perm
 
 ## Client evidence does not become identity
 
-A product such as H-Analytics may validate or challenge the method through a bounded, sanitized evidence slice. It remains a product repository, not the source of Norfolk AI identity or automatic canon. Promotion follows [client boundaries](../governance/client-boundaries.md) and [promotion](../governance/promotion.md).</pre></article><article id="product-recommendations-md"><p class="meta">product/recommendations.md · accepted · source-sha256 9dc109e262ec6c68da72184a847fab91d4795f25090ed84011b8df96c24ac0ec</p><pre># Product recommendations
+A product may validate or challenge the method through a bounded, sanitized evidence slice. It remains a product repository, not the source of Norfolk AI identity or automatic canon. Promotion follows [client boundaries](../governance/client-boundaries.md) and [promotion](../governance/promotion.md); exact product identity stays in publication-blocked validation evidence.</pre></article><article id="product-recommendations-md"><p class="meta">product/recommendations.md · accepted · source-sha256 9dc109e262ec6c68da72184a847fab91d4795f25090ed84011b8df96c24ac0ec</p><pre># Product recommendations
 
 A recommendation is a reviewable proposal, never a disguised observation or automatic mutation.
 

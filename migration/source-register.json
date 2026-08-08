@@ -43,7 +43,7 @@
       "evidence": "src/components/animations; docs/design/animations; _replit-export",
       "disposition": "implement",
       "approval": "approved",
-      "destination": "Kit implementation; Product OS design/motion.md and outputs/motion-source-inventory.md"
+      "destination": "Kit implementation; Product OS design/motion.md and validation/motion-source-inventory.md"
     },
     {
       "id": "SRC-KIT-CLIENT-ASSETS",

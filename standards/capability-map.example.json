@@ -34,7 +34,20 @@
         { "name": "mcp", "applicability": "implemented", "procedure": "communications.send", "authorizationPolicy": "external-communications", "approvalPolicy": "human-only" },
         { "name": "copilot", "applicability": "implemented", "procedure": "communications.send", "authorizationPolicy": "external-communications", "approvalPolicy": "human-only" },
         { "name": "jobs", "applicability": "implemented", "procedure": "communications.send", "authorizationPolicy": "external-communications", "approvalPolicy": "human-only" },
-        { "name": "reports", "applicability": "not-applicable", "exception": { "reasonType": "security", "reason": "A report is evidence, not an outward communication transport.", "humanProcedure": "Open the approved message in the UI and issue a scoped send approval.", "approvalId": "EXAMPLE-REPORT-SEND-BOUNDARY" } },
+        {
+          "name": "reports",
+          "applicability": "not-applicable",
+          "exception": {
+            "reasonType": "physical",
+            "reason": "A static evidence artifact cannot itself execute an outward send.",
+            "humanProcedure": "Authorized external-message send procedure (COMMS-RUNBOOK-001)",
+            "implementationGap": false,
+            "approval": { "kind": "class", "reference": "APPROVAL-CLASS-EXTERNAL-COMMUNICATION" },
+            "owner": "Communications owner",
+            "recovery": "Stop pending delivery where supported and record a corrective follow-up.",
+            "review": { "reviewer": "AI Platform Owner", "reviewAt": "2027-08-08" }
+          }
+        },
         { "name": "schedules", "applicability": "implemented", "procedure": "communications.send", "authorizationPolicy": "external-communications", "approvalPolicy": "human-only" }
       ]
     }

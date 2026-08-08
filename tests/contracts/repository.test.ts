@@ -57,3 +57,25 @@ test("semantic client and secret markers are detected", () => {
   assert.equal(isPotentiallySensitive("KIT Capital production example"), true);
   assert.equal(isPotentiallySensitive("synthetic company example"), false);
 });
+
+test("release inputs reject publication-blocked client and lineage identifiers", async () => {
+  const fixture = await mkdtemp(join(tmpdir(), "norfolk-os-publication-input-"));
+  await mkdir(join(fixture, "docs"), { recursive: true });
+  await mkdir(join(fixture, "outputs"), { recursive: true });
+  await writeFile(join(fixture, "docs/README.md"), "# Index\n\n- [Outputs](../outputs/README.md)\n");
+  await writeFile(join(fixture, "outputs/README.md"), "---\ntitle: Outputs\nstatus: accepted\ntier: CONTRACT\nowner: Product OS Owner\nlastVerified: 2026-08-05\n---\n\nH-Analytics and RebeccaAdvancedOrbit release evidence.\n");
+
+  const result = await validateRepository(fixture, new Date("2026-08-05T12:00:00Z"));
+  assert.ok(result.errors.some((error) => error.includes("outputs/README.md: publication boundary")), result.errors.join("\n"));
+});
+
+test("generated release outputs reject publication-blocked identifiers", async () => {
+  const fixture = await mkdtemp(join(tmpdir(), "norfolk-os-publication-generated-"));
+  await mkdir(join(fixture, "docs"), { recursive: true });
+  await mkdir(join(fixture, "handbook"), { recursive: true });
+  await writeFile(join(fixture, "docs/README.md"), "# Index\n");
+  await writeFile(join(fixture, "handbook/index.html"), "<p>KIT Capital and Figma Make lineage</p>\n");
+
+  const result = await validateRepository(fixture, new Date("2026-08-05T12:00:00Z"));
+  assert.ok(result.errors.some((error) => error.includes("handbook/index.html: publication boundary")), result.errors.join("\n"));
+});

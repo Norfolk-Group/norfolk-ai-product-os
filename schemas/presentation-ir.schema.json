@@ -1,0 +1,429 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://norfolk.ai/schemas/presentation-ir.schema.json",
+  "title": "Norfolk presentation intermediate representation",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "irId",
+    "revisionId",
+    "owner",
+    "contentClassification",
+    "units",
+    "canvas",
+    "theme",
+    "assets",
+    "semantic",
+    "render",
+    "determinism",
+    "verification"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "irId": { "$ref": "#/definitions/stableId" },
+    "revisionId": { "$ref": "#/definitions/stableId" },
+    "owner": { "const": "Norfolk AI" },
+    "contentClassification": { "const": "synthetic-only" },
+    "units": { "const": "pt" },
+    "canvas": {
+      "type": "object",
+      "required": ["width", "height", "origin"],
+      "properties": {
+        "width": { "type": "number", "exclusiveMinimum": 0 },
+        "height": { "type": "number", "exclusiveMinimum": 0 },
+        "origin": { "const": "top-left" }
+      },
+      "additionalProperties": false
+    },
+    "theme": { "$ref": "#/definitions/theme" },
+    "assets": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/definitions/asset" }
+    },
+    "semantic": {
+      "type": "object",
+      "required": ["title", "language", "slides"],
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "language": { "$ref": "#/definitions/language" },
+        "slides": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/definitions/semanticSlide" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "render": {
+      "type": "object",
+      "required": ["sourceSemanticRevisionId", "slides"],
+      "properties": {
+        "sourceSemanticRevisionId": { "$ref": "#/definitions/stableId" },
+        "slides": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/definitions/renderSlide" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "determinism": { "$ref": "#/definitions/determinism" },
+    "verification": { "$ref": "#/definitions/verification" }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "stableId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:[.-][a-z0-9]+)*$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "language": {
+      "type": "string",
+      "pattern": "^[a-z]{2}(?:-[A-Z]{2})?$"
+    },
+    "tokenRef": {
+      "type": "string",
+      "pattern": "^token\\.[a-z][a-z0-9]*(?:[.-][a-z0-9]+)*$"
+    },
+    "theme": {
+      "type": "object",
+      "required": ["id", "tokens"],
+      "properties": {
+        "id": { "$ref": "#/definitions/stableId" },
+        "tokens": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "kind", "value"],
+            "properties": {
+              "id": { "$ref": "#/definitions/tokenRef" },
+              "kind": { "enum": ["color", "font", "size", "spacing", "stroke"] },
+              "value": { "type": ["string", "number"] }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "asset": {
+      "type": "object",
+      "required": ["id", "kind", "registryRef", "sha256", "governance", "accessibility"],
+      "properties": {
+        "id": { "$ref": "#/definitions/stableId" },
+        "kind": { "enum": ["image", "svg", "font", "data"] },
+        "registryRef": { "type": "string", "pattern": "^norfolk-registry://" },
+        "sha256": { "$ref": "#/definitions/sha256" },
+        "governance": {
+          "type": "object",
+          "required": ["status", "owner", "rightsReviewId"],
+          "properties": {
+            "status": { "const": "approved-norfolk-synthetic" },
+            "owner": { "const": "Norfolk AI" },
+            "rightsReviewId": { "$ref": "#/definitions/stableId" }
+          },
+          "additionalProperties": false
+        },
+        "accessibility": {
+          "type": "object",
+          "required": ["decorative"],
+          "properties": {
+            "decorative": { "type": "boolean" },
+            "altText": { "type": "string", "minLength": 1 }
+          },
+          "if": { "properties": { "decorative": { "const": false } } },
+          "then": { "required": ["altText"] },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["sourceKind", "sourceId", "sourceSha256", "recordedAt"],
+      "properties": {
+        "sourceKind": { "const": "synthetic" },
+        "sourceId": { "type": "string", "pattern": "^synthetic:[a-z0-9][a-z0-9.-]*$" },
+        "sourceSha256": { "$ref": "#/definitions/sha256" },
+        "recordedAt": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$" }
+      },
+      "additionalProperties": false
+    },
+    "semanticContent": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["type", "text"],
+          "properties": {
+            "type": { "const": "text" },
+            "text": { "type": "string", "minLength": 1 }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["type", "items"],
+          "properties": {
+            "type": { "const": "list" },
+            "items": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["type", "label", "value", "unit"],
+          "properties": {
+            "type": { "const": "metric" },
+            "label": { "type": "string", "minLength": 1 },
+            "value": { "type": ["string", "number"] },
+            "unit": { "type": "string", "minLength": 1 }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["type", "columns", "rows"],
+          "properties": {
+            "type": { "const": "table" },
+            "columns": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+            "rows": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": { "type": ["string", "number", "boolean", "null"] }
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["type", "description", "dataAssetId"],
+          "properties": {
+            "type": { "const": "chart" },
+            "description": { "type": "string", "minLength": 1 },
+            "dataAssetId": { "$ref": "#/definitions/stableId" }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["type", "assetId"],
+          "properties": {
+            "type": { "const": "asset" },
+            "assetId": { "$ref": "#/definitions/stableId" }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "semanticElement": {
+      "type": "object",
+      "required": ["id", "kind", "content", "provenance", "accessibility"],
+      "properties": {
+        "id": { "$ref": "#/definitions/stableId" },
+        "kind": { "enum": ["title", "body", "list", "metric", "table", "chart", "media", "shape"] },
+        "content": { "$ref": "#/definitions/semanticContent" },
+        "provenance": { "$ref": "#/definitions/provenance" },
+        "accessibility": {
+          "type": "object",
+          "required": ["decorative"],
+          "properties": {
+            "decorative": { "type": "boolean" },
+            "accessibleName": { "type": "string", "minLength": 1 }
+          },
+          "if": { "properties": { "decorative": { "const": false } } },
+          "then": { "required": ["accessibleName"] },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "overflow": {
+      "type": "object",
+      "required": ["strategy", "minimumFontSizePt"],
+      "properties": {
+        "strategy": { "enum": ["reflow", "split", "paginate", "truncate-with-disclosure", "fail"] },
+        "minimumFontSizePt": { "type": "number", "minimum": 8 },
+        "continuationLabel": { "type": "string", "minLength": 1 }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "strategy": { "const": "truncate-with-disclosure" } },
+            "required": ["strategy"]
+          },
+          "then": { "required": ["continuationLabel"] }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "semanticSlide": {
+      "type": "object",
+      "required": ["id", "order", "purpose", "overflow", "accessibility", "elements"],
+      "properties": {
+        "id": { "$ref": "#/definitions/stableId" },
+        "order": { "type": "integer", "minimum": 0 },
+        "purpose": { "enum": ["opening", "section", "content", "comparison", "detail", "closing"] },
+        "overflow": { "$ref": "#/definitions/overflow" },
+        "accessibility": {
+          "type": "object",
+          "required": ["title", "language", "readingOrder"],
+          "properties": {
+            "title": { "type": "string", "minLength": 1 },
+            "language": { "$ref": "#/definitions/language" },
+            "readingOrder": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "$ref": "#/definitions/stableId" }
+            }
+          },
+          "additionalProperties": false
+        },
+        "elements": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/definitions/semanticElement" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "geometry": {
+      "type": "object",
+      "required": ["x", "y", "width", "height", "zIndex", "rotationDegrees"],
+      "properties": {
+        "x": { "type": "number", "minimum": 0 },
+        "y": { "type": "number", "minimum": 0 },
+        "width": { "type": "number", "exclusiveMinimum": 0 },
+        "height": { "type": "number", "exclusiveMinimum": 0 },
+        "zIndex": { "type": "integer", "minimum": 0 },
+        "rotationDegrees": { "type": "number", "minimum": -360, "maximum": 360 }
+      },
+      "additionalProperties": false
+    },
+    "renderElement": {
+      "type": "object",
+      "required": ["id", "semanticElementId", "primitive", "geometry", "styleTokenRefs"],
+      "properties": {
+        "id": { "$ref": "#/definitions/stableId" },
+        "semanticElementId": { "$ref": "#/definitions/stableId" },
+        "primitive": { "enum": ["text", "image", "rect", "ellipse", "line", "table", "chart", "group"] },
+        "geometry": { "$ref": "#/definitions/geometry" },
+        "styleTokenRefs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/definitions/tokenRef" }
+        },
+        "assetId": { "$ref": "#/definitions/stableId" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "primitive": { "enum": ["image", "chart"] } },
+            "required": ["primitive"]
+          },
+          "then": { "required": ["assetId"] }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "renderSlide": {
+      "type": "object",
+      "required": ["id", "semanticSlideId", "backgroundTokenId", "elements"],
+      "properties": {
+        "id": { "$ref": "#/definitions/stableId" },
+        "semanticSlideId": { "$ref": "#/definitions/stableId" },
+        "backgroundTokenId": { "$ref": "#/definitions/tokenRef" },
+        "elements": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/definitions/renderElement" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "determinism": {
+      "type": "object",
+      "required": ["canonicalization", "semanticSha256", "renderSha256", "renderer", "randomSeed", "clock", "externalFetches"],
+      "properties": {
+        "canonicalization": { "const": "RFC8785" },
+        "semanticSha256": { "$ref": "#/definitions/sha256" },
+        "renderSha256": { "$ref": "#/definitions/sha256" },
+        "renderer": {
+          "type": "object",
+          "required": ["id", "version", "configurationSha256"],
+          "properties": {
+            "id": { "$ref": "#/definitions/stableId" },
+            "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+            "configurationSha256": { "$ref": "#/definitions/sha256" }
+          },
+          "additionalProperties": false
+        },
+        "randomSeed": { "type": "integer", "minimum": 0 },
+        "clock": {
+          "type": "object",
+          "required": ["mode", "instant"],
+          "properties": {
+            "mode": { "const": "fixed" },
+            "instant": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$" }
+          },
+          "additionalProperties": false
+        },
+        "externalFetches": { "const": "forbidden" }
+      },
+      "additionalProperties": false
+    },
+    "verificationCheck": {
+      "type": "object",
+      "required": ["name", "result", "evidenceSha256"],
+      "properties": {
+        "name": { "enum": ["schema", "semantic-linkage", "asset-integrity", "bounds", "overflow", "reading-order", "contrast", "fonts"] },
+        "result": { "const": "passed" },
+        "evidenceSha256": { "$ref": "#/definitions/sha256" }
+      },
+      "additionalProperties": false
+    },
+    "verification": {
+      "type": "object",
+      "required": ["sourceSemanticRevisionId", "status", "checks", "output"],
+      "properties": {
+        "sourceSemanticRevisionId": { "$ref": "#/definitions/stableId" },
+        "status": { "const": "passed" },
+        "checks": {
+          "type": "array",
+          "minItems": 8,
+          "uniqueItems": true,
+          "items": { "$ref": "#/definitions/verificationCheck" },
+          "allOf": [
+            { "contains": { "type": "object", "properties": { "name": { "const": "schema" } }, "required": ["name"] } },
+            { "contains": { "type": "object", "properties": { "name": { "const": "semantic-linkage" } }, "required": ["name"] } },
+            { "contains": { "type": "object", "properties": { "name": { "const": "asset-integrity" } }, "required": ["name"] } },
+            { "contains": { "type": "object", "properties": { "name": { "const": "bounds" } }, "required": ["name"] } },
+            { "contains": { "type": "object", "properties": { "name": { "const": "overflow" } }, "required": ["name"] } },
+            { "contains": { "type": "object", "properties": { "name": { "const": "reading-order" } }, "required": ["name"] } },
+            { "contains": { "type": "object", "properties": { "name": { "const": "contrast" } }, "required": ["name"] } },
+            { "contains": { "type": "object", "properties": { "name": { "const": "fonts" } }, "required": ["name"] } }
+          ]
+        },
+        "output": {
+          "type": "object",
+          "required": ["format", "sha256", "slideCount"],
+          "properties": {
+            "format": { "enum": ["html", "pdf", "pptx", "png"] },
+            "sha256": { "$ref": "#/definitions/sha256" },
+            "slideCount": { "type": "integer", "minimum": 1 }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

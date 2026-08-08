@@ -10,7 +10,7 @@ lastVerified: 2026-08-04
 
 ## Ownership
 
-Norfolk AI owns Product OS, Norfolk Kit, and reusable Norfolk intellectual property. KIT Capital is a client account. H-Analytics is a product and validation source associated with client work. Neither is Norfolk AI identity, a co-owner of Product OS, or an automatic source of portfolio standards.
+Norfolk AI owns Product OS, Norfolk Kit, and reusable Norfolk intellectual property. Client accounts and product validation sources are not Norfolk AI identity, co-owners of Product OS, or automatic sources of portfolio standards. Exact client and product identities belong only in publication-blocked validation evidence.
 
 Client agreements and applicable law remain controlling for client material. When ownership or reuse rights are unknown, classification fails closed and the material stays outside canonical history.
 

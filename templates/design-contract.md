@@ -27,7 +27,7 @@ For Norfolk foundation, domain, client brand, product, organization theme, and u
 - Semantic token roles and values by theme/scope:
 - Typography source, scale, and numeric typography:
 - Spacing, radii, borders, and shadows:
-- Lucide icon mapping, sizes, and custom glyphs:
+- Iconography: record the Lucide mapping, sizes, and custom glyphs; or attach an approved product-local exception proving one coherent library grammar, accessibility evidence, ownership and approval, the migration boundary, and dated review:
 
 ## Product expression
 

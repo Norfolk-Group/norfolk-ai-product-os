@@ -2,13 +2,41 @@ import { access, readFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import fg from "fast-glob";
 import matter from "gray-matter";
+import { CANONICAL_OUTPUT_PATHS, isReleaseInputPath } from "../release/inputs.js";
 
 export type ValidationResult = { errors: string[]; warnings: string[] };
 
 const markdownLink = /\[[^\]]+\]\(([^)]+)\)/g;
-const contractGlobs = ["governance/*.md", "decisions/*.md", "product/*.md", "design/*.md", "catalog/*.md", "migration/*.md", "adoption/*.md", "outputs/{README,shared-principles,job-lifecycle,pdf,xlsx,pptx,docx,email,charts,print,investor-materials}.md", "playbooks/*.md", "standards/*.md", "templates/*.md"];
+const contractGlobs = [
+  "governance/*.md",
+  "decisions/*.md",
+  "product/*.md",
+  "design/*.md",
+  "catalog/*.md",
+  "migration/*.md",
+  "adoption/*.md",
+  ...CANONICAL_OUTPUT_PATHS.filter((path) => path.endsWith(".md")),
+  "playbooks/*.md",
+  "standards/*.md",
+  "templates/*.md",
+];
 const allowedStatus = new Set(["draft", "proposed", "accepted", "deprecated", "superseded"]);
 const allowedTier = new Set(["CONTRACT", "REFERENCE"]);
+const publicationBlockedPatterns: ReadonlyArray<readonly [string, RegExp]> = [
+  ["named client account", /KIT Capital/i],
+  ["named client product", /H-Analytics/i],
+  ["protected product identity", /H\+(?:\s+(?:Analytics|family|design))?/i],
+  ["protected source alias", /H_ANALYTICS/i],
+  ["protected animation identity", /RebeccaAdvancedOrbit|AnalystCube(?:R3F|Icon)?/i],
+  ["protected creative-source lineage", /Figma Make|_replit-export/i],
+  ["named client property", /Obra P[ií]a|La Plage|El Claustro/i],
+];
+
+export function publicationBoundaryViolations(value: string): string[] {
+  return publicationBlockedPatterns
+    .filter(([, pattern]) => pattern.test(value))
+    .map(([label]) => label);
+}
 
 export async function validateRepository(root: string, now = new Date()): Promise<ValidationResult> {
   const errors: string[] = [];
@@ -49,6 +77,19 @@ export async function validateRepository(root: string, now = new Date()): Promis
     }
   }
 
+  const repositoryFiles = await fg(["**/*"], {
+    cwd: root,
+    onlyFiles: true,
+    dot: true,
+    ignore: [".git/**", ".superpowers/**", "node_modules/**"],
+  });
+  for (const path of repositoryFiles.filter(isReleaseInputPath)) {
+    const content = await readFile(resolve(root, path), "utf8");
+    for (const violation of publicationBoundaryViolations(content)) {
+      errors.push(`${path}: publication boundary contains ${violation}`);
+    }
+  }
+
   return { errors, warnings };
 }
 
@@ -62,9 +103,8 @@ export function isPotentiallySensitive(value: string): boolean {
     /-----BEGIN [A-Z ]+PRIVATE KEY-----/,
     /https?:\/\/[^\s]+(?:client|customer|investor)/i,
     /\/(?:Users|home)\/[^/\s]+\//,
-    /(?:KIT Capital|H-Analytics)/i
   ];
-  return patterns.some((pattern) => pattern.test(value));
+  return patterns.some((pattern) => pattern.test(value)) || publicationBoundaryViolations(value).length > 0;
 }
 
 export function isCanonicalClientEvidence(record: Record<string, unknown>): boolean {

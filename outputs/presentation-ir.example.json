@@ -1,0 +1,182 @@
+{
+  "schemaVersion": "1.0.0",
+  "irId": "presentation.synthetic-brief",
+  "revisionId": "revision.synthetic-0001",
+  "owner": "Norfolk AI",
+  "contentClassification": "synthetic-only",
+  "units": "pt",
+  "canvas": {
+    "width": 960,
+    "height": 540,
+    "origin": "top-left"
+  },
+  "theme": {
+    "id": "theme.neutral-synthetic",
+    "tokens": [
+      { "id": "token.color.surface", "kind": "color", "value": "#F7F7F7FF" },
+      { "id": "token.color.ink", "kind": "color", "value": "#1F2937FF" },
+      { "id": "token.color.accent", "kind": "color", "value": "#667085FF" },
+      { "id": "token.font.body", "kind": "font", "value": "system-ui" },
+      { "id": "token.size.body", "kind": "size", "value": 18 }
+    ]
+  },
+  "assets": [
+    {
+      "id": "asset.synthetic-marker",
+      "kind": "svg",
+      "registryRef": "norfolk-registry://synthetic/geometric-marker/v1",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "governance": {
+        "status": "approved-norfolk-synthetic",
+        "owner": "Norfolk AI",
+        "rightsReviewId": "review.synthetic-asset-0001"
+      },
+      "accessibility": {
+        "decorative": true
+      }
+    }
+  ],
+  "semantic": {
+    "title": "Synthetic Operations Brief",
+    "language": "en-US",
+    "slides": [
+      {
+        "id": "slide.opening",
+        "order": 0,
+        "purpose": "opening",
+        "overflow": {
+          "strategy": "reflow",
+          "minimumFontSizePt": 14
+        },
+        "accessibility": {
+          "title": "Synthetic operations summary",
+          "language": "en-US",
+          "readingOrder": ["element.title", "element.summary", "element.metric"]
+        },
+        "elements": [
+          {
+            "id": "element.title",
+            "kind": "title",
+            "content": { "type": "text", "text": "Example Review" },
+            "provenance": {
+              "sourceKind": "synthetic",
+              "sourceId": "synthetic:example-title",
+              "sourceSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+              "recordedAt": "2026-08-08T12:00:00Z"
+            },
+            "accessibility": { "decorative": false, "accessibleName": "Presentation title" }
+          },
+          {
+            "id": "element.summary",
+            "kind": "body",
+            "content": { "type": "text", "text": "Synthetic figures for contract verification only." },
+            "provenance": {
+              "sourceKind": "synthetic",
+              "sourceId": "synthetic:example-summary",
+              "sourceSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+              "recordedAt": "2026-08-08T12:00:00Z"
+            },
+            "accessibility": { "decorative": false, "accessibleName": "Synthetic-data disclosure" }
+          },
+          {
+            "id": "element.metric",
+            "kind": "metric",
+            "content": { "type": "metric", "label": "Completed items", "value": 42, "unit": "items" },
+            "provenance": {
+              "sourceKind": "synthetic",
+              "sourceId": "synthetic:example-metric",
+              "sourceSha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+              "recordedAt": "2026-08-08T12:00:00Z"
+            },
+            "accessibility": { "decorative": false, "accessibleName": "Completed items: 42" }
+          },
+          {
+            "id": "element.marker",
+            "kind": "media",
+            "content": { "type": "asset", "assetId": "asset.synthetic-marker" },
+            "provenance": {
+              "sourceKind": "synthetic",
+              "sourceId": "synthetic:example-marker",
+              "sourceSha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+              "recordedAt": "2026-08-08T12:00:00Z"
+            },
+            "accessibility": { "decorative": true }
+          }
+        ]
+      }
+    ]
+  },
+  "render": {
+    "sourceSemanticRevisionId": "revision.synthetic-0001",
+    "slides": [
+      {
+        "id": "render-slide.opening",
+        "semanticSlideId": "slide.opening",
+        "backgroundTokenId": "token.color.surface",
+        "elements": [
+          {
+            "id": "render-element.title",
+            "semanticElementId": "element.title",
+            "primitive": "text",
+            "geometry": { "x": 72, "y": 72, "width": 620, "height": 64, "zIndex": 2, "rotationDegrees": 0 },
+            "styleTokenRefs": ["token.font.body", "token.color.ink"]
+          },
+          {
+            "id": "render-element.summary",
+            "semanticElementId": "element.summary",
+            "primitive": "text",
+            "geometry": { "x": 72, "y": 160, "width": 620, "height": 72, "zIndex": 2, "rotationDegrees": 0 },
+            "styleTokenRefs": ["token.font.body", "token.size.body", "token.color.ink"]
+          },
+          {
+            "id": "render-element.metric",
+            "semanticElementId": "element.metric",
+            "primitive": "text",
+            "geometry": { "x": 72, "y": 268, "width": 300, "height": 96, "zIndex": 2, "rotationDegrees": 0 },
+            "styleTokenRefs": ["token.font.body", "token.color.accent"]
+          },
+          {
+            "id": "render-element.marker",
+            "semanticElementId": "element.marker",
+            "primitive": "image",
+            "geometry": { "x": 744, "y": 72, "width": 144, "height": 144, "zIndex": 1, "rotationDegrees": 0 },
+            "styleTokenRefs": ["token.color.accent"],
+            "assetId": "asset.synthetic-marker"
+          }
+        ]
+      }
+    ]
+  },
+  "determinism": {
+    "canonicalization": "RFC8785",
+    "semanticSha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+    "renderSha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "renderer": {
+      "id": "renderer.norfolk-reference",
+      "version": "1.0.0",
+      "configurationSha256": "2222222222222222222222222222222222222222222222222222222222222222"
+    },
+    "randomSeed": 1,
+    "clock": { "mode": "fixed", "instant": "2026-08-08T12:00:00Z" },
+    "externalFetches": "forbidden"
+  },
+  "verification": {
+    "sourceSemanticRevisionId": "revision.synthetic-0001",
+    "status": "passed",
+    "checks": [
+      { "name": "schema", "result": "passed", "evidenceSha256": "3333333333333333333333333333333333333333333333333333333333333333" },
+      { "name": "semantic-linkage", "result": "passed", "evidenceSha256": "4444444444444444444444444444444444444444444444444444444444444444" },
+      { "name": "asset-integrity", "result": "passed", "evidenceSha256": "5555555555555555555555555555555555555555555555555555555555555555" },
+      { "name": "bounds", "result": "passed", "evidenceSha256": "6666666666666666666666666666666666666666666666666666666666666666" },
+      { "name": "overflow", "result": "passed", "evidenceSha256": "7777777777777777777777777777777777777777777777777777777777777777" },
+      { "name": "reading-order", "result": "passed", "evidenceSha256": "8888888888888888888888888888888888888888888888888888888888888888" },
+      { "name": "contrast", "result": "passed", "evidenceSha256": "9999999999999999999999999999999999999999999999999999999999999999" },
+      { "name": "fonts", "result": "passed", "evidenceSha256": "0000000000000000000000000000000000000000000000000000000000000000" }
+    ],
+    "output": {
+      "format": "pptx",
+      "sha256": "abababababababababababababababababababababababababababababababab",
+      "slideCount": 1
+    }
+  }
+}

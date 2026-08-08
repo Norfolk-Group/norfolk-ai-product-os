@@ -3,7 +3,7 @@ title: Forbidden design patterns
 status: accepted
 tier: CONTRACT
 owner: Product OS Owner
-lastVerified: 2026-08-05
+lastVerified: 2026-08-08
 ---
 
 # Forbidden design patterns
@@ -22,4 +22,4 @@ lastVerified: 2026-08-05
 - Promoting a rule from a named but unexamined reference.
 - Refreshing a shadcn input without pinned provenance, hashes, file list, and deviation review.
 - Replacing a visual baseline without an explicit approve, reject, or defer decision.
-- Treating Figma, Replit, H-Analytics, or Kit motion as canonical by filename or recency before lineage reconciliation.
+- Treating any design master, implementation export, deployed product variant, or portable reference as canonical by filename or recency before lineage reconciliation.

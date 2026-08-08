@@ -8,7 +8,7 @@ lastVerified: 2026-08-04
 
 # Promotion of reusable learning
 
-Promotion is the only path by which learning from Norfolk Kit, a product, a client engagement, Figma, Replit, H-Analytics, or another source becomes canonical Norfolk AI doctrine.
+Promotion is the only path by which learning from Norfolk Kit, a product, a client engagement, a creative-intent source, an implementation handoff, or another source becomes canonical Norfolk AI doctrine.
 
 ## Lifecycle
 
@@ -42,4 +42,4 @@ A proposal records:
 8. If executable support is needed, propose a compatible Kit implementation.
 9. Offer downstream adoption as a separate reviewable proposal.
 
-H-Analytics and other products validate or challenge the Product OS; they never become upstream dependencies. For motion, preserve and compare Figma creative intent, Replit handoff, H-Analytics production behavior, and Kit portability before selecting a canonical contract. Filename and timestamp are not quality evidence.
+Products may validate or challenge the Product OS; they never become upstream dependencies. For motion, preserve and compare creative intent, implementation handoff, production behavior, and Kit portability before selecting a canonical contract. Filename and timestamp are not quality evidence. Exact source identity and lineage remain in publication-blocked validation evidence.

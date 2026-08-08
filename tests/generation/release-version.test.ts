@@ -7,10 +7,13 @@ import { generateHandbook } from "../../tools/generate-handbook/index.js";
 
 const root = resolve(import.meta.dirname, "../..");
 
-test("generated views identify the current signed candidate version", async () => {
+test("generated views distinguish unreleased source from the immutable prior candidate", async () => {
   const pkg = JSON.parse(await readFile(resolve(root, "package.json"), "utf8"));
   const release = JSON.parse(await readFile(resolve(root, `releases/${pkg.version}/release.json`), "utf8"));
   assert.equal(release.version, pkg.version);
-  assert.match((await generateHandbook(root)).html, new RegExp(`Product OS ${pkg.version.replaceAll(".", "\\.")}`));
-  assert.match((await generateCatalog(root)).html, new RegExp(`Product OS ${pkg.version.replaceAll(".", "\\.")}`));
+  for (const html of [(await generateHandbook(root)).html, (await generateCatalog(root)).html]) {
+    assert.match(html, new RegExp(`unreleased canonical source after immutable ${pkg.version.replaceAll(".", "\\.")}`));
+    assert.match(html, /new signed candidate required/);
+    assert.doesNotMatch(html, new RegExp(`Product OS ${pkg.version.replaceAll(".", "\\.")}(?:\\s|·)`));
+  }
 });

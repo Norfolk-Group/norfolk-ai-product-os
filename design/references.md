@@ -3,7 +3,7 @@ title: Design references
 status: accepted
 tier: CONTRACT
 owner: Product OS Owner
-lastVerified: 2026-08-05
+lastVerified: 2026-08-08
 ---
 
 # Design references
@@ -27,4 +27,4 @@ Cloudflare's assistant, Codex workflow, ElevenLabs, Qurrent AI, and any other un
 
 ## Motion provenance
 
-Figma Make, Replit exports, H-Analytics production behavior, and Kit copies are lineage sources rather than ordinary inspiration. Preserve all variants; U9 will record hashes, availability, visual intent, production behavior, and the reason a promoted implementation wins.
+Editable design masters, original implementation exports, deployed production behavior, and portable reference copies are lineage sources rather than ordinary inspiration. Preserve all variants; the bounded validation record carries their pins, hashes, availability, visual intent, production behavior, and any later approval rationale.

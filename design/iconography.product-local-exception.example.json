@@ -1,0 +1,30 @@
+{
+  "library": "Synthetic Mono",
+  "minimumSizePx": 16,
+  "exception": {
+    "id": "EX-4242",
+    "state": "approved",
+    "product": "Synthetic product",
+    "standard": "design/foundations.md#iconography",
+    "scope": "Existing user-facing surfaces in the synthetic product",
+    "rationale": "Preserve an established coherent grammar during bounded adoption.",
+    "risk": "The local grammar may drift from the Norfolk default.",
+    "compensatingControls": [
+      "One import boundary and review-owned mapping."
+    ],
+    "singleLibrary": true,
+    "grammar": "One monoline family with one documented weight and size mapping across the product.",
+    "accessibilityEvidence": [
+      "Accessible-name, non-text contrast, and target-size review passed."
+    ],
+    "evidence": [
+      "Synthetic accessibility review EVIDENCE-4242"
+    ],
+    "owner": "Synthetic product design owner",
+    "migrationBoundary": "Existing product surfaces only; Norfolk Kit and new products continue to use Lucide.",
+    "migrationConsequence": "Map icons to Lucide before the exception is resolved.",
+    "approver": "Product owner",
+    "approvedAt": "2026-08-08T12:00:00Z",
+    "reviewAt": "2027-08-08"
+  }
+}
