@@ -20,7 +20,7 @@ test("R2 requests fifteen-minute read-write credentials for one diagnostic prefi
     observed.push(JSON.parse(String(init?.body)));
     return new Response(JSON.stringify({ success: true, errors: [], messages: [], result: { accessKeyId: "temporary", secretAccessKey: "secret", sessionToken: "session" } }), { status: 200 });
   });
-  assert.deepEqual(observed, [{ bucket: "norfolk-product-os", parentAccessKeyId: "parent", permission: "object-read-write", ttlSeconds: 900, paths: { prefixPaths: ["diagnostics/product-os/"] } }]);
+  assert.deepEqual(observed, [{ bucket: "norfolk-product-os", parentAccessKeyId: "parent", permission: "object-read-write", ttlSeconds: 900, prefixes: ["diagnostics/product-os/"] }]);
   assert.equal(credentials.sessionToken, "session");
 });
 
