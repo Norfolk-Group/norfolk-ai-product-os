@@ -38,7 +38,6 @@
     "theme": { "$ref": "#/definitions/theme" },
     "assets": {
       "type": "array",
-      "minItems": 1,
       "uniqueItems": true,
       "items": { "$ref": "#/definitions/asset" }
     },
@@ -253,6 +252,15 @@
         "minimumFontSizePt": { "type": "number", "minimum": 8 },
         "continuationLabel": { "type": "string", "minLength": 1 }
       },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "strategy": { "const": "truncate-with-disclosure" } },
+            "required": ["strategy"]
+          },
+          "then": { "required": ["continuationLabel"] }
+        }
+      ],
       "additionalProperties": false
     },
     "semanticSlide": {

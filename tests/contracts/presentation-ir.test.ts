@@ -25,6 +25,14 @@ async function fixtureAndValidator() {
   };
 }
 
+async function semanticValidator() {
+  const modulePath = "../../tools/validate/presentation.js";
+  const module = await import(modulePath).catch(() => null);
+  assert.ok(module, "presentation IR semantic validator is missing");
+  assert.equal(typeof module.validatePresentationIr, "function");
+  return module.validatePresentationIr as (value: unknown) => string[];
+}
+
 test("the Norfolk presentation IR accepts the governed synthetic example", async () => {
   const { fixture, validate } = await fixtureAndValidator();
   assert.equal(validate(fixture), true, JSON.stringify(validate.errors));
@@ -78,4 +86,102 @@ test("renderer verification and deterministic output evidence are mandatory", as
   const unhashedOutput = structuredClone(fixture);
   delete unhashedOutput.verification.output.sha256;
   assert.equal(validate(unhashedOutput), false);
+});
+
+test("the semantic validator accepts the governed synthetic example", async () => {
+  const { fixture } = await fixtureAndValidator();
+  assert.deepEqual((await semanticValidator())(fixture), []);
+});
+
+test("semantic, render, token, and asset IDs must be unique", async () => {
+  const { fixture } = await fixtureAndValidator();
+  const validate = await semanticValidator();
+  const cases: Array<[string, (value: typeof fixture) => void, string]> = [
+    ["semantic slide", (value) => value.semantic.slides.push(structuredClone(value.semantic.slides[0])), "duplicate semantic slide ID"],
+    ["semantic element", (value) => value.semantic.slides[0].elements.push(structuredClone(value.semantic.slides[0].elements[0])), "duplicate semantic element ID"],
+    ["render slide", (value) => value.render.slides.push(structuredClone(value.render.slides[0])), "duplicate render slide ID"],
+    ["render element", (value) => value.render.slides[0].elements.push(structuredClone(value.render.slides[0].elements[0])), "duplicate render element ID"],
+    ["theme token", (value) => value.theme.tokens.push(structuredClone(value.theme.tokens[0])), "duplicate theme token ID"],
+    ["asset", (value) => value.assets.push(structuredClone(value.assets[0])), "duplicate asset ID"],
+  ];
+
+  for (const [name, mutate, expected] of cases) {
+    const invalid = structuredClone(fixture);
+    mutate(invalid);
+    assert.ok(validate(invalid).some((error) => error.includes(expected)), name);
+  }
+});
+
+test("semantic, render, token, and asset references must resolve", async () => {
+  const { fixture } = await fixtureAndValidator();
+  const validate = await semanticValidator();
+  const cases: Array<[string, (value: typeof fixture) => void, string]> = [
+    ["render slide", (value) => { value.render.slides[0].semanticSlideId = "slide.missing"; }, "unknown semantic slide"],
+    ["render element", (value) => { value.render.slides[0].elements[0].semanticElementId = "element.missing"; }, "unknown semantic element"],
+    ["background token", (value) => { value.render.slides[0].backgroundTokenId = "token.color.missing"; }, "unknown theme token"],
+    ["style token", (value) => { value.render.slides[0].elements[0].styleTokenRefs[0] = "token.font.missing"; }, "unknown theme token"],
+    ["render asset", (value) => { value.render.slides[0].elements[3].assetId = "asset.missing"; }, "unknown asset"],
+    ["semantic asset", (value) => { value.semantic.slides[0].elements[3].content.assetId = "asset.missing"; }, "unknown asset"],
+  ];
+
+  for (const [name, mutate, expected] of cases) {
+    const invalid = structuredClone(fixture);
+    mutate(invalid);
+    assert.ok(validate(invalid).some((error) => error.includes(expected)), name);
+  }
+});
+
+test("render and verification revisions must match the semantic revision", async () => {
+  const { fixture } = await fixtureAndValidator();
+  const validate = await semanticValidator();
+
+  const staleRender = structuredClone(fixture);
+  staleRender.render.sourceSemanticRevisionId = "revision.stale";
+  assert.ok(validate(staleRender).some((error) => error.includes("render source revision")));
+
+  const staleVerification = structuredClone(fixture);
+  staleVerification.verification.sourceSemanticRevisionId = "revision.stale";
+  assert.ok(validate(staleVerification).some((error) => error.includes("verification source revision")));
+});
+
+test("reading order exactly covers non-decorative semantic elements", async () => {
+  const { fixture } = await fixtureAndValidator();
+  const validate = await semanticValidator();
+
+  const omitted = structuredClone(fixture);
+  omitted.semantic.slides[0].accessibility.readingOrder.pop();
+  assert.ok(validate(omitted).some((error) => error.includes("missing non-decorative element element.metric")));
+
+  const decorative = structuredClone(fixture);
+  decorative.semantic.slides[0].accessibility.readingOrder.push("element.marker");
+  assert.ok(validate(decorative).some((error) => error.includes("contains decorative element element.marker")));
+
+  const unknown = structuredClone(fixture);
+  unknown.semantic.slides[0].accessibility.readingOrder.push("element.missing");
+  assert.ok(validate(unknown).some((error) => error.includes("contains unknown element element.missing")));
+});
+
+test("truncation requires a disclosure label", async () => {
+  const { fixture, validate } = await fixtureAndValidator();
+  const truncating = structuredClone(fixture);
+  truncating.semantic.slides[0].overflow.strategy = "truncate-with-disclosure";
+  assert.equal(validate(truncating), false);
+
+  truncating.semantic.slides[0].overflow.continuationLabel = "Continued in accessible notes";
+  assert.equal(validate(truncating), true, JSON.stringify(validate.errors));
+});
+
+test("text-only presentations do not require an asset registry entry", async () => {
+  const { fixture, validate } = await fixtureAndValidator();
+  const textOnly = structuredClone(fixture);
+  textOnly.assets = [];
+  textOnly.semantic.slides[0].elements = textOnly.semantic.slides[0].elements.filter(
+    (element: { id: string }) => element.id !== "element.marker",
+  );
+  textOnly.render.slides[0].elements = textOnly.render.slides[0].elements.filter(
+    (element: { id: string }) => element.id !== "render-element.marker",
+  );
+
+  assert.equal(validate(textOnly), true, JSON.stringify(validate.errors));
+  assert.deepEqual((await semanticValidator())(textOnly), []);
 });

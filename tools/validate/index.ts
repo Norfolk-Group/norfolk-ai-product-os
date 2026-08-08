@@ -13,6 +13,7 @@ import { validateAnimationRegistry } from "./motion.js";
 import { validateReleaseAuthorization } from "../release/authorization.js";
 import YAML from "yaml";
 import { validateProviderReadinessWorkflow, validateTrustedReleaseWorkflow } from "./workflows.js";
+import { validatePresentationIr } from "./presentation.js";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const result = await validateRepository(root);
@@ -40,6 +41,7 @@ result.errors.push(...validateAgentIdentityRegistry(JSON.parse(await readFile(re
 result.errors.push(...validateBrandProfile(JSON.parse(await readFile(resolve(root, "design/brand-profile.example.json"), "utf8"))).map((error) => `design/brand-profile.example.json: ${error}`));
 result.errors.push(...validateMediaAssetWorkflow(JSON.parse(await readFile(resolve(root, "standards/media-asset-workflow.example.json"), "utf8"))).map((error) => `standards/media-asset-workflow.example.json: ${error}`));
 result.errors.push(...validateAnimationRegistry(JSON.parse(await readFile(resolve(root, "design/animation-registry.example.json"), "utf8"))).map((error) => `design/animation-registry.example.json: ${error}`));
+result.errors.push(...validatePresentationIr(JSON.parse(await readFile(resolve(root, "outputs/presentation-ir.example.json"), "utf8"))).map((error) => `outputs/presentation-ir.example.json: ${error}`));
 for (const path of await fg(["release-authorizations/*.json"], { cwd: root, onlyFiles: true })) {
   const authorization = JSON.parse(await readFile(resolve(root, path), "utf8"));
   result.errors.push(...validateReleaseAuthorization(authorization).map((error) => `${path}: ${error}`));

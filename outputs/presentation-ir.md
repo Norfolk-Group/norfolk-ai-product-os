@@ -26,6 +26,8 @@ Version 1 uses points with a top-left origin. Width, height, position, z-order, 
 
 Deck, revision, theme, slide, element, token, asset, and render-node IDs are stable, human-readable identifiers. Reordering is expressed separately from identity. Writers and renderers must reject duplicate IDs, missing references, mismatched semantic revisions, and render nodes that cannot be traced to a semantic element.
 
+JSON Schema checks each field's shape. The companion [`presentation.ts`](../tools/validate/presentation.ts) semantic validator enforces cross-document uniqueness, reference resolution, revision equality, and exact reading-order coverage of every non-decorative semantic element.
+
 Themes are registries of semantic tokens. The canonical profile supports color, font, size, spacing, and stroke roles. Render geometry refers to tokens by ID; it does not embed a product brand or assume a vendor theme mechanism. A product resolves its authorized local theme outside Product OS.
 
 ## Governed assets
