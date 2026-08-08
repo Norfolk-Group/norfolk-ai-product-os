@@ -14,5 +14,6 @@ test("catalog generation is deterministic, offline, and exposes review controls"
   for (const label of ["Search", "Theme", "Reduced motion", "Approve", "Reject", "Defer", "Rationale", "Source path"]) assert.match(first.html, new RegExp(label));
   assert.doesNotMatch(first.html, /(?:src|href)=["']https?:|fetch\s*\(/i);
   assert.doesNotMatch(first.html, /validation\/(?:h-analytics|motion-lineage|report-output)\.md|PP-U11-|eeb05f9563b93f8842d2257eb7054555935f7e44/i);
+  assert.doesNotMatch(first.html, /H\+ Analytics|H\+ family|RebeccaAdvancedOrbit/i);
   assert.equal(await readFile(resolve(root, "catalog/generated/index.html"), "utf8"), first.html);
 });

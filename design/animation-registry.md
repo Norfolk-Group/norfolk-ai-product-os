@@ -14,10 +14,10 @@ Once accepted, an animation's display name and technical identifier are protecte
 
 ## Reuse boundary
 
-H+ Analytics currently preserves the best known production implementations of its animation family and progress experience. Its product names, assistant identity, logo motion, and animation identities remain exclusive to that product. Product OS promotes the architecture, truthful progress behavior, registry pattern, preview/assignment experience, reduced-motion behavior, and quality bar—not the H+ visual identity.
+Product implementations may preserve the best known production behavior for their own animation family and progress experience. Their product names, assistant identities, logo motion, animation identities, and visual language remain product-local. Product OS promotes the architecture, truthful progress behavior, registry pattern, preview/assignment experience, reduced-motion behavior, and quality bar—not any product's visual identity.
 
 The future Norfolk AI animation family will be visually distinct and remains provisional until Claude Design supplies or approves its masters. Customer products may adopt that family or register their own approved family.
 
-Figma originals and Replit exports remain preserved lineage evidence. For the currently reviewed H+ family, the current H+ production implementation is the working behavior reference only; it is not an approved visual master. An older artifact does not win merely because it came first. Visual-master selection remains deferred until pinned comparison, reuse-rights approval, and immutable preservation are complete, and reconciliation still preserves every variant and checksum.
+Editable originals and implementation exports remain preserved lineage evidence. A current production implementation may be the working behavior reference only; it is not an approved visual master. An older artifact does not win merely because it came first. Visual-master selection remains deferred until pinned comparison, reuse-rights approval, and immutable preservation are complete, and reconciliation still preserves every variant and checksum.
 
 The executable registry contract is [`animation-registry.schema.json`](../schemas/animation-registry.schema.json) with [`animation-registry.example.json`](animation-registry.example.json).
