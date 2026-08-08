@@ -168,6 +168,11 @@ export function validatePresentationIr(value: unknown): string[] {
       }
       const primitive = id(elementValue.primitive);
       const semanticContent = semanticElement && isRecord(semanticElement.content) ? semanticElement.content : {};
+      if (semanticContent.type === "asset" && primitive !== "image") {
+        errors.push(`render element ${renderElementId}: semantic asset content requires image primitive`);
+      } else if (semanticContent.type === "chart" && primitive !== "chart") {
+        errors.push(`render element ${renderElementId}: semantic chart content requires chart primitive`);
+      }
       if (primitive === "image") {
         if (!assetId) errors.push(`render element ${renderElementId}: image primitive requires assetId`);
         else if (asset && !isGovernedAsset(asset)) errors.push(`render element ${renderElementId}: image primitive requires governed asset ${assetId}`);

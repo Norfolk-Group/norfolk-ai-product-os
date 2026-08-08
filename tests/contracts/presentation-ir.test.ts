@@ -264,6 +264,11 @@ test("asset-backed primitives require compatible governed assets and semantic co
   imageFromText.render.slides[0].elements[0].assetId = "asset.synthetic-marker";
   assert.ok(validate(imageFromText).some((error) => error.includes("image primitive requires semantic asset content")));
 
+  const textFromAsset = structuredClone(fixture);
+  textFromAsset.render.slides[0].elements[3].primitive = "text";
+  delete textFromAsset.render.slides[0].elements[3].assetId;
+  assert.ok(validate(textFromAsset).some((error) => error.includes("semantic asset content requires image primitive")));
+
   const wrongImageKind = structuredClone(fixture);
   wrongImageKind.assets[0].kind = "data";
   assert.ok(validate(wrongImageKind).some((error) => error.includes("image primitive requires image or svg asset")));
@@ -284,6 +289,11 @@ test("asset-backed primitives require compatible governed assets and semantic co
   chart.render.slides[0].elements[2].primitive = "chart";
   chart.render.slides[0].elements[2].assetId = "asset.synthetic-data";
   assert.deepEqual(validate(chart), []);
+
+  const textFromChart = structuredClone(chart);
+  textFromChart.render.slides[0].elements[2].primitive = "text";
+  delete textFromChart.render.slides[0].elements[2].assetId;
+  assert.ok(validate(textFromChart).some((error) => error.includes("semantic chart content requires chart primitive")));
 
   chart.assets[1].kind = "image";
   assert.ok(validate(chart).some((error) => error.includes("chart primitive requires data asset")));
