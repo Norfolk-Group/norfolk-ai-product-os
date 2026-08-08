@@ -2,6 +2,29 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
+function isIsoCalendarDate(value: unknown): value is string {
+  if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const parsed = new Date(`${value}T00:00:00.000Z`);
+  return !Number.isNaN(parsed.valueOf()) && parsed.toISOString().slice(0, 10) === value;
+}
+
+function isIsoDateTime(value: unknown): value is string {
+  if (typeof value !== "string") return false;
+  const match = /^(\d{4}-\d{2}-\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.\d+)?(?:Z|[+-](\d{2}):(\d{2}))$/.exec(value);
+  if (!match || !isIsoCalendarDate(match[1])) return false;
+
+  const [, , hours, minutes, seconds, offsetHours, offsetMinutes] = match;
+  if (
+    Number(hours) > 23 ||
+    Number(minutes) > 59 ||
+    Number(seconds) > 59 ||
+    (offsetHours !== undefined && Number(offsetHours) > 23) ||
+    (offsetMinutes !== undefined && Number(offsetMinutes) > 59)
+  ) return false;
+
+  return !Number.isNaN(Date.parse(value));
+}
+
 export function validateDesignContract(value: unknown): string[] {
   if (!isRecord(value)) return ["design contract must be an object"];
   const errors: string[] = [];
@@ -41,6 +64,18 @@ export function validateDesignContract(value: unknown): string[] {
     const allowed = new Set(preferences.allowed.filter((item): item is string => typeof item === "string"));
     for (const key of Object.keys(preferences.values)) {
       if (!allowed.has(key)) errors.push(`userPreferences.values.${key}: preference is not allowed by this contract`);
+    }
+  }
+
+  const foundations = isRecord(value.foundations) ? value.foundations : undefined;
+  const iconography = foundations && isRecord(foundations.iconography) ? foundations.iconography : undefined;
+  const iconException = iconography && isRecord(iconography.exception) ? iconography.exception : undefined;
+  if (iconException) {
+    if (!isIsoDateTime(iconException.approvedAt)) {
+      errors.push("foundations.iconography.exception.approvedAt requires a valid ISO date-time");
+    }
+    if (!isIsoCalendarDate(iconException.reviewAt)) {
+      errors.push("foundations.iconography.exception.reviewAt requires a valid ISO calendar date");
     }
   }
 

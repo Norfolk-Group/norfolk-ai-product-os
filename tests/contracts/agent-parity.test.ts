@@ -65,7 +65,11 @@ test("adapter inconvenience cannot be disguised as a physical, legal, or securit
     "The current adapter is inconvenient and does not expose the required response object.",
     "The integration needs a missing wrapper before this transport can act.",
     "The integration cannot support this action yet.",
-    "The implementation is unavailable in this transport."
+    "The implementation is unavailable in this transport.",
+    "This channel is not implemented yet.",
+    "This channel is unimplemented.",
+    "This channel is not supported.",
+    "This channel is not built."
   ]) {
     const map = await json("standards/capability-map.example.json");
     Object.assign(map.capabilities[1].transports[5].exception, { reasonType: "security", reason });

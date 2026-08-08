@@ -79,7 +79,7 @@ export function validateCapabilityMap(value: unknown): string[] {
         const review = isRecord(exception.review) ? exception.review : {};
         if (!text(review.reviewer)) errors.push(`${prefix}.review requires a reviewer`);
         if (!isoDate(review.reviewAt)) errors.push(`${prefix}.review.reviewAt requires an ISO calendar date`);
-        if (text(exception.reason) && /\b(?:adapter|framework|sdk|transport|wrapper|integration|implementation|tooling|endpoint|backlog|unsupported|unavailable)\b|\bnot built\b/i.test(String(exception.reason))) {
+        if (text(exception.reason) && /\b(?:adapter|framework|sdk|transport|wrapper|integration|implementation|tooling|endpoint|backlog|unsupported|unavailable|unimplemented)\b|\bnot[\s-]+(?:yet[\s-]+)?(?:implemented|supported|built)\b/i.test(String(exception.reason))) {
           errors.push(`${prefix}: an implementation or adapter limitation is a parity gap, not an exception`);
         }
       } else if (entry.applicability !== "implemented") errors.push(`capabilities[${index}].transports[${transportIndex}] missing applicability`);

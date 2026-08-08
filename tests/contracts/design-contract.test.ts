@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 import { createRequire } from "node:module";
 import { resolve } from "node:path";
 import test from "node:test";
+import { validateDesignContract } from "../../tools/validate/design.js";
 
 type Validator = ((value: unknown) => boolean) & { errors?: unknown[] | null };
 type AjvInstance = { compile: (schema: unknown) => Validator };
@@ -75,12 +76,31 @@ test("a product-local icon exception requires an ISO review date", async () => {
 
 test("Lucide aliases cannot bypass the canonical stroke contract", async () => {
   const validate = await compile("design-contract");
-  for (const library of ["lucide", "LUCIDE", "Lucide ", "Lucide/icons"]) {
+  for (const library of ["lucide", "LUCIDE", "Lucide ", "Lucide/icons", "Lucide React", "lucide-react", "@lucide/lab", "@Lucide/icons"]) {
     const contract = await json("tests/fixtures/design/valid-contract.json");
     contract.foundations.iconography = await json("design/iconography.product-local-exception.example.json");
     contract.foundations.iconography.library = library;
     assert.equal(validate(contract), false, library);
   }
+});
+
+test("a product-local icon exception rejects impossible dates and malformed approval timestamps", async () => {
+  for (const [field, value] of [
+    ["reviewAt", "2027-02-31"],
+    ["reviewAt", "2026-08-08garbage"],
+    ["approvedAt", "2027-02-31T12:00:00Z"],
+    ["approvedAt", "2026-08-08Tgarbage"]
+  ]) {
+    const contract = await json("tests/fixtures/design/valid-contract.json");
+    contract.foundations.iconography = await json("design/iconography.product-local-exception.example.json");
+    contract.foundations.iconography.exception[field] = value;
+    assert.ok(validateDesignContract(contract).some((error) => error.includes(field)), `${field}: ${value}`);
+  }
+
+  const malformed = await json("tests/fixtures/design/valid-contract.json");
+  malformed.foundations.iconography = await json("design/iconography.product-local-exception.example.json");
+  malformed.foundations.iconography.exception.approvedAt = "2026-08-08Tgarbage";
+  assert.equal((await compile("design-contract"))(malformed), false, "schema accepted malformed approvedAt");
 });
 
 test("numeric typography, error behavior, mobile treatment, and forbidden patterns are mandatory", async () => {
