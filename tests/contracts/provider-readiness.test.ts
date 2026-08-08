@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { redactDiagnosticOutput, validateWorkOSReadinessEnvironment } from "../../tools/readiness/workos.js";
 import { requestTemporaryR2Credentials, runR2Diagnostic } from "../../tools/readiness/r2.js";
@@ -8,13 +9,18 @@ test("WorkOS readiness requires staging values and redacts credential-shaped out
   assert.equal(redactDiagnosticOutput("api key sk_test_secret and code=abc123"), "api key [REDACTED] and code=[REDACTED]");
 });
 
+test("WorkOS readiness installs the SDK version named by the accepted evidence", async () => {
+  const packageJson = JSON.parse(await readFile("package.json", "utf8")) as { devDependencies?: Record<string, string> };
+  assert.equal(packageJson.devDependencies?.["@workos-inc/node"], "10.9.0");
+});
+
 test("R2 requests fifteen-minute read-write credentials for one diagnostic prefix", async () => {
   const observed: unknown[] = [];
   const credentials = await requestTemporaryR2Credentials({ accountId: "account", apiToken: "token", bucket: "norfolk-product-os", parentAccessKeyId: "parent", prefix: "diagnostics/product-os/" }, async (_url, init) => {
     observed.push(JSON.parse(String(init?.body)));
     return new Response(JSON.stringify({ success: true, errors: [], messages: [], result: { accessKeyId: "temporary", secretAccessKey: "secret", sessionToken: "session" } }), { status: 200 });
   });
-  assert.deepEqual(observed, [{ bucket: "norfolk-product-os", parentAccessKeyId: "parent", permission: "object-read-write", ttlSeconds: 900, paths: { prefixPaths: ["diagnostics/product-os/"] } }]);
+  assert.deepEqual(observed, [{ bucket: "norfolk-product-os", parentAccessKeyId: "parent", permission: "object-read-write", ttlSeconds: 900, prefixes: ["diagnostics/product-os/"] }]);
   assert.equal(credentials.sessionToken, "session");
 });
 

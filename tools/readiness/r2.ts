@@ -12,7 +12,7 @@ export async function requestTemporaryR2Credentials(input: R2CredentialRequest, 
   const response = await fetcher(`https://api.cloudflare.com/client/v4/accounts/${encodeURIComponent(input.accountId)}/r2/temp-access-credentials`, {
     method: "POST",
     headers: { authorization: `Bearer ${input.apiToken}`, "content-type": "application/json" },
-    body: JSON.stringify({ bucket: input.bucket, parentAccessKeyId: input.parentAccessKeyId, permission: "object-read-write", ttlSeconds: 900, paths: { prefixPaths: [input.prefix] } }),
+    body: JSON.stringify({ bucket: input.bucket, parentAccessKeyId: input.parentAccessKeyId, permission: "object-read-write", ttlSeconds: 900, prefixes: [input.prefix] }),
   });
   if (!response.ok) throw new Error(`R2 temporary credential request failed with HTTP ${response.status}`);
   const body = await response.json() as { success?: boolean; result?: Partial<R2TemporaryCredentials> };
