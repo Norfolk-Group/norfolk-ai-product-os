@@ -51,7 +51,7 @@ result.errors.push(...validateProviderReadinessWorkflow(providerWorkflow).map((e
 result.errors.push(...validateAuthExperience(JSON.parse(await readFile(resolve(root, "tests/fixtures/auth/valid-experience.json"), "utf8"))).map((error) => `tests/fixtures/auth/valid-experience.json: ${error}`));
 result.errors.push(...validateAuthSecurity(JSON.parse(await readFile(resolve(root, "tests/fixtures/auth/valid-security.json"), "utf8"))).map((error) => `tests/fixtures/auth/valid-security.json: ${error}`));
 for (const name of ["norfolk-starter", "norfolk-manual"]) result.errors.push(...validateRetirementDossier(JSON.parse(await readFile(resolve(root, `retirement/${name}.json`), "utf8"))).map((error) => `retirement/${name}.json: ${error}`));
-for (const name of ["h-analytics.md", "motion-lineage.md", "report-output.md"]) {
+for (const name of ["h-analytics.md", "motion-lineage.md", "report-output.md", "norfolk-manual.md"]) {
   const body = await readFile(resolve(root, `validation/${name}`), "utf8");
   result.errors.push(...validateValidationArtifact(body).map((error) => `validation/${name}: ${error}`));
 }

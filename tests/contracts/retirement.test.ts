@@ -38,3 +38,11 @@ test("approval cannot expose a destructive action while the dossier is incomplet
   assert.ok(validateRetirementDossier(dossier).length > 0);
   assert.equal(destructiveActionAvailable(dossier), false);
 });
+
+test("Manual records every observed branch and remains blocked on restoration and consumers", async () => {
+  const dossier = await json("retirement/norfolk-manual.json");
+  assert.deepEqual(dossier.branches.githubMcpObserved.sort(), ["deletions/animation-library", "main", "test/kit-guard-proof"]);
+  assert.equal(dossier.recoveryTest.safeTargetRestore, false);
+  assert.equal(dossier.consumers.complete, false);
+  assert.equal(destructiveActionAvailable(dossier), false);
+});

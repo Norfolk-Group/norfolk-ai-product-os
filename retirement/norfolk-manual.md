@@ -1,7 +1,9 @@
 # Norfolk Manual retirement dossier
 
-Recommendation: retain for now; reconsider deletion second, after unique operational value is migrated or intentionally retired. Current state: not ready.
+Recommendation: delete after preservation and exact approval. Current state: not ready. No destructive operation is available.
 
-GitHub MCP confirms the repository is private and active with `main`, `test/kit-guard-proof`, and `deletions/animation-library`. PR #2 is open and proposes deleting the copied animation library. Closing or merging that PR is itself a separate destructive/consequential action and has no approval. The verified bundle covers only `main`.
+The pinned private GitHub audit found no unique current doctrine to promote. The repository is an aspirational handbook/renderer concept wrapped around a duplicated July 2026 Kit payload, largely empty architecture/design/security/business-logic pages, old H+ animation copies, and setup/launcher utilities that do not constitute a working canonical renderer. Product OS is the authority; its generated handbook replaces the claimed Manual role. H+ Analytics remains the current design and motion evidence source, while Norfolk Kit remains the executable reference.
 
-Manual substantially duplicates old Kit doctrine but retains unique setup and launcher utilities, and its renderer/consumer role is unresolved. Required next work: decide and migrate those utilities, preserve all refs/PR metadata/settings/dependencies, prove no active consumer, restore safely, then decide whether the exact future action is archive or delete. No approval has been requested or inferred.
+GitHub MCP observed `main`, `test/kit-guard-proof`, and `deletions/animation-library` at source commit `b397f6e3d5e00d2be9ee608356f892daaca8dcd2`. PR #2 proposes removing the copied animation library. The existing verified bundle covers only `main`.
+
+Before deletion can be requested, preserve every ref plus repository metadata/settings, prove package and automation consumers, install successor links, restore the preservation bundle into a safe target, and verify the restored repository. Then request a separate, exact approval naming `Norfolk-Group/norfolk-manual`. Merging/closing PR #2, archiving, and deleting are distinct consequential actions; none is approved here.

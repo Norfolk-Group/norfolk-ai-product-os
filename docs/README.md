@@ -154,6 +154,7 @@ These contracts keep product purpose, observed evidence, structure, and recommen
 - [Bounded client product validation](../validation/h-analytics.md)
 - [Motion lineage validation](../validation/motion-lineage.md)
 - [Report/output validation](../validation/report-output.md)
+- [Norfolk Manual pinned audit](../validation/norfolk-manual.md)
 - [Candidate release readiness](../validation/release-readiness.md)
 - [Preservation evidence](../retirement/preservation-bundle.md)
 - [Norfolk Starter dossier](../retirement/norfolk-starter.md)
