@@ -26,6 +26,7 @@ Accepted decisions are append-only history. A later decision may supersede one, 
 - [0004 — Transport-neutral capabilities](../decisions/0004-transport-neutral-capabilities.md)
 - [0005 — WorkOS is the production identity foundation](../decisions/0005-workos-production-identity.md)
 - [0006 — Direct governed media transfer](../decisions/0006-direct-media-transfer.md)
+- [0007 — Governed icon and capability-parity exceptions](../decisions/0007-governed-icon-and-capability-parity-exceptions.md)
 
 ## Product method
 

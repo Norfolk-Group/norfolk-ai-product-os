@@ -21,6 +21,68 @@ test("a complete product design contract is accepted", async () => {
   assert.equal((await compile("design-contract"))(await json("tests/fixtures/design/valid-contract.json")), true);
 });
 
+test("a coherent product-local icon library is accepted only with an approved design exception", async () => {
+  const contract = await json("tests/fixtures/design/valid-contract.json");
+  contract.foundations.iconography = await json("design/iconography.product-local-exception.example.json");
+
+  const validate = await compile("design-contract");
+  assert.equal(validate(contract), true, JSON.stringify(validate.errors));
+});
+
+test("a product-local icon exception carries the complete governed exception record", async () => {
+  const contract = await json("tests/fixtures/design/valid-contract.json");
+  contract.foundations.iconography = await json("design/iconography.product-local-exception.example.json");
+  Object.assign(contract.foundations.iconography.exception, {
+    product: "Synthetic product",
+    standard: "design/foundations.md#iconography",
+    scope: "Existing user-facing surfaces in the synthetic product",
+    rationale: "Preserve an established coherent grammar during bounded adoption.",
+    risk: "The local grammar may drift from the Norfolk default.",
+    compensatingControls: ["One import boundary and review-owned mapping."],
+    evidence: ["Synthetic accessibility review EVIDENCE-4242"],
+    approvedAt: "2026-08-08T12:00:00Z",
+    migrationConsequence: "Map icons to Lucide before the exception is resolved."
+  });
+  const validate = await compile("design-contract");
+  assert.equal(validate(contract), true, JSON.stringify(validate.errors));
+});
+
+test("a product-local icon exception fails when any governance proof is absent", async () => {
+  const base = await json("tests/fixtures/design/valid-contract.json");
+  const iconography = await json("design/iconography.product-local-exception.example.json");
+  const exception = iconography.exception;
+  const validate = await compile("design-contract");
+
+  for (const field of Object.keys(exception)) {
+    const incomplete = structuredClone(base);
+    const proof = structuredClone(exception) as Record<string, unknown>;
+    delete proof[field];
+    incomplete.foundations.iconography = { ...iconography, exception: proof };
+    assert.equal(validate(incomplete), false, `missing ${field}`);
+  }
+
+  const undocumented = structuredClone(base);
+  undocumented.foundations.iconography = { library: "Synthetic Mono", minimumSizePx: 16 };
+  assert.equal(validate(undocumented), false, "an alternative library without an exception must fail");
+});
+
+test("a product-local icon exception requires an ISO review date", async () => {
+  const contract = await json("tests/fixtures/design/valid-contract.json");
+  contract.foundations.iconography = await json("design/iconography.product-local-exception.example.json");
+  contract.foundations.iconography.exception.reviewAt = "not-a-date";
+  assert.equal((await compile("design-contract"))(contract), false);
+});
+
+test("Lucide aliases cannot bypass the canonical stroke contract", async () => {
+  const validate = await compile("design-contract");
+  for (const library of ["lucide", "LUCIDE", "Lucide ", "Lucide/icons"]) {
+    const contract = await json("tests/fixtures/design/valid-contract.json");
+    contract.foundations.iconography = await json("design/iconography.product-local-exception.example.json");
+    contract.foundations.iconography.library = library;
+    assert.equal(validate(contract), false, library);
+  }
+});
+
 test("numeric typography, error behavior, mobile treatment, and forbidden patterns are mandatory", async () => {
   assert.equal((await compile("design-contract"))(await json("tests/fixtures/design/invalid-incomplete-contract.json")), false);
 });

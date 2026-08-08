@@ -16,4 +16,8 @@ Agents receive the resources, vocabulary, recent state, permissions, and capabil
 
 Consequential proposals show intended effect, scope, target, reversibility, evidence, and expiry to a human. Approval cannot be bundled across unrelated effects. A model or provider swap must not change capability semantics or policy.
 
+## Capability-parity exceptions
+
+Every supported transport receives an explicit `implemented` or `not-applicable` disposition. `not-applicable` is allowed only for a physical, legal, or security constraint, and its structured record must explicitly attest that it is not an implementation gap. The exception names the human procedure that achieves the authorized outcome, cites an approval record or approval class, assigns an owner, defines recovery, and records a reviewer and review date. Adapter inconvenience, missing wrapper code, framework limitations, backlog priority, and “not built yet” are gaps, not exceptions; they remain visible and block a claim of complete parity.
+
 Member type, naming, conversational presentation, and truthful progress attribution follow [Agent identity and naming](agent-identity.md). A deterministic worker is a Minion even when it participates in a Swarm; it cannot be presented as an LLM Agent.

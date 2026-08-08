@@ -26,6 +26,8 @@ Use a named scale with documented jobs rather than one-off values. Hairlines are
 
 ## Iconography
 
-Lucide is the sole canonical interface library. The default stroke is `1.5`; large feature marks may use `1.25`. Do not render monoline icons below 14px. Custom icons use Lucide's 24×24 grid, round caps/joins, compatible stroke, and review. Style is locked while meaning varies. Use an icon only when it adds information the label does not; fixed navigation may use icons, homogeneous user-named lists generally do not.
+Lucide remains the sole canonical interface library and the Norfolk/Kit default. The default stroke is `1.5`; large feature marks may use `1.25`. Do not render monoline icons below 14px. Custom icons use Lucide's 24×24 grid, round caps/joins, compatible stroke, and review. Style is locked while meaning varies. Use an icon only when it adds information the label does not; fixed navigation may use icons, homogeneous user-named lists generally do not.
+
+A product may adopt a different icon library only through an approved product-local design-contract exception. The exception proves a coherent single-library grammar, records accessibility evidence, names the owner and approver, bounds migration to the affected product, and sets a review date. It does not change the Norfolk/Kit default, authorize a mixed-library surface, or establish precedent for another product. See the [synthetic product-local exception example](iconography.product-local-exception.example.json).
 
 Emoji, filled/duotone sets, a second icon library, ad hoc per-row icons, and color-coded icon confetti are forbidden.

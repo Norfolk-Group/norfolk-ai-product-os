@@ -44,12 +44,32 @@
                     "applicability": { "const": "not-applicable" },
                     "exception": {
                       "type": "object",
-                      "required": ["reasonType", "reason", "humanProcedure", "approvalId"],
+                      "required": ["reasonType", "reason", "humanProcedure", "implementationGap", "approval", "owner", "recovery", "review"],
                       "properties": {
                         "reasonType": { "enum": ["physical", "legal", "security"] },
                         "reason": { "type": "string", "minLength": 1 },
                         "humanProcedure": { "type": "string", "minLength": 1 },
-                        "approvalId": { "type": "string", "minLength": 1 }
+                        "implementationGap": { "const": false },
+                        "approval": {
+                          "type": "object",
+                          "required": ["kind", "reference"],
+                          "properties": {
+                            "kind": { "enum": ["record", "class"] },
+                            "reference": { "type": "string", "minLength": 1 }
+                          },
+                          "additionalProperties": false
+                        },
+                        "owner": { "type": "string", "minLength": 1 },
+                        "recovery": { "type": "string", "minLength": 1 },
+                        "review": {
+                          "type": "object",
+                          "required": ["reviewer", "reviewAt"],
+                          "properties": {
+                            "reviewer": { "type": "string", "minLength": 1 },
+                            "reviewAt": { "type": "string", "format": "date", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" }
+                          },
+                          "additionalProperties": false
+                        }
                       },
                       "additionalProperties": false
                     }
