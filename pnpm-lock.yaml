@@ -11,6 +11,9 @@ importers:
       '@types/node':
         specifier: ^24.0.0
         version: 24.13.3
+      '@workos-inc/node':
+        specifier: 10.9.0
+        version: 10.9.0
       ajv:
         specifier: ^8.17.1
         version: 8.20.0
@@ -205,6 +208,10 @@ packages:
 
   '@types/node@24.13.3':
     resolution: {integrity: sha512-Dh8vAsV36ig5wa9OX4pXvMc9D3Veibfw2wix0CUwYODLD8nkj9UsLjASr49nPg+2eKzxhBV+v7L8pXvT4e639Q==}
+
+  '@workos-inc/node@10.9.0':
+    resolution: {integrity: sha512-Voxhxocg7Q9lpi1gJ6qyPCjgcjh7fZmxU0gR7BQRnv+ozCJ9Xj4jZulVt38tGMukniDI1uwTiXm+G2vdogpD4Q==}
+    engines: {node: '>=22.11.0'}
 
   ajv@8.20.0:
     resolution: {integrity: sha512-Thbli+OlOj+iMPYFBVBfJ3OmCAnaSyNn4M1vz9T6Gka5Jt9ba/HIR56joy65tY6kx/FCF5VXNB819Y7/GUrBGA==}
@@ -444,6 +451,8 @@ snapshots:
   '@types/node@24.13.3':
     dependencies:
       undici-types: 7.18.2
+
+  '@workos-inc/node@10.9.0': {}
 
   ajv@8.20.0:
     dependencies:
