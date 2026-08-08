@@ -15,6 +15,7 @@
     "release:candidate": "tsx tools/release/build-candidate.ts",
     "release:preflight": "tsx tools/release/run-preflight.ts",
     "release:trusted": "tsx tools/release/build-trusted.ts",
+    "release:verify": "tsx tools/release/verify-trusted.ts",
     "readiness:workos": "tsx tools/readiness/run-workos.ts",
     "readiness:r2": "tsx tools/readiness/run-r2.ts"
   },
@@ -25,6 +26,7 @@
     "fast-glob": "^3.3.3",
     "gray-matter": "^4.0.3",
     "tsx": "^4.20.0",
-    "typescript": "^5.9.0"
+    "typescript": "^5.9.0",
+    "yaml": "2.9.0"
   }
 }

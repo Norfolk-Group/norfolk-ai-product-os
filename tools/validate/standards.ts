@@ -84,7 +84,7 @@ export function validateCapabilityMap(value: unknown): string[] {
 
 export function scanSecrets(value: string, location: "source" | "log" | "fixture" | "manifest" | "handbook"): string[] {
   const patterns = [
-    /(?:API|SECRET|ACCESS|PRIVATE)[_-]?KEY\s*[:=]\s*["']?(?!redacted|example|test)[A-Za-z0-9_\-]{12,}/i,
+    /(?:API|SECRET|ACCESS|PRIVATE)[_-]?KEY\s*[:=]\s*["']?(?!redacted|example|test|createPrivateKey\b)[A-Za-z0-9_\-]{12,}/i,
     /-----BEGIN [A-Z ]+PRIVATE KEY-----/,
     /(?:sk|pk)_(?:live|prod)_[A-Za-z0-9]{12,}/,
   ];

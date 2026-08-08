@@ -11,6 +11,8 @@ import { validateRetirementDossier, validateValidationArtifact } from "./retirem
 import { validateBrandProfile, validateMediaAssetWorkflow } from "./design.js";
 import { validateAnimationRegistry } from "./motion.js";
 import { validateReleaseAuthorization } from "../release/authorization.js";
+import YAML from "yaml";
+import { validateProviderReadinessWorkflow, validateTrustedReleaseWorkflow } from "./workflows.js";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const result = await validateRepository(root);
@@ -42,6 +44,10 @@ for (const path of await fg(["release-authorizations/*.json"], { cwd: root, only
   const authorization = JSON.parse(await readFile(resolve(root, path), "utf8"));
   result.errors.push(...validateReleaseAuthorization(authorization).map((error) => `${path}: ${error}`));
 }
+const trustedWorkflow = YAML.parse(await readFile(resolve(root, ".github/workflows/trusted-private-release.yml"), "utf8"));
+result.errors.push(...validateTrustedReleaseWorkflow(trustedWorkflow).map((error) => `.github/workflows/trusted-private-release.yml: ${error}`));
+const providerWorkflow = YAML.parse(await readFile(resolve(root, ".github/workflows/provider-readiness.yml"), "utf8"));
+result.errors.push(...validateProviderReadinessWorkflow(providerWorkflow).map((error) => `.github/workflows/provider-readiness.yml: ${error}`));
 result.errors.push(...validateAuthExperience(JSON.parse(await readFile(resolve(root, "tests/fixtures/auth/valid-experience.json"), "utf8"))).map((error) => `tests/fixtures/auth/valid-experience.json: ${error}`));
 result.errors.push(...validateAuthSecurity(JSON.parse(await readFile(resolve(root, "tests/fixtures/auth/valid-security.json"), "utf8"))).map((error) => `tests/fixtures/auth/valid-security.json: ${error}`));
 for (const name of ["norfolk-starter", "norfolk-manual"]) result.errors.push(...validateRetirementDossier(JSON.parse(await readFile(resolve(root, `retirement/${name}.json`), "utf8"))).map((error) => `retirement/${name}.json: ${error}`));

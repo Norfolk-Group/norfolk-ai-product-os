@@ -1,0 +1,126 @@
+name: Trusted private Product OS release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_version:
+        description: Release version, for example 0.3.0
+        required: true
+        type: string
+      authorization_path:
+        description: Committed authorization record
+        required: true
+        type: string
+      confirmation:
+        description: Type publish-private-release exactly
+        required: true
+        type: string
+
+concurrency:
+  group: product-os-private-release
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    if: github.ref == 'refs/heads/main' && inputs.confirmation == 'publish-private-release'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v6
+        with:
+          version: 11.13.0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm validate
+      - name: Validate authorized repository state
+        env:
+          AUTHORIZATION_PATH: ${{ inputs.authorization_path }}
+          RELEASE_VERSION: ${{ inputs.release_version }}
+        run: pnpm release:preflight "$AUTHORIZATION_PATH" "$RELEASE_VERSION"
+
+  release:
+    needs: preflight
+    if: github.ref == 'refs/heads/main' && inputs.confirmation == 'publish-private-release'
+    runs-on: ubuntu-latest
+    environment: product-os-release
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v6
+        with:
+          version: 11.13.0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Obtain release secrets through Doppler OIDC
+        uses: dopplerhq/secrets-fetch-action@v2.0.0
+        with:
+          auth-method: oidc
+          doppler-identity-id: ${{ vars.DOPPLER_SERVICE_IDENTITY_ID }}
+          doppler-project: ${{ vars.DOPPLER_RELEASE_PROJECT }}
+          doppler-config: ${{ vars.DOPPLER_RELEASE_CONFIG }}
+          inject-env-vars: true
+      - name: Require configured trust material
+        run: |
+          test -s trust/product-os-release-public-key.pem
+          test -n "$PRODUCT_OS_TRUSTED_PRIVATE_KEY"
+      - name: Build and verify trusted bundle
+        id: bundle
+        env:
+          AUTHORIZATION_PATH: ${{ inputs.authorization_path }}
+          RELEASE_VERSION: ${{ inputs.release_version }}
+        run: |
+          output_root="$(mktemp -d)"
+          bundle_dir="$output_root/$RELEASE_VERSION"
+          pnpm release:trusted "$AUTHORIZATION_PATH" "$bundle_dir"
+          pnpm release:verify "$bundle_dir" trust/product-os-release-public-key.pem
+          archive="$output_root/norfolk-ai-product-os-$RELEASE_VERSION.tar.gz"
+          tar --sort=name --mtime='UTC 1970-01-01' --owner=0 --group=0 --numeric-owner -C "$output_root" -czf "$archive" "$RELEASE_VERSION"
+          sha256sum "$archive" > "$archive.sha256"
+          echo "directory=$output_root" >> "$GITHUB_OUTPUT"
+          echo "archive=$archive" >> "$GITHUB_OUTPUT"
+      - name: Upload review artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: trusted-product-os-${{ inputs.release_version }}
+          path: ${{ steps.bundle.outputs.directory }}
+          if-no-files-found: error
+      - name: Create private repository release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_VERSION: ${{ inputs.release_version }}
+        run: |
+          gh release create "$RELEASE_VERSION" \
+            "${{ steps.bundle.outputs.archive }}" \
+            "${{ steps.bundle.outputs.archive }}.sha256" \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "Norfolk AI Product OS $RELEASE_VERSION" \
+            --notes "Trusted private Product OS release $RELEASE_VERSION"
+      - name: Download and re-verify published assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_VERSION: ${{ inputs.release_version }}
+        run: |
+          verify_root="$(mktemp -d)"
+          gh release download "$RELEASE_VERSION" --repo "$GITHUB_REPOSITORY" --dir "$verify_root"
+          cd "$verify_root"
+          sha256sum --check "norfolk-ai-product-os-$RELEASE_VERSION.tar.gz.sha256"
+          tar -xzf "norfolk-ai-product-os-$RELEASE_VERSION.tar.gz"
+          cd "$GITHUB_WORKSPACE"
+          pnpm release:verify "$verify_root/$RELEASE_VERSION" trust/product-os-release-public-key.pem

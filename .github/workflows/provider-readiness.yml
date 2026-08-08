@@ -1,0 +1,58 @@
+name: Provider readiness diagnostics
+
+on:
+  workflow_dispatch:
+    inputs:
+      provider:
+        description: Provider diagnostic to run
+        required: true
+        type: choice
+        options:
+          - workos
+          - r2
+      confirmation:
+        description: Type run-staging-diagnostic exactly
+        required: true
+        type: string
+
+concurrency:
+  group: product-os-provider-readiness
+  cancel-in-progress: false
+
+jobs:
+  diagnostic:
+    if: github.ref == 'refs/heads/main' && inputs.confirmation == 'run-staging-diagnostic'
+    runs-on: ubuntu-latest
+    environment: product-os-release
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+        with:
+          version: 11.13.0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Obtain diagnostic secrets through Doppler OIDC
+        uses: dopplerhq/secrets-fetch-action@v2.0.0
+        with:
+          auth-method: oidc
+          doppler-identity-id: ${{ vars.DOPPLER_SERVICE_IDENTITY_ID }}
+          doppler-project: ${{ vars.DOPPLER_RELEASE_PROJECT }}
+          doppler-config: ${{ vars.DOPPLER_RELEASE_CONFIG }}
+          inject-env-vars: true
+      - if: inputs.provider == 'workos'
+        run: pnpm readiness:workos "$RUNNER_TEMP/workos-readiness.json"
+      - if: inputs.provider == 'r2'
+        run: pnpm readiness:r2 "$RUNNER_TEMP/r2-readiness.json"
+      - name: Upload redacted evidence
+        uses: actions/upload-artifact@v7
+        with:
+          name: provider-readiness-${{ inputs.provider }}
+          path: ${{ runner.temp }}/*-readiness.json
+          if-no-files-found: error
+          retention-days: 7
