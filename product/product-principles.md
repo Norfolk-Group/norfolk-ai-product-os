@@ -43,4 +43,4 @@ A material change to purpose, users, payer, value, success measures, roles, perm
 
 ## Client evidence does not become identity
 
-A product such as H-Analytics may validate or challenge the method through a bounded, sanitized evidence slice. It remains a product repository, not the source of Norfolk AI identity or automatic canon. Promotion follows [client boundaries](../governance/client-boundaries.md) and [promotion](../governance/promotion.md).
+A product may validate or challenge the method through a bounded, sanitized evidence slice. It remains a product repository, not the source of Norfolk AI identity or automatic canon. Promotion follows [client boundaries](../governance/client-boundaries.md) and [promotion](../governance/promotion.md); exact product identity stays in publication-blocked validation evidence.

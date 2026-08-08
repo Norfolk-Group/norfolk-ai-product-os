@@ -39,5 +39,5 @@ Use GitHub MCP to recheck the current H-Analytics motion/progress governance and
 - `pnpm test`
 - `pnpm validate`
 - `pnpm generate`
-- `git diff --exit-code -- handbook catalog release-manifests/0.3.0-candidate.4.json`
+- `git diff --exit-code -- handbook catalog releases/0.3.0-candidate.4/`
 - repository-wide credential/client-boundary validation remains green

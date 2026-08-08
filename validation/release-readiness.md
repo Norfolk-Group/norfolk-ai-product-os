@@ -1,5 +1,7 @@
 # Candidate release readiness
 
+Publication: **blocked**. This readiness record is internal validation evidence, not a release input, publication authorization, or publication approval.
+
 Candidate `0.3.0-candidate.4` and candidates `0.3.0-candidate.1` through `0.3.0-candidate.3` remain preserved as immutable history. The accepted contracts for the three U11 proposal closures postdate `0.3.0-candidate.4`, so that candidate does not contain them and cannot absorb them. Product OS PR #1 and Kit PR #1 are merged and their GitHub quality workflows passed. The trusted private-release implementation, reviewed Ed25519 public-key ceremony, and protected Doppler OIDC path are merged. A new signed candidate must be created after this PR merges; no existing candidate is publishable.
 
 Passed locally:
@@ -36,7 +38,7 @@ Brand and identity governance added in candidate `0.3.0-candidate.3`:
 - Super Admin governance of global product identity and recoverable, reference-aware asset lifecycle controls;
 - three-candidate treatment and regeneration workflows for logos, photos, and identity-faithful professional portraits, with initials fallback;
 - private-by-default media, approved sharing, provider no-training requirements, and truth-preserving property imagery;
-- protected animation identities and reusable quality architecture promoted from the pinned H+ Analytics implementation without copying its product-exclusive names or visual identity;
+- protected animation identities and reusable quality architecture promoted from pinned publication-blocked product evidence without copying product-exclusive names or visual identity;
 - explicit Orchestrator, Agent, Specialist, and deterministic non-LLM Minion semantics, culturally governed naming, and disclosed abstract or synthetic-human conversational presentation.
 
 Repository-state reconciliation in candidate `0.3.0-candidate.4`:

@@ -4,7 +4,7 @@ type: feat
 status: active
 date: 2026-08-04
 deepened: 2026-08-04
-origin: outputs/norfolk-ai-product-os-conversation-audit.md
+origin: validation/norfolk-ai-product-os-conversation-audit.md
 execution: code
 ---
 
@@ -36,7 +36,7 @@ The main design risk is premature visual standardization. The Product OS must re
 - **Product OS:** new private repository `Norfolk-Group/norfolk-ai-product-os`. Paths marked **Product OS** are relative to its root.
 - **Kit:** existing `Norfolk-Group/norfolk-kit`. Paths marked **Kit** are relative to its root.
 - **H-Analytics:** validation and prior-art source only. Paths marked **H-Analytics** are read-only inputs unless a later, separately approved product plan authorizes changes.
-- **Current audit workspace:** `outputs/norfolk-ai-product-os-conversation-audit.md` and `outputs/norfolk-repository-consolidation-plan.md` remain planning evidence, not canonical Product OS content.
+- **Current audit workspace:** `validation/norfolk-ai-product-os-conversation-audit.md` and `outputs/norfolk-repository-consolidation-plan.md` remain planning evidence, not canonical Product OS content.
 
 ---
 
@@ -619,7 +619,7 @@ Norfolk AI owns standards, releases, compatibility decisions, and promotion appr
 
 ### Current planning evidence
 
-- `outputs/norfolk-ai-product-os-conversation-audit.md` — authoritative synthesis of the current task and the earlier design conversation.
+- `validation/norfolk-ai-product-os-conversation-audit.md` — publication-blocked authoritative synthesis of the current task and the earlier design conversation.
 - `outputs/norfolk-repository-consolidation-plan.md` — MCP-verified Kit, Manual, and Starter inventory, ownership boundary, animation provenance, and retirement gates.
 
 ### Norfolk Kit evidence

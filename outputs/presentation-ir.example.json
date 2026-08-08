@@ -118,28 +118,28 @@
             "id": "render-element.title",
             "semanticElementId": "element.title",
             "primitive": "text",
-            "geometry": { "x": 72, "y": 72, "width": 620, "height": 64, "zIndex": 2 },
+            "geometry": { "x": 72, "y": 72, "width": 620, "height": 64, "zIndex": 2, "rotationDegrees": 0 },
             "styleTokenRefs": ["token.font.body", "token.color.ink"]
           },
           {
             "id": "render-element.summary",
             "semanticElementId": "element.summary",
             "primitive": "text",
-            "geometry": { "x": 72, "y": 160, "width": 620, "height": 72, "zIndex": 2 },
+            "geometry": { "x": 72, "y": 160, "width": 620, "height": 72, "zIndex": 2, "rotationDegrees": 0 },
             "styleTokenRefs": ["token.font.body", "token.size.body", "token.color.ink"]
           },
           {
             "id": "render-element.metric",
             "semanticElementId": "element.metric",
             "primitive": "text",
-            "geometry": { "x": 72, "y": 268, "width": 300, "height": 96, "zIndex": 2 },
+            "geometry": { "x": 72, "y": 268, "width": 300, "height": 96, "zIndex": 2, "rotationDegrees": 0 },
             "styleTokenRefs": ["token.font.body", "token.color.accent"]
           },
           {
             "id": "render-element.marker",
             "semanticElementId": "element.marker",
             "primitive": "image",
-            "geometry": { "x": 744, "y": 72, "width": 144, "height": 144, "zIndex": 1 },
+            "geometry": { "x": 744, "y": 72, "width": 144, "height": 144, "zIndex": 1, "rotationDegrees": 0 },
             "styleTokenRefs": ["token.color.accent"],
             "assetId": "asset.synthetic-marker"
           }

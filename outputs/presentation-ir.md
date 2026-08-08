@@ -20,11 +20,11 @@ Author the durable `semantic` document first. It declares stable slide and eleme
 
 Derive `render` only from a validated semantic revision. Render IR links to that revision and to semantic IDs, then adds fixed-canvas primitives, point-based geometry, z-order, asset references, and style-token references. It does not redefine meaning, data bindings, provenance, or reading order. A semantic revision may be redesigned into new geometry without changing durable meaning or IDs.
 
-Version 1 uses points with a top-left origin. Width, height, position, z-order, and rotation are explicit; percentages, implicit renderer defaults, and vendor-native object models are excluded. Renderers convert points at their output boundary.
+Version 1 uses points with a top-left origin. Width, height, position, z-order, and rotation are explicit; every geometry object carries `rotationDegrees`, using `0` when unrotated. Omission is invalid. Percentages, implicit renderer defaults, and vendor-native object models are excluded. Renderers convert points at their output boundary.
 
 ## Stable identity and themes
 
-Deck, revision, theme, slide, element, token, asset, and render-node IDs are stable, human-readable identifiers. Reordering is expressed separately from identity. Writers and renderers must reject duplicate IDs, missing references, mismatched semantic revisions, and render nodes that cannot be traced to a semantic element.
+Deck, revision, theme, slide, element, token, asset, and render-node IDs are stable, human-readable identifiers. Reordering is expressed separately from identity, and every semantic slide has a unique `order`. Every semantic slide must have render coverage, and every render slide must reference an existing semantic slide. One semantic slide maps to one render slide by default; only a semantic slide whose overflow strategy is `split` or `paginate` may map to multiple render slides. Their order in `render.slides` is the output sequence. Writers and renderers must reject duplicate IDs or orders, missing references or coverage, mismatched semantic revisions, and render nodes that cannot be traced to a semantic element.
 
 JSON Schema checks each field's shape. The companion [`presentation.ts`](../tools/validate/presentation.ts) semantic validator enforces cross-document uniqueness, reference resolution, revision equality, and exact reading-order coverage of every non-decorative semantic element.
 
@@ -32,7 +32,7 @@ Themes are registries of semantic tokens. The canonical profile supports color, 
 
 ## Governed assets
 
-Assets are registry entries, never anonymous URLs or copied binaries. Each entry has a stable ID, kind, Norfolk registry reference, SHA-256 digest, ownership and rights-review record, and accessibility treatment. Canonical assets are Norfolk-owned synthetic placeholders. A renderer must resolve assets before rendering, verify their hashes and governance, and fail closed on missing, changed, unapproved, inaccessible, or remotely fetched assets.
+Assets are registry entries, never anonymous URLs or copied binaries. Each entry has a stable ID, kind, Norfolk registry reference, SHA-256 digest, ownership and rights-review record, and accessibility treatment. Canonical assets are Norfolk-owned synthetic placeholders. Asset-backed render primitives are explicit: `image` carries the same governed `assetId` as its semantic asset content and accepts only `image` or `svg`; `chart` carries the same governed data asset as its semantic chart content and accepts only `data`. Other primitives cannot attach an asset. A renderer must resolve assets before rendering, verify their hashes and governance, and fail closed on missing, changed, incompatible, unapproved, inaccessible, or remotely fetched assets.
 
 ## Accessibility and overflow
 
@@ -49,7 +49,7 @@ Before an output may be delivered, the renderer records passed checks for:
 - schema validity and semantic-to-render linkage;
 - asset integrity, canvas bounds, and overflow behavior;
 - reading order, contrast, and font availability;
-- output format, slide count, and output digest.
+- output format, a slide count exactly equal to `render.slides.length`, and output digest.
 
 Unknown checks, missing evidence, pending or failed status, hash drift, nondeterministic inputs, or renderer substitution block delivery. Format-specific verification still applies; for example, PPTX also verifies native reading order, speaker notes, editability where required, and PDF export parity.
 

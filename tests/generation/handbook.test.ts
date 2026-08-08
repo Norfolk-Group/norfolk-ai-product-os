@@ -15,7 +15,7 @@ test("handbook generation is deterministic, private, self-contained, and traceab
   assert.match(first.html, /source-sha256/);
   assert.doesNotMatch(first.html, /(?:src|href)=["']https?:|fetch\s*\(/i);
   assert.doesNotMatch(first.html, /validation\/(?:h-analytics|motion-lineage|report-output)\.md|PP-U11-|eeb05f9563b93f8842d2257eb7054555935f7e44/i);
-  assert.doesNotMatch(first.html, /H\+ Analytics|H\+ family|RebeccaAdvancedOrbit/i);
+  assert.doesNotMatch(first.html, /KIT Capital|H-Analytics|H\+ Analytics|H\+ family|RebeccaAdvancedOrbit|AnalystCube|Figma Make|_replit-export/i);
   for (const blockedLineage of [
     "H-Analytics preserves the best known complete production behavior",
     "Original local Figma, Replit, H-Analytics, and Kit sources",

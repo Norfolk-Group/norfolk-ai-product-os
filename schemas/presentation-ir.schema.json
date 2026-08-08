@@ -296,7 +296,7 @@
     },
     "geometry": {
       "type": "object",
-      "required": ["x", "y", "width", "height", "zIndex"],
+      "required": ["x", "y", "width", "height", "zIndex", "rotationDegrees"],
       "properties": {
         "x": { "type": "number", "minimum": 0 },
         "y": { "type": "number", "minimum": 0 },
@@ -323,6 +323,15 @@
         },
         "assetId": { "$ref": "#/definitions/stableId" }
       },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "primitive": { "enum": ["image", "chart"] } },
+            "required": ["primitive"]
+          },
+          "then": { "required": ["assetId"] }
+        }
+      ],
       "additionalProperties": false
     },
     "renderSlide": {

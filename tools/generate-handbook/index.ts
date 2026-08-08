@@ -3,12 +3,20 @@ import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import fg from "fast-glob";
 import matter from "gray-matter";
+import { CANONICAL_OUTPUT_PATHS } from "../release/inputs.js";
 
 const escape = (value: string) => value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 const sha = (value: string) => createHash("sha256").update(value.replace(/\r\n?/g, "\n")).digest("hex");
 
 export async function generateHandbook(root: string): Promise<{ html: string; sha256: string }> {
-  const paths = await fg(["governance/*.md", "product/*.md", "design/*.md", "migration/*.md", "outputs/{README,shared-principles,job-lifecycle,presentation-ir,pdf,xlsx,pptx,docx,email,charts,print,investor-materials}.md", "playbooks/*.md"], { cwd: root, onlyFiles: true });
+  const paths = await fg([
+    "governance/*.md",
+    "product/*.md",
+    "design/*.md",
+    "migration/*.md",
+    ...CANONICAL_OUTPUT_PATHS.filter((path) => path.endsWith(".md")),
+    "playbooks/*.md",
+  ], { cwd: root, onlyFiles: true });
   paths.sort((a, b) => a.localeCompare(b));
   const pkg = JSON.parse(await readFile(resolve(root, "package.json"), "utf8")) as { version: string };
   const sections = await Promise.all(paths.map(async (path) => {

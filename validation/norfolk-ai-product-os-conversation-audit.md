@@ -1,5 +1,7 @@
 # Norfolk AI Product OS conversation audit
 
+Publication: **blocked**. This exact-identity historical audit is validation evidence only and is excluded from release inputs and generated outputs.
+
 **Audit date:** 2026-08-04
 **Purpose:** Preserve the Product OS and design decisions developed across today's design conversation and the repository-consolidation task before implementation planning.
 

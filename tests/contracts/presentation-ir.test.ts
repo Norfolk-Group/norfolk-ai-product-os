@@ -33,6 +33,27 @@ async function semanticValidator() {
   return module.validatePresentationIr as (value: unknown) => string[];
 }
 
+function distinctSemanticSlide(source: Record<string, any>, id: string, order: number) {
+  const slide = structuredClone(source);
+  slide.id = id;
+  slide.order = order;
+  const ids = new Map<string, string>();
+  for (const element of slide.elements) {
+    const nextId = `${element.id}.copy`;
+    ids.set(element.id, nextId);
+    element.id = nextId;
+  }
+  slide.accessibility.readingOrder = slide.accessibility.readingOrder.map((elementId: string) => ids.get(elementId) ?? elementId);
+  return slide;
+}
+
+function continuationRenderSlide(source: Record<string, any>) {
+  const slide = structuredClone(source);
+  slide.id = `${slide.id}.continuation`;
+  for (const element of slide.elements) element.id = `${element.id}.continuation`;
+  return slide;
+}
+
 test("the Norfolk presentation IR accepts the governed synthetic example", async () => {
   const { fixture, validate } = await fixtureAndValidator();
   assert.equal(validate(fixture), true, JSON.stringify(validate.errors));
@@ -184,4 +205,86 @@ test("text-only presentations do not require an asset registry entry", async () 
 
   assert.equal(validate(textOnly), true, JSON.stringify(validate.errors));
   assert.deepEqual((await semanticValidator())(textOnly), []);
+});
+
+test("every semantic slide has render coverage and multiplicity is limited to split or paginate", async () => {
+  const { fixture } = await fixtureAndValidator();
+  const validate = await semanticValidator();
+
+  const uncovered = structuredClone(fixture);
+  uncovered.semantic.slides.push(distinctSemanticSlide(uncovered.semantic.slides[0], "slide.detail", 1));
+  assert.ok(validate(uncovered).some((error) => error.includes("semantic slide slide.detail has no render slide")));
+
+  const repeated = structuredClone(fixture);
+  repeated.render.slides.push(continuationRenderSlide(repeated.render.slides[0]));
+  repeated.verification.output.slideCount = 2;
+  assert.ok(validate(repeated).some((error) => error.includes("multiple render slides require split or paginate")));
+
+  repeated.semantic.slides[0].overflow.strategy = "split";
+  assert.deepEqual(validate(repeated), []);
+});
+
+test("semantic slide order is unique and verification slide count equals rendered slides", async () => {
+  const { fixture } = await fixtureAndValidator();
+  const validate = await semanticValidator();
+
+  const duplicateOrder = structuredClone(fixture);
+  duplicateOrder.semantic.slides.push(distinctSemanticSlide(duplicateOrder.semantic.slides[0], "slide.detail", 0));
+  assert.ok(validate(duplicateOrder).some((error) => error.includes("duplicate semantic slide order 0")));
+
+  const wrongCount = structuredClone(fixture);
+  wrongCount.verification.output.slideCount = 2;
+  assert.ok(validate(wrongCount).some((error) => error.includes("verification slide count 2 must equal rendered slide count 1")));
+});
+
+test("render geometry requires an explicit rotation", async () => {
+  const { fixture, validate } = await fixtureAndValidator();
+  const implicitRotation = structuredClone(fixture);
+  delete implicitRotation.render.slides[0].elements[0].geometry.rotationDegrees;
+  assert.equal(validate(implicitRotation), false);
+});
+
+test("asset-backed primitives require compatible governed assets and semantic content", async () => {
+  const { fixture, validate: validateSchema } = await fixtureAndValidator();
+  const validate = await semanticValidator();
+
+  const missingImageAsset = structuredClone(fixture);
+  delete missingImageAsset.render.slides[0].elements[3].assetId;
+  assert.equal(validateSchema(missingImageAsset), false);
+  assert.ok(validate(missingImageAsset).some((error) => error.includes("image primitive requires assetId")));
+
+  const missingChartAsset = structuredClone(fixture);
+  missingChartAsset.render.slides[0].elements[2].primitive = "chart";
+  delete missingChartAsset.render.slides[0].elements[2].assetId;
+  assert.equal(validateSchema(missingChartAsset), false);
+  assert.ok(validate(missingChartAsset).some((error) => error.includes("chart primitive requires assetId")));
+
+  const imageFromText = structuredClone(fixture);
+  imageFromText.render.slides[0].elements[0].primitive = "image";
+  imageFromText.render.slides[0].elements[0].assetId = "asset.synthetic-marker";
+  assert.ok(validate(imageFromText).some((error) => error.includes("image primitive requires semantic asset content")));
+
+  const wrongImageKind = structuredClone(fixture);
+  wrongImageKind.assets[0].kind = "data";
+  assert.ok(validate(wrongImageKind).some((error) => error.includes("image primitive requires image or svg asset")));
+
+  const chart = structuredClone(fixture);
+  chart.assets.push({
+    ...structuredClone(chart.assets[0]),
+    id: "asset.synthetic-data",
+    kind: "data",
+    registryRef: "norfolk-registry://synthetic/chart-data/v1",
+  });
+  chart.semantic.slides[0].elements[2].kind = "chart";
+  chart.semantic.slides[0].elements[2].content = {
+    type: "chart",
+    description: "Synthetic completed-item trend",
+    dataAssetId: "asset.synthetic-data",
+  };
+  chart.render.slides[0].elements[2].primitive = "chart";
+  chart.render.slides[0].elements[2].assetId = "asset.synthetic-data";
+  assert.deepEqual(validate(chart), []);
+
+  chart.assets[1].kind = "image";
+  assert.ok(validate(chart).some((error) => error.includes("chart primitive requires data asset")));
 });

@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import test from "node:test";
@@ -11,6 +12,18 @@ test("all client-derived validation slices are pinned, non-public, and proposal-
     const body = await readFile(resolve(root, `validation/${name}`), "utf8");
     assert.deepEqual(validateValidationArtifact(body), [], name);
   }
+});
+
+test("exact source inventories and audit history live only in publication-blocked validation evidence", async () => {
+  for (const name of ["motion-source-inventory.md", "norfolk-ai-product-os-conversation-audit.md"]) {
+    const validationPath = resolve(root, `validation/${name}`);
+    assert.equal(existsSync(validationPath), true, validationPath);
+    assert.equal(existsSync(resolve(root, `outputs/${name}`)), false, name);
+    assert.match(await readFile(validationPath, "utf8"), /Publication:\s*\*\*blocked\*\*/i, name);
+  }
+
+  const readiness = await readFile(resolve(root, "validation/release-readiness.md"), "utf8");
+  assert.match(readiness, /Publication:\s*\*\*blocked\*\*/i);
 });
 
 test("the bounded validation records the current source commit and accepted U11 dispositions", async () => {

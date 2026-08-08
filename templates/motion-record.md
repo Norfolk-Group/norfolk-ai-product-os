@@ -12,7 +12,7 @@ lastVerified: 2026-08-05
 - Implementation source path and normalized SHA-256
 - Figma creative-intent source
 - Replit best-original-export source
-- H-Analytics best-production source
+- publication-blocked product best-production source
 - Kit portable-preservation source
 - Immutable object version and verified retrieval SHA-256 for each preserved original
 - Recorded timing/easing/transform-origin evidence and unsupported motion
