@@ -1,6 +1,6 @@
 # Candidate release readiness
 
-Candidate `0.3.0-candidate.4` is the current review candidate. Candidates `0.3.0-candidate.1` through `0.3.0-candidate.3` remain preserved as immutable history. Product OS PR #1 and Kit PR #1 are merged and their GitHub quality workflows passed. The trusted private-release implementation, reviewed Ed25519 public-key ceremony, and protected Doppler OIDC path are merged. None of the candidates is publishable yet.
+Candidate `0.3.0-candidate.4` and candidates `0.3.0-candidate.1` through `0.3.0-candidate.3` remain preserved as immutable history. The accepted contracts for the three U11 proposal closures postdate `0.3.0-candidate.4`, so that candidate does not contain them and cannot absorb them. Product OS PR #1 and Kit PR #1 are merged and their GitHub quality workflows passed. The trusted private-release implementation, reviewed Ed25519 public-key ceremony, and protected Doppler OIDC path are merged. A new signed candidate must be created after this PR merges; no existing candidate is publishable.
 
 Passed locally:
 
@@ -45,15 +45,24 @@ Repository-state reconciliation in candidate `0.3.0-candidate.4`:
 - preserves the pre-deletion dossier and its incomplete preservation, consumer, metadata, branch, and recovery evidence without retroactive approval;
 - keeps Manual protected behind its independent preservation, parity, recovery, and exact-approval gates.
 
-Output design-decision resolution on 2026-08-08 accepted `PP-U11-DECK-IR` as the independent Norfolk-owned [presentation IR](../outputs/presentation-ir.md). The canonical contract and example are vendor-neutral and synthetic-only; the bounded product evidence remains publication-blocked and contributes no client fields, brands, slots, templates, assets, or identity.
+## U11 proposal closure — 2026-08-08
 
-Open publication gates:
+| Proposal | Disposition | Canonical outcome |
+|---|---|---|
+| PP-U11-ICON-GRAMMAR | accepted | Lucide remains the Norfolk/Kit default; a product-local alternative requires the governed design-contract exception. |
+| PP-U11-PARITY-EXCEPTIONS | accepted | Only physical, legal, or security constraints can support a governed capability-parity exception; adapter inconvenience remains a gap. |
+| PP-U11-DECK-IR | accepted | The independent Norfolk-owned [presentation IR](../outputs/presentation-ir.md) is vendor-neutral and synthetic-only. |
 
-- a release-specific authorization record and explicit permission to publish remain mandatory after the implementation merges;
-- each adopting application's end-to-end WorkOS staging login remains mandatory despite the successful structural diagnostic; the dedicated diagnostic key must be rotated before `2026-08-14`;
-- R2 source-master preservation for motion and other client/brand masters remains pending a separately authorized inventory, immutable versioned target, retrieval verification, and no-source-mutation proof;
-- official Norfolk AI logo, colors, and typography are explicitly deferred to the future Claude Design engagement; neutral semantic placeholders make this deferral non-blocking for candidate merge;
-- resolution or explicit deferral of `PP-U11-ICON-GRAMMAR` and `PP-U11-PARITY-EXCEPTIONS`;
+All three closures govern current source after `0.3.0-candidate.4`; they do not rewrite that candidate. Their bounded product evidence remains publication-blocked and contributes no client fields, brands, slots, templates, assets, identity, or motion visuals. `PP-U11-MOTION-MASTER` is separate and remains explicitly deferred under the pinned-comparison, reuse-rights, and immutable-preservation gates.
+
+Open publication gates and deferrals:
+
+- after this PR merges, create and sign a new candidate from the merged source; `0.3.0-candidate.4` remains immutable history and is not eligible for these changes;
+- a release-specific authorization record bound to that exact new candidate and separate explicit publication approval remain mandatory;
+- application-level end-to-end WorkOS staging login remains mandatory for each adopting product despite the successful structural diagnostic: login, callback, sealed session, organization selection where applicable, logout, and safe return intent; the dedicated diagnostic key must be rotated before `2026-08-14`;
+- source-master R2 preservation remains required where motion or other client/brand masters must be retained: separately authorized inventory, Norfolk AI-controlled immutable versioned target, independent retrieval and checksum verification, and no source mutation;
+- official Norfolk AI identity remains explicitly deferred to the future Claude Design engagement; neutral semantic placeholders keep the deferral non-blocking, while any official logo, colors, typography, or visual master still require their own approval;
+- `PP-U11-MOTION-MASTER` remains deferred until pinned visual comparison, reuse-rights approval, and immutable R2 preservation are complete; reusable motion architecture remains accepted without that visual choice;
 - complete retirement preservation/restoration and consumer evidence are not release blockers for Product OS, but they block repository deletion.
 
 [Product OS PR #1](https://github.com/Norfolk-Group/norfolk-ai-product-os/pull/1) merged at `692b94a3878cc3505f5ce95582ca1a91b3516da7`; [Kit PR #1](https://github.com/Norfolk-Group/norfolk-kit/pull/1) merged at `848d8e71dca8cc1de72a123b6444f8fe5e08af70`; the trusted private-release implementation merged at `f4cfd925856ec1cdb1441e4016e0554f22bb3afa`. No release has been published. Starter's externally completed deletion remains recorded as incomplete evidence, and Manual deletion remains blocked pending complete preservation, recovery, consumers, and exact approval.

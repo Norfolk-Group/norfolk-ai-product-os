@@ -3,7 +3,7 @@ title: Motion
 status: accepted
 tier: CONTRACT
 owner: Product OS Owner
-lastVerified: 2026-08-05
+lastVerified: 2026-08-08
 ---
 
 # Motion
@@ -24,4 +24,4 @@ Before reconciliation, hash every variant, copy it to a versioned immutable obje
 
 Figma motion data is authoritative for recorded values. The implementation must honor `prefers-reduced-motion`, preserve state and completion information, validate one entire timeline before batching, and leave unsupported source motion visibly recorded rather than silently dropped.
 
-Accepted names and identifiers are governed by [Product animation registries](animation-registry.md). An implementation refinement may version an animation but cannot silently rename its identity. For the currently reviewed H+ family, the current H+ production implementation is the working master; its visual identities remain product-exclusive while the architecture and quality bar are reusable.
+Accepted names and identifiers are governed by [Product animation registries](animation-registry.md). An implementation refinement may version an animation but cannot silently rename its identity. For the currently reviewed H+ family, the current production implementation is a product-local working behavior reference, not an accepted Norfolk visual master. The reusable registry, resolver, honest-progress, reduced-motion, assignment, and quality rules are accepted independently. A visual master remains deferred until a pinned comparison, reuse-rights approval, and immutable source-master preservation establish that narrower choice.

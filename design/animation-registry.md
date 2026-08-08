@@ -3,7 +3,7 @@ title: Product animation registries
 status: accepted
 tier: CONTRACT
 owner: Product OS Owner
-lastVerified: 2026-08-06
+lastVerified: 2026-08-08
 ---
 
 # Product animation registries
@@ -18,6 +18,6 @@ H+ Analytics currently preserves the best known production implementations of it
 
 The future Norfolk AI animation family will be visually distinct and remains provisional until Claude Design supplies or approves its masters. Customer products may adopt that family or register their own approved family.
 
-Figma originals and Replit exports remain preserved lineage evidence. For the currently reviewed H+ family, the current H+ production implementation is the approved working master; an older artifact does not win merely because it came first. Reconciliation still preserves every variant and checksum.
+Figma originals and Replit exports remain preserved lineage evidence. For the currently reviewed H+ family, the current H+ production implementation is the working behavior reference only; it is not an approved visual master. An older artifact does not win merely because it came first. Visual-master selection remains deferred until pinned comparison, reuse-rights approval, and immutable preservation are complete, and reconciliation still preserves every variant and checksum.
 
 The executable registry contract is [`animation-registry.schema.json`](../schemas/animation-registry.schema.json) with [`animation-registry.example.json`](animation-registry.example.json).
