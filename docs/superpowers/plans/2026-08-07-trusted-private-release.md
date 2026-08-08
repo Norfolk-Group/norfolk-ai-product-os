@@ -366,7 +366,7 @@ Add exact dev dependency `yaml@2.9.0`. The trusted workflow must:
 
 - expose only `workflow_dispatch` with `release_version`, `authorization_path`, and exact confirmation inputs;
 - set `concurrency.group: product-os-private-release` and `cancel-in-progress: false`;
-- run preflight with `contents: read`, full-history checkout, Node 24, pnpm 11.13.0, full verification, authorization preflight, and no secrets;
+- run preflight with `contents: read`, full-history checkout, Node 24, pnpm 11.15.1, full verification, authorization preflight, and no secrets;
 - run release only after preflight, on `refs/heads/main`, in `product-os-release`, with `contents: write` and `id-token: write` only;
 - use `dopplerhq/secrets-fetch-action@v2.0.0` with OIDC and the three environment variables from the design;
 - fail if `trust/product-os-release-public-key.pem` is absent;
