@@ -3,7 +3,7 @@
   "version": "0.3.0-candidate.4",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@11.13.0",
+  "packageManager": "pnpm@11.15.1",
   "engines": {
     "node": ">=22"
   },
@@ -12,14 +12,21 @@
     "test": "node --import tsx --test tests/**/*.test.ts",
     "typecheck": "tsc --noEmit",
     "validate": "tsx tools/validate/index.ts",
-    "release:candidate": "tsx tools/release/build-candidate.ts"
+    "release:candidate": "tsx tools/release/build-candidate.ts",
+    "release:preflight": "tsx tools/release/run-preflight.ts",
+    "release:trusted": "tsx tools/release/build-trusted.ts",
+    "release:verify": "tsx tools/release/verify-trusted.ts",
+    "readiness:workos": "tsx tools/readiness/run-workos.ts",
+    "readiness:r2": "tsx tools/readiness/run-r2.ts"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
     "ajv": "^8.17.1",
+    "aws4fetch": "1.0.20",
     "fast-glob": "^3.3.3",
     "gray-matter": "^4.0.3",
     "tsx": "^4.20.0",
-    "typescript": "^5.9.0"
+    "typescript": "^5.9.0",
+    "yaml": "2.9.0"
   }
 }

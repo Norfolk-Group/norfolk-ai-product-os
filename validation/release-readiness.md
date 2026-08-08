@@ -1,6 +1,6 @@
 # Candidate release readiness
 
-Candidate `0.3.0-candidate.4` is the current local review candidate. Candidates `0.3.0-candidate.1` through `0.3.0-candidate.3` remain preserved as immutable history. None is publishable yet.
+Candidate `0.3.0-candidate.4` is the current review candidate. Candidates `0.3.0-candidate.1` through `0.3.0-candidate.3` remain preserved as immutable history. Product OS PR #1 and Kit PR #1 are merged and their GitHub quality workflows passed. None of the candidates is publishable yet.
 
 Passed locally:
 
@@ -38,11 +38,14 @@ Repository-state reconciliation in candidate `0.3.0-candidate.4`:
 
 Open publication gates:
 
-- trusted release-environment signature and explicit permission to publish;
+- the trusted private-release implementation is under review; no trusted public key or live authorization record exists;
+- the empty `product-os-release` environment still needs Doppler OIDC identity/project/config variables, followed by a separately reviewed signing-key ceremony;
+- a release-specific authorization record and explicit permission to publish remain mandatory after the implementation merges;
 - live WorkOS diagnostic and staging login against configured dashboard values;
-- R2 destination/credentials and preservation decision for large client/brand masters currently retained in Kit;
+- WorkOS staging values and R2 account, parent credential, bucket, and endpoint are not configured in the release environment;
+- R2 preservation decision for large client/brand masters currently retained in Kit;
 - official Norfolk AI logo, colors, and typography are explicitly deferred to the future Claude Design engagement; neutral semantic placeholders make this deferral non-blocking for candidate merge;
 - resolution or explicit deferral of `PP-U11-ICON-GRAMMAR`, `PP-U11-PARITY-EXCEPTIONS`, and `PP-U11-DECK-IR`;
 - complete retirement preservation/restoration and consumer evidence are not release blockers for Product OS, but they block repository deletion.
 
-Draft review branches are pushed and open as [Product OS PR #1](https://github.com/Norfolk-Group/norfolk-ai-product-os/pull/1) and [Kit PR #1](https://github.com/Norfolk-Group/norfolk-kit/pull/1). Candidate `0.3.0-candidate.4` repository-state reconciliation remains local until pushed. No release publication or PR merge has occurred through this workflow; Starter's externally completed deletion is recorded above.
+[Product OS PR #1](https://github.com/Norfolk-Group/norfolk-ai-product-os/pull/1) merged at `692b94a3878cc3505f5ce95582ca1a91b3516da7`; [Kit PR #1](https://github.com/Norfolk-Group/norfolk-kit/pull/1) merged at `848d8e71dca8cc1de72a123b6444f8fe5e08af70`. The trusted-release implementation remains a separate review branch. No release has been published. Starter's externally completed deletion remains recorded as incomplete evidence, and Manual deletion remains blocked pending complete preservation, recovery, consumers, and exact approval.
