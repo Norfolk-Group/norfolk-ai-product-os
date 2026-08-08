@@ -12,7 +12,9 @@
     "test": "node --import tsx --test tests/**/*.test.ts",
     "typecheck": "tsc --noEmit",
     "validate": "tsx tools/validate/index.ts",
-    "release:candidate": "tsx tools/release/build-candidate.ts"
+    "release:candidate": "tsx tools/release/build-candidate.ts",
+    "release:preflight": "tsx tools/release/run-preflight.ts",
+    "release:trusted": "tsx tools/release/build-trusted.ts"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

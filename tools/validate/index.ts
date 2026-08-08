@@ -10,6 +10,7 @@ import { validateAuthExperience, validateAuthSecurity } from "./auth.js";
 import { validateRetirementDossier, validateValidationArtifact } from "./retirement.js";
 import { validateBrandProfile, validateMediaAssetWorkflow } from "./design.js";
 import { validateAnimationRegistry } from "./motion.js";
+import { validateReleaseAuthorization } from "../release/authorization.js";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const result = await validateRepository(root);
@@ -37,6 +38,10 @@ result.errors.push(...validateAgentIdentityRegistry(JSON.parse(await readFile(re
 result.errors.push(...validateBrandProfile(JSON.parse(await readFile(resolve(root, "design/brand-profile.example.json"), "utf8"))).map((error) => `design/brand-profile.example.json: ${error}`));
 result.errors.push(...validateMediaAssetWorkflow(JSON.parse(await readFile(resolve(root, "standards/media-asset-workflow.example.json"), "utf8"))).map((error) => `standards/media-asset-workflow.example.json: ${error}`));
 result.errors.push(...validateAnimationRegistry(JSON.parse(await readFile(resolve(root, "design/animation-registry.example.json"), "utf8"))).map((error) => `design/animation-registry.example.json: ${error}`));
+for (const path of await fg(["release-authorizations/*.json"], { cwd: root, onlyFiles: true })) {
+  const authorization = JSON.parse(await readFile(resolve(root, path), "utf8"));
+  result.errors.push(...validateReleaseAuthorization(authorization).map((error) => `${path}: ${error}`));
+}
 result.errors.push(...validateAuthExperience(JSON.parse(await readFile(resolve(root, "tests/fixtures/auth/valid-experience.json"), "utf8"))).map((error) => `tests/fixtures/auth/valid-experience.json: ${error}`));
 result.errors.push(...validateAuthSecurity(JSON.parse(await readFile(resolve(root, "tests/fixtures/auth/valid-security.json"), "utf8"))).map((error) => `tests/fixtures/auth/valid-security.json: ${error}`));
 for (const name of ["norfolk-starter", "norfolk-manual"]) result.errors.push(...validateRetirementDossier(JSON.parse(await readFile(resolve(root, `retirement/${name}.json`), "utf8"))).map((error) => `retirement/${name}.json: ${error}`));

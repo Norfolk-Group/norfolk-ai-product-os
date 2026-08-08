@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://norfolk.ai/schemas/release-authorization.schema.json",
+  "title": "Norfolk AI Product OS private release authorization",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "releaseVersion", "candidateVersion", "candidateSourceCommit", "candidateManifestSha256", "releaseWorkflowCommit", "approver", "approvedAt", "scope", "confirmation", "trustedKeyId"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "releaseVersion": { "type": "string", "pattern": "^0\\.\\d+\\.\\d+$" },
+    "candidateVersion": { "type": "string", "pattern": "^0\\.\\d+\\.\\d+-candidate\\.\\d+$" },
+    "candidateSourceCommit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "candidateManifestSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "releaseWorkflowCommit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "approver": { "type": "string", "minLength": 1 },
+    "approvedAt": { "type": "string", "format": "date-time" },
+    "scope": { "const": "private-github-release" },
+    "confirmation": { "const": "publish-private-release" },
+    "trustedKeyId": { "type": "string", "minLength": 1 }
+  }
+}

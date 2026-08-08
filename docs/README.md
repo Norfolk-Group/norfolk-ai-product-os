@@ -2,6 +2,8 @@
 
 This is the canonical router. A document is not discoverable merely because it exists; each canonical document must be indexed here or from an indexed section page.
 
+Release engineering references: [authorization lifecycle](../release-authorizations/README.md), [trusted private release design](superpowers/specs/2026-08-07-trusted-private-release-design.md), and [implementation plan](superpowers/plans/2026-08-07-trusted-private-release.md).
+
 ## Governance kernel
 
 | Document | Tier | Owner | Purpose |
